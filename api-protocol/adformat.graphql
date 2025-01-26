@@ -1,0 +1,51 @@
+fragment __formatData on AdFormat {
+  ID
+  codename
+  type
+  title
+  description
+  active
+  width
+  height
+  minWidth
+  minHeight
+  config
+  createdAt
+  updatedAt
+  deletedAt
+}
+
+query ListAdFormats(
+  $page: Int! = 0, $size: Int! = 10,
+  $filter: AdFormatListFilter = null,
+  $order: AdFormatListOrder = null
+) {
+  result: listFormats(filter: $filter, order: $order, page: {startPage: $page, size: $size}) {
+    totalCount
+    list { ...__formatData }
+    pageInfo { ...__pageInfo }
+  }
+}
+
+query GetAdFormat($id: ID64!=0, $codename: String!="") {
+  result: format(ID: $id, codename: $codename) {
+    clientMutationID
+    data: format { ...__formatData }
+  }
+}
+
+mutation CreateAdFormat($input: AdFormatInput!) {
+  result: createFormat(input: $input) {
+    clientMutationID
+    formatID
+    data: format { ...__formatData }
+  }
+}
+
+mutation UpdateAdFormat($id: ID64!, $input: AdFormatInput!) {
+  result: updateFormat(ID: $id, input: $input) {
+    clientMutationID
+    formatID
+    data: format { ...__formatData }
+  }
+}

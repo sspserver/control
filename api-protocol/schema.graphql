@@ -1,0 +1,773 @@
+###############################################################################
+# Query
+###############################################################################
+
+fragment __pageInfo on PageInfo {
+  total
+  page
+  count
+}
+
+###############################################################################
+## Countries
+###############################################################################
+
+query ListCountries {
+  list: countries {
+    ID
+    name
+    code2
+    continentCode
+  }
+}
+
+###############################################################################
+## Accounts actions
+###############################################################################
+
+fragment __accountData on Account {
+  ID
+  title
+  description
+  status
+  statusMessage
+  logoURI
+  policyURI
+  termsOfServiceURI
+  clientURI
+  contacts
+  createdAt
+  updatedAt
+}
+
+query GetAccount($id: ID64!) {
+  result: account(id: $id) {
+    data: account { ...__accountData }
+  }
+}
+
+query GetAccounts($page: Int! = 0, $size: Int! = 10, $filter: AccountListFilter = null, $order: AccountListOrder = null) {
+  result: listAccounts(filter: $filter, order: $order, page: {startPage: $page, size: $size}) {
+    list { ...__accountData }
+    pageInfo { ...__pageInfo }
+  }
+  permApprove: checkPermission(name:"approve.*", key: "account")
+  permReject: checkPermission(name:"reject.*", key: "account")
+}
+
+mutation UpdateAccount($id: ID64!, $data: AccountInput!){
+  updateAccount(id: $id, input: $data) {
+    clientMutationID
+    accountID
+    account { ...__accountData }
+  }
+}
+
+mutation RegisterAccount($input: AccountCreateInput!) {
+  registerAccount(input: $input) {
+    clientMutationID
+    account { ...__accountData }
+    owner { ...__userData }
+  }
+}
+
+mutation ApproveAccount($id: ID64!, $msg: String! = "") {
+  approveAccount(id: $id, msg: $msg) {
+    clientMutationID
+  }
+}
+
+mutation RejectAccount($id: ID64!, $msg: String! = "") {
+  rejectAccount(id: $id, msg: $msg) {
+    clientMutationID
+  }
+}
+
+###############################################################################
+## Users actions
+###############################################################################
+
+fragment __userData on User {
+  ID
+  username
+  status
+  statusMessage
+  createdAt
+  updatedAt
+}
+
+query GetUser($id: ID64!) {
+  result: user(id: $id) {
+    user { ...__userData }
+  }
+}
+
+query GetUsers($page: Int! = 0, $size: Int! = 10, $filter: UserListFilter = null, $order: UserListOrder = null) {
+  result: listUsers(filter: $filter, order: $order, page: {startPage: $page, size: $size}) {
+    list { ...__userData }
+    pageInfo { ...__pageInfo }
+  }
+  permApprove: checkPermission(name:"approve.*", key: "user")
+  permReject: checkPermission(name:"reject.*", key: "user")
+}
+
+mutation ResetUserPassword($email: String!) {
+  resetUserPassword(email: $email) {
+    status
+    message
+  }
+}
+
+mutation UpdateUserPassword($token: String!, $email: String!, $password: String!) {
+  updateUserPassword(token: $token, email: $email, password: $password) {
+    status
+    message
+  }
+}
+
+mutation ApproveUser($id: ID64!, $msg: String! = "") {
+  approveUser(id: $id, msg: $msg) {
+    clientMutationID
+  }
+}
+
+mutation RejectUser($id: ID64!, $msg: String! = "") {
+  rejectUser(id: $id, msg: $msg) {
+    clientMutationID
+  }
+}
+
+###############################################################################
+## Members actions
+###############################################################################
+
+fragment __memberData on Member {
+  ID
+  status
+  isAdmin
+  updatedAt
+  account {
+    ID
+    title
+    logoURI
+    status
+    statusMessage
+    updatedAt
+  }
+  user {
+    ID
+    username
+    status
+    statusMessage
+    updatedAt
+  }
+  roles {
+    ID
+    name
+    title
+  }
+}
+
+query GetMembers($page: Int! = 0, $size: Int! = 10, $filter: MemberListFilter = null, $order: MemberListOrder = null) {
+  result: listMembers(filter: $filter, order: $order, page: {startPage: $page, size: $size}) {
+    totalCount
+    list { ...__memberData }
+    pageInfo { ...__pageInfo }
+  }
+  roles: listRoles @skipNoPermissions(permissions: ["account.member.update.*", "account.member.roles.set.*"]) {
+    list { ID, title, name }
+  }
+  permApprove: checkPermission(name: "approve.*", key: "account.member")
+  permReject:  checkPermission(name: "reject.*",  key: "account.member")
+  permUpdate:  checkPermission(name: "update.*",  key: "account.member")
+}
+
+mutation UpdateMember($id: ID64!, $data: MemberInput!) {
+  updateAccountMember(memberID: $id, member: $data) {
+    clientMutationID
+    memberID
+    member { ...__memberData }
+  }
+}
+
+###############################################################################
+## SocialAccount actions
+###############################################################################
+
+fragment __socialAccountData on SocialAccount {
+  ID
+  userID
+  email
+  username
+  provider
+  firstName
+  lastName
+  avatar
+  link
+  data
+  sessions {
+    name
+    scope
+    tokenType
+    expiresAt
+  }
+}
+
+query GetCurrentSocialAccounts($filter: SocialAccountListFilter  = null) {
+  result: currentSocialAccounts(filter: $filter) {
+    list { ...__socialAccountData }
+    pageInfo { ...__pageInfo }
+  }
+}
+
+mutation DisconnectSocialAccount($id: ID64!) {
+  result: disconnectSocialAccount(id: $id) {
+    clientMutationID
+  }
+}
+
+###############################################################################
+## Permissions
+###############################################################################
+
+fragment __permData on RBACPermission {
+  name
+  object
+  access
+  fullname
+  description
+}
+
+query ListPermissions($patterns: [String!] = null) {
+  all: listPermissions(patterns: $patterns) { ...__permData }
+  my: listMyPermissions(patterns: $patterns) { ...__permData }
+}
+
+###############################################################################
+## Direct access tokens
+###############################################################################
+
+query ListDirectAccessTokens($expiresAt: Time = null) {
+  tokens: listDirectAccessTokens(filter: {minExpiresAt: $expiresAt}, order: {createdAt: DESC}, page: {size: 100}) {
+    list {
+      ID
+      token
+      description
+      userID
+      accountID
+      expiresAt
+    }
+  }
+}
+
+mutation GenerateDirectAccessToken($userID: ID64 = null, $expiresAt: Time = null) {
+  result: generateDirectAccessToken(userID: $userID, expiresAt: $expiresAt) {
+    clientMutationID
+    token {
+      ID
+      token
+      description
+      userID
+      accountID
+      expiresAt
+    }
+  }
+}
+
+mutation RevokeDirectAccessToken($id: ID64!) {
+  result: revokeDirectAccessToken(filter: { ID: [$id] }) {
+    clientMutationID
+    status
+  }
+}
+
+###############################################################################
+## RTB source
+###############################################################################
+
+fragment __rtbSourceData on RTBSource {
+  ID
+  title
+  description
+  status
+  active
+
+  accountID
+  flags
+
+  protocol
+  minimalWeight
+  URL
+
+  method
+  requestType
+  headers
+  RPS
+  timeout
+  accuracy
+  priceCorrectionReduce
+  auctionType
+  minBid
+  maxBid
+  formats
+  deviceTypes
+  devices
+  OS
+  browsers
+  carriers
+  categories
+  countries
+  languages
+  applications
+  domains
+  zones
+  secure
+  adBlock
+  privateBrowsing
+  IP
+  config
+  createdAt
+  updatedAt
+  deletedAt
+}
+
+query GetRTBSource($id: ID64!) {
+  result: RTBSource(ID: $id) {
+    clientMutationID
+    data: source { ...__rtbSourceData }
+  }
+}
+
+query ListRTBSources(
+  $page: Int! = 0, $size: Int! = 10,
+  $filter: RTBSourceListFilter = null,
+  $order: RTBSourceListOrder = null,
+) {
+  result: listRTBSources(filter: $filter, order: $order, page: {startPage: $page, size: $size}) {
+    list { ...__rtbSourceData }
+    pageInfo { ...__pageInfo }
+  }
+  permApprove: checkPermission(name:"approve.*", key: "rtb_source")
+  permReject: checkPermission(name:"reject.*", key: "rtb_source")
+}
+
+mutation NewRTBSource($input: RTBSourceInput!) {
+  result: createRTBSource(input: $input) {
+    clientMutationID
+    sourceID
+    data: source { ...__rtbSourceData }
+  }
+}
+
+mutation UpdateRTBSource($id: ID64!, $input: RTBSourceInput!) {
+  result: updateRTBSource(ID: $id, input: $input) {
+    clientMutationID
+    sourceID
+    data: source { ...__rtbSourceData }
+  }
+}
+
+mutation DeleteRTBSource($id: ID64!) {
+  result: deleteRTBSource(ID: $id) {
+    clientMutationID
+  }
+}
+
+mutation RunRTBSource($id: ID64!) {
+  result: runRTBSource(ID: $id) {
+    clientMutationID
+    status
+  }
+}
+
+mutation PauseRTBSource($id: ID64!) {
+  result: pauseRTBSource(ID: $id) {
+    clientMutationID
+    status
+  }
+}
+
+mutation ApproveRTBSource($id: ID64!, $msg: String = null) {
+  result: approveRTBSource(ID: $id, msg: $msg) {
+    clientMutationID
+    status
+    message
+  }
+}
+
+mutation RejectRTBSource($id: ID64!, $msg: String = null) {
+  result: rejectRTBSource(ID: $id, msg: $msg) {
+    clientMutationID
+    status
+    message
+  }
+}
+
+###############################################################################
+## RTB access point
+###############################################################################
+
+fragment __rtbAccessPointData on RTBAccessPoint {
+  ID
+  accountID
+  codename
+
+  title
+  description
+  auctionType
+  status
+  active
+  flags
+
+  # Price configuration
+  revenueShareReduce
+  fixedPurchasePrice
+  maxBid
+
+  # Maybe don't need this
+  requestType
+
+  protocol
+  timeout
+  RPS
+  domainDefault
+  headers
+  formats
+  deviceTypes
+  devices
+  OS
+  browsers
+  categories
+  carriers
+  countries
+  languages
+  applications
+  zones
+  domains
+  sources
+  secure
+  adBlock
+  privateBrowsing
+  IP
+
+  createdAt
+  updatedAt
+  deletedAt
+}
+
+query GetRTBAccessPoint($id: ID64!) {
+  result: RTBAccessPoint(ID: $id) {
+    clientMutationID
+    data: accessPoint { ...__rtbAccessPointData }
+  }
+}
+
+query ListRTBAccessPoints(
+  $page: Int! = 0, $size: Int! = 10,
+  $filter: RTBAccessPointListFilter = null,
+  $order: RTBAccessPointListOrder = null,
+) {
+  result: listRTBAccessPoints(filter: $filter, order: $order, page: {startPage: $page, size: $size}) {
+    list { ...__rtbAccessPointData }
+    pageInfo { ...__pageInfo }
+  }
+  permApprove: checkPermission(name:"approve.*", key: "rtb_access_point")
+  permReject: checkPermission(name:"reject.*", key: "rtb_access_point")
+}
+
+mutation NewRTBAccessPoint($input: RTBAccessPointInput!) {
+  result: createRTBAccessPoint(input: $input) {
+    clientMutationID
+    accessPointID
+    data: accessPoint { ...__rtbAccessPointData }
+  }
+}
+
+mutation UpdateRTBAccessPoint($id: ID64!, $input: RTBAccessPointInput!) {
+  result: updateRTBAccessPoint(ID: $id, input: $input) {
+    clientMutationID
+    accessPointID
+    data: accessPoint { ...__rtbAccessPointData }
+  }
+}
+
+mutation DeleteRTBAccessPoint($id: ID64!) {
+  result: deleteRTBAccessPoint(ID: $id) {
+    clientMutationID
+  }
+}
+
+mutation RunRTBAccessPoint($id: ID64!) {
+  result: runRTBAccessPoint(ID: $id) {
+    clientMutationID
+    status
+  }
+}
+
+mutation PauseRTBAccessPoint($id: ID64!) {
+  result: pauseRTBAccessPoint(ID: $id) {
+    clientMutationID
+    status
+  }
+}
+
+mutation ApproveRTBAccessPoint($id: ID64!, $msg: String = null) {
+  result: approveRTBAccessPoint(ID: $id, msg: $msg) {
+    clientMutationID
+    status
+    message
+  }
+}
+
+mutation RejectRTBAccessPoint($id: ID64!, $msg: String = null) {
+  result: rejectRTBAccessPoint(ID: $id, msg: $msg) {
+    clientMutationID
+    status
+    message
+  }
+}
+
+###############################################################################
+## Browsers
+###############################################################################
+
+query GetBrowser($id: ID64!) {
+  result: browser(ID: $id) {
+    clientMutationID
+    data: browser { ...__browserData }
+  }
+}
+
+query ListBrowsers(
+  $page: Int! = 0, $size: Int! = 10,
+  $filter: BrowserListFilter = null,
+  $order: BrowserListOrder = null,
+) {
+  result: listBrowsers(filter: $filter, order: $order, page: {startPage: $page, size: $size}) {
+    totalCount
+    list { ...__browserData }
+    pageInfo { ...__pageInfo }
+  }
+}
+
+mutation NewBrowser($input: BrowserInput!) {
+  result: createBrowser(input: $input) {
+    clientMutationID
+    browserID
+    browser { ...__browserData }
+  }
+}
+
+mutation UpdateBrowser($id: ID64!, $input: BrowserInput!) {
+  result: updateBrowser(ID: $id, input: $input) {
+    clientMutationID
+    browserID
+    browser { ...__browserData }
+  }
+}
+
+fragment __browserData on Browser {
+  ID
+  name
+  description
+  matchExp
+  active
+  versions {
+    name
+    min
+    max
+  }
+  createdAt
+  updatedAt
+  deletedAt
+}
+
+###############################################################################
+## Devices
+###############################################################################
+
+fragment __deviceType on DeviceType {
+  ID
+  active
+  name
+  description
+}
+
+fragment __deviceModelShort on DeviceModel {
+  ID
+  active
+  name
+  description
+  matchExp
+  makerID
+  versions { name, min, max }
+  type { ...__deviceType }
+  createdAt
+  updatedAt
+}
+
+fragment __deviceModel on DeviceModel {
+  ...__deviceModelShort
+  maker { ...__deviceMakerShort }
+}
+
+fragment __deviceMakerShort on DeviceMaker {
+  ID
+  name
+  description
+  active
+  matchExp
+  createdAt
+  updatedAt
+}
+
+fragment __deviceMaker on DeviceMaker {
+  ...__deviceMakerShort
+  types { ...__deviceType }
+  models { ...__deviceModelShort }
+}
+
+query GetDeviceMaker($id: ID64!) {
+  result: deviceMaker(ID: $id) {
+    data: maker { ...__deviceMaker }
+  }
+}
+
+query ListDeviceMakers(
+  $page: Int! = 0, $size: Int! = 10,
+  $filter: DeviceMakerListFilter = null,
+  $order: DeviceMakerListOrder = null,
+) {
+  result: listDeviceMakers(filter: $filter, order: $order, page: {startPage: $page, size: $size}) {
+    list { ...__deviceMaker }
+    pageInfo { ...__pageInfo }
+  }
+}
+
+mutation CreateDeviceMaker($input: DeviceMakerInput!) {
+  result: createDeviceMaker(input: $input) {
+    data: maker { ... __deviceMaker }
+  }
+}
+
+mutation UpdateDeviceMaker($id: ID64!, $input: DeviceMakerInput!) {
+  result: updateDeviceMaker(ID: $id, input: $input) {
+    data: maker { ... __deviceMaker }
+  }
+}
+
+###############################################################################
+## Device types
+###############################################################################
+
+query ListDeviceTypes {
+  result: listDeviceTypes {
+    ...__deviceType
+  }
+}
+
+###############################################################################
+## Device models
+###############################################################################
+
+query GetDeviceModel($id: ID64!) {
+  result: deviceModel(ID: $id) {
+    data: model { ...__deviceModel }
+  }
+}
+
+query ListDeviceModels(
+  $page: Int! = 0, $size: Int! = 10,
+  $filter: DeviceModelListFilter = null,
+  $order: DeviceModelListOrder = null,
+) {
+  result: listDeviceModels(filter: $filter, order: $order, page: {startPage: $page, size: $size}) {
+    list { ...__deviceModel }
+    pageInfo { ...__pageInfo }
+  }
+}
+
+###############################################################################
+## Statistics
+###############################################################################
+
+fragment __statItem on StatisticAdItem {
+  keys {
+    key
+    value
+    text
+  }
+  spent
+  profit
+  bidPrice
+  requests
+  impressions
+  views
+  directs
+  clicks
+  leads
+  bids
+  wins
+  skips
+  nobids
+  errors
+  CTR
+  eCPM
+  eCPC
+  eCPA
+}
+
+query Statistics(
+  $filter: StatisticAdListFilter = null,
+  $group: [StatisticKey!]!,
+  $order: [StatisticAdKeyOrder!] = null,
+  $page: Page = null
+) {
+  result: statisticAdList(filter: $filter, order: $order, group: $group, page: $page) {
+    totalCount
+    list { ...__statItem }
+    pageInfo { ...__pageInfo }
+  }
+}
+
+###############################################################################
+## Billing
+###############################################################################
+
+fragment __billingBalance on Balance {
+  balance
+  credit
+}
+
+query GetBillingBalance($key: String!) {
+  result: balance(key: $key) {
+    ...__billingBalance
+  }
+}
+
+###############################################################################
+## History
+###############################################################################
+
+query ListHistory(
+  $page: Int! = 0, $size: Int! = 10,
+  $filter: HistoryActionListFilter = null,
+  $order: HistoryActionListOrder = null
+) {
+  result: listHistory(filter: $filter, order: $order, page: {startPage: $page, size: $size}) {
+    totalCount
+    list {
+      ID
+      RequestID
+      name
+      message
+      userID
+      accountID
+      objectType
+      objectIDs
+      data
+      actionAt
+    }
+    pageInfo { ...__pageInfo }
+  }
+}

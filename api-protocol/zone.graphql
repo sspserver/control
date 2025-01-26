@@ -1,0 +1,97 @@
+fragment __zoneData on Zone {
+  ID
+  codename
+  accountID
+  title
+  description
+  type
+  status
+  active
+  defaultCode
+  context
+  minECPM
+  fixedPurchasePrice
+  allowedFormats
+  allowedTypes
+  allowedSources
+  disallowedSources
+  campaigns
+  createdAt
+  updatedAt
+  deletedAt
+}
+
+query GetZone($id: ID64!) {
+  result: zone(ID: $id) {
+    clientMutationID
+    data: zone { ...__zoneData }
+  }
+}
+
+query ListZones(
+  $page: Int! = 0, $size: Int! = 10,
+  $filter: ZoneListFilter = null,
+  $order: ZoneListOrder = null
+) {
+  result: listZones(filter: $filter, order: $order, page: {startPage: $page, size: $size}) {
+    totalCount
+    list { ...__zoneData }
+    pageInfo { ...__pageInfo }
+  }
+  permApprove: checkPermission(name:"approve.*", key: "adv_zone")
+  permReject: checkPermission(name:"reject.*", key: "adv_zone")
+}
+
+mutation CreateZone($input: ZoneInput!) {
+  result: createZone(input: $input) {
+    clientMutationID
+    zoneID
+    data: zone { ...__zoneData }
+  }
+}
+
+mutation UpdateZone($id: ID64!, $input: ZoneInput!) {
+  result: updateZone(ID: $id, input: $input) {
+    clientMutationID
+    zoneID
+    data: zone { ...__zoneData }
+  }
+}
+
+mutation DeleteZone($id: ID64!) {
+  result: deleteZone(ID: $id) {
+    clientMutationID
+  }
+}
+
+mutation ApproveZone($id: ID64!, $msg: String = null) {
+  result: approveZone(ID: $id, msg: $msg) {
+    clientMutationID
+    status
+    message
+  }
+}
+
+mutation RejectZone($id: ID64!, $msg: String = null) {
+  result: rejectZone(ID: $id, msg: $msg) {
+    clientMutationID
+    status
+    message
+  }
+}
+
+mutation ActivateZone($id: ID64!, $msg: String = null) {
+  result: activateZone(ID: $id, msg: $msg) {
+    clientMutationID
+    status
+    message
+  }
+}
+
+mutation DeactivateZone($id: ID64!, $msg: String = null) {
+  result: deactivateZone(ID: $id, msg: $msg) {
+    clientMutationID
+    status
+    message
+  }
+}
