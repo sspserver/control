@@ -1,0 +1,51 @@
+fragment __categoryData on Category {
+  ID
+  name
+  description
+  IABCode
+  parentID
+  parent {
+    ID
+    name
+  }
+  position
+  active
+  createdAt
+  updatedAt
+  deletedAt
+}
+
+query GetCategory($id: ID64!) {
+  result: category(ID: $id) {
+    clientMutationID
+    categoryID
+    data: category { ...__categoryData }
+  }
+}
+
+query ListCategories(
+  $page: Int! = 0, $size: Int! = 10, 
+  $filter: CategoryListFilter = null,
+  $order: CategoryListOrder = null,
+) {
+  result: listCategories(filter: $filter, order: $order, page: {startPage: $page, size: $size}) {
+    list { ...__categoryData }
+    pageInfo { ...__pageInfo }
+  }
+}
+
+mutation CreateCategory($input: CategoryInput!) {
+  result: createCategory(input: $input) {
+    clientMutationID
+    categoryID
+    data: category { ...__categoryData }
+  }
+}
+
+mutation UpdateCategory($id: ID64!, $input: CategoryInput!) {
+  result: updateCategory(ID: $id, input: $input) {
+    clientMutationID
+    categoryID
+    data: category { ...__categoryData }
+  }
+}

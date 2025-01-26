@@ -1,0 +1,93 @@
+fragment __applicationData on Application {
+  ID
+  accountID
+  creatorID
+  title
+  description
+  URI
+  type
+  platform
+  premium
+  status
+  active
+  categories
+  revenueShare
+  createdAt
+  updatedAt
+  deletedAt
+}
+
+query GetApplication($id: ID64!) {
+  result: application(ID: $id) {
+    clientMutationID
+    data: application { ...__applicationData }
+  }
+}
+
+query ListApplications(
+  $page: Int! = 0, $size: Int! = 10,
+  $filter: ApplicationListFilter = null,
+  $order: ApplicationListOrder = null
+) {
+  result: listApplications(filter: $filter, order: $order, page: {startPage: $page, size: $size}) {
+    totalCount
+    list { ...__applicationData }
+    pageInfo { ...__pageInfo }
+  }
+  permApprove: checkPermission(name:"approve.*", key: "adv_application")
+  permReject: checkPermission(name:"reject.*", key: "adv_application")
+}
+
+mutation CreateApplication($input: ApplicationInput!) {
+  result: createApplication(input: $input) {
+    clientMutationID
+    applicationID
+    data: application { ...__applicationData }
+  }
+}
+
+mutation UpdateApplication($id: ID64!, $input: ApplicationInput!) {
+  result: updateApplication(ID: $id, input: $input) {
+    clientMutationID
+    applicationID
+    data: application { ...__applicationData }
+  }
+}
+
+mutation DeleteApplication($id: ID64!) {
+  result: deleteApplication(ID: $id) {
+    clientMutationID
+  }
+}
+
+mutation ApproveApplication($id: ID64!, $msg: String = null) {
+  result: approveApplication(ID: $id, msg: $msg) {
+    clientMutationID
+    status
+    message
+  }
+}
+
+mutation RejectApplication($id: ID64!, $msg: String = null) {
+  result: rejectApplication(ID: $id, msg: $msg) {
+    clientMutationID
+    status
+    message
+  }
+}
+
+mutation RunApplication($id: ID64!, $msg: String = null) {
+  result: runApplication(ID: $id, msg: $msg) {
+    clientMutationID
+    status
+    message
+  }
+}
+
+mutation PauseApplication($id: ID64!, $msg: String = null) {
+  result: pauseApplication(ID: $id, msg: $msg) {
+    clientMutationID
+    status
+    message
+  }
+}

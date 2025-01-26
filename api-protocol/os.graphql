@@ -1,0 +1,48 @@
+fragment __osData on OS {
+  ID
+  name
+  description
+  matchExp
+  active
+  versions {
+    name
+    min
+    max
+  }
+  createdAt
+  updatedAt
+  deletedAt
+}
+
+query GetOS($id: ID64!) {
+  result: OS(ID: $id) {
+    clientMutationID
+    data: OS { ...__osData }
+  }
+}
+
+query ListOS(
+  $page: Int! = 0, $size: Int! = 10, 
+  $filter: OSListFilter = null,
+  $order: OSListOrder = null,
+) {
+  result: listOS(filter: $filter, order: $order, page: {startPage: $page, size: $size}) {
+    totalCount
+    list { ...__osData }
+    pageInfo { ...__pageInfo }
+  }
+}
+
+mutation CreateOS($input: OSInput!) {
+  result: createOS(input: $input) {
+    clientMutationID
+    data: OS { ...__osData }
+  }
+}
+
+mutation UpdateOS($id: ID64!, $input: OSInput!) {
+  result: updateOS(ID: $id, input: $input) {
+    clientMutationID
+    data: OS { ...__osData }
+  }
+}
