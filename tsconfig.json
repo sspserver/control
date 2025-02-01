@@ -10,7 +10,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@tailus-ui/*": ["./src/components/tailus-ui/*"],
-      "@lib/*": ["./lib/*"]
+      "@lib/*": ["./lib/*"],
+      "@configs/*": ["./configs/*"],
     },
     "resolveJsonModule": true,
     "allowJs": true,

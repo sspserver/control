@@ -16,16 +16,16 @@
     --caption-text-color: theme(colors.gray.500);
     --body-text-color: theme(colors.gray.700);
     --placeholder-text-color: theme(colors.gray.400);
+    --error-text-color: theme(colors.red.500);
 
     /* dark mode */
-    @media(prefers-color-scheme:dark){
+    @media (prefers-color-scheme: dark) {
       --display-text-color: theme(colors.white);
       --title-text-color: var(--display-text-color);
       --caption-text-color: theme(colors.gray.500);
       --body-text-color: theme(colors.gray.300);
       --placeholder-text-color: theme(colors.gray.600);
     }
-
   }
 
   /* dark mode */

@@ -1,8 +1,8 @@
-import type { ButtonIconProps as TailusButtonIconProps } from '@tailus/themer';
-import type { ButtonProps as ButtonVariantsProps } from '@tailus/themer/dist/components/button';
+import type { ButtonProps as ButtonVariantsProps, ButtonIconProps as TailusButtonIconProps } from '@tailus/themer';
 import type React from 'react';
 
 export type ButtonProps = {
+  children: React.ReactNode;
   disabled?: boolean;
   href?: string;
 } & React.HTMLAttributes<HTMLButtonElement | HTMLAnchorElement> & ButtonVariantsProps;

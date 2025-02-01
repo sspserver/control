@@ -1,6 +1,8 @@
+import ApplicationsContent from '@/components/ApplicationsContent';
+
 function Applications() {
   return (
-    <span>Applications</span>
+    <ApplicationsContent />
   );
 }
 

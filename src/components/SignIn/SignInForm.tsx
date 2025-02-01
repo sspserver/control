@@ -1,62 +1,79 @@
 'use client';
 
 import useSignInForm from '@/components/SignIn/useSignInForm';
-import Button from '@tailus-ui/Button/Button';
+import { ButtonLoading } from '@tailus-ui/Button';
 import Input from '@tailus-ui/Input';
 import Label from '@tailus-ui/Label';
-import Separator from '@tailus-ui/Separator';
-import { Caption, Link } from '@tailus-ui/typography';
-import Image from 'next/image';
+import { Link } from '@tailus-ui/typography';
 import { Fragment } from 'react';
 
 function SignInForm() {
-  const { userCredentials, submitSigInFormHandler, changeUserCredentialInputHandler } = useSignInForm();
+  const { isLoading, userCredentials, signInFormErrors, submitSigInFormHandler, changeUserCredentialInputHandler } = useSignInForm();
 
   return (
     <Fragment>
-      <div className="mt-8 grid grid-cols-2 gap-3">
-        <Button.Root variant="outlined" intent="gray" size="sm" className="w-full">
-          <Button.Icon type="leading" size="xs">
-            <Image
-              aria-hidden
-              src="/icons/google.svg"
-              alt="Google icon"
-              width={16}
-              height={16}
-            />
-            {/* <Google /> */}
-          </Button.Icon>
-          <Button.Label>Google</Button.Label>
-        </Button.Root>
-        <Button.Root variant="outlined" intent="gray" size="sm" className="w-full">
-          <Button.Icon type="leading" size="xs">
-            <Image
-              aria-hidden
-              src="/icons/microsoft.svg"
-              alt="Google icon"
-              width={16}
-              height={16}
-            />
-            {/* <Microsoft /> */}
-          </Button.Icon>
-          <Button.Label>Microsoft</Button.Label>
-        </Button.Root>
-      </div>
-      <form onSubmit={submitSigInFormHandler} className="mx-auto mt-8 space-y-6">
+      {/* <div className="mt-8 grid grid-cols-2 gap-3"> */}
+      {/*   <Button.Root */}
+      {/*    variant="outlined" */}
+      {/*    intent="gray" */}
+      {/*    size="sm" */}
+      {/*    className="w-full" */}
+      {/*   > */}
+      {/*    <Button.Icon type="leading" size="xs"> */}
+      {/*      <Image */}
+      {/*        aria-hidden */}
+      {/*        src="/icons/google.svg" */}
+      {/*        alt="Google icon" */}
+      {/*        width={16} */}
+      {/*        height={16} */}
+      {/*      /> */}
+      {/*    </Button.Icon> */}
+      {/*    <Button.Label>Google</Button.Label> */}
+      {/*   </Button.Root> */}
+      {/*   <Button.Root */}
+      {/*    variant="outlined" */}
+      {/*    intent="gray" */}
+      {/*    size="sm" */}
+      {/*    className="w-full" */}
+      {/*   > */}
+      {/*    <Button.Icon type="leading" size="xs"> */}
+      {/*      <Image */}
+      {/*        aria-hidden */}
+      {/*        src="/icons/microsoft.svg" */}
+      {/*        alt="Google icon" */}
+      {/*        width={16} */}
+      {/*        height={16} */}
+      {/*      /> */}
+      {/*    </Button.Icon> */}
+      {/*    <Button.Label>Microsoft</Button.Label> */}
+      {/*   </Button.Root> */}
+      {/* </div> */}
+      <form
+        onSubmit={submitSigInFormHandler}
+        className="mx-auto mt-8 space-y-6"
+      >
         <div className="space-y-6">
-          <div className="relative grid items-center gap-3 [grid-template-columns:1fr_auto_1fr]">
-            <Separator className="h-px border-b" />
-            <Caption as="span" className="block" size="sm">
-              Or continue with
-            </Caption>
-            <Separator className="h-px border-b" />
-          </div>
+          {/* <div className="relative grid items-center gap-3 [grid-template-columns:1fr_auto_1fr]"> */}
+          {/*  <Separator className="h-px border-b" /> */}
+          {/*  <Caption as="span" className="block" size="sm"> */}
+          {/*    Or continue with */}
+          {/*  </Caption> */}
+          {/*  <Separator className="h-px border-b" /> */}
+          {/* </div> */}
           <div className="space-y-4">
             <div className="space-y-2.5">
               <Label size="sm" htmlFor="email">
                 Your email
               </Label>
-              <Input id="username" name="username" type="text" value={userCredentials.username} onChange={changeUserCredentialInputHandler} required size="md" />
+              <Input
+                id="username"
+                name="username"
+                type="text"
+                value={userCredentials.username}
+                onChange={changeUserCredentialInputHandler}
+                required
+                size="md"
+              />
             </div>
             <div className="space-y-2.5">
               <div className="flex items-center justify-between">
@@ -67,13 +84,20 @@ function SignInForm() {
                   Forgot your Password ?
                 </Link>
               </div>
-              <Input id="password" name="password" type="password" value={userCredentials.password} onChange={changeUserCredentialInputHandler} required size="md" />
+              <Input
+                id="password"
+                name="password"
+                type="password"
+                value={userCredentials.password}
+                onChange={changeUserCredentialInputHandler}
+                required
+                size="md"
+              />
             </div>
           </div>
+          {signInFormErrors?.login && (<div className="text-red-500 text-sm">{signInFormErrors?.login}</div>)}
         </div>
-        <Button.Root className="w-full">
-          <Button.Label>Sign In</Button.Label>
-        </Button.Root>
+        <ButtonLoading loading={isLoading} className="w-full">Sign In</ButtonLoading>
       </form>
     </Fragment>
   );
