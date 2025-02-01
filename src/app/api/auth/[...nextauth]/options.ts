@@ -1,176 +1,43 @@
-import type { NextAuthOptions, Session, User } from 'next-auth';
+import type { NextAuthOptions, Session, SessionOptions, User } from 'next-auth';
 import type { JWT } from 'next-auth/jwt';
+import { publicApiUrl } from '@configs/api';
+import { configPathRoutes } from '@configs/routes';
+import { currentAccount } from '@lib/api/currentAccount';
+import { currentAccountTotal } from '@lib/api/currentAccountTotal';
+import { login } from '@lib/api/login';
+import { switchAccount } from '@lib/api/switchAccount';
+import CustomGraphQLError from '@lib/errors/CustomGraphQLError';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-const gqQuery = async (query: string, variables: any, token: string | undefined = undefined) => {
-  if (!process.env.NEXT_PUBLIC_API_URL) {
-    throw new Error('NEXT_PBLIC_API_URL env var not provided');
-  }
-
-  const headers = {
-    'Content-Type': 'application/json',
-  } as { [key: string]: string };
-
-  if (token) {
-    headers.Authorization = `Bearer ${token}`;
-  }
-  const body = JSON.stringify(variables ? { query, variables } : { query });
-  const response = await fetch(process.env.API_URL || process.env.NEXT_PUBLIC_API_URL, {
-    method: 'POST',
-    headers,
-    body,
-  });
-  const { errors, data } = await response.json();
-  if (errors) {
-    throw new Error(errors[0].message);
-  }
-  return data;
+const nextAuthOptionSession: Partial<SessionOptions> = {
+  strategy: 'jwt',
+  maxAge: 30 * 24 * 60 * 60, // 30 days
 };
 
-const login = async (username: string, password: string) => {
-  const query = `mutation {
-    login (login: "${username}", password: "${password}") {
-      token
-      expiresAt
-      isAdmin
-      roles
-    }
-  }`;
+const {
+  signIn,
+  newUser,
+} = configPathRoutes;
 
-  const data = await gqQuery(query, null);
-  const token = data?.login?.token || null;
-  const isAdmin = data?.login?.isAdmin || false;
-  const roles = data?.login?.roles || [];
-  const expiresAt = data?.login?.expiresAt || null;
-
-  return {
-    username,
-    token,
-    isAdmin,
-    roles,
-    expiresAt,
-  };
-};
-
-const switchAccount = async (accountID: number, token: string) => {
-  const query = `mutation {
-    switchAccount (id: ${accountID}) {
-      token
-      expiresAt
-      isAdmin
-      roles
-    }
-  }`;
-
-  const data = await gqQuery(query, null, token);
-  const newToken = data?.switchAccount?.token || null;
-  const isAdmin = data?.switchAccount?.isAdmin || false;
-  const roles = data?.switchAccount?.roles || [];
-  const expiresAt = data?.switchAccount?.expiresAt || null;
-
-  return {
-    token: newToken,
-    isAdmin,
-    roles,
-    expiresAt,
-  };
-};
-
-const currentAccount = async (token: string) => {
-  const query = `query currentAccount {
-    user: currentUser {
-      user {
-        ID
-        username
-        status
-      }
-    }
-    account: currentAccount {
-      account {
-        ID
-        status
-        title
-        description
-        logoURI
-      }
-    }
-  }`;
-
-  const data = await gqQuery(query, null, token);
-  const account = (data?.account?.account || {});
-  const user = (data?.user?.user || {});
-
-  return { user, account };
-};
-
-const currentAccountTotal = async (token: string) => {
-  const query = `query {
-    user: currentUser {
-      user {
-        ID
-        name: username
-        username
-        email: username
-        status
-      }
-    }
-    account: currentAccount {
-      account {
-        ID
-        status
-        title
-        description
-        logoURI
-      }
-    }
-    session: currentSession {
-      token
-      expiresAt
-      isAdmin
-      roles
-    }
-  }`;
-
-  const data = await gqQuery(query, null, token);
-  const account = (data?.account?.account ?? {});
-  const user = (data?.user?.user ?? {});
-  const session = (data?.session ?? {});
-
-  return { user, account, session };
-};
-
-export const authOptions: NextAuthOptions = {
-  session: {
-    strategy: 'jwt',
-    maxAge: 30 * 24 * 60 * 60, // 30 days
-  },
+const authOptions: NextAuthOptions = {
+  session: nextAuthOptionSession,
   pages: {
-    signIn: '/auth/signin',
-    newUser: '/auth/register',
+    signIn,
+    newUser,
   },
   callbacks: {
-    // TODO: define types
-    async jwt({ user, token }: { token: JWT; user: User | null }) {
-
-      if (user && !!user?.session) {
-        token.user = user.user;
-        token.account = user.account;
-        token.session = user.session;
+    async jwt({ user: jwtUser, token }) {
+      if (jwtUser && !!jwtUser?.session) {
+        const { user, account, session } = jwtUser;
+        token = { ...token, user, account, session };
       }
-
-      console.log('xxx session jwt', token);
 
       return token;
     },
     async session({ session, token }: { session: Session; token: JWT }) {
-      // console.log('xxx session authOptions 1', session, token);
-
-
       session.user = token.user;
       session.account = token.account;
       session.session = token.session;
-
-      console.log('xxx session session', session);
 
       return session;
     },
@@ -184,32 +51,43 @@ export const authOptions: NextAuthOptions = {
           type: 'email',
           placeholder: 'example@example.com',
         },
+        username: { label: 'Username', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
-      // TODO: fix username typings issue, remove credentials any, etc
-      async authorize(credentials: any): Promise<User> {
-        if (!process.env.NEXT_PUBLIC_API_URL) {
-          throw new Error('NEXT_PBLIC_API_URL env var not provided');
+      async authorize(credentials): Promise<User> {
+        if (!publicApiUrl) {
+          throw new CustomGraphQLError('NEXT_PUBLIC_API_URL env var not provided');
         }
+
+        if (!credentials?.username || !credentials?.password) {
+          throw new CustomGraphQLError('Username and password is required');
+        }
+
         const { username, password } = credentials;
-        const { token, isAdmin, roles, expiresAt } = await login(username, password);
+        const { token, isAdmin, roles, expiresAt, errors } = await login(username, password);
+
+        if (errors) {
+          throw new CustomGraphQLError(errors);
+        }
 
         if (!token) {
-          throw new Error ('Incorrect login or password');
+          throw new CustomGraphQLError('Incorrect login or password');
         }
         const { user, account } = await currentAccount(token);
 
-        console.log('xxx user, account, session 22', token, user, account)
-
-
-        return { id: `${user.ID}`, user, account, session: {
-          accessToken: token,
-          expiresAt: expiresAt ? new Date(expiresAt) : null,
-          isAdmin,
-          isSuperAdmin: roles.includes('system:admin'),
-          isAnonymous: roles.includes('anonymous'),
-          roles: roles || [],
-        } };
+        return {
+          id: `${user.ID}`,
+          user,
+          account,
+          session: {
+            accessToken: token,
+            expiresAt: expiresAt ? new Date(expiresAt) : null,
+            isAdmin,
+            isSuperAdmin: roles.includes('system:admin'),
+            isAnonymous: roles.includes('anonymous'),
+            roles: roles || [],
+          },
+        };
       },
     }),
     CredentialsProvider({
@@ -219,28 +97,35 @@ export const authOptions: NextAuthOptions = {
       credentials: {
         token: { label: 'Token', type: 'text' },
       },
-      async authorize(credentials: any): Promise<User> {
+      async authorize(credentials): Promise<User> {
+        if (!publicApiUrl) {
+          throw new CustomGraphQLError('NEXT_PBLIC_API_URL env var not provided');
+        }
 
-        console.log('xxx user, account, session', credentials);
-
-        if (!process.env.NEXT_PUBLIC_API_URL) {
-          throw new Error('NEXT_PBLIC_API_URL env var not provided');
+        if (!credentials?.token) {
+          throw new CustomGraphQLError('Token is required');
         }
 
         const { token } = credentials;
-        const { user, account, session } = await currentAccountTotal(token);
+        const { user, account, session, errors } = await currentAccountTotal(token);
 
-        console.log('xxx user, account, session', user, account, session)
+        if (errors) {
+          throw new CustomGraphQLError(errors);
+        }
 
-
-        return { id: `${user.ID}`, user, account, session: {
-          accessToken: session.token,
-          expiresAt: session.expiresAt ? new Date(session.expiresAt) : null,
-          isAdmin: session.isAdmin,
-          isSuperAdmin: session.roles.includes('system:admin'),
-          isAnonymous: session.roles.includes('anonymous'),
-          roles: session.roles || [],
-        } };
+        return {
+          id: `${user.ID}`,
+          user,
+          account,
+          session: {
+            accessToken: session.token,
+            expiresAt: session.expiresAt ? new Date(session.expiresAt) : null,
+            isAdmin: session.isAdmin,
+            isSuperAdmin: session.roles.includes('system:admin'),
+            isAnonymous: session.roles.includes('anonymous'),
+            roles: session.roles || [],
+          },
+        };
       },
     }),
     CredentialsProvider({
@@ -251,13 +136,17 @@ export const authOptions: NextAuthOptions = {
         accountID: { label: 'Account ID', type: 'number' },
         token: { label: 'Token', type: 'text' },
       },
-      async authorize(credentials: any): Promise<User> {
-        if (!process.env.NEXT_PUBLIC_API_URL) {
-          throw new Error('NEXT_PBLIC_API_URL env var not provided');
+      async authorize(credentials): Promise<User> {
+        if (!publicApiUrl) {
+          throw new Error('NEXT_PUBLIC_API_URL env var not provided');
+        }
+
+        if (!credentials?.accountID || !credentials?.token) {
+          throw new Error ('Account ID and token is required');
         }
 
         const { accountID, token } = credentials;
-        const { token: newToken } = await switchAccount(accountID, token);
+        const { token: newToken } = await switchAccount(Number(accountID), token);
         if (!newToken) {
           throw new Error ('Account switch failed');
         }
@@ -275,3 +164,5 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
 };
+
+export default authOptions;

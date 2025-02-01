@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { authOptions } from '@/app/api/auth/[...nextauth]/options';
+import authOptions from '@/app/api/auth/[...nextauth]/options';
 import AppProviders from '@/components/AppProviders';
 import { getServerSession } from 'next-auth';
 import { Geist, Geist_Mono } from 'next/font/google';
@@ -27,8 +27,6 @@ async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await getServerSession(authOptions);
-
-  // console.log('xxx session RootLayout', session)
 
   return (
     <html lang="en">

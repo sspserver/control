@@ -4,9 +4,11 @@ import {
 } from '@tailus/themer';
 import React from 'react';
 
-export type InputProps = {} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> & InputVariants;
+export type InputProps = {
+  ref?: React.RefObject<HTMLInputElement>;
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> & InputVariants;
 
-export const Input = ({ ref: forwardedRef, variant = 'mixed', fancy = false, className, size = 'md', ...props }: InputProps & { ref: React.RefObject<HTMLInputElement> }) => {
+export const Input = ({ ref: forwardedRef, variant = 'mixed', fancy = false, className, size = 'md', ...props }: InputProps) => {
   const { input } = form();
 
   if ((variant === 'bottomOutlined' || variant === 'plain') && fancy) {

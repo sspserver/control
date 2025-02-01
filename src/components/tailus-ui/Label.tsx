@@ -5,11 +5,12 @@ import {
 } from '@tailus/themer';
 import React from 'react';
 
-export type FormLabelProps = {
+type FormLabelProps = {
   className?: string;
-} & Omit<LabelProps, 'asTextarea' | 'floating' | 'variant'>;
+  ref?: React.RefObject<React.ComponentRef<typeof LabelPrimitive.Root>>;
+} & Omit<LabelProps, 'asTextarea' | 'floating' | 'variant'> & React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>;
 
-const Label = ({ ref: forwardedRef, className, size = 'md', ...props }: React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> & FormLabelProps & { ref: React.RefObject<React.ElementRef<typeof LabelPrimitive.Root>> }) => {
+const Label = ({ ref: forwardedRef, className, size = 'md', ...props }: FormLabelProps) => {
   const { label } = form();
 
   return (

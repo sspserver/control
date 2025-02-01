@@ -20,6 +20,13 @@ export default antfu({
 
   formatters: {
     css: true,
+    html: 'prettier',
+    prettierOptions: {
+      maxLineLength: 120,
+      printWidth: 120,
+      semi: true,
+      singleQuote: true,
+    },
   },
 
   ignores: [
@@ -35,7 +42,6 @@ export default antfu({
     ...nextPlugin.configs.recommended.rules,
     ...nextPlugin.configs['core-web-vitals'].rules,
   },
-
 }, {
   rules: {
     'antfu/no-top-level-await': 'off',
@@ -43,5 +49,6 @@ export default antfu({
     'ts/consistent-type-definitions': ['error', 'type'],
     'react/prefer-destructuring-assignment': 'off',
     'node/prefer-global/process': 'off',
+    'react/prefer-shorthand-fragment': ['off'],
   },
 });

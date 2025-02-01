@@ -1,2 +1,1 @@
-
-export type UserCredentials = Record<string, any>
+export type UserCredentials = Record<string, any>;

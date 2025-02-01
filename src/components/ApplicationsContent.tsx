@@ -1,16 +1,18 @@
 'use client';
 
-import type { StatisticsQuery } from '@/generated/graphql';
-import { StatisticsDocument } from '@/generated/graphql';
+import type { ListApplicationsQuery } from '@/generated/graphql';
+import { ListApplicationsDocument } from '@/generated/graphql';
 import { useQuery } from '@apollo/client';
 
-function RtbPageContent() {
-  const response = useQuery<StatisticsQuery>(StatisticsDocument, {
+function ApplicationsContent() {
+  const response = useQuery<ListApplicationsQuery>(ListApplicationsDocument, {
     fetchPolicy: 'network-only',
     variables: {
-      group: 'AD_ID2',
-      order: [{ key: 'AD_ID', order: 'ASC' }],
-      page: { size: 30 },
+      size: 10,
+      page: 1,
+      order: {
+        ID: 'ASC',
+      },
     },
   });
 
@@ -29,4 +31,4 @@ function RtbPageContent() {
   );
 }
 
-export default RtbPageContent;
+export default ApplicationsContent;

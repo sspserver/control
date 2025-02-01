@@ -1,5 +1,5 @@
 import SignInForm from '@/components/SignIn/SignInForm';
-import { Caption, Link, Text, Title } from '@tailus-ui/typography';
+import { Text, Title } from '@tailus-ui/typography';
 import { Fragment } from 'react';
 
 function SignIn() {
@@ -20,15 +20,15 @@ function SignIn() {
               </div>
               <SignInForm />
             </div>
-            <div className="mt-12">
-              <Caption className="my-0" size="sm" align="center">
-                Don't have an account ?
-                {' '}
-                <Link intent="neutral" size="sm" variant="underlined" href="/examples/forms/register3">
-                  Create account
-                </Link>
-              </Caption>
-            </div>
+            {/* <div className="mt-12"> */}
+            {/*  <Caption className="my-0" size="sm" align="center"> */}
+            {/*    Don't have an account ? */}
+            {/*    {' '} */}
+            {/*    <Link intent="neutral" size="sm" variant="underlined" href="/examples/forms/register3"> */}
+            {/*      Create account */}
+            {/*    </Link> */}
+            {/*  </Caption> */}
+            {/* </div> */}
           </div>
         </div>
       </main>

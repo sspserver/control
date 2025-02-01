@@ -1,4 +1,4 @@
-import { components, palettes, rounded, shade, animations } from '@tailus/themer';
+import { animations, components, palettes, rounded, shade } from '@tailus/themer';
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {

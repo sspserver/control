@@ -6,29 +6,29 @@ BUILD_TARGET  ?= adnet/control:latest
 .PHONY: init
 init: ## Init project dependencies
 	@echo "Init project dependencies"
-	# @yarn install --production=false
-	@npm i
+	# @npm run install --production=false
+	@npm run i
 
 .PHONY: fix
 fix: ## Fix project lint
 	@echo "Fix project lint"
-	@yarn eslint-fix
+	@npm run eslint-fix
 
 .PHONY: run
 run: ## Run project in dev mode
 	@echo "Run project"
-	@yarn dev
+	@npm run dev
 
 .PHONY: run-prod
 run-prod: ## Run project in dev mode
 	@echo "Run project prod"
-	@yarn start:dev
+	@npm run start:dev
 
 .PHONY: build
 build: ## Build project
 	@echo "Build project"
-	@yarn eslint-fix
-	@yarn build
+	@npm run eslint-fix
+	@npm run build
 
 .PHONY: build-docker
 build-docker: ## Build docker the project
@@ -37,7 +37,7 @@ build-docker: ## Build docker the project
 .PHONY: gql-gen
 gql-gen: ## Generate graphql types
 	@echo "Generate graphql types"
-	@DOTENV_CONFIG_PATH=./.env.development yarn gql-gen
+	@DOTENV_CONFIG_PATH=./.env.development npm run gql-gen
 
 .PHONY: help
 help:

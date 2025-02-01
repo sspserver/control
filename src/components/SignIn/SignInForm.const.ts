@@ -4,7 +4,6 @@ export const signInDefaultOptions = {
 };
 
 export const defaultUserCredentials = {
-  // username: '',
   username: 'super@project.com',
   password: 'test',
 };
