@@ -73,3 +73,6 @@ services:
     depends_on:
       - api
     entrypoint: /app/deploy/develop/entrypoint.sh
+    environment:
+      - API_URL=http://api:8080/graphql
+      - NEXT_PUBLIC_API_URL=http://localhost:18080/graphql
