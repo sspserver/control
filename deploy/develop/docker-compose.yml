@@ -1,0 +1,78 @@
+volumes:
+  pgdata:
+  zookeeper:
+  clickhouse:
+
+services:
+  ##############################################################################
+  ### Support services
+  ##############################################################################
+  zookeeper:
+    restart: always
+    image: zookeeper:3.7
+    hostname: zookeeper
+    volumes:
+      - "zookeeper:/data"
+
+  clickhouse-server:
+    user: root
+    restart: on-failure
+    image: clickhouse/clickhouse-server:24.5.1.1763
+    hostname: clickhouse-server
+    links:
+      - zookeeper
+    depends_on:
+      - zookeeper
+    volumes:
+      - "./clickhouse/config.xml:/etc/clickhouse-server/config.xml:ro"
+      - "./clickhouse/conf.d:/etc/clickhouse-server/conf.d:ro"
+      - "clickhouse:/clickhouse/"
+    healthcheck:
+      test: ["CMD", "bash", "-c", "clickhouse-client --query \"SELECT value FROM system.settings WHERE name = 'readonly'\" | grep -q '0'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  database:
+    restart: always
+    image: postgres:16
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    env_file:
+      - .db.env
+
+  ##############################################################################
+  ### Services
+  ##############################################################################
+  api:
+    image: ghcr.io/sspserver/api:latest
+    pull_policy: always
+    ports:
+      - "18080:8080"
+    command: ["--run-migrations"]
+    depends_on:
+      database:
+        condition: service_healthy
+      clickhouse-server:
+        condition: service_healthy
+    env_file:
+      - .db.env
+      - .api.env
+  control:
+    image: node:23
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../..:/app
+    depends_on:
+      - api
+    entrypoint: /app/deploy/develop/entrypoint.sh
+    environment:
+      - API_URL=http://api:8080/graphql
+      - NEXT_PUBLIC_API_URL=http://localhost:18080/graphql
