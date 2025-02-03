@@ -61,6 +61,10 @@ run-prod: ## Run project in dev mode
 run-api-dev-logs: ## Run API logs
 	@${DOCKER_COMPOSE} logs -f api
 
+.PHONY: stop
+stop: ## Stop project
+	@${DOCKER_COMPOSE} stop
+
 .PHONY: reset-dev-env
 reset-dev-env: ## Reset dev environment
 	@${DOCKER_COMPOSE} down -v --rmi all

@@ -1,12 +1,9 @@
-# Control
+# Development environment
 
-Thank you for your interest in contributing to SSP Server Control! We welcome all contributions, whether they are bug reports, feature requests, documentation improvements, or code contributions.
+Development environment for the control pane for SSP server is based on Docker and Docker Compose.
+It immitates the production environment as close as possible with saving of resources on the host machine.
 
-## Docs
-
-Read documentation [here](docs).
-
-## Development environment
+## Getting Started
 
 To run full development environment, you need to run the following commands:
 
@@ -16,7 +13,7 @@ make run-all
 
 It requires `docker` and `docker-compose` to be installed on your system.
 
-### Environment cleanup
+## Environment cleanup
 
 To clean up the environment in case if you need run everething from scratch, you can run the following command:
 
@@ -25,7 +22,3 @@ make reset-dev-env
 ```
 
 The command destroys all containers, volumes and networks created by the `make run-all` command.
-
-## Resources
-
-* Animated SVG background <https://loading.io/background/>

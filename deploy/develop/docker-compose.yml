@@ -54,7 +54,7 @@ services:
     pull_policy: always
     ports:
       - "18080:8080"
-    command: ["/api", "--run-migrations"]
+    command: ["--run-migrations"]
     depends_on:
       database:
         condition: service_healthy
