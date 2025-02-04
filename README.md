@@ -6,6 +6,27 @@ Thank you for your interest in contributing to SSP Server Control! We welcome al
 
 Read documentation [here](docs).
 
+## Installation for development
+
+Clone the repository:
+
+```bash
+git clone https://github.com/sspserver/control.git
+cd control
+```
+
+Load submodules:
+
+```bash
+make init-submodules
+```
+
+Pull the submodules updates:
+
+```bash
+make pull-submodules
+```
+
 ## Development environment
 
 To run full development environment, you need to run the following commands:
