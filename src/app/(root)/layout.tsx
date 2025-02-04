@@ -12,7 +12,7 @@ export default function RootLayout({
 }>) {
   return (
     <Fragment>
-      <header className="feedback-bg fixed top-0 z-10 w-full border-b">
+      <header className="feedback-bg fixed top-0 z-10 w-full border-b fancy-border">
         <div className="mx-auto max-w-6xl px-5">
           <div className="flex items-center justify-between py-4">
             <div className="flex h-7 items-center gap-4">
