@@ -1,50 +1,80 @@
-volumes:
-  pgdata:
-  zookeeper:
-  clickhouse:
+include:
+  - ../../submodules/api/deploy/develop/docker-compose-common.yml
+
+# volumes:
+#   pgdata:
+#   zookeeper:
+#   clickhouse:
+#   state:
 
 services:
-  ##############################################################################
-  ### Support services
-  ##############################################################################
-  zookeeper:
-    restart: always
-    image: zookeeper:3.7
-    hostname: zookeeper
-    volumes:
-      - "zookeeper:/data"
+  # ##############################################################################
+  # ### Support services
+  # ##############################################################################
+  # zookeeper:
+  #   restart: always
+  #   image: zookeeper:3.7
+  #   hostname: zookeeper
+  #   volumes:
+  #     - "zookeeper:/data"
 
-  clickhouse-server:
-    user: root
-    restart: on-failure
-    image: clickhouse/clickhouse-server:24.5.1.1763
-    hostname: clickhouse-server
-    links:
-      - zookeeper
-    depends_on:
-      - zookeeper
-    volumes:
-      - "./clickhouse/config.xml:/etc/clickhouse-server/config.xml:ro"
-      - "./clickhouse/conf.d:/etc/clickhouse-server/conf.d:ro"
-      - "clickhouse:/clickhouse/"
-    healthcheck:
-      test: ["CMD", "bash", "-c", "clickhouse-client --query \"SELECT value FROM system.settings WHERE name = 'readonly'\" | grep -q '0'"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+  # clickhouse-server:
+  #   image: clickhouse/clickhouse-server:24.5.1.1763
+  #   user: root
+  #   hostname: clickhouse-server
+  #   restart: on-failure
+  #   links:
+  #     - zookeeper
+  #   depends_on:
+  #     - zookeeper
+  #   volumes:
+  #     - "./clickhouse/config.xml:/etc/clickhouse-server/config.xml:ro"
+  #     - "./clickhouse/conf.d:/etc/clickhouse-server/conf.d:ro"
+  #     - "clickhouse:/clickhouse/"
+  #   healthcheck:
+  #     test: ["CMD", "bash", "-c", "clickhouse-client --query \"SELECT value FROM system.settings WHERE name = 'readonly'\" | grep -q '0'"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #   # ulimit:
+  #   #   nofile:
+  #   #     soft: 262144
+  #   #     hard: 262144
 
-  database:
-    restart: always
-    image: postgres:16
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    healthcheck:
-      test: [ "CMD-SHELL", "pg_isready" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    env_file:
-      - .db.env
+  # clickhouse-init:
+  #   image: clickhouse/clickhouse-server
+  #   entrypoint: [ './migrations.sh' ]
+  #   depends_on:
+  #     clickhouse-server:
+  #       condition: service_healthy
+  #     zookeeper:
+  #       condition: service_started
+  #   volumes:
+  #     - "./clickhouse/migrations.sh:/migrations.sh:ro"
+  #     - "../migrations/stats:/archivarius_migrations:ro"
+  #     - "state:/state"
+
+  # database:
+  #   restart: always
+  #   image: postgres:16
+  #   volumes:
+  #     - pgdata:/var/lib/postgresql/data
+  #   healthcheck:
+  #     test: [ "CMD-SHELL", "pg_isready" ]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #   env_file:
+  #     - .db.env
+
+  # redis:
+  #   image: redis
+  #   restart: always
+
+  # nats:
+  #   image: nats
+  #   restart: always
+  #   expose: [ "4222" ]
 
   ##############################################################################
   ### Services
@@ -60,9 +90,16 @@ services:
         condition: service_healthy
       clickhouse-server:
         condition: service_healthy
+      clickhouse-init:
+        condition: service_started
+      redis:
+        condition: service_started
+      nats:
+        condition: service_started
     env_file:
-      - .db.env
-      - .api.env
+      - ../../submodules/api/deploy/develop/.db.env
+      - ../../submodules/api/.env
+
   control:
     image: node:23
     working_dir: /app

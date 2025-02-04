@@ -1,3 +1,6 @@
+-include submodules/api/deploy/develop/.db.env
+export
+
 # Read
 # https://stackoverflow.com/questions/76238859/vscode-server-devtunnel-ms-access-tunnel-from-service-how-to-authenticate
 
@@ -68,6 +71,22 @@ stop: ## Stop project
 .PHONY: reset-dev-env
 reset-dev-env: ## Reset dev environment
 	@${DOCKER_COMPOSE} down -v --rmi all
+
+.PHONY: db-cli
+db-cli: ## Open development database
+	$(DOCKER_COMPOSE) exec $(DOCKER_DATABASE_NAME) psql -U $(DATABASE_USER) $(DATABASE_DB)
+
+.PHONY: ch-cli
+ch-cli: ## Connect to dev clickhouse
+	$(DOCKER_COMPOSE) exec clickhouse-server clickhouse-client
+
+.PHONY: init-submodules
+init-submodules: ## Init submodules
+	git submodule update --init --recursive
+
+.PHONY: pull-submodules
+pull-submodules: ## Pull submodules
+	git submodule update --recursive --remote
 
 .PHONY: help
 help:
