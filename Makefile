@@ -1,8 +1,6 @@
 -include submodules/api/deploy/develop/.db.env
+include .env
 export
-
-# Read
-# https://stackoverflow.com/questions/76238859/vscode-server-devtunnel-ms-access-tunnel-from-service-how-to-authenticate
 
 PROJECT_WORKSPACE ?= ssp-project
 PROJECT_NAME ?= control
