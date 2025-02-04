@@ -21,7 +21,7 @@ const DropdownMenuItemIndicator = DropdownMenuPrimitive.ItemIndicator;
 
 const MenuContext = React.createContext(defaultMenuProps);
 
-const DropdownMenuContent = ({ ref: forwardedRef, className, variant, intent, mixed, fancy, ...props }: React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content> & MenuProps & { ref: React.RefObject<React.ElementRef<typeof DropdownMenuPrimitive.Content>> }) => {
+const DropdownMenuContent = ({ ref: forwardedRef, className, variant, intent, mixed, fancy, ...props }: React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content> & MenuProps & { ref?: React.RefObject<React.ElementRef<typeof DropdownMenuPrimitive.Content>> }) => {
   const {
     variant: contextVariant,
     intent: contextIntent,
@@ -54,7 +54,7 @@ const DropdownMenuContent = ({ ref: forwardedRef, className, variant, intent, mi
 
 const DropdownMenuArrow = DropdownMenuPrimitive.Arrow;
 
-const DropdownMenuItem = ({ ref: forwardedRef, className, variant, intent, ...props }: React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item> & MenuProps & { ref: React.RefObject<React.ElementRef<typeof DropdownMenuPrimitive.Item>> }) => {
+const DropdownMenuItem = ({ ref: forwardedRef, className, variant, intent, ...props }: React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item> & MenuProps & { ref?: React.RefObject<React.ElementRef<typeof DropdownMenuPrimitive.Item>> }) => {
   const contextValues = React.useContext(MenuContext);
 
   variant = variant || contextValues.variant || 'soft';
@@ -71,7 +71,7 @@ const DropdownMenuItem = ({ ref: forwardedRef, className, variant, intent, ...pr
   );
 };
 
-const DropdownMenuSeparator = ({ ref: forwardedRef, className, fancy, ...props }: React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Separator> & SeparatorProps & { ref: React.RefObject<React.ElementRef<typeof DropdownMenuPrimitive.Separator>> }) => {
+const DropdownMenuSeparator = ({ ref: forwardedRef, className, fancy, ...props }: React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Separator> & SeparatorProps & { ref?: React.RefObject<React.ElementRef<typeof DropdownMenuPrimitive.Separator>> }) => {
   const { fancy: contextVariant } = React.useContext(MenuContext);
   fancy = fancy || contextVariant;
 
@@ -86,7 +86,7 @@ const DropdownMenuSeparator = ({ ref: forwardedRef, className, fancy, ...props }
 
 const DropdownMenuSub = DropdownMenuPrimitive.Sub;
 
-const DropdownMenuSubTrigger = ({ ref: forwardedRef, className, variant, intent, ...props }: React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubTrigger> & MenuProps & { ref: React.RefObject<React.ElementRef<typeof DropdownMenuPrimitive.SubTrigger>> }) => {
+const DropdownMenuSubTrigger = ({ ref: forwardedRef, className, variant, intent, ...props }: React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubTrigger> & MenuProps & { ref?: React.RefObject<React.ElementRef<typeof DropdownMenuPrimitive.SubTrigger>> }) => {
   const contextValues = React.useContext(MenuContext);
   variant = variant || contextValues.variant || 'soft';
   intent = intent || contextValues.intent;
@@ -102,7 +102,7 @@ const DropdownMenuSubTrigger = ({ ref: forwardedRef, className, variant, intent,
   );
 };
 
-const DropdownMenuSubContent = ({ ref: forwardedRef, className, variant, intent, fancy, mixed, ...props }: React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubContent> & MenuProps & { ref: React.RefObject<React.ElementRef<typeof DropdownMenuPrimitive.SubContent>> }) => {
+const DropdownMenuSubContent = ({ ref: forwardedRef, className, variant, intent, fancy, mixed, ...props }: React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubContent> & MenuProps & { ref?: React.RefObject<React.ElementRef<typeof DropdownMenuPrimitive.SubContent>> }) => {
   const {
     variant: contextVariant,
     intent: contextIntent,
@@ -131,18 +131,18 @@ const DropdownMenuSubContent = ({ ref: forwardedRef, className, variant, intent,
 
 type DropdownMenuIconProps = {
   className?: string;
-  children?: React.ReactNode;
+  children: React.ReactElement<{ className?: string }>;
 } & MenuProps;
 
 const DropdownMenuIcon = ({ className, children }: DropdownMenuIconProps) => {
   const { icon } = menu.soft({});
   return cloneElement(
-    children as React.ReactElement,
+    children,
     icon({ className }),
   );
 };
 
-const DropdownMenuRightIcon = ({ ref: forwardedRef, className, ...props }: React.ComponentPropsWithoutRef<'div'> & MenuProps & { ref: React.RefObject<React.ElementRef<'div'>> }) => {
+const DropdownMenuRightIcon = ({ ref: forwardedRef, className, ...props }: React.ComponentPropsWithoutRef<'div'> & MenuProps & { ref?: React.RefObject<React.ElementRef<'div'>> }) => {
   const { icon } = menu.solid({});
   return (
     <div

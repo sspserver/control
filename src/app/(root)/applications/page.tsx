@@ -1,8 +1,16 @@
-import ApplicationsContent from '@/components/ApplicationsContent';
+import ApplicationsContent from '@/components/ApplicationsContent/ApplicationsContent';
+import { Title } from '@tailus-ui/typography';
+import { Fragment } from 'react';
 
 function Applications() {
   return (
-    <ApplicationsContent />
+    <Fragment>
+      <Title as="h1" size="xl">
+        Applications
+      </Title>
+      <br />
+      <ApplicationsContent />
+    </Fragment>
   );
 }
 

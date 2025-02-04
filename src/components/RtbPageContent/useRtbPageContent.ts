@@ -1,10 +1,8 @@
-'use client';
-
 import type { StatisticsQuery } from '@/generated/graphql';
 import { StatisticsDocument } from '@/generated/graphql';
 import { useQuery } from '@apollo/client';
 
-function RtbPageContent() {
+function useRtbPageContent() {
   const response = useQuery<StatisticsQuery>(StatisticsDocument, {
     fetchPolicy: 'network-only',
     variables: {
@@ -14,19 +12,7 @@ function RtbPageContent() {
     },
   });
 
-  return (
-    <div>
-      <span>Rtb</span>
-      {response.loading && <p>Loading...</p>}
-      {response.error && (
-        <p>
-          Error:
-          {response.error.message}
-        </p>
-      )}
-      {response.data && <pre>{JSON.stringify(response.data, null, 2)}</pre>}
-    </div>
-  );
+  return response;
 }
 
-export default RtbPageContent;
+export default useRtbPageContent;

@@ -740,7 +740,7 @@ fragment __billingBalance on Balance {
 }
 
 query GetBillingBalance($key: String!) {
-  result: balance(key: $key) {
+  result: balance {
     ...__billingBalance
   }
 }
