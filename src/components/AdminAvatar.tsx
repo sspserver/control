@@ -1,8 +1,8 @@
-import type { AvatarFallbackProps, AvatarRootProps } from '@tailus/themer';
+import type { /* AvatarFallbackProps, */ AvatarRootProps } from '@tailus/themer';
 import Avatar from './tailus-ui/Avatar';
 
-const MESCHAC_AVATAR = 'https://mars-images.imgix.net/1704976070160-1704976065843icon.png?auto=compress&fit=max&w=128';
-const intents: AvatarFallbackProps['intent'][] = ['primary', 'success', 'warning', 'danger', 'warning', 'info', 'gray', 'accent', 'secondary'];
+// const MESCHAC_AVATAR = 'https://mars-images.imgix.net/1704976070160-1704976065843icon.png?auto=compress&fit=max&w=128';
+// const intents: AvatarFallbackProps['intent'][] = ['primary', 'success', 'warning', 'danger', 'warning', 'info', 'gray', 'accent', 'secondary'];
 
 export const AdminAvatar = ({
   src,

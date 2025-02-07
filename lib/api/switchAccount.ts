@@ -8,7 +8,7 @@ export const switchAccount = async (accountID: number, token: string) => {
     context: { headers: { Authorization: `Bearer ${token}` } },
   });
 
-  console.log('xxx switchAccount', data)
+  console.log('xxx switchAccount', data);
 
   const newToken = data?.switchAccount?.token || null;
   const isAdmin = data?.switchAccount?.isAdmin || false;

@@ -36,7 +36,10 @@ build: ## Build project
 
 .PHONY: build-docker
 build-docker: ## Build docker the project
-	docker build -f deploy/production/Dockerfile ./ -t ${DOCKER_CONTAINER_IMAGE}
+	@echo "Build docker the project"
+	docker build \
+		-f deploy/production/Dockerfile ./ \
+		-t ${DOCKER_CONTAINER_IMAGE}
 
 .PHONY: gql-gen
 gql-gen: ## Generate graphql types

@@ -5,10 +5,10 @@
 @layer base {
   :root {
     /* Padding variables */
-    --card-padding: theme("spacing[6]");
-    --accordion-padding: theme("spacing[4]");
+    --card-padding: theme('spacing[6]');
+    --accordion-padding: theme('spacing[4]');
     --feedback-padding: var(--card-padding);
-    --toast-padding: theme("spacing[4]");
+    --toast-padding: theme('spacing[4]');
 
     /* text colors */
     --display-text-color: theme(colors.gray.950);

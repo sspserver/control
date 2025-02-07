@@ -4,14 +4,14 @@
     "target": "ES2017",
     "jsx": "preserve",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "baseUrl": ".",
     "module": "esnext",
     "moduleResolution": "bundler",
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
       "@tailus-ui/*": ["./src/components/tailus-ui/*"],
       "@lib/*": ["./lib/*"],
-      "@configs/*": ["./configs/*"],
+      "@configs/*": ["./configs/*"]
     },
     "resolveJsonModule": true,
     "allowJs": true,

@@ -6,8 +6,8 @@ services:
     image: ghcr.io/sspserver/api:latest
     pull_policy: always
     ports:
-      - "18080:8080"
-    command: ["--run-migrations"]
+      - '18080:8080'
+    command: [--run-migrations]
     depends_on:
       database:
         condition: service_healthy
@@ -27,7 +27,7 @@ services:
     image: node:23
     working_dir: /app
     ports:
-      - "3000:3000"
+      - '3000:3000'
     volumes:
       - ../..:/app
     depends_on:

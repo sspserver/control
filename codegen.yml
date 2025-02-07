@@ -1,12 +1,12 @@
 overwrite: true
-schema: "${API_URL}"
+schema: '${API_URL}'
 documents:
-  - "./api-protocol/*.graphql"
+  - './api-protocol/*.graphql'
 generates:
   src/generated/graphql.tsx:
     plugins:
-      - "typescript"
-      - "typescript-operations"
-      - "typescript-react-apollo"
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
 config:
   withHooks: true
