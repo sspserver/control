@@ -2,8 +2,7 @@
 
 import useSignInForm from '@/components/SignIn/useSignInForm';
 import { ButtonLoading } from '@tailus-ui/Button';
-import Input from '@tailus-ui/Input';
-import Label from '@tailus-ui/Label';
+import Input from '@tailus-ui/Input/Input';
 import { Link } from '@tailus-ui/typography';
 import { Fragment } from 'react';
 
@@ -62,10 +61,9 @@ function SignInForm() {
           {/* </div> */}
           <div className="space-y-4">
             <div className="space-y-2.5">
-              <Label size="sm" htmlFor="email">
-                Your email
-              </Label>
               <Input
+                fancy
+                label="Your email"
                 id="username"
                 name="username"
                 type="text"
@@ -76,15 +74,17 @@ function SignInForm() {
               />
             </div>
             <div className="space-y-2.5">
-              <div className="flex items-center justify-between">
-                <Label size="sm" htmlFor="password">
-                  Password
-                </Label>
-                <Link href="#" size="sm">
-                  Forgot your Password ?
-                </Link>
-              </div>
               <Input
+                label={(
+                  <div className="flex items-center justify-between">
+                    <span>
+                      Password
+                    </span>
+                    <Link href="#" size="sm">
+                      Forgot your Password ?
+                    </Link>
+                  </div>
+                )}
                 id="password"
                 name="password"
                 type="password"

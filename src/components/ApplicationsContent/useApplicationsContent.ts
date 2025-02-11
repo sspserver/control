@@ -1,7 +1,16 @@
-import { Ordering, StatisticCondition, StatisticKey, StatisticOrderingKey, useListApplicationsQuery, useStatisticsLazyQuery } from '@/generated/graphql';
+import {
+  ListApplicationsDocument,
+  ListApplicationsQuery,
+  Ordering,
+  StatisticCondition,
+  StatisticKey,
+  StatisticOrderingKey,
+  useListApplicationsQuery,
+  useStatisticsLazyQuery
+} from '@/generated/graphql';
 import { useCallback, useMemo } from 'react';
 
-export const listApplicationsQueryOptions = {
+const listApplicationsQueryOptions = {
   variables: {
     order: {
       ID: Ordering.Asc,
@@ -9,29 +18,24 @@ export const listApplicationsQueryOptions = {
   },
 };
 
-function useApplicationsContent() {
-  // const { data: responseApplicationsList, error: applicationsListError, loading: isListApplicationsLoading, refetch } = useQuery<ListApplicationsQuery>(ListApplicationsDocument, {
-  //   fetchPolicy: 'network-only',
-  //   variables: {
-  //     size: 10,
-  //     page: 1,
-  //     order: {
-  //       ID: 'ASC',
-  //     },
-  //   },
-  // });
+export const listApplicationsDocumentRefetchQueries = [{ query: ListApplicationsDocument, variables: listApplicationsQueryOptions.variables }]
 
-  const { data: responseApplicationsList, error: applicationsListError, loading: isListApplicationsLoading } = useListApplicationsQuery();
-  // const { data: responseApplicationsList, error: applicationsListError, loading: isListApplicationsLoading } = useQuery<ListApplicationsQuery>(ListApplicationsDocument, {
+function useApplicationsContent() {
+  // const { data: responseApplicationsList, error: applicationsListError, loading: isListApplicationsLoading } = useQuery<ListApplicationsQuery>(ListApplicationsDocument, listApplicationsQueryOptions);
+
+
+  // {
   //   fetchPolicy: 'network-only',
-  //   variables: {
-  //     size: 10,
-  //     page: 1,
-  //     order: {
-  //       ID: 'ASC',
-  //     },
+  //       variables: {
+  //   size: 10,
+  //       page: 1,
+  //       order: {
+  //     ID: 'ASC',
   //   },
-  // });
+  // },
+  // }
+
+  const { data: responseApplicationsList, error: applicationsListError, loading: isListApplicationsLoading } = useListApplicationsQuery(listApplicationsQueryOptions);
   const applicationsList = responseApplicationsList?.result?.list;
   const applicationsId = useMemo(() => applicationsList?.map<number>(application => Number(application.ID)) ?? [], [applicationsList]);
   const [getApplicationStatistics, {

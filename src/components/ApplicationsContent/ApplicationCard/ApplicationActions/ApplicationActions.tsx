@@ -1,6 +1,8 @@
+import ApplicationActionsPausePlayButton
+  from '@/components/ApplicationsContent/ApplicationCard/ApplicationActions/ApplicationActionsPausePlayButton';
 import useApplicationActions from '@/components/ApplicationsContent/ApplicationCard/ApplicationActions/useApplicationActions';
 import ApplicationDialog from '@/components/ApplicationsContent/ApplicationCard/ApplicationDialog';
-import { PauseIcon, PlayIcon, TrashIcon } from '@heroicons/react/16/solid';
+import { PencilIcon, TrashIcon } from '@heroicons/react/16/solid';
 import Button from '@tailus-ui/Button/Button';
 import Dialog from '@tailus-ui/Dialog';
 
@@ -12,9 +14,13 @@ type ApplicationActionsProps = {
 
 function ApplicationActions({ id, pause = false, onChange }: ApplicationActionsProps) {
   const {
+    isOpenDeleteDialog,
+    isDeleteApplicationLoading,
     isUpdateApplicationLoading,
+    clickEditButtonHandler,
     clickPlayPauseButtonHandler,
     clickDeleteButtonHandler,
+    clickToggleDeleteDialogButtonHandler,
   } = useApplicationActions(
     id,
     pause,
@@ -23,23 +29,23 @@ function ApplicationActions({ id, pause = false, onChange }: ApplicationActionsP
 
   return (
     <div className="flex gap-1.5">
-      <Button.Root onClick={clickPlayPauseButtonHandler} variant="soft" size="xs" intent="gray">
+      <Button.Root variant="soft" size="xs" intent="gray" onClick={clickEditButtonHandler}>
         <Button.Icon size="xs" type="only">
-          {pause ? <PauseIcon className="text-warning-600" /> : <PlayIcon className="text-success-600" />}
+          <PencilIcon />
         </Button.Icon>
       </Button.Root>
-      <Dialog.Root>
-        <Dialog.Trigger asChild>
-          <Button.Root variant="soft" size="xs" intent="gray">
-            <Button.Icon size="xs" type="only">
-              <TrashIcon className="text-danger-600" />
-            </Button.Icon>
-          </Button.Root>
-        </Dialog.Trigger>
+      <ApplicationActionsPausePlayButton pause={pause} loading={isUpdateApplicationLoading} onClick={clickPlayPauseButtonHandler} variant="soft" size="xs" intent="gray" />
+      <Dialog.Root open={isOpenDeleteDialog}>
+        <Button.Root variant="soft" size="xs" intent="gray" onClick={clickToggleDeleteDialogButtonHandler(true)}>
+          <Button.Icon size="xs" type="only">
+            <TrashIcon className="text-danger-600" />
+          </Button.Icon>
+        </Button.Root>
         <ApplicationDialog
-          loading={isUpdateApplicationLoading}
+          loading={isDeleteApplicationLoading}
           title="Delete Application"
           description="Are you sure you want to delete this application?"
+          onCancel={clickToggleDeleteDialogButtonHandler(false)}
           onApply={clickDeleteButtonHandler}
         />
       </Dialog.Root>

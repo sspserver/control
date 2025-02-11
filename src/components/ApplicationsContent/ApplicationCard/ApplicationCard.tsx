@@ -20,16 +20,19 @@ function ApplicationCard({ id, title, uri, active, onChange }: ApplicationCardPr
   const indicatorBadgeIntent = isApplicationActive ? 'accent' : 'warning';
 
   return (
-    <Card fancy variant="elevated" className="p-4 pb-3 pt-3">
-      <div className="flex justify-between items-center gap-2">
-        <Title size="base" className="flex items-center gap-2">
+    <Card fancy variant="elevated" className="p-3 pb-3 pt-3">
+      <div className="flex justify-between items-center gap-2 pb-1">
+        <div className="flex truncate items-center gap-2">
           <IndicatorBadge intent={indicatorBadgeIntent} />
-          {title}
-        </Title>
+          <Title size="base" className="truncate" title={title}>
+            {title}
+          </Title>
+        </div>
         <ApplicationActions onChange={onChange} pause={!isApplicationActive} id={id} />
       </div>
 
-      <Caption as="span" size="sm">{uri}</Caption>
+      <Caption title={uri} className="truncate" as="div" size="sm"><span>{uri}</span></Caption>
+
       <Title className="mt-2 flex items-center gap-3" as="span">
         639400
         <Badge intent="success" variant="soft" size="xs" className="h-fit flex gap-1.5 items-center">

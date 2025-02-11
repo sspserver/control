@@ -1,6 +1,8 @@
 'use client';
 
 import ApplicationCard from '@/components/ApplicationsContent/ApplicationCard/ApplicationCard';
+
+import ApplicationsEmptyState from '@/components/ApplicationsContent/ApplicationsEmptyState';
 import useApplicationsContent from './useApplicationsContent';
 
 function ApplicationsContent() {
@@ -30,6 +32,10 @@ function ApplicationsContent() {
 
   if (isListApplicationsLoading) {
     return <p>Loading...</p>;
+  }
+
+  if (!applicationsList.length) {
+    return (<ApplicationsEmptyState />);
   }
 
   return (

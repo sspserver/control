@@ -5,11 +5,13 @@ import UserDropdown from '@/components/UserDropdown';
 import NextLink from 'next/link';
 import React, { Fragment } from 'react';
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+type RootLayoutProps = Readonly<{
   children: React.ReactNode;
-}>) {
+}>;
+
+function RootLayout({
+  children,
+}: RootLayoutProps) {
   return (
     <Fragment>
       <header className="feedback-bg fixed top-0 z-10 w-full border-b fancy-border">
@@ -35,15 +37,9 @@ export default function RootLayout({
       </header>
       <main className="mx-auto mt-28 h-full max-w-6xl px-5 space-y-6 py-6">
         <div>{children}</div>
-        {/* <StackedCards /> */}
-        {/* <div className="grid gap-6 lg:grid-cols-2"> */}
-        {/*  <TwoAreasChart /> */}
-        {/*  <SimpleBarChart /> */}
-        {/*  <Traffic /> */}
-        {/*  <StackedAreaChart /> */}
-        {/* </div> */}
-        {/* <Orders /> */}
       </main>
     </Fragment>
   );
 }
+
+export default RootLayout;

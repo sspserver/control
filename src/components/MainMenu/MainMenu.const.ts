@@ -1,18 +1,21 @@
+import { configPathRoutes } from '@configs/routes';
+
+const { rtb, applications, adUnit, settings } = configPathRoutes;
 export const mainMenuItems = [
   {
     name: 'RTB',
-    path: 'rtb',
+    path: rtb,
   },
   {
     name: 'Applications',
-    path: 'applications',
+    path: applications,
   },
   {
     name: 'AdUnit',
-    path: 'adunit',
+    path: adUnit,
   },
   {
     name: 'Settings',
-    path: 'settings',
+    path: settings,
   },
 ];
