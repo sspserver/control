@@ -11,14 +11,19 @@ function MainMenu() {
   return (
     <div className="flex gap-1">
       <nav className="relative flex h-10 gap-2 pb-2">
-        {mainMenuItems.map(({ name, path }) => (
-          <Link
-            key={path}
-            link={path}
-            label={name}
-            isActive={`/${path}`.startsWith(pathname)}
-          />
-        ))}
+        {mainMenuItems.map(({ name, path }) => {
+          const isActiveItem = path.startsWith(pathname);
+
+          return (
+            <Link
+              mainNav
+              key={path}
+              link={path}
+              label={name}
+              isActive={isActiveItem}
+            />
+          );
+        })}
       </nav>
     </div>
   );

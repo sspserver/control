@@ -24,7 +24,7 @@ make init-submodules
 Pull the submodules updates:
 
 ```bash
-make pull-submodules
+make init-submodules
 ```
 
 ## Development environment
@@ -50,3 +50,4 @@ The command destroys all containers, volumes and networks created by the `make r
 ## Resources
 
 * Animated SVG background <https://loading.io/background/>
+* Illustrations source <https://www.figma.com/design/yKSeeDiBUPKL8qg7g5LZxl/1%2C600-Free-Illustrations---Vector-illustrations-set-(svg-png)-(Community)?node-id=110-63&t=4sfCIPfpRJtrtHdl-1>

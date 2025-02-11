@@ -38,17 +38,17 @@
   }
 }
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*:root {*/
+/*  --background: #ffffff;*/
+/*  --foreground: #171717;*/
+/*}*/
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/*@media (prefers-color-scheme: dark) {*/
+/*  :root {*/
+/*    --background: #0a0a0a;*/
+/*    --foreground: #ededed;*/
+/*  }*/
+/*}*/
 
 html,
 body {
@@ -57,9 +57,10 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  /*color: var(--foreground);*/
+  /*background: var(--background);*/
+  font-family: Geist, Inter, ui-sans-serif, system-ui, Arial, Helvetica,
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

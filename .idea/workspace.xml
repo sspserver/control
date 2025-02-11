@@ -4,44 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5483ae0-0faa-4d09-a539-795505d72254" name="Changes" comment="the first iteration of the skeleton of the project">
-      <change afterPath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCard/ApplicationActions/ApplicationActions.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCard/ApplicationActions/useApplicationActions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCard/ApplicationCard.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCard/ApplicationDialog/ApplicationDialog.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCard/ApplicationDialog/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCard/GradientAreaChart.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ApplicationsContent/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ApplicationsContent/useApplicationsContent.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/RtbPageContent/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/RtbPageContent/useRtbPageContent.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Badge.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Card.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Dialog/Dialog.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Dialog/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/IndicatorBadge.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/visualizations/LinearGradient.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/visualizations/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-protocol/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/api-protocol/schema.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(root)/applications/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(root)/applications/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(root)/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(root)/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(root)/rtb/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(root)/rtb/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationsContent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/RtbPageContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RtbPageContent/RtbPageContent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Dropdown.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Dropdown.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/graphql.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/graphql.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="d5483ae0-0faa-4d09-a539-795505d72254" name="Changes" comment="#7 Applications page edit/create" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -50,11 +24,25 @@
     &quot;assignee&quot;: &quot;derek-heycar&quot;
   }
 }</component>
+  <component name="GitRewordedCommitMessages">
+    <option name="commitMessagesMapping">
+      <RewordedCommitMessageMapping>
+        <option name="originalMessage" value="#7 Applications page edit/create" />
+        <option name="rewordedMessage" value="#7 Applications page edit/create" />
+      </RewordedCommitMessageMapping>
+    </option>
+    <option name="currentCommit" value="1" />
+    <option name="onto" value="113170f6a851c0ea69f867b99246ab32170d31f5" />
+  </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/sspserver/control&quot;,
     &quot;accountId&quot;: &quot;bb08b3a3-6141-48f6-b8ff-be4d58fbef2f&quot;
   }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
 }</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -64,33 +52,84 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.stylelint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.stylelint": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/stylelint",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.scopes",
-    "ts.external.directory.path": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.develop.api: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.develop.database: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;issues/7&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/Oleksandr.Zhukov/Projects/sspserver/control/src/components/Select&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.stylelint&quot;: &quot;/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/stylelint&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;template.copyright.formatting&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/Select" />
+      <recent name="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCreateForm" />
+      <recent name="$PROJECT_DIR$/src/app/(root)/applications" />
+      <recent name="$PROJECT_DIR$/src/components/tailus-ui/Button" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/tailus-ui/Input" />
+      <recent name="$PROJECT_DIR$/src/app/@drawer" />
+      <recent name="$PROJECT_DIR$/src/app/@drawer/(.)applications" />
       <recent name="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCard/ApplicationActions" />
       <recent name="$PROJECT_DIR$/src/components/ApplicationsContent" />
-      <recent name="$PROJECT_DIR$/src/components/RtbPageContent" />
     </key>
+  </component>
+  <component name="RunManager" selected="Docker.develop.api: Compose Deployment">
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="develop.api: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="api" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="deploy/develop/docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="develop.database: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="database" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="deploy/develop/docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.develop.api: Compose Deployment" />
+        <item itemvalue="Docker.develop.database: Compose Deployment" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -110,16 +149,63 @@
       <updated>1738403868988</updated>
       <workItem from="1738403870568" duration="299000" />
       <workItem from="1738404188130" duration="248000" />
-      <workItem from="1738404436837" duration="38065000" />
+      <workItem from="1738404436837" duration="127707000" />
     </task>
+    <task id="LOCAL-00001" summary="#6 Applications page">
+      <option name="closed" value="true" />
+      <created>1738654518871</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1738654518871</updated>
+    </task>
+    <task id="LOCAL-00002" summary="#6 Applications page stage 2">
+      <option name="closed" value="true" />
+      <created>1738690016930</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1738690016930</updated>
+    </task>
+    <task id="LOCAL-00003" summary="#7 Applications page edit/create">
+      <option name="closed" value="true" />
+      <created>1739266053993</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1739266053993</updated>
+    </task>
+    <task id="LOCAL-00004" summary="#7 Applications page edit/create">
+      <option name="closed" value="true" />
+      <created>1739266342793</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1739266342793</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="the first iteration of the skeleton of the project" />
-    <option name="LAST_COMMIT_MESSAGE" value="the first iteration of the skeleton of the project" />
+    <MESSAGE value="#6 Applications page" />
+    <MESSAGE value="#6 Applications page stage 2" />
+    <MESSAGE value="#7 Applications page edit/create" />
+    <option name="LAST_COMMIT_MESSAGE" value="#7 Applications page edit/create" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
