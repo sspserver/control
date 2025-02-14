@@ -7,13 +7,16 @@ function useCategoriesSelect() {
       fetchPolicy: 'network-only',
       variables: {
         page: 1,
-        size: 10,
+        size: 100,
+        filter: {
+          parentID: [0],
+        },
       },
     },
   );
   const listCategories = useMemo(() => listCategoriesResponse?.result?.list.map(({ name, ID }) => ({
     name,
-    value: ID,
+    value: `${ID}`,
   })) ?? [], [listCategoriesResponse]);
 
   return {

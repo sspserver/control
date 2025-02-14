@@ -404,130 +404,6 @@ mutation RejectRTBSource($id: ID64!, $msg: String = null) {
 }
 
 ###############################################################################
-## RTB access point
-###############################################################################
-
-fragment __rtbAccessPointData on RTBAccessPoint {
-  ID
-  accountID
-  codename
-
-  title
-  description
-  auctionType
-  status
-  active
-  flags
-
-  # Price configuration
-  revenueShareReduce
-  fixedPurchasePrice
-  maxBid
-
-  # Maybe don't need this
-  requestType
-
-  protocol
-  timeout
-  RPS
-  domainDefault
-  headers
-  formats
-  deviceTypes
-  devices
-  OS
-  browsers
-  categories
-  carriers
-  countries
-  languages
-  applications
-  zones
-  domains
-  sources
-  secure
-  adBlock
-  privateBrowsing
-  IP
-
-  createdAt
-  updatedAt
-  deletedAt
-}
-
-query GetRTBAccessPoint($id: ID64!) {
-  result: RTBAccessPoint(ID: $id) {
-    clientMutationID
-    data: accessPoint { ...__rtbAccessPointData }
-  }
-}
-
-query ListRTBAccessPoints(
-  $page: Int! = 0, $size: Int! = 10,
-  $filter: RTBAccessPointListFilter = null,
-  $order: RTBAccessPointListOrder = null,
-) {
-  result: listRTBAccessPoints(filter: $filter, order: $order, page: {startPage: $page, size: $size}) {
-    list { ...__rtbAccessPointData }
-    pageInfo { ...__pageInfo }
-  }
-  permApprove: checkPermission(name:"approve.*", key: "rtb_access_point")
-  permReject: checkPermission(name:"reject.*", key: "rtb_access_point")
-}
-
-mutation NewRTBAccessPoint($input: RTBAccessPointInput!) {
-  result: createRTBAccessPoint(input: $input) {
-    clientMutationID
-    accessPointID
-    data: accessPoint { ...__rtbAccessPointData }
-  }
-}
-
-mutation UpdateRTBAccessPoint($id: ID64!, $input: RTBAccessPointInput!) {
-  result: updateRTBAccessPoint(ID: $id, input: $input) {
-    clientMutationID
-    accessPointID
-    data: accessPoint { ...__rtbAccessPointData }
-  }
-}
-
-mutation DeleteRTBAccessPoint($id: ID64!) {
-  result: deleteRTBAccessPoint(ID: $id) {
-    clientMutationID
-  }
-}
-
-mutation RunRTBAccessPoint($id: ID64!) {
-  result: runRTBAccessPoint(ID: $id) {
-    clientMutationID
-    status
-  }
-}
-
-mutation PauseRTBAccessPoint($id: ID64!) {
-  result: pauseRTBAccessPoint(ID: $id) {
-    clientMutationID
-    status
-  }
-}
-
-mutation ApproveRTBAccessPoint($id: ID64!, $msg: String = null) {
-  result: approveRTBAccessPoint(ID: $id, msg: $msg) {
-    clientMutationID
-    status
-    message
-  }
-}
-
-mutation RejectRTBAccessPoint($id: ID64!, $msg: String = null) {
-  result: rejectRTBAccessPoint(ID: $id, msg: $msg) {
-    clientMutationID
-    status
-    message
-  }
-}
-
-###############################################################################
 ## Browsers
 ###############################################################################
 
@@ -697,7 +573,6 @@ fragment __statItem on StatisticAdItem {
     value
     text
   }
-  spent
   profit
   bidPrice
   requests
@@ -705,7 +580,6 @@ fragment __statItem on StatisticAdItem {
   views
   directs
   clicks
-  leads
   bids
   wins
   skips
@@ -714,7 +588,6 @@ fragment __statItem on StatisticAdItem {
   CTR
   eCPM
   eCPC
-  eCPA
 }
 
 query Statistics(
@@ -727,21 +600,6 @@ query Statistics(
     totalCount
     list { ...__statItem }
     pageInfo { ...__pageInfo }
-  }
-}
-
-###############################################################################
-## Billing
-###############################################################################
-
-fragment __billingBalance on Balance {
-  balance
-  credit
-}
-
-query GetBillingBalance($key: String!) {
-  result: balance {
-    ...__billingBalance
   }
 }
 
