@@ -150,203 +150,6 @@ export enum ActiveStatus {
   Paused = 'PAUSED'
 }
 
-/** Ad object represents a single advertisement within a campaign. */
-export type Ad = {
-  __typename?: 'Ad';
-  ID: Scalars['ID64']['output'];
-  /** Active status of the Ad */
-  active: ActiveStatus;
-  /** Assets related to the advertisement */
-  assets?: Maybe<Array<AdAsset>>;
-  /** Money limit counters */
-  bidPrice: Scalars['Float']['output'];
-  /** Extended bid information */
-  bids: Scalars['NullableJSON']['output'];
-  budget: Scalars['Float']['output'];
-  /** Owner Campaign of the Ad */
-  campaign?: Maybe<AdCampaign>;
-  /** Context contains important information about the Ad */
-  context: Scalars['NullableJSON']['output'];
-  /** Time marks */
-  createdAt: Scalars['Time']['output'];
-  dailyBudget: Scalars['Float']['output'];
-  dailyTestBudget: Scalars['Float']['output'];
-  deletedAt?: Maybe<Scalars['Time']['output']>;
-  /** Format of the advertisement */
-  format: AdFormat;
-  /** Frequency Capping of advertisement display to one user */
-  frequencyCapping: Scalars['Int']['output'];
-  /** Hours targeting */
-  hours: Scalars['String']['output'];
-  leadPrice: Scalars['Float']['output'];
-  maxHeight: Scalars['Int']['output'];
-  maxWidth: Scalars['Int']['output'];
-  minHeight: Scalars['Int']['output'];
-  /** Minimal and maximal sizes for stretch formats */
-  minWidth: Scalars['Int']['output'];
-  price: Scalars['Float']['output'];
-  /** Pricing model of the Ad (CPM/CPC/CPA/etc.) */
-  pricingModel: PricingModel;
-  /** Status of the approval process */
-  status: ApproveStatus;
-  testBudget: Scalars['Float']['output'];
-  updatedAt: Scalars['Time']['output'];
-  /** Weight of the Ad in rotation */
-  weight: Scalars['Int']['output'];
-};
-
-export type AdAsset = {
-  __typename?: 'AdAsset';
-  ID: Scalars['ID64']['output'];
-};
-
-/** AdCampaign object represents an advertising campaign. */
-export type AdCampaign = {
-  __typename?: 'AdCampaign';
-  ID: Scalars['ID64']['output'];
-  /** Owner/moderator company of the AdCampaign */
-  accountID: Scalars['ID64']['output'];
-  /** Active status of the campaign */
-  active: ActiveStatus;
-  age?: Maybe<Array<Scalars['Int']['output']>>;
-  browsers?: Maybe<Array<Scalars['ID64']['output']>>;
-  budget: Scalars['Float']['output'];
-  categories?: Maybe<Array<Scalars['ID64']['output']>>;
-  /** Context of the campaign */
-  context?: Maybe<Scalars['NullableJSON']['output']>;
-  /** Time marks */
-  createdAt: Scalars['Time']['output'];
-  creatorID: Scalars['ID64']['output'];
-  /** Money limit counters */
-  dailyBudget: Scalars['Float']['output'];
-  dailyTestBudget: Scalars['Float']['output'];
-  dateEnd?: Maybe<Scalars['Time']['output']>;
-  dateStart?: Maybe<Scalars['Time']['output']>;
-  deletedAt?: Maybe<Scalars['Time']['output']>;
-  deviceTypes?: Maybe<Array<Scalars['ID64']['output']>>;
-  devices?: Maybe<Array<Scalars['ID64']['output']>>;
-  domains?: Maybe<Array<Scalars['String']['output']>>;
-  geos?: Maybe<Array<Scalars['String']['output']>>;
-  hours?: Maybe<Scalars['String']['output']>;
-  languages?: Maybe<Array<Scalars['String']['output']>>;
-  os?: Maybe<Array<Scalars['ID64']['output']>>;
-  /** Private status of the campaign */
-  private: PrivateStatus;
-  sex?: Maybe<Array<Scalars['Int']['output']>>;
-  /** Status of the campaign */
-  status: ApproveStatus;
-  testBudget: Scalars['Float']['output'];
-  title: Scalars['String']['output'];
-  trace?: Maybe<Array<Scalars['String']['output']>>;
-  tracePercent: Scalars['Int']['output'];
-  updatedAt: Scalars['Time']['output'];
-  /** Targeting scope information */
-  zones?: Maybe<Array<Scalars['ID64']['output']>>;
-};
-
-/** AdCampaignConnection wrapper to access AdCampaign objects */
-export type AdCampaignConnection = {
-  __typename?: 'AdCampaignConnection';
-  /** Edges of AdCampaign objects */
-  edges?: Maybe<Array<AdCampaignEdge>>;
-  /** List of AdCampaign objects */
-  list?: Maybe<Array<AdCampaign>>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-  /** Total count of AdCampaign objects */
-  totalCount: Scalars['Int']['output'];
-};
-
-/** AdCampaignEdge wrapper to access AdCampaign objects */
-export type AdCampaignEdge = {
-  __typename?: 'AdCampaignEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']['output'];
-  /** The AdCampaign at the end of AdCampaignEdge. */
-  node: AdCampaign;
-};
-
-export type AdCampaignInput = {
-  accountID?: InputMaybe<Scalars['ID64']['input']>;
-  active?: InputMaybe<ActiveStatus>;
-  age?: InputMaybe<Array<Scalars['Int']['input']>>;
-  browsers?: InputMaybe<Array<Scalars['ID64']['input']>>;
-  budget?: InputMaybe<Scalars['Float']['input']>;
-  categories?: InputMaybe<Array<Scalars['ID64']['input']>>;
-  context?: InputMaybe<Scalars['NullableJSON']['input']>;
-  dailyBudget?: InputMaybe<Scalars['Float']['input']>;
-  dailyTestBudget?: InputMaybe<Scalars['Float']['input']>;
-  dateEnd?: InputMaybe<Scalars['Time']['input']>;
-  dateStart?: InputMaybe<Scalars['Time']['input']>;
-  deviceTypes?: InputMaybe<Array<Scalars['ID64']['input']>>;
-  devices?: InputMaybe<Array<Scalars['ID64']['input']>>;
-  domains?: InputMaybe<Array<Scalars['String']['input']>>;
-  geos?: InputMaybe<Array<Scalars['String']['input']>>;
-  hours?: InputMaybe<Scalars['String']['input']>;
-  languages?: InputMaybe<Array<Scalars['String']['input']>>;
-  os?: InputMaybe<Array<Scalars['ID64']['input']>>;
-  private?: InputMaybe<PrivateStatus>;
-  sex?: InputMaybe<Array<Scalars['Int']['input']>>;
-  status?: InputMaybe<ApproveStatus>;
-  testBudget?: InputMaybe<Scalars['Float']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  trace?: InputMaybe<Array<Scalars['String']['input']>>;
-  tracePercent?: InputMaybe<Scalars['Int']['input']>;
-  zones?: InputMaybe<Array<Scalars['ID64']['input']>>;
-};
-
-export type AdCampaignListFilter = {
-  ID?: InputMaybe<Array<Scalars['ID64']['input']>>;
-  accountID?: InputMaybe<Scalars['ID64']['input']>;
-  active?: InputMaybe<ActiveStatus>;
-  private?: InputMaybe<PrivateStatus>;
-  status?: InputMaybe<ApproveStatus>;
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type AdCampaignListOrder = {
-  ID?: InputMaybe<Ordering>;
-  accountID?: InputMaybe<Ordering>;
-  active?: InputMaybe<Ordering>;
-  createdAt?: InputMaybe<Ordering>;
-  status?: InputMaybe<Ordering>;
-  title?: InputMaybe<Ordering>;
-  updatedAt?: InputMaybe<Ordering>;
-};
-
-/** AdCampaignPayload wrapper to access AdCampaign operation results */
-export type AdCampaignPayload = {
-  __typename?: 'AdCampaignPayload';
-  /** The AdCampaign object accessible by a client. */
-  campaign: AdCampaign;
-  /** The AdCampaign that was created or updated by this mutation. */
-  campaignID: Scalars['ID64']['output'];
-  /** A unique identifier for the client performing the mutation. */
-  clientMutationID: Scalars['String']['output'];
-};
-
-/** AdConnection wrapper to access Ad objects */
-export type AdConnection = {
-  __typename?: 'AdConnection';
-  /** Edges of Ad objects */
-  edges?: Maybe<Array<AdEdge>>;
-  /** List of Ad objects */
-  list?: Maybe<Array<Ad>>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-  /** Total count of Ad objects */
-  totalCount: Scalars['Int']['output'];
-};
-
-/** AdEdge wrapper to access Ad objects */
-export type AdEdge = {
-  __typename?: 'AdEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']['output'];
-  /** The Ad at the end of AdEdge. */
-  node: Ad;
-};
-
 export type AdFormat = {
   __typename?: 'AdFormat';
   /** Ad format ID */
@@ -446,65 +249,6 @@ export type AdFormatPayload = {
   format: AdFormat;
   /** The AdFormat that was created by this mutation. */
   formatID: Scalars['ID64']['output'];
-};
-
-export type AdInput = {
-  active?: InputMaybe<ActiveStatus>;
-  assets?: InputMaybe<Array<Scalars['ID64']['input']>>;
-  bidPrice?: InputMaybe<Scalars['Float']['input']>;
-  bids?: InputMaybe<Scalars['JSON']['input']>;
-  budget?: InputMaybe<Scalars['Float']['input']>;
-  context?: InputMaybe<Scalars['JSON']['input']>;
-  dailyBudget?: InputMaybe<Scalars['Float']['input']>;
-  dailyTestBudget?: InputMaybe<Scalars['Float']['input']>;
-  formatID?: InputMaybe<Scalars['ID64']['input']>;
-  frequencyCapping?: InputMaybe<Scalars['Int']['input']>;
-  hours?: InputMaybe<Scalars['String']['input']>;
-  leadPrice?: InputMaybe<Scalars['Float']['input']>;
-  maxHeight?: InputMaybe<Scalars['Int']['input']>;
-  maxWidth?: InputMaybe<Scalars['Int']['input']>;
-  minHeight?: InputMaybe<Scalars['Int']['input']>;
-  minWidth?: InputMaybe<Scalars['Int']['input']>;
-  price?: InputMaybe<Scalars['Float']['input']>;
-  pricingModel?: InputMaybe<PricingModel>;
-  status?: InputMaybe<ApproveStatus>;
-  testBudget?: InputMaybe<Scalars['Float']['input']>;
-  weight?: InputMaybe<Scalars['Int']['input']>;
-};
-
-export type AdListFilter = {
-  ID?: InputMaybe<Array<Scalars['ID64']['input']>>;
-  accountID?: InputMaybe<Scalars['ID64']['input']>;
-  active?: InputMaybe<ActiveStatus>;
-  campaignID?: InputMaybe<Array<Scalars['ID64']['input']>>;
-  geos?: InputMaybe<Array<Scalars['String']['input']>>;
-  languages?: InputMaybe<Array<Scalars['String']['input']>>;
-  pricingModel?: InputMaybe<Array<PricingModel>>;
-  status?: InputMaybe<Array<ApproveStatus>>;
-};
-
-export type AdListOrder = {
-  ID?: InputMaybe<Ordering>;
-  accountID?: InputMaybe<Ordering>;
-  active?: InputMaybe<Ordering>;
-  campaignID?: InputMaybe<Ordering>;
-  createdAt?: InputMaybe<Ordering>;
-  pricingModel?: InputMaybe<Ordering>;
-  status?: InputMaybe<Ordering>;
-  title?: InputMaybe<Ordering>;
-  updatedAt?: InputMaybe<Ordering>;
-  weight?: InputMaybe<Ordering>;
-};
-
-/** AdPayload wrapper to access Ad operation results */
-export type AdPayload = {
-  __typename?: 'AdPayload';
-  /** The Ad object accessible by a client. */
-  ad: Ad;
-  /** The Ad that was created or updated by this mutation. */
-  adID: Scalars['ID64']['output'];
-  /** A unique identifier for the client performing the mutation. */
-  clientMutationID: Scalars['String']['output'];
 };
 
 export enum AnyIPv4IPv6 {
@@ -787,13 +531,6 @@ export enum AvailableStatus {
   Undefined = 'UNDEFINED'
 }
 
-export type Balance = {
-  __typename?: 'Balance';
-  accountID: Scalars['ID64']['output'];
-  balance: Scalars['Float']['output'];
-  credit: Scalars['Float']['output'];
-};
-
 /** Browser model schema */
 export type Browser = {
   __typename?: 'Browser';
@@ -905,6 +642,8 @@ export type Category = {
   ID: Scalars['ID64']['output'];
   /** Active status of the category */
   active: ActiveStatus;
+  /** Child categories */
+  childrens: Array<Category>;
   /** Creation time of the category */
   createdAt: Scalars['Time']['output'];
   /** Deletion time of the category */
@@ -988,13 +727,6 @@ export type CategoryPayload = {
   clientMutationID: Scalars['String']['output'];
 };
 
-/** ChangeTransactionStatusRequest is a request to change transaction status. */
-export type ChangeTransactionStatusRequest = {
-  ID: Scalars['UUID']['input'];
-  gatewayInfo: Scalars['String']['input'];
-  message: Scalars['String']['input'];
-};
-
 export type Continent = {
   __typename?: 'Continent';
   /** Continent ID */
@@ -1041,20 +773,6 @@ export type Country = {
   phoneCodes?: Maybe<Array<Scalars['String']['output']>>;
   /** Time zones for the country */
   timeZones?: Maybe<Array<TimeZone>>;
-};
-
-export type CreateTransactionRequest = {
-  accountID: Scalars['ID64']['input'];
-  /** Account ID of the transaction. */
-  amount: Scalars['Float']['input'];
-  /** Account ID of the transaction. */
-  gatewayID: Scalars['String']['input'];
-  /** Gateway info of the transaction. */
-  gatewayInfo: Scalars['String']['input'];
-  /** Gateway payment ID of the transaction. */
-  gatewayPaymentID: Scalars['String']['input'];
-  /** Message/comment for the transaction. */
-  message: Scalars['String']['input'];
 };
 
 /** Device maker schema */
@@ -1509,26 +1227,14 @@ export type Mutation = {
   approveAccount: AccountPayload;
   /** Approve the member to join the account */
   approveAccountMember: MemberPayload;
-  /** Approve the Ad */
-  approveAd: StatusResponse;
-  /** Approve the AdCampaign to start running */
-  approveAdCampaign: StatusResponse;
   /** Approve the Application to be active */
   approveApplication: StatusResponse;
-  /** Approve RTBAccessPoint to start receiving data from it. */
-  approveRTBAccessPoint: StatusResponse;
   /** Approve RTBSource to start receiving data from it */
   approveRTBSource: StatusResponse;
   /** Approve user and leave the comment */
   approveUser: UserPayload;
   /** Approve the Zone to be active */
   approveZone: StatusResponse;
-  /** Set transaction status to CANCELLED. */
-  cancel: StatusResponse;
-  /** Create a new Ad */
-  createAd: AdPayload;
-  /** Create a new AdCampaign */
-  createAdCampaign: AdCampaignPayload;
   /** Create a new Application */
   createApplication: ApplicationPayload;
   /** Create the new auth client */
@@ -1545,8 +1251,6 @@ export type Mutation = {
   createFormat?: Maybe<AdFormatPayload>;
   /** Create new OS */
   createOS?: Maybe<OsPayload>;
-  /** Create a new RTBAccessPoint. */
-  createRTBAccessPoint: RtbAccessPointPayload;
   /** Create the new RTBSource */
   createRTBSource: RtbSourcePayload;
   /** Create the new RBAC role */
@@ -1555,16 +1259,8 @@ export type Mutation = {
   createUser: UserPayload;
   /** Create a new Zone */
   createZone: ZonePayload;
-  /** Add amount to user balance. */
-  credit?: Maybe<TransactionPayload>;
   /** Deactivate the Zone */
   deactivateZone: StatusResponse;
-  /** Deduct amount from user balance. */
-  deduction?: Maybe<TransactionPayload>;
-  /** Delete Ad */
-  deleteAd?: Maybe<AdPayload>;
-  /** Delete AdCampaign */
-  deleteAdCampaign?: Maybe<AdCampaignPayload>;
   /** Delete Application */
   deleteApplication?: Maybe<ApplicationPayload>;
   /** Delete auth client */
@@ -1581,8 +1277,6 @@ export type Mutation = {
   deleteFormat?: Maybe<AdFormatPayload>;
   /** Delete OS */
   deleteOS?: Maybe<OsPayload>;
-  /** Delete RTBAccessPoint. */
-  deleteRTBAccessPoint?: Maybe<RtbAccessPointPayload>;
   /** Delete RTBSource */
   deleteRTBSource?: Maybe<RtbSourcePayload>;
   /** Delete RBAC role */
@@ -1591,10 +1285,6 @@ export type Mutation = {
   deleteZone?: Maybe<ZonePayload>;
   /** Disconnect a social account */
   disconnectSocialAccount: SocialAccountPayload;
-  /** Set transaction status to EXECUTED. */
-  execute: StatusResponse;
-  /** Set transaction status to EXECUTION_ERROR. */
-  executionError: StatusResponse;
   /** Generate a new DirectAccessToken */
   generateDirectAccessToken?: Maybe<DirectAccessTokenPayload>;
   /** Invite a new member to the account */
@@ -1603,14 +1293,8 @@ export type Mutation = {
   login: SessionToken;
   /** Logout from the system */
   logout: Scalars['Boolean']['output'];
-  /** Pause the Ad */
-  pauseAd: StatusResponse;
-  /** Pause the AdCampaign */
-  pauseAdCampaign: StatusResponse;
   /** Pause the Application */
   pauseApplication: StatusResponse;
-  /** Pause RTBAccessPoint to stop receiving data from it. */
-  pauseRTBAccessPoint: StatusResponse;
   /** Pause RTBSource to stop receiving data from it */
   pauseRTBSource: StatusResponse;
   poke: Scalars['String']['output'];
@@ -1620,14 +1304,8 @@ export type Mutation = {
   rejectAccount: AccountPayload;
   /** Reject the member to join the account */
   rejectAccountMember: MemberPayload;
-  /** Reject the Ad */
-  rejectAd: StatusResponse;
-  /** Reject the AdCampaign to prevent it from running */
-  rejectAdCampaign: StatusResponse;
   /** Reject the Application */
   rejectApplication: StatusResponse;
-  /** Reject RTBAccessPoint to stop receiving data from it. */
-  rejectRTBAccessPoint: StatusResponse;
   /** Reject RTBSource to stop receiving data from it */
   rejectRTBSource: StatusResponse;
   /** Reject user and leave the comment */
@@ -1640,30 +1318,18 @@ export type Mutation = {
   resetUserPassword: StatusResponse;
   /** Revoke a DirectAccessToken */
   revokeDirectAccessToken?: Maybe<StatusResponse>;
-  /** Run the Ad */
-  runAd: StatusResponse;
-  /** Run the AdCampaign */
-  runAdCampaign: StatusResponse;
   /** Run the Application */
   runApplication: StatusResponse;
-  /** Run RTBAccessPoint to receive data from it. */
-  runRTBAccessPoint: StatusResponse;
   /** Run RTBSource to receive data from it */
   runRTBSource: StatusResponse;
   /** Set the option value */
   setOption: OptionPayload;
   /** Switch the account by ID */
   switchAccount: SessionToken;
-  /** Get a Transaction object by ID. */
-  topUp?: Maybe<TransactionPayload>;
   /** Update account info */
   updateAccount: AccountPayload;
   /** Update the member data */
   updateAccountMember: MemberPayload;
-  /** Update Ad information */
-  updateAd: AdPayload;
-  /** Update AdCampaign information */
-  updateAdCampaign: AdCampaignPayload;
   /** Update Application information */
   updateApplication: ApplicationPayload;
   /** Update auth client info */
@@ -1680,8 +1346,6 @@ export type Mutation = {
   updateFormat?: Maybe<AdFormatPayload>;
   /** Update OS */
   updateOS?: Maybe<OsPayload>;
-  /** Update RTBAccessPoint info. */
-  updateRTBAccessPoint: RtbAccessPointPayload;
   /** Update RTBSource info */
   updateRTBSource: RtbSourcePayload;
   /** Update RBAC role info */
@@ -1692,8 +1356,6 @@ export type Mutation = {
   updateUserPassword: StatusResponse;
   /** Update Zone information */
   updateZone: ZonePayload;
-  /** Withdraw amount from user balance. */
-  withdrawal?: Maybe<TransactionPayload>;
 };
 
 
@@ -1715,25 +1377,7 @@ export type MutationApproveAccountMemberArgs = {
 };
 
 
-export type MutationApproveAdArgs = {
-  ID: Scalars['ID64']['input'];
-  msg?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationApproveAdCampaignArgs = {
-  ID: Scalars['ID64']['input'];
-  msg?: InputMaybe<Scalars['String']['input']>;
-};
-
-
 export type MutationApproveApplicationArgs = {
-  ID: Scalars['ID64']['input'];
-  msg?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationApproveRtbAccessPointArgs = {
   ID: Scalars['ID64']['input'];
   msg?: InputMaybe<Scalars['String']['input']>;
 };
@@ -1754,22 +1398,6 @@ export type MutationApproveUserArgs = {
 export type MutationApproveZoneArgs = {
   ID: Scalars['ID64']['input'];
   msg?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationCancelArgs = {
-  input: ChangeTransactionStatusRequest;
-};
-
-
-export type MutationCreateAdArgs = {
-  campaignID: Scalars['ID64']['input'];
-  input: AdInput;
-};
-
-
-export type MutationCreateAdCampaignArgs = {
-  input: AdCampaignInput;
 };
 
 
@@ -1813,11 +1441,6 @@ export type MutationCreateOsArgs = {
 };
 
 
-export type MutationCreateRtbAccessPointArgs = {
-  input: RtbAccessPointInput;
-};
-
-
 export type MutationCreateRtbSourceArgs = {
   input: RtbSourceInput;
 };
@@ -1838,29 +1461,7 @@ export type MutationCreateZoneArgs = {
 };
 
 
-export type MutationCreditArgs = {
-  input: CreateTransactionRequest;
-};
-
-
 export type MutationDeactivateZoneArgs = {
-  ID: Scalars['ID64']['input'];
-  msg?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationDeductionArgs = {
-  input: CreateTransactionRequest;
-};
-
-
-export type MutationDeleteAdArgs = {
-  ID: Scalars['ID64']['input'];
-  msg?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationDeleteAdCampaignArgs = {
   ID: Scalars['ID64']['input'];
   msg?: InputMaybe<Scalars['String']['input']>;
 };
@@ -1915,12 +1516,6 @@ export type MutationDeleteOsArgs = {
 };
 
 
-export type MutationDeleteRtbAccessPointArgs = {
-  ID: Scalars['ID64']['input'];
-  msg?: InputMaybe<Scalars['String']['input']>;
-};
-
-
 export type MutationDeleteRtbSourceArgs = {
   ID: Scalars['ID64']['input'];
   msg?: InputMaybe<Scalars['String']['input']>;
@@ -1944,16 +1539,6 @@ export type MutationDisconnectSocialAccountArgs = {
 };
 
 
-export type MutationExecuteArgs = {
-  input: ChangeTransactionStatusRequest;
-};
-
-
-export type MutationExecutionErrorArgs = {
-  input: ChangeTransactionStatusRequest;
-};
-
-
 export type MutationGenerateDirectAccessTokenArgs = {
   description?: Scalars['String']['input'];
   expiresAt?: InputMaybe<Scalars['Time']['input']>;
@@ -1973,26 +1558,9 @@ export type MutationLoginArgs = {
 };
 
 
-export type MutationPauseAdArgs = {
-  ID: Scalars['ID64']['input'];
-  msg?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationPauseAdCampaignArgs = {
-  ID: Scalars['ID64']['input'];
-  msg?: InputMaybe<Scalars['String']['input']>;
-};
-
-
 export type MutationPauseApplicationArgs = {
   ID: Scalars['ID64']['input'];
   msg?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationPauseRtbAccessPointArgs = {
-  ID: Scalars['ID64']['input'];
 };
 
 
@@ -2018,25 +1586,7 @@ export type MutationRejectAccountMemberArgs = {
 };
 
 
-export type MutationRejectAdArgs = {
-  ID: Scalars['ID64']['input'];
-  msg?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationRejectAdCampaignArgs = {
-  ID: Scalars['ID64']['input'];
-  msg?: InputMaybe<Scalars['String']['input']>;
-};
-
-
 export type MutationRejectApplicationArgs = {
-  ID: Scalars['ID64']['input'];
-  msg?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationRejectRtbAccessPointArgs = {
   ID: Scalars['ID64']['input'];
   msg?: InputMaybe<Scalars['String']['input']>;
 };
@@ -2075,26 +1625,9 @@ export type MutationRevokeDirectAccessTokenArgs = {
 };
 
 
-export type MutationRunAdArgs = {
-  ID: Scalars['ID64']['input'];
-  msg?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationRunAdCampaignArgs = {
-  ID: Scalars['ID64']['input'];
-  msg?: InputMaybe<Scalars['String']['input']>;
-};
-
-
 export type MutationRunApplicationArgs = {
   ID: Scalars['ID64']['input'];
   msg?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationRunRtbAccessPointArgs = {
-  ID: Scalars['ID64']['input'];
 };
 
 
@@ -2114,11 +1647,6 @@ export type MutationSwitchAccountArgs = {
 };
 
 
-export type MutationTopUpArgs = {
-  input: CreateTransactionRequest;
-};
-
-
 export type MutationUpdateAccountArgs = {
   id: Scalars['ID64']['input'];
   input: AccountInput;
@@ -2128,18 +1656,6 @@ export type MutationUpdateAccountArgs = {
 export type MutationUpdateAccountMemberArgs = {
   member: MemberInput;
   memberID: Scalars['ID64']['input'];
-};
-
-
-export type MutationUpdateAdArgs = {
-  ID: Scalars['ID64']['input'];
-  input: AdInput;
-};
-
-
-export type MutationUpdateAdCampaignArgs = {
-  ID: Scalars['ID64']['input'];
-  input: AdCampaignInput;
 };
 
 
@@ -2191,12 +1707,6 @@ export type MutationUpdateOsArgs = {
 };
 
 
-export type MutationUpdateRtbAccessPointArgs = {
-  ID: Scalars['ID64']['input'];
-  input: RtbAccessPointInput;
-};
-
-
 export type MutationUpdateRtbSourceArgs = {
   ID: Scalars['ID64']['input'];
   input: RtbSourceInput;
@@ -2225,11 +1735,6 @@ export type MutationUpdateUserPasswordArgs = {
 export type MutationUpdateZoneArgs = {
   ID: Scalars['ID64']['input'];
   input: ZoneInput;
-};
-
-
-export type MutationWithdrawalArgs = {
-  input: CreateTransactionRequest;
 };
 
 /** OS model schema */
@@ -2492,22 +1997,14 @@ export type ProfileMessanger = {
 export type Query = {
   __typename?: 'Query';
   OS?: Maybe<OsPayload>;
-  /** Get RTBAccessPoint object by ID. */
-  RTBAccessPoint: RtbAccessPointPayload;
   /** Get RTBSource object by ID */
   RTBSource: RtbSourcePayload;
   /** Get account object by ID */
   account: AccountPayload;
-  /** Get Ad object by ID */
-  ad: AdPayload;
-  /** Get AdCampaign object by ID */
-  adCampaign: AdCampaignPayload;
   /** Get Application object by ID */
   application: ApplicationPayload;
   /** Get auth client object by ID */
   authClient: AuthClientPayload;
-  /** Get balance information. */
-  balance?: Maybe<Balance>;
   browser?: Maybe<BrowserPayload>;
   category?: Maybe<CategoryPayload>;
   /**
@@ -2538,10 +2035,6 @@ export type Query = {
   listAccountRolesAndPermissions?: Maybe<RbacRoleConnection>;
   /** List of the account objects which can be filtered and ordered by some fields */
   listAccounts?: Maybe<AccountConnection>;
-  /** List of the campaign objects which can be filtered and ordered by some fields */
-  listAdCampaigns?: Maybe<AdCampaignConnection>;
-  /** List of Ad objects which can be filtered and ordered by some fields */
-  listAds?: Maybe<AdConnection>;
   /** List of the application objects which can be filtered and ordered by some fields */
   listApplications?: Maybe<ApplicationConnection>;
   /** List of the auth client objects which can be filtered and ordered by some fields */
@@ -2571,16 +2064,12 @@ export type Query = {
   listOptions?: Maybe<OptionConnection>;
   /** List of the RBAC permissions */
   listPermissions?: Maybe<Array<RbacPermission>>;
-  /** List of RTBAccessPoint objects which can be filtered and ordered by some fields. */
-  listRTBAccessPoints?: Maybe<RtbAccessPointConnection>;
   /** List of the tag objects which can be filtered and ordered by some fields */
   listRTBSources?: Maybe<RtbSourceConnection>;
   /** List of the RBAC role objects which can be filtered and ordered by some fields */
   listRoles?: Maybe<RbacRoleConnection>;
   /** List all social accounts */
   listSocialAccounts: SocialAccountConnection;
-  /** Get a list of Transaction objects. */
-  listTransactions?: Maybe<TransactionConnection>;
   /** List of the user objects which can be filtered and ordered by some fields */
   listUsers?: Maybe<UserConnection>;
   /** List of the Zone objects which can be filtered and ordered by some fields */
@@ -2606,11 +2095,6 @@ export type QueryOsArgs = {
 };
 
 
-export type QueryRtbAccessPointArgs = {
-  ID: Scalars['ID64']['input'];
-};
-
-
 export type QueryRtbSourceArgs = {
   ID: Scalars['ID64']['input'];
 };
@@ -2621,16 +2105,6 @@ export type QueryAccountArgs = {
 };
 
 
-export type QueryAdArgs = {
-  ID: Scalars['ID64']['input'];
-};
-
-
-export type QueryAdCampaignArgs = {
-  ID: Scalars['ID64']['input'];
-};
-
-
 export type QueryApplicationArgs = {
   ID: Scalars['ID64']['input'];
 };
@@ -2638,11 +2112,6 @@ export type QueryApplicationArgs = {
 
 export type QueryAuthClientArgs = {
   id: Scalars['ID']['input'];
-};
-
-
-export type QueryBalanceArgs = {
-  accountID?: InputMaybe<Scalars['ID64']['input']>;
 };
 
 
@@ -2700,20 +2169,6 @@ export type QueryListAccountRolesAndPermissionsArgs = {
 export type QueryListAccountsArgs = {
   filter?: InputMaybe<AccountListFilter>;
   order?: InputMaybe<AccountListOrder>;
-  page?: InputMaybe<Page>;
-};
-
-
-export type QueryListAdCampaignsArgs = {
-  filter?: InputMaybe<AdCampaignListFilter>;
-  order?: InputMaybe<AdCampaignListOrder>;
-  page?: InputMaybe<Page>;
-};
-
-
-export type QueryListAdsArgs = {
-  filter?: InputMaybe<AdListFilter>;
-  order?: InputMaybe<AdListOrder>;
   page?: InputMaybe<Page>;
 };
 
@@ -2812,13 +2267,6 @@ export type QueryListPermissionsArgs = {
 };
 
 
-export type QueryListRtbAccessPointsArgs = {
-  filter?: InputMaybe<RtbAccessPointListFilter>;
-  order?: InputMaybe<RtbAccessPointListOrder>;
-  page?: InputMaybe<Page>;
-};
-
-
 export type QueryListRtbSourcesArgs = {
   filter?: InputMaybe<RtbSourceListFilter>;
   order?: InputMaybe<RtbSourceListOrder>;
@@ -2836,13 +2284,6 @@ export type QueryListRolesArgs = {
 export type QueryListSocialAccountsArgs = {
   filter?: InputMaybe<SocialAccountListFilter>;
   order?: InputMaybe<SocialAccountListOrder>;
-  page?: InputMaybe<Page>;
-};
-
-
-export type QueryListTransactionsArgs = {
-  filter?: InputMaybe<TransactionListFilter>;
-  order?: InputMaybe<TransactionListOrder>;
   page?: InputMaybe<Page>;
 };
 
@@ -2981,141 +2422,6 @@ export type RbacRolePayload = {
   role?: Maybe<RbacRole>;
   /** Role ID operation result */
   roleID: Scalars['ID64']['output'];
-};
-
-/** RTBAccessPoint object represents an access point for DSP connections. */
-export type RtbAccessPoint = {
-  __typename?: 'RTBAccessPoint';
-  ID: Scalars['ID64']['output'];
-  IP: AnyIPv4IPv6;
-  OS?: Maybe<Array<Scalars['Int64']['output']>>;
-  RPS: Scalars['Int']['output'];
-  accountID: Scalars['ID64']['output'];
-  /** Active status of the access point. */
-  active: ActiveStatus;
-  adBlock: AnyOnlyExclude;
-  applications?: Maybe<Array<Scalars['Int64']['output']>>;
-  auctionType: AuctionType;
-  browsers?: Maybe<Array<Scalars['Int64']['output']>>;
-  carriers?: Maybe<Array<Scalars['Int64']['output']>>;
-  categories?: Maybe<Array<Scalars['Int64']['output']>>;
-  codename: Scalars['String']['output'];
-  countries?: Maybe<Array<Scalars['String']['output']>>;
-  createdAt: Scalars['Time']['output'];
-  deletedAt?: Maybe<Scalars['Time']['output']>;
-  description: Scalars['String']['output'];
-  deviceTypes?: Maybe<Array<Scalars['Int64']['output']>>;
-  devices?: Maybe<Array<Scalars['Int64']['output']>>;
-  domainDefault: Scalars['String']['output'];
-  domains?: Maybe<Array<Scalars['String']['output']>>;
-  fixedPurchasePrice: Scalars['Float']['output'];
-  /** Flags for the access point. */
-  flags: Scalars['NullableJSON']['output'];
-  formats?: Maybe<Array<Scalars['String']['output']>>;
-  headers: Scalars['NullableJSON']['output'];
-  languages?: Maybe<Array<Scalars['String']['output']>>;
-  maxBid: Scalars['Float']['output'];
-  privateBrowsing: AnyOnlyExclude;
-  protocol: Scalars['String']['output'];
-  requestType: RtbRequestFormatType;
-  /** Revenue share reduce factor to account for discrepancies. */
-  revenueShareReduce?: Maybe<Scalars['Float']['output']>;
-  secure: AnyOnlyExclude;
-  sources?: Maybe<Array<Scalars['Int64']['output']>>;
-  /** Approval status of the access point. */
-  status: ApproveStatus;
-  timeout: Scalars['Int']['output'];
-  title: Scalars['String']['output'];
-  updatedAt: Scalars['Time']['output'];
-  zones?: Maybe<Array<Scalars['Int64']['output']>>;
-};
-
-/** RTBAccessPointConnection wrapper to access RTBAccessPoint objects. */
-export type RtbAccessPointConnection = {
-  __typename?: 'RTBAccessPointConnection';
-  /** Edges of RTBAccessPoint objects. */
-  edges: Array<RtbAccessPointEdge>;
-  /** List of RTBAccessPoint objects. */
-  list: Array<RtbAccessPoint>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-  /** Total count of RTBAccessPoint objects. */
-  totalCount: Scalars['Int']['output'];
-};
-
-/** RTBAccessPointEdge wrapper to access RTBAccessPoint objects. */
-export type RtbAccessPointEdge = {
-  __typename?: 'RTBAccessPointEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']['output'];
-  /** The RTBAccessPoint at the end of RTBAccessPointEdge. */
-  node: RtbAccessPoint;
-};
-
-export type RtbAccessPointInput = {
-  IP?: InputMaybe<AnyIPv4IPv6>;
-  OS?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  RPS?: InputMaybe<Scalars['Int']['input']>;
-  accountID?: InputMaybe<Scalars['ID64']['input']>;
-  adBlock?: InputMaybe<AnyOnlyExclude>;
-  applications?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  auctionType?: InputMaybe<AuctionType>;
-  browsers?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  carriers?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  categories?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  codename?: InputMaybe<Scalars['String']['input']>;
-  countries?: InputMaybe<Array<Scalars['String']['input']>>;
-  createdAt?: InputMaybe<Scalars['Time']['input']>;
-  deletedAt?: InputMaybe<Scalars['Time']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  deviceTypes?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  devices?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  domainDefault?: InputMaybe<Scalars['String']['input']>;
-  domains?: InputMaybe<Array<Scalars['String']['input']>>;
-  fixedPurchasePrice?: InputMaybe<Scalars['Float']['input']>;
-  /** Flags for the access point. */
-  flags?: InputMaybe<Scalars['NullableJSON']['input']>;
-  formats?: InputMaybe<Array<Scalars['String']['input']>>;
-  headers?: InputMaybe<Scalars['NullableJSON']['input']>;
-  languages?: InputMaybe<Array<Scalars['String']['input']>>;
-  maxBid?: InputMaybe<Scalars['Float']['input']>;
-  privateBrowsing?: InputMaybe<AnyOnlyExclude>;
-  protocol?: InputMaybe<Scalars['String']['input']>;
-  requestType?: InputMaybe<RtbRequestFormatType>;
-  /** Revenue share reduce factor to account for discrepancies. */
-  revenueShareReduce?: InputMaybe<Scalars['Float']['input']>;
-  secure?: InputMaybe<AnyOnlyExclude>;
-  sources?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  /** Timeout for the request in milliseconds */
-  timeout?: InputMaybe<Scalars['Int']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  updatedAt?: InputMaybe<Scalars['Time']['input']>;
-  zones?: InputMaybe<Array<Scalars['Int64']['input']>>;
-};
-
-export type RtbAccessPointListFilter = {
-  ID?: InputMaybe<Array<Scalars['ID64']['input']>>;
-  accountID?: InputMaybe<Scalars['ID64']['input']>;
-};
-
-export type RtbAccessPointListOrder = {
-  ID?: InputMaybe<Ordering>;
-  accountID?: InputMaybe<Ordering>;
-  createdAt?: InputMaybe<Ordering>;
-  deletedAt?: InputMaybe<Ordering>;
-  title?: InputMaybe<Ordering>;
-  updatedAt?: InputMaybe<Ordering>;
-};
-
-/** RTBAccessPointPayload wrapper to access RTBAccessPoint operation results. */
-export type RtbAccessPointPayload = {
-  __typename?: 'RTBAccessPointPayload';
-  /** The RTBAccessPoint object accessible by a client. */
-  accessPoint: RtbAccessPoint;
-  /** The RTBAccessPoint that was created by this mutation. */
-  accessPointID: Scalars['ID64']['output'];
-  /** A unique identifier for the client performing the mutation. */
-  clientMutationID: Scalars['String']['output'];
 };
 
 export enum RtbRequestFormatType {
@@ -3368,18 +2674,15 @@ export type StatisticAdItem = {
   bids: Scalars['Uint64']['output'];
   clicks: Scalars['Uint64']['output'];
   directs: Scalars['Uint64']['output'];
-  eCPA: Scalars['Float']['output'];
   eCPC: Scalars['Float']['output'];
   eCPM: Scalars['Float']['output'];
   errors: Scalars['Uint64']['output'];
   impressions: Scalars['Uint64']['output'];
   keys?: Maybe<Array<StatisticItemKey>>;
-  leads: Scalars['Uint64']['output'];
   nobids: Scalars['Uint64']['output'];
   profit: Scalars['Float']['output'];
   requests: Scalars['Uint64']['output'];
   skips: Scalars['Uint64']['output'];
-  spent: Scalars['Float']['output'];
   views: Scalars['Uint64']['output'];
   wins: Scalars['Uint64']['output'];
 };
@@ -3387,19 +2690,12 @@ export type StatisticAdItem = {
 /** StatisticAdItemConnection is a paginated list of StatisticAdItem objects. */
 export type StatisticAdItemConnection = {
   __typename?: 'StatisticAdItemConnection';
-  edges: Array<StatisticAdItemEdge>;
   /** List of StatisticAdItem objects. */
   list?: Maybe<Array<StatisticAdItem>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
   /** Total count of StatisticAdItem objects. */
   totalCount: Scalars['Int']['output'];
-};
-
-export type StatisticAdItemEdge = {
-  __typename?: 'StatisticAdItemEdge';
-  next: Scalars['String']['output'];
-  node: StatisticAdItem;
 };
 
 export type StatisticAdKeyCondition = {
@@ -3420,18 +2716,20 @@ export type StatisticAdListFilter = {
 };
 
 export enum StatisticCondition {
-  Bt = 'BT',
+  Between = 'BETWEEN',
   Eq = 'EQ',
-  Ge = 'GE',
   Gt = 'GT',
+  GtEq = 'GT_EQ',
   In = 'IN',
-  Le = 'LE',
-  Li = 'LI',
+  IsNotNull = 'IS_NOT_NULL',
+  IsNull = 'IS_NULL',
+  Like = 'LIKE',
   Lt = 'LT',
-  Nb = 'NB',
-  Ne = 'NE',
-  Ni = 'NI',
-  Nl = 'NL'
+  LtEq = 'LT_EQ',
+  NotBetween = 'NOT_BETWEEN',
+  NotEq = 'NOT_EQ',
+  NotIn = 'NOT_IN',
+  NotLike = 'NOT_LIKE'
 }
 
 export type StatisticItemKey = {
@@ -3442,16 +2740,9 @@ export type StatisticItemKey = {
 };
 
 export enum StatisticKey {
-  AccessPointId = 'ACCESS_POINT_ID',
-  AccountId = 'ACCOUNT_ID',
-  AdvAccountId = 'ADV_ACCOUNT_ID',
-  AdId = 'AD_ID',
   AppId = 'APP_ID',
   BrowserId = 'BROWSER_ID',
-  CampaignId = 'CAMPAIGN_ID',
   CarrierId = 'CARRIER_ID',
-  City = 'CITY',
-  Cluster = 'CLUSTER',
   Country = 'COUNTRY',
   Datemark = 'DATEMARK',
   DeviceId = 'DEVICE_ID',
@@ -3459,12 +2750,9 @@ export enum StatisticKey {
   Domain = 'DOMAIN',
   FormatId = 'FORMAT_ID',
   Ip = 'IP',
-  JumperId = 'JUMPER_ID',
   Language = 'LANGUAGE',
   OsId = 'OS_ID',
-  Platform = 'PLATFORM',
-  ProjectId = 'PROJECT_ID',
-  PubAccountId = 'PUB_ACCOUNT_ID',
+  PlatformType = 'PLATFORM_TYPE',
   SourceId = 'SOURCE_ID',
   Timemark = 'TIMEMARK',
   Undefined = 'UNDEFINED',
@@ -3472,18 +2760,12 @@ export enum StatisticKey {
 }
 
 export enum StatisticOrderingKey {
-  AccessPointId = 'ACCESS_POINT_ID',
-  AdvAccountId = 'ADV_ACCOUNT_ID',
-  AdId = 'AD_ID',
   AppId = 'APP_ID',
   Bids = 'BIDS',
   BidPrice = 'BID_PRICE',
   BrowserId = 'BROWSER_ID',
-  CampaignId = 'CAMPAIGN_ID',
   CarrierId = 'CARRIER_ID',
-  City = 'CITY',
   Clicks = 'CLICKS',
-  Cluster = 'CLUSTER',
   Country = 'COUNTRY',
   Ctr = 'CTR',
   Datemark = 'DATEMARK',
@@ -3498,19 +2780,14 @@ export enum StatisticOrderingKey {
   FormatId = 'FORMAT_ID',
   Impressions = 'IMPRESSIONS',
   Ip = 'IP',
-  JumperId = 'JUMPER_ID',
   Language = 'LANGUAGE',
-  Leads = 'LEADS',
   Nobids = 'NOBIDS',
   OsId = 'OS_ID',
-  Platform = 'PLATFORM',
+  PlatformType = 'PLATFORM_TYPE',
   Profit = 'PROFIT',
-  ProjectId = 'PROJECT_ID',
-  PubAccountId = 'PUB_ACCOUNT_ID',
   Requests = 'REQUESTS',
   Skips = 'SKIPS',
   SourceId = 'SOURCE_ID',
-  Spent = 'SPENT',
   Timemark = 'TIMEMARK',
   Undefined = 'UNDEFINED',
   Views = 'VIEWS',
@@ -3534,96 +2811,6 @@ export type TimeZone = {
   lon: Scalars['Float']['output'];
   name: Scalars['String']['output'];
 };
-
-/** Transaction model schema */
-export type Transaction = {
-  __typename?: 'Transaction';
-  /** Transaction ID. */
-  ID: Scalars['UUID']['output'];
-  /** Account ID of the transaction. */
-  accountID: Scalars['ID64']['output'];
-  /** Amount of the transaction. */
-  amount: Scalars['Float']['output'];
-  /** Creation time of the transaction. */
-  createdAt: Scalars['Time']['output'];
-  /** Gateway ID of the transaction. */
-  gatewayID: Scalars['String']['output'];
-  /** Gateway info of the transaction. */
-  gatewayInfo: Scalars['String']['output'];
-  /** Gateway payment ID of the transaction. */
-  gatewayPaymentID: Scalars['String']['output'];
-  /** Invoice ID of the transaction. */
-  invoiceID: Scalars['Int64']['output'];
-  /** Invoice number of the transaction. */
-  invoiceNumber: Scalars['String']['output'];
-  /** Message/comment for the transaction. */
-  message: Scalars['String']['output'];
-  /** Status of the transaction. */
-  status: TransactionStatus;
-  /** Type of the transaction. */
-  type: TransactionType;
-};
-
-export type TransactionConnection = {
-  __typename?: 'TransactionConnection';
-  /** Total count of Transaction objects. */
-  edges: Array<TransactionEdge>;
-  /** List of Transaction objects. */
-  list: Array<Transaction>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-};
-
-/** TransactionEdge is a connection object for Transaction objects. */
-export type TransactionEdge = {
-  __typename?: 'TransactionEdge';
-  /** A cursor for use in pagination */
-  cursor: Scalars['String']['output'];
-  /** Transaction object. */
-  node: Transaction;
-};
-
-/** TransactionListFilter is a list of fields to filter by. */
-export type TransactionListFilter = {
-  key?: InputMaybe<Scalars['String']['input']>;
-  type?: InputMaybe<Array<InputMaybe<TransactionType>>>;
-};
-
-/** TransactionListOrder is a list of fields to order by. */
-export type TransactionListOrder = {
-  createdAt?: InputMaybe<Ordering>;
-  gatewayID?: InputMaybe<Ordering>;
-  key?: InputMaybe<Ordering>;
-  type?: InputMaybe<Ordering>;
-};
-
-/** TransactionPayload is a response object for Transaction mutations. */
-export type TransactionPayload = {
-  __typename?: 'TransactionPayload';
-  /** A unique identifier for the client performing the mutation. */
-  clientMutationID: Scalars['String']['output'];
-  /** Transaction object. */
-  transaction: Transaction;
-  /** Transaction ID. */
-  transactionID: Scalars['UUID']['output'];
-};
-
-export enum TransactionStatus {
-  Cancelled = 'CANCELLED',
-  Created = 'CREATED',
-  Executed = 'EXECUTED',
-  ExecutionError = 'EXECUTION_ERROR',
-  Undefined = 'UNDEFINED'
-}
-
-export enum TransactionType {
-  Credit = 'CREDIT',
-  Deduction = 'DEDUCTION',
-  PayOffCredit = 'PAY_OFF_CREDIT',
-  TopUp = 'TOP_UP',
-  Undefined = 'UNDEFINED',
-  Withdrawal = 'WITHDRAWAL'
-}
 
 /** User represents a user object of the system */
 export type User = {
@@ -4235,77 +3422,6 @@ export type RejectRtbSourceMutationVariables = Exact<{
 
 export type RejectRtbSourceMutation = { __typename?: 'Mutation', result: { __typename?: 'StatusResponse', clientMutationID: string, status: ResponseStatus, message?: string | null } };
 
-export type __RtbAccessPointDataFragment = { __typename?: 'RTBAccessPoint', ID: any, accountID: any, codename: string, title: string, description: string, auctionType: AuctionType, status: ApproveStatus, active: ActiveStatus, flags: any, revenueShareReduce?: number | null, fixedPurchasePrice: number, maxBid: number, requestType: RtbRequestFormatType, protocol: string, timeout: number, RPS: number, domainDefault: string, headers: any, formats?: Array<string> | null, deviceTypes?: Array<any> | null, devices?: Array<any> | null, OS?: Array<any> | null, browsers?: Array<any> | null, categories?: Array<any> | null, carriers?: Array<any> | null, countries?: Array<string> | null, languages?: Array<string> | null, applications?: Array<any> | null, zones?: Array<any> | null, domains?: Array<string> | null, sources?: Array<any> | null, secure: AnyOnlyExclude, adBlock: AnyOnlyExclude, privateBrowsing: AnyOnlyExclude, IP: AnyIPv4IPv6, createdAt: any, updatedAt: any, deletedAt?: any | null };
-
-export type GetRtbAccessPointQueryVariables = Exact<{
-  id: Scalars['ID64']['input'];
-}>;
-
-
-export type GetRtbAccessPointQuery = { __typename?: 'Query', result: { __typename?: 'RTBAccessPointPayload', clientMutationID: string, data: { __typename?: 'RTBAccessPoint', ID: any, accountID: any, codename: string, title: string, description: string, auctionType: AuctionType, status: ApproveStatus, active: ActiveStatus, flags: any, revenueShareReduce?: number | null, fixedPurchasePrice: number, maxBid: number, requestType: RtbRequestFormatType, protocol: string, timeout: number, RPS: number, domainDefault: string, headers: any, formats?: Array<string> | null, deviceTypes?: Array<any> | null, devices?: Array<any> | null, OS?: Array<any> | null, browsers?: Array<any> | null, categories?: Array<any> | null, carriers?: Array<any> | null, countries?: Array<string> | null, languages?: Array<string> | null, applications?: Array<any> | null, zones?: Array<any> | null, domains?: Array<string> | null, sources?: Array<any> | null, secure: AnyOnlyExclude, adBlock: AnyOnlyExclude, privateBrowsing: AnyOnlyExclude, IP: AnyIPv4IPv6, createdAt: any, updatedAt: any, deletedAt?: any | null } } };
-
-export type ListRtbAccessPointsQueryVariables = Exact<{
-  page?: Scalars['Int']['input'];
-  size?: Scalars['Int']['input'];
-  filter?: InputMaybe<RtbAccessPointListFilter>;
-  order?: InputMaybe<RtbAccessPointListOrder>;
-}>;
-
-
-export type ListRtbAccessPointsQuery = { __typename?: 'Query', permApprove?: string | null, permReject?: string | null, result?: { __typename?: 'RTBAccessPointConnection', list: Array<{ __typename?: 'RTBAccessPoint', ID: any, accountID: any, codename: string, title: string, description: string, auctionType: AuctionType, status: ApproveStatus, active: ActiveStatus, flags: any, revenueShareReduce?: number | null, fixedPurchasePrice: number, maxBid: number, requestType: RtbRequestFormatType, protocol: string, timeout: number, RPS: number, domainDefault: string, headers: any, formats?: Array<string> | null, deviceTypes?: Array<any> | null, devices?: Array<any> | null, OS?: Array<any> | null, browsers?: Array<any> | null, categories?: Array<any> | null, carriers?: Array<any> | null, countries?: Array<string> | null, languages?: Array<string> | null, applications?: Array<any> | null, zones?: Array<any> | null, domains?: Array<string> | null, sources?: Array<any> | null, secure: AnyOnlyExclude, adBlock: AnyOnlyExclude, privateBrowsing: AnyOnlyExclude, IP: AnyIPv4IPv6, createdAt: any, updatedAt: any, deletedAt?: any | null }>, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
-
-export type NewRtbAccessPointMutationVariables = Exact<{
-  input: RtbAccessPointInput;
-}>;
-
-
-export type NewRtbAccessPointMutation = { __typename?: 'Mutation', result: { __typename?: 'RTBAccessPointPayload', clientMutationID: string, accessPointID: any, data: { __typename?: 'RTBAccessPoint', ID: any, accountID: any, codename: string, title: string, description: string, auctionType: AuctionType, status: ApproveStatus, active: ActiveStatus, flags: any, revenueShareReduce?: number | null, fixedPurchasePrice: number, maxBid: number, requestType: RtbRequestFormatType, protocol: string, timeout: number, RPS: number, domainDefault: string, headers: any, formats?: Array<string> | null, deviceTypes?: Array<any> | null, devices?: Array<any> | null, OS?: Array<any> | null, browsers?: Array<any> | null, categories?: Array<any> | null, carriers?: Array<any> | null, countries?: Array<string> | null, languages?: Array<string> | null, applications?: Array<any> | null, zones?: Array<any> | null, domains?: Array<string> | null, sources?: Array<any> | null, secure: AnyOnlyExclude, adBlock: AnyOnlyExclude, privateBrowsing: AnyOnlyExclude, IP: AnyIPv4IPv6, createdAt: any, updatedAt: any, deletedAt?: any | null } } };
-
-export type UpdateRtbAccessPointMutationVariables = Exact<{
-  id: Scalars['ID64']['input'];
-  input: RtbAccessPointInput;
-}>;
-
-
-export type UpdateRtbAccessPointMutation = { __typename?: 'Mutation', result: { __typename?: 'RTBAccessPointPayload', clientMutationID: string, accessPointID: any, data: { __typename?: 'RTBAccessPoint', ID: any, accountID: any, codename: string, title: string, description: string, auctionType: AuctionType, status: ApproveStatus, active: ActiveStatus, flags: any, revenueShareReduce?: number | null, fixedPurchasePrice: number, maxBid: number, requestType: RtbRequestFormatType, protocol: string, timeout: number, RPS: number, domainDefault: string, headers: any, formats?: Array<string> | null, deviceTypes?: Array<any> | null, devices?: Array<any> | null, OS?: Array<any> | null, browsers?: Array<any> | null, categories?: Array<any> | null, carriers?: Array<any> | null, countries?: Array<string> | null, languages?: Array<string> | null, applications?: Array<any> | null, zones?: Array<any> | null, domains?: Array<string> | null, sources?: Array<any> | null, secure: AnyOnlyExclude, adBlock: AnyOnlyExclude, privateBrowsing: AnyOnlyExclude, IP: AnyIPv4IPv6, createdAt: any, updatedAt: any, deletedAt?: any | null } } };
-
-export type DeleteRtbAccessPointMutationVariables = Exact<{
-  id: Scalars['ID64']['input'];
-}>;
-
-
-export type DeleteRtbAccessPointMutation = { __typename?: 'Mutation', result?: { __typename?: 'RTBAccessPointPayload', clientMutationID: string } | null };
-
-export type RunRtbAccessPointMutationVariables = Exact<{
-  id: Scalars['ID64']['input'];
-}>;
-
-
-export type RunRtbAccessPointMutation = { __typename?: 'Mutation', result: { __typename?: 'StatusResponse', clientMutationID: string, status: ResponseStatus } };
-
-export type PauseRtbAccessPointMutationVariables = Exact<{
-  id: Scalars['ID64']['input'];
-}>;
-
-
-export type PauseRtbAccessPointMutation = { __typename?: 'Mutation', result: { __typename?: 'StatusResponse', clientMutationID: string, status: ResponseStatus } };
-
-export type ApproveRtbAccessPointMutationVariables = Exact<{
-  id: Scalars['ID64']['input'];
-  msg?: InputMaybe<Scalars['String']['input']>;
-}>;
-
-
-export type ApproveRtbAccessPointMutation = { __typename?: 'Mutation', result: { __typename?: 'StatusResponse', clientMutationID: string, status: ResponseStatus, message?: string | null } };
-
-export type RejectRtbAccessPointMutationVariables = Exact<{
-  id: Scalars['ID64']['input'];
-  msg?: InputMaybe<Scalars['String']['input']>;
-}>;
-
-
-export type RejectRtbAccessPointMutation = { __typename?: 'Mutation', result: { __typename?: 'StatusResponse', clientMutationID: string, status: ResponseStatus, message?: string | null } };
-
 export type GetBrowserQueryVariables = Exact<{
   id: Scalars['ID64']['input'];
 }>;
@@ -4404,7 +3520,7 @@ export type ListDeviceModelsQueryVariables = Exact<{
 
 export type ListDeviceModelsQuery = { __typename?: 'Query', result?: { __typename?: 'DeviceModelConnection', list: Array<{ __typename?: 'DeviceModel', ID: any, active: ActiveStatus, name: string, description: string, matchExp: string, makerID: any, createdAt: any, updatedAt: any, maker?: { __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any } | null, versions?: Array<{ __typename?: 'DeviceModelVersion', name: string, min: string, max: string }> | null, type?: { __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string } | null }>, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
 
-export type __StatItemFragment = { __typename?: 'StatisticAdItem', spent: number, profit: number, bidPrice: number, requests: any, impressions: any, views: any, directs: any, clicks: any, leads: any, bids: any, wins: any, skips: any, nobids: any, errors: any, CTR: number, eCPM: number, eCPC: number, eCPA: number, keys?: Array<{ __typename?: 'StatisticItemKey', key: StatisticKey, value: any, text: string }> | null };
+export type __StatItemFragment = { __typename?: 'StatisticAdItem', profit: number, bidPrice: number, requests: any, impressions: any, views: any, directs: any, clicks: any, bids: any, wins: any, skips: any, nobids: any, errors: any, CTR: number, eCPM: number, eCPC: number, keys?: Array<{ __typename?: 'StatisticItemKey', key: StatisticKey, value: any, text: string }> | null };
 
 export type StatisticsQueryVariables = Exact<{
   filter?: InputMaybe<StatisticAdListFilter>;
@@ -4414,16 +3530,7 @@ export type StatisticsQueryVariables = Exact<{
 }>;
 
 
-export type StatisticsQuery = { __typename?: 'Query', result: { __typename?: 'StatisticAdItemConnection', totalCount: number, list?: Array<{ __typename?: 'StatisticAdItem', spent: number, profit: number, bidPrice: number, requests: any, impressions: any, views: any, directs: any, clicks: any, leads: any, bids: any, wins: any, skips: any, nobids: any, errors: any, CTR: number, eCPM: number, eCPC: number, eCPA: number, keys?: Array<{ __typename?: 'StatisticItemKey', key: StatisticKey, value: any, text: string }> | null }> | null, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } };
-
-export type __BillingBalanceFragment = { __typename?: 'Balance', balance: number, credit: number };
-
-export type GetBillingBalanceQueryVariables = Exact<{
-  key: Scalars['String']['input'];
-}>;
-
-
-export type GetBillingBalanceQuery = { __typename?: 'Query', result?: { __typename?: 'Balance', balance: number, credit: number } | null };
+export type StatisticsQuery = { __typename?: 'Query', result: { __typename?: 'StatisticAdItemConnection', totalCount: number, list?: Array<{ __typename?: 'StatisticAdItem', profit: number, bidPrice: number, requests: any, impressions: any, views: any, directs: any, clicks: any, bids: any, wins: any, skips: any, nobids: any, errors: any, CTR: number, eCPM: number, eCPC: number, keys?: Array<{ __typename?: 'StatisticItemKey', key: StatisticKey, value: any, text: string }> | null }> | null, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } };
 
 export type ListHistoryQueryVariables = Exact<{
   page?: Scalars['Int']['input'];
@@ -4715,48 +3822,6 @@ export const __RtbSourceDataFragmentDoc = gql`
   deletedAt
 }
     `;
-export const __RtbAccessPointDataFragmentDoc = gql`
-    fragment __rtbAccessPointData on RTBAccessPoint {
-  ID
-  accountID
-  codename
-  title
-  description
-  auctionType
-  status
-  active
-  flags
-  revenueShareReduce
-  fixedPurchasePrice
-  maxBid
-  requestType
-  protocol
-  timeout
-  RPS
-  domainDefault
-  headers
-  formats
-  deviceTypes
-  devices
-  OS
-  browsers
-  categories
-  carriers
-  countries
-  languages
-  applications
-  zones
-  domains
-  sources
-  secure
-  adBlock
-  privateBrowsing
-  IP
-  createdAt
-  updatedAt
-  deletedAt
-}
-    `;
 export const __BrowserDataFragmentDoc = gql`
     fragment __browserData on Browser {
   ID
@@ -4842,7 +3907,6 @@ export const __StatItemFragmentDoc = gql`
     value
     text
   }
-  spent
   profit
   bidPrice
   requests
@@ -4850,7 +3914,6 @@ export const __StatItemFragmentDoc = gql`
   views
   directs
   clicks
-  leads
   bids
   wins
   skips
@@ -4859,13 +3922,6 @@ export const __StatItemFragmentDoc = gql`
   CTR
   eCPM
   eCPC
-  eCPA
-}
-    `;
-export const __BillingBalanceFragmentDoc = gql`
-    fragment __billingBalance on Balance {
-  balance
-  credit
 }
     `;
 export const __ZoneDataFragmentDoc = gql`
@@ -6975,352 +6031,6 @@ export function useRejectRtbSourceMutation(baseOptions?: Apollo.MutationHookOpti
 export type RejectRtbSourceMutationHookResult = ReturnType<typeof useRejectRtbSourceMutation>;
 export type RejectRtbSourceMutationResult = Apollo.MutationResult<RejectRtbSourceMutation>;
 export type RejectRtbSourceMutationOptions = Apollo.BaseMutationOptions<RejectRtbSourceMutation, RejectRtbSourceMutationVariables>;
-export const GetRtbAccessPointDocument = gql`
-    query GetRTBAccessPoint($id: ID64!) {
-  result: RTBAccessPoint(ID: $id) {
-    clientMutationID
-    data: accessPoint {
-      ...__rtbAccessPointData
-    }
-  }
-}
-    ${__RtbAccessPointDataFragmentDoc}`;
-
-/**
- * __useGetRtbAccessPointQuery__
- *
- * To run a query within a React component, call `useGetRtbAccessPointQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetRtbAccessPointQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetRtbAccessPointQuery({
- *   variables: {
- *      id: // value for 'id'
- *   },
- * });
- */
-export function useGetRtbAccessPointQuery(baseOptions: Apollo.QueryHookOptions<GetRtbAccessPointQuery, GetRtbAccessPointQueryVariables> & ({ variables: GetRtbAccessPointQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetRtbAccessPointQuery, GetRtbAccessPointQueryVariables>(GetRtbAccessPointDocument, options);
-      }
-export function useGetRtbAccessPointLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetRtbAccessPointQuery, GetRtbAccessPointQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetRtbAccessPointQuery, GetRtbAccessPointQueryVariables>(GetRtbAccessPointDocument, options);
-        }
-export function useGetRtbAccessPointSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetRtbAccessPointQuery, GetRtbAccessPointQueryVariables>) {
-          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetRtbAccessPointQuery, GetRtbAccessPointQueryVariables>(GetRtbAccessPointDocument, options);
-        }
-export type GetRtbAccessPointQueryHookResult = ReturnType<typeof useGetRtbAccessPointQuery>;
-export type GetRtbAccessPointLazyQueryHookResult = ReturnType<typeof useGetRtbAccessPointLazyQuery>;
-export type GetRtbAccessPointSuspenseQueryHookResult = ReturnType<typeof useGetRtbAccessPointSuspenseQuery>;
-export type GetRtbAccessPointQueryResult = Apollo.QueryResult<GetRtbAccessPointQuery, GetRtbAccessPointQueryVariables>;
-export const ListRtbAccessPointsDocument = gql`
-    query ListRTBAccessPoints($page: Int! = 0, $size: Int! = 10, $filter: RTBAccessPointListFilter = null, $order: RTBAccessPointListOrder = null) {
-  result: listRTBAccessPoints(
-    filter: $filter
-    order: $order
-    page: {startPage: $page, size: $size}
-  ) {
-    list {
-      ...__rtbAccessPointData
-    }
-    pageInfo {
-      ...__pageInfo
-    }
-  }
-  permApprove: checkPermission(name: "approve.*", key: "rtb_access_point")
-  permReject: checkPermission(name: "reject.*", key: "rtb_access_point")
-}
-    ${__RtbAccessPointDataFragmentDoc}
-${__PageInfoFragmentDoc}`;
-
-/**
- * __useListRtbAccessPointsQuery__
- *
- * To run a query within a React component, call `useListRtbAccessPointsQuery` and pass it any options that fit your needs.
- * When your component renders, `useListRtbAccessPointsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useListRtbAccessPointsQuery({
- *   variables: {
- *      page: // value for 'page'
- *      size: // value for 'size'
- *      filter: // value for 'filter'
- *      order: // value for 'order'
- *   },
- * });
- */
-export function useListRtbAccessPointsQuery(baseOptions?: Apollo.QueryHookOptions<ListRtbAccessPointsQuery, ListRtbAccessPointsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<ListRtbAccessPointsQuery, ListRtbAccessPointsQueryVariables>(ListRtbAccessPointsDocument, options);
-      }
-export function useListRtbAccessPointsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ListRtbAccessPointsQuery, ListRtbAccessPointsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<ListRtbAccessPointsQuery, ListRtbAccessPointsQueryVariables>(ListRtbAccessPointsDocument, options);
-        }
-export function useListRtbAccessPointsSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<ListRtbAccessPointsQuery, ListRtbAccessPointsQueryVariables>) {
-          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<ListRtbAccessPointsQuery, ListRtbAccessPointsQueryVariables>(ListRtbAccessPointsDocument, options);
-        }
-export type ListRtbAccessPointsQueryHookResult = ReturnType<typeof useListRtbAccessPointsQuery>;
-export type ListRtbAccessPointsLazyQueryHookResult = ReturnType<typeof useListRtbAccessPointsLazyQuery>;
-export type ListRtbAccessPointsSuspenseQueryHookResult = ReturnType<typeof useListRtbAccessPointsSuspenseQuery>;
-export type ListRtbAccessPointsQueryResult = Apollo.QueryResult<ListRtbAccessPointsQuery, ListRtbAccessPointsQueryVariables>;
-export const NewRtbAccessPointDocument = gql`
-    mutation NewRTBAccessPoint($input: RTBAccessPointInput!) {
-  result: createRTBAccessPoint(input: $input) {
-    clientMutationID
-    accessPointID
-    data: accessPoint {
-      ...__rtbAccessPointData
-    }
-  }
-}
-    ${__RtbAccessPointDataFragmentDoc}`;
-export type NewRtbAccessPointMutationFn = Apollo.MutationFunction<NewRtbAccessPointMutation, NewRtbAccessPointMutationVariables>;
-
-/**
- * __useNewRtbAccessPointMutation__
- *
- * To run a mutation, you first call `useNewRtbAccessPointMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useNewRtbAccessPointMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [newRtbAccessPointMutation, { data, loading, error }] = useNewRtbAccessPointMutation({
- *   variables: {
- *      input: // value for 'input'
- *   },
- * });
- */
-export function useNewRtbAccessPointMutation(baseOptions?: Apollo.MutationHookOptions<NewRtbAccessPointMutation, NewRtbAccessPointMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<NewRtbAccessPointMutation, NewRtbAccessPointMutationVariables>(NewRtbAccessPointDocument, options);
-      }
-export type NewRtbAccessPointMutationHookResult = ReturnType<typeof useNewRtbAccessPointMutation>;
-export type NewRtbAccessPointMutationResult = Apollo.MutationResult<NewRtbAccessPointMutation>;
-export type NewRtbAccessPointMutationOptions = Apollo.BaseMutationOptions<NewRtbAccessPointMutation, NewRtbAccessPointMutationVariables>;
-export const UpdateRtbAccessPointDocument = gql`
-    mutation UpdateRTBAccessPoint($id: ID64!, $input: RTBAccessPointInput!) {
-  result: updateRTBAccessPoint(ID: $id, input: $input) {
-    clientMutationID
-    accessPointID
-    data: accessPoint {
-      ...__rtbAccessPointData
-    }
-  }
-}
-    ${__RtbAccessPointDataFragmentDoc}`;
-export type UpdateRtbAccessPointMutationFn = Apollo.MutationFunction<UpdateRtbAccessPointMutation, UpdateRtbAccessPointMutationVariables>;
-
-/**
- * __useUpdateRtbAccessPointMutation__
- *
- * To run a mutation, you first call `useUpdateRtbAccessPointMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateRtbAccessPointMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateRtbAccessPointMutation, { data, loading, error }] = useUpdateRtbAccessPointMutation({
- *   variables: {
- *      id: // value for 'id'
- *      input: // value for 'input'
- *   },
- * });
- */
-export function useUpdateRtbAccessPointMutation(baseOptions?: Apollo.MutationHookOptions<UpdateRtbAccessPointMutation, UpdateRtbAccessPointMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateRtbAccessPointMutation, UpdateRtbAccessPointMutationVariables>(UpdateRtbAccessPointDocument, options);
-      }
-export type UpdateRtbAccessPointMutationHookResult = ReturnType<typeof useUpdateRtbAccessPointMutation>;
-export type UpdateRtbAccessPointMutationResult = Apollo.MutationResult<UpdateRtbAccessPointMutation>;
-export type UpdateRtbAccessPointMutationOptions = Apollo.BaseMutationOptions<UpdateRtbAccessPointMutation, UpdateRtbAccessPointMutationVariables>;
-export const DeleteRtbAccessPointDocument = gql`
-    mutation DeleteRTBAccessPoint($id: ID64!) {
-  result: deleteRTBAccessPoint(ID: $id) {
-    clientMutationID
-  }
-}
-    `;
-export type DeleteRtbAccessPointMutationFn = Apollo.MutationFunction<DeleteRtbAccessPointMutation, DeleteRtbAccessPointMutationVariables>;
-
-/**
- * __useDeleteRtbAccessPointMutation__
- *
- * To run a mutation, you first call `useDeleteRtbAccessPointMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useDeleteRtbAccessPointMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [deleteRtbAccessPointMutation, { data, loading, error }] = useDeleteRtbAccessPointMutation({
- *   variables: {
- *      id: // value for 'id'
- *   },
- * });
- */
-export function useDeleteRtbAccessPointMutation(baseOptions?: Apollo.MutationHookOptions<DeleteRtbAccessPointMutation, DeleteRtbAccessPointMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteRtbAccessPointMutation, DeleteRtbAccessPointMutationVariables>(DeleteRtbAccessPointDocument, options);
-      }
-export type DeleteRtbAccessPointMutationHookResult = ReturnType<typeof useDeleteRtbAccessPointMutation>;
-export type DeleteRtbAccessPointMutationResult = Apollo.MutationResult<DeleteRtbAccessPointMutation>;
-export type DeleteRtbAccessPointMutationOptions = Apollo.BaseMutationOptions<DeleteRtbAccessPointMutation, DeleteRtbAccessPointMutationVariables>;
-export const RunRtbAccessPointDocument = gql`
-    mutation RunRTBAccessPoint($id: ID64!) {
-  result: runRTBAccessPoint(ID: $id) {
-    clientMutationID
-    status
-  }
-}
-    `;
-export type RunRtbAccessPointMutationFn = Apollo.MutationFunction<RunRtbAccessPointMutation, RunRtbAccessPointMutationVariables>;
-
-/**
- * __useRunRtbAccessPointMutation__
- *
- * To run a mutation, you first call `useRunRtbAccessPointMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRunRtbAccessPointMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [runRtbAccessPointMutation, { data, loading, error }] = useRunRtbAccessPointMutation({
- *   variables: {
- *      id: // value for 'id'
- *   },
- * });
- */
-export function useRunRtbAccessPointMutation(baseOptions?: Apollo.MutationHookOptions<RunRtbAccessPointMutation, RunRtbAccessPointMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<RunRtbAccessPointMutation, RunRtbAccessPointMutationVariables>(RunRtbAccessPointDocument, options);
-      }
-export type RunRtbAccessPointMutationHookResult = ReturnType<typeof useRunRtbAccessPointMutation>;
-export type RunRtbAccessPointMutationResult = Apollo.MutationResult<RunRtbAccessPointMutation>;
-export type RunRtbAccessPointMutationOptions = Apollo.BaseMutationOptions<RunRtbAccessPointMutation, RunRtbAccessPointMutationVariables>;
-export const PauseRtbAccessPointDocument = gql`
-    mutation PauseRTBAccessPoint($id: ID64!) {
-  result: pauseRTBAccessPoint(ID: $id) {
-    clientMutationID
-    status
-  }
-}
-    `;
-export type PauseRtbAccessPointMutationFn = Apollo.MutationFunction<PauseRtbAccessPointMutation, PauseRtbAccessPointMutationVariables>;
-
-/**
- * __usePauseRtbAccessPointMutation__
- *
- * To run a mutation, you first call `usePauseRtbAccessPointMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `usePauseRtbAccessPointMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [pauseRtbAccessPointMutation, { data, loading, error }] = usePauseRtbAccessPointMutation({
- *   variables: {
- *      id: // value for 'id'
- *   },
- * });
- */
-export function usePauseRtbAccessPointMutation(baseOptions?: Apollo.MutationHookOptions<PauseRtbAccessPointMutation, PauseRtbAccessPointMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<PauseRtbAccessPointMutation, PauseRtbAccessPointMutationVariables>(PauseRtbAccessPointDocument, options);
-      }
-export type PauseRtbAccessPointMutationHookResult = ReturnType<typeof usePauseRtbAccessPointMutation>;
-export type PauseRtbAccessPointMutationResult = Apollo.MutationResult<PauseRtbAccessPointMutation>;
-export type PauseRtbAccessPointMutationOptions = Apollo.BaseMutationOptions<PauseRtbAccessPointMutation, PauseRtbAccessPointMutationVariables>;
-export const ApproveRtbAccessPointDocument = gql`
-    mutation ApproveRTBAccessPoint($id: ID64!, $msg: String = null) {
-  result: approveRTBAccessPoint(ID: $id, msg: $msg) {
-    clientMutationID
-    status
-    message
-  }
-}
-    `;
-export type ApproveRtbAccessPointMutationFn = Apollo.MutationFunction<ApproveRtbAccessPointMutation, ApproveRtbAccessPointMutationVariables>;
-
-/**
- * __useApproveRtbAccessPointMutation__
- *
- * To run a mutation, you first call `useApproveRtbAccessPointMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useApproveRtbAccessPointMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [approveRtbAccessPointMutation, { data, loading, error }] = useApproveRtbAccessPointMutation({
- *   variables: {
- *      id: // value for 'id'
- *      msg: // value for 'msg'
- *   },
- * });
- */
-export function useApproveRtbAccessPointMutation(baseOptions?: Apollo.MutationHookOptions<ApproveRtbAccessPointMutation, ApproveRtbAccessPointMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<ApproveRtbAccessPointMutation, ApproveRtbAccessPointMutationVariables>(ApproveRtbAccessPointDocument, options);
-      }
-export type ApproveRtbAccessPointMutationHookResult = ReturnType<typeof useApproveRtbAccessPointMutation>;
-export type ApproveRtbAccessPointMutationResult = Apollo.MutationResult<ApproveRtbAccessPointMutation>;
-export type ApproveRtbAccessPointMutationOptions = Apollo.BaseMutationOptions<ApproveRtbAccessPointMutation, ApproveRtbAccessPointMutationVariables>;
-export const RejectRtbAccessPointDocument = gql`
-    mutation RejectRTBAccessPoint($id: ID64!, $msg: String = null) {
-  result: rejectRTBAccessPoint(ID: $id, msg: $msg) {
-    clientMutationID
-    status
-    message
-  }
-}
-    `;
-export type RejectRtbAccessPointMutationFn = Apollo.MutationFunction<RejectRtbAccessPointMutation, RejectRtbAccessPointMutationVariables>;
-
-/**
- * __useRejectRtbAccessPointMutation__
- *
- * To run a mutation, you first call `useRejectRtbAccessPointMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRejectRtbAccessPointMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [rejectRtbAccessPointMutation, { data, loading, error }] = useRejectRtbAccessPointMutation({
- *   variables: {
- *      id: // value for 'id'
- *      msg: // value for 'msg'
- *   },
- * });
- */
-export function useRejectRtbAccessPointMutation(baseOptions?: Apollo.MutationHookOptions<RejectRtbAccessPointMutation, RejectRtbAccessPointMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<RejectRtbAccessPointMutation, RejectRtbAccessPointMutationVariables>(RejectRtbAccessPointDocument, options);
-      }
-export type RejectRtbAccessPointMutationHookResult = ReturnType<typeof useRejectRtbAccessPointMutation>;
-export type RejectRtbAccessPointMutationResult = Apollo.MutationResult<RejectRtbAccessPointMutation>;
-export type RejectRtbAccessPointMutationOptions = Apollo.BaseMutationOptions<RejectRtbAccessPointMutation, RejectRtbAccessPointMutationVariables>;
 export const GetBrowserDocument = gql`
     query GetBrowser($id: ID64!) {
   result: browser(ID: $id) {
@@ -7848,46 +6558,6 @@ export type StatisticsQueryHookResult = ReturnType<typeof useStatisticsQuery>;
 export type StatisticsLazyQueryHookResult = ReturnType<typeof useStatisticsLazyQuery>;
 export type StatisticsSuspenseQueryHookResult = ReturnType<typeof useStatisticsSuspenseQuery>;
 export type StatisticsQueryResult = Apollo.QueryResult<StatisticsQuery, StatisticsQueryVariables>;
-export const GetBillingBalanceDocument = gql`
-    query GetBillingBalance($key: String!) {
-  result: balance {
-    ...__billingBalance
-  }
-}
-    ${__BillingBalanceFragmentDoc}`;
-
-/**
- * __useGetBillingBalanceQuery__
- *
- * To run a query within a React component, call `useGetBillingBalanceQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetBillingBalanceQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetBillingBalanceQuery({
- *   variables: {
- *      key: // value for 'key'
- *   },
- * });
- */
-export function useGetBillingBalanceQuery(baseOptions: Apollo.QueryHookOptions<GetBillingBalanceQuery, GetBillingBalanceQueryVariables> & ({ variables: GetBillingBalanceQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetBillingBalanceQuery, GetBillingBalanceQueryVariables>(GetBillingBalanceDocument, options);
-      }
-export function useGetBillingBalanceLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetBillingBalanceQuery, GetBillingBalanceQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetBillingBalanceQuery, GetBillingBalanceQueryVariables>(GetBillingBalanceDocument, options);
-        }
-export function useGetBillingBalanceSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetBillingBalanceQuery, GetBillingBalanceQueryVariables>) {
-          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetBillingBalanceQuery, GetBillingBalanceQueryVariables>(GetBillingBalanceDocument, options);
-        }
-export type GetBillingBalanceQueryHookResult = ReturnType<typeof useGetBillingBalanceQuery>;
-export type GetBillingBalanceLazyQueryHookResult = ReturnType<typeof useGetBillingBalanceLazyQuery>;
-export type GetBillingBalanceSuspenseQueryHookResult = ReturnType<typeof useGetBillingBalanceSuspenseQuery>;
-export type GetBillingBalanceQueryResult = Apollo.QueryResult<GetBillingBalanceQuery, GetBillingBalanceQueryVariables>;
 export const ListHistoryDocument = gql`
     query ListHistory($page: Int! = 0, $size: Int! = 10, $filter: HistoryActionListFilter = null, $order: HistoryActionListOrder = null) {
   result: listHistory(
