@@ -12,19 +12,20 @@ import Button, { ButtonLoading } from '@tailus-ui/Button';
 import Drawer from '@tailus-ui/Drawer/Drawer';
 import Input from '@tailus-ui/Input';
 import Textarea from '@tailus-ui/Textarea';
+
 import { Formik } from 'formik';
 import React, { Fragment } from 'react';
 
 const defaultFormTitle = 'Application';
 
-function ApplicationCreateForm({ onCancel }: ApplicationCreateFormProps) {
+function ApplicationCreateForm({ onCancel, onSubmit }: ApplicationCreateFormProps) {
   const {
     isLoading,
     isCreateMode,
     applicationError,
     responseApplication,
     submitApplicationCreateEditFormHandler,
-  } = useApplicationCreateForm();
+  } = useApplicationCreateForm(onSubmit);
   const hasApplicationTitle = !!responseApplication?.title;
   const applicationTitle = hasApplicationTitle ? responseApplication?.title : defaultFormTitle;
   const formTitle = isCreateMode ? 'Create Application' : `Edit ${applicationTitle}`;
@@ -86,6 +87,7 @@ function ApplicationCreateForm({ onCancel }: ApplicationCreateFormProps) {
                     label="Type"
                     name="type"
                     items={applicationTypes}
+                    value={values.type}
                     onChange={handleChange('type')}
                   />
                 </div>
@@ -94,11 +96,17 @@ function ApplicationCreateForm({ onCancel }: ApplicationCreateFormProps) {
                     label="Platform"
                     name="platform"
                     items={applicationPlatforms}
+                    value={values.platform}
                     onChange={handleChange('platform')}
                   />
                 </div>
                 <div className="pb-4">
-                  <CategoriesSelect onChange={handleChange('categories')} />
+                  <CategoriesSelect
+                    values={values.categories}
+                    onChange={(values) => {
+                      setFieldValue('categories', values);
+                    }}
+                  />
                 </div>
               </div>
               <div className="mt-auto h-fit sticky bottom-0 flex gap-3 pt-4">
@@ -112,8 +120,7 @@ function ApplicationCreateForm({ onCancel }: ApplicationCreateFormProps) {
         }}
       </Formik>
     </Fragment>
-  )
-  ;
+  );
 }
 
 export default ApplicationCreateForm;

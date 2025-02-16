@@ -47,10 +47,6 @@ Root.displayName = 'Root';
 Icon.displayName = 'Icon';
 Label.displayName = 'Label';
 
-// export type Root = typeof Root;
-// export type Icon = typeof Icon;
-// export type Label = typeof Label;
-
 export default {
   Root,
   Icon,

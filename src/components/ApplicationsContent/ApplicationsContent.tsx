@@ -10,6 +10,7 @@ function ApplicationsContent() {
     applicationsList,
     applicationsListError,
     isListApplicationsLoading,
+    applicationStatisticsMapById,
     changeApplicationHandler,
   } = useApplicationsContent();
 
@@ -41,7 +42,7 @@ function ApplicationsContent() {
   return (
     <div className="grid sm:grid-cols-4 gap-3 w-full">
       {applicationsList?.map(application => (
-        <ApplicationCard onChange={changeApplicationHandler} id={application.ID} title={application.title} uri={application.URI} active={application.active} key={application.ID} />
+        <ApplicationCard onChange={changeApplicationHandler} id={application.ID} statistics={applicationStatisticsMapById?.get(application.ID)} title={application.title} uri={application.URI} active={application.active} key={application.ID} />
       ))}
     </div>
   );

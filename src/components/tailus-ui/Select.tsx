@@ -63,7 +63,7 @@ const SelectTriggerIcon = ({ className, size, children }: SelectIconProps) => {
   return cloneElement(children as React.ReactElement<{ className?: string }>, icon({ size, className }));
 };
 
-const SelectContent = ({ ref: forwardedRef, className, variant = 'solid', intent = 'primary', mixed = false, fancy = false, children, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content> & SelectProps & { ref?: React.RefObject<React.ElementRef<typeof SelectPrimitive.Content>> }) => {
+const SelectContent = ({ ref: forwardedRef, className, variant = 'solid', intent = 'primary', mixed = false, fancy = false, children, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content> & SelectProps & { ref?: React.RefObject<React.ComponentRef<typeof SelectPrimitive.Content>> }) => {
   const {
     variant: contextVariant,
     intent: contextIntent,

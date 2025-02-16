@@ -1,4 +1,12 @@
 import { ApplicationType, PlatformType } from '@/generated/graphql';
+import CheckIcon from '@heroicons/react/20/solid/CheckIcon';
+import { createElement } from 'react';
+
+export const toastSuccessMessage = {
+  title: 'Application was',
+  description: 'The application was successfully',
+  icon: createElement(CheckIcon, { className: 'w-5 h-5 text-success-600' }),
+};
 
 export const applicationTypes = [
   {

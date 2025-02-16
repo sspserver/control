@@ -1,14 +1,13 @@
 import {
   ListApplicationsDocument,
-  ListApplicationsQuery,
   Ordering,
   StatisticCondition,
   StatisticKey,
   StatisticOrderingKey,
   useListApplicationsQuery,
-  useStatisticsLazyQuery
+  useStatisticsLazyQuery,
 } from '@/generated/graphql';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
 const listApplicationsQueryOptions = {
   variables: {
@@ -18,11 +17,15 @@ const listApplicationsQueryOptions = {
   },
 };
 
-export const listApplicationsDocumentRefetchQueries = [{ query: ListApplicationsDocument, variables: listApplicationsQueryOptions.variables }]
+export const listApplicationsDocumentRefetchQueries = [
+  {
+    query: ListApplicationsDocument,
+    variables: listApplicationsQueryOptions.variables,
+  },
+];
 
 function useApplicationsContent() {
   // const { data: responseApplicationsList, error: applicationsListError, loading: isListApplicationsLoading } = useQuery<ListApplicationsQuery>(ListApplicationsDocument, listApplicationsQueryOptions);
-
 
   // {
   //   fetchPolicy: 'network-only',
@@ -35,19 +38,37 @@ function useApplicationsContent() {
   // },
   // }
 
-  const { data: responseApplicationsList, error: applicationsListError, loading: isListApplicationsLoading } = useListApplicationsQuery(listApplicationsQueryOptions);
+  const {
+    data: responseApplicationsList,
+    error: applicationsListError,
+    loading: isListApplicationsLoading,
+  } = useListApplicationsQuery(listApplicationsQueryOptions);
   const applicationsList = responseApplicationsList?.result?.list;
-  const applicationsId = useMemo(() => applicationsList?.map<number>(application => Number(application.ID)) ?? [], [applicationsList]);
-  const [getApplicationStatistics, {
-    data: responseApplicationStatistics,
-  }] = useStatisticsLazyQuery();
+  const applicationsId = useMemo(
+    () =>
+      applicationsList?.map<number>(application => Number(application.ID))
+      ?? [],
+    [applicationsList],
+  );
+  const [getApplicationStatistics, { data: responseApplicationStatistics }]
+    = useStatisticsLazyQuery();
   const loadApplicationStatistics = useCallback(() => {
+    // Data week  period
+    const endDate = new Date().toISOString();
+    const startDate = new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000).toISOString();
+
     getApplicationStatistics({
       fetchPolicy: 'network-only',
       variables: {
         filter: {
+          endDate,
+          startDate,
           conditions: [
-            { key: StatisticKey.AppId, op: StatisticCondition.In, value: applicationsId },
+            {
+              key: StatisticKey.AppId,
+              op: StatisticCondition.In,
+              value: applicationsId,
+            },
           ],
         },
         group: [StatisticKey.AppId, StatisticKey.Datemark],
@@ -58,21 +79,33 @@ function useApplicationsContent() {
         page: { size: 300 },
       },
     });
-  }, []);
-  const changeApplicationHandler = useCallback((id: string) => {
+  }, [applicationsId, getApplicationStatistics]);
+  const applicationStatisticsMapById = useMemo(() => responseApplicationStatistics?.result.list?.reduce((acc, statistic) => {
+    const { keys } = statistic;
+    const appId = keys?.find(key => key.key === StatisticKey.AppId)?.value;
 
-  }, []);
+    if (appId) {
+      if (!acc.has(appId)) {
+        acc.set(appId, []);
+      }
 
-  // useEffect(() => {
-  //   loadApplicationStatistics();
-  // }, [loadApplicationStatistics, applicationsId]);
+      const appStatistics = acc.get(appId);
+      acc.set(appId, [...appStatistics, statistic]);
+    }
 
-  console.log('xxx statisticsResponse', responseApplicationsList, responseApplicationStatistics);
+    return acc;
+  }, new Map()), [responseApplicationStatistics]);
+  const changeApplicationHandler = useCallback((id: string) => {}, []);
+
+  useEffect(() => {
+    loadApplicationStatistics();
+  }, [loadApplicationStatistics, applicationsId]);
 
   return {
     applicationsList,
     applicationsListError,
     isListApplicationsLoading,
+    applicationStatisticsMapById,
     changeApplicationHandler,
   };
 }

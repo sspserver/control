@@ -4,7 +4,58 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5483ae0-0faa-4d09-a539-795505d72254" name="Changes" comment="#7 Applications page edit/create" />
+    <list default="true" id="d5483ae0-0faa-4d09-a539-795505d72254" name="Changes" comment="#7 Applications page edit/create">
+      <change afterPath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Checkbox/Checkbox.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Checkbox/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Toast/Toast.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Toast/ToastProvider/ToastProvider.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Toast/ToastProvider/ToastProviderContext.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Toast/ToastProvider/useToastProviderContext.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Toast/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Aligner/Aligner.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Aligner/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Checkbox/Checkbox.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Checkbox/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Command/Command.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Command/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/Multiselect.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/Multiselect.types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/useMultiselect.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Popover/Popover.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Popover/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Toast/Toast.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Toast/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-protocol/category.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/api-protocol/category.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-protocol/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/api-protocol/schema.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eslint.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/eslint.config.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AppProviders.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppProviders.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCard/ApplicationActions/useApplicationActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCard/ApplicationActions/useApplicationActions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCard/ApplicationCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCard/ApplicationCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCard/GradientAreaChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCard/GradientAreaChart.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCreateForm/ApplicationCreateForm.const.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCreateForm/ApplicationCreateForm.const.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCreateForm/ApplicationCreateForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCreateForm/ApplicationCreateForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCreateForm/ApplicationCreateForm.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCreateForm/ApplicationCreateForm.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCreateForm/useApplicationCreateForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCreateForm/useApplicationCreateForm.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationDrawer/ApplicationDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationDrawer/ApplicationDrawer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationDrawer/useApplicationDrawer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationDrawer/useApplicationDrawer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationsContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationsContent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/useApplicationsContent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ApplicationsContent/useApplicationsContent.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CategoriesSelect/CategoriesSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CategoriesSelect/CategoriesSelect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CategoriesSelect/useCategoriesSelect.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CategoriesSelect/useCategoriesSelect.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Select/Select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Select/Select.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Select/SelectItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Select/SelectItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Button/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Button/Button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Drawer/Drawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Drawer/Drawer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Select.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/graphql.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/graphql.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,43 +103,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Docker.develop.api: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.develop.database: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;issues/7&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/Oleksandr.Zhukov/Projects/sspserver/control/src/components/Select&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.stylelint&quot;: &quot;/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/stylelint&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;template.copyright.formatting&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.develop.api: Compose Deployment.executor": "Run",
+    "Docker.develop.database: Compose Deployment.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "issues/7",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/src/components/tailus-ui/Multiselect",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.stylelint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.stylelint": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/stylelint",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/prettier",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "ts.external.directory.path": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/tailus-ui/Multiselect" />
+      <recent name="$PROJECT_DIR$/src/components/Toast/ToastTitle" />
       <recent name="$PROJECT_DIR$/src/components/Select" />
       <recent name="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCreateForm" />
       <recent name="$PROJECT_DIR$/src/app/(root)/applications" />
-      <recent name="$PROJECT_DIR$/src/components/tailus-ui/Button" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/Toast/ToastProvider" />
       <recent name="$PROJECT_DIR$/src/components/tailus-ui/Input" />
       <recent name="$PROJECT_DIR$/src/app/@drawer" />
       <recent name="$PROJECT_DIR$/src/app/@drawer/(.)applications" />
       <recent name="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCard/ApplicationActions" />
-      <recent name="$PROJECT_DIR$/src/components/ApplicationsContent" />
     </key>
   </component>
   <component name="RunManager" selected="Docker.develop.api: Compose Deployment">
@@ -150,6 +206,8 @@
       <workItem from="1738403870568" duration="299000" />
       <workItem from="1738404188130" duration="248000" />
       <workItem from="1738404436837" duration="127707000" />
+      <workItem from="1739607811114" duration="10000" />
+      <workItem from="1739607827533" duration="28918000" />
     </task>
     <task id="LOCAL-00001" summary="#6 Applications page">
       <option name="closed" value="true" />

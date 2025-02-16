@@ -23,7 +23,7 @@ const Root = ({ ref, direction, withControler, ...props }: RootProps & { ref?: R
   );
 };
 
-const Content = ({ ref: forwardedRef, className, fancy, mixed, ...props }: React.ComponentProps < typeof Primitive.Content > & Omit<DrawerProps, 'direction'> & { ref?: React.RefObject<React.ElementRef < typeof Primitive.Content >> }) => {
+const Content = ({ ref: forwardedRef, className, fancy, mixed, ...props }: React.ComponentProps < typeof Primitive.Content > & Omit<DrawerProps, 'direction'> & { ref?: React.RefObject<React.ComponentRef<typeof Primitive.Content>> }) => {
   const { content } = drawer();
   const { direction, withControler } = React.useContext(DirectionContext);
 
