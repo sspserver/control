@@ -2,6 +2,7 @@ import type { ApplicationType, PlatformType } from '@/generated/graphql';
 
 export type ApplicationCreateFormProps = {
   onCancel?: () => void;
+  onSubmit: () => void;
 };
 
 export type ApplicationCreateFormState = {

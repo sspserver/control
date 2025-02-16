@@ -1,23 +1,22 @@
 import type { SelectProps } from '@/components/Select/Select';
 import useCategoriesSelect from '@/components/CategoriesSelect/useCategoriesSelect';
-import Select from '@/components/Select';
+
+import Multiselect from '@tailus-ui/Multiselect';
 import React from 'react';
 
-type CategoriesSelectProps = Partial<SelectProps>;
+type CategoriesSelectProps = {
+  values: number[];
+  onChange: (values: number[]) => void;
+} & Partial<SelectProps>;
 
-function CategoriesSelect({ onChange }: CategoriesSelectProps) {
+function CategoriesSelect({ onChange, values }: CategoriesSelectProps) {
   const {
     listCategories,
     isListCategoriesLoading,
   } = useCategoriesSelect();
 
   return (
-    <Select
-      loading={isListCategoriesLoading}
-      label="Categories"
-      items={listCategories}
-      onChange={onChange}
-    />
+    <Multiselect label="Categories" loading={isListCategoriesLoading} onChange={onChange} data={listCategories} values={values} />
   );
 }
 

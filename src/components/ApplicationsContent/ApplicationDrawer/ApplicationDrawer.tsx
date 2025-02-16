@@ -3,27 +3,31 @@
 import ApplicationCreateForm from '@/components/ApplicationsContent/ApplicationCreateForm';
 import useApplicationDrawer from '@/components/ApplicationsContent/ApplicationDrawer/useApplicationDrawer';
 import Drawer from '@tailus-ui/Drawer';
-import React from 'react';
+import React, { Fragment } from 'react';
 
 function ApplicationDrawer() {
   const {
-    clickApplicationDrawerCloseHandler,
+    isDrawerOpen,
     drawerContentClassNames,
     drawerOverlayClassName,
-    isOpen,
+    clickApplicationDrawerSubmitHandler,
+    clickApplicationDrawerCloseHandler,
   } = useApplicationDrawer();
+
   return (
-    <Drawer.Root shouldScaleBackground dismissible fixed repositionInputs withControler={false} fancy direction="right" open={isOpen}>
-      <Drawer.Portal>
-        <Drawer.Overlay className={drawerOverlayClassName} />
-        <Drawer.Content
-          className={drawerContentClassNames}
-          data-vaul-custom-container="true"
-        >
-          <ApplicationCreateForm onCancel={clickApplicationDrawerCloseHandler} />
-        </Drawer.Content>
-      </Drawer.Portal>
-    </Drawer.Root>
+    <Fragment>
+      <Drawer.Root shouldScaleBackground dismissible fixed handleOnly withControler={false} repositionInputs fancy direction="right" open={isDrawerOpen}>
+        <Drawer.Portal>
+          <Drawer.Overlay className={drawerOverlayClassName} />
+          <Drawer.Content
+            className={drawerContentClassNames}
+            data-vaul-custom-container="true"
+          >
+            <ApplicationCreateForm onSubmit={clickApplicationDrawerSubmitHandler} onCancel={clickApplicationDrawerCloseHandler} />
+          </Drawer.Content>
+        </Drawer.Portal>
+      </Drawer.Root>
+    </Fragment>
   );
 }
 

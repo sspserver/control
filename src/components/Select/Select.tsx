@@ -1,4 +1,3 @@
-import type { SelectItemProp } from '@/components/Select/SelectItem';
 import type { SelectProps as RootSelectProps } from '@radix-ui/react-select';
 import ButtonSpinner from '@/components/Icons/ButtonSpinner';
 import Label from '@tailus-ui/Label';
@@ -6,11 +5,20 @@ import SelectUi from '@tailus-ui/Select';
 import React from 'react';
 import SelectItem from './SelectItem';
 
+type SelectItemType = {
+  name: string;
+  value: string;
+};
+
+type SelectTypeItems = {
+  group?: SelectItemType[];
+} & SelectItemType;
+
 export type SelectProps = {
   loading?: boolean;
   label?: string;
   value?: string;
-  items: SelectItemProp[];
+  items: SelectTypeItems[];
   onChange?: (value: string) => void;
 } & RootSelectProps;
 
@@ -18,7 +26,7 @@ function Select({ items, value, label, loading, onChange }: SelectProps) {
   return (
     <div className="space-y-2">
       {label && (<Label size="sm">{label}</Label>)}
-      <SelectUi.Root onValueChange={onChange}>
+      <SelectUi.Root onValueChange={onChange} value={value}>
         <SelectUi.Trigger size="sm" className="justify-between">
           {loading && (
             <ButtonSpinner
@@ -34,9 +42,22 @@ function Select({ items, value, label, loading, onChange }: SelectProps) {
           <SelectUi.Content fancy className="z-50">
             <SelectUi.Viewport>
               {
-                items.map(({ name, value }) => (
-                  <SelectItem name={name} value={value} key={value} />
-                ))
+                items.map(({ group, name, value }) => {
+                  if (group) {
+                    return (
+                      <SelectUi.Group key={name}>
+                        <SelectUi.Label title={name}>{name}</SelectUi.Label>
+                        {group.map(({ name, value }) => (
+                          <SelectItem name={name} value={value} key={value} />
+                        ))}
+                      </SelectUi.Group>
+                    );
+                  }
+
+                  return (
+                    <SelectItem name={name} value={value} key={value} />
+                  );
+                })
               }
             </SelectUi.Viewport>
           </SelectUi.Content>

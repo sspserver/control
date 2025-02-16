@@ -2,7 +2,7 @@
 
 import type { Session } from 'next-auth';
 import ApolloProvider from '@/components/ApolloProvider';
-
+import { ToastProvider } from '@/components/Toast';
 import { SessionProvider } from 'next-auth/react';
 import React from 'react';
 
@@ -18,7 +18,9 @@ function AppProviders({
   return (
     <SessionProvider session={session}>
       <ApolloProvider session={session}>
-        {children}
+        <ToastProvider>
+          {children}
+        </ToastProvider>
       </ApolloProvider>
     </SessionProvider>
   );

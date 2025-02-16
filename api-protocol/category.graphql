@@ -8,6 +8,11 @@ fragment __categoryData on Category {
     ID
     name
   }
+  childrens {
+   ID
+   name
+   IABCode
+  }
   position
   active
   createdAt
@@ -24,7 +29,7 @@ query GetCategory($id: ID64!) {
 }
 
 query ListCategories(
-  $page: Int! = 0, $size: Int! = 10, 
+  $page: Int! = 0, $size: Int! = 10,
   $filter: CategoryListFilter = null,
   $order: CategoryListOrder = null,
 ) {

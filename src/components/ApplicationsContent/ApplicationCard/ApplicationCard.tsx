@@ -1,3 +1,4 @@
+import type { StatisticAdItem } from '@/generated/graphql';
 import ApplicationActions from '@/components/ApplicationsContent/ApplicationCard/ApplicationActions';
 import { ActiveStatus } from '@/generated/graphql';
 import { Badge } from '@tailus-ui/Badge';
@@ -13,9 +14,17 @@ type ApplicationCardProps = {
   active: string;
   id: string;
   onChange: (id: string) => void;
+  statistics?: StatisticAdItem[];
 };
 
-function ApplicationCard({ id, title, uri, active, onChange }: ApplicationCardProps) {
+function ApplicationCard({
+  id,
+  title,
+  uri,
+  active,
+  onChange,
+  statistics = [],
+}: ApplicationCardProps) {
   const isApplicationActive = active === ActiveStatus.Active;
   const indicatorBadgeIntent = isApplicationActive ? 'accent' : 'warning';
 
@@ -28,20 +37,31 @@ function ApplicationCard({ id, title, uri, active, onChange }: ApplicationCardPr
             {title}
           </Title>
         </div>
-        <ApplicationActions onChange={onChange} pause={!isApplicationActive} id={id} />
+        <ApplicationActions
+          onChange={onChange}
+          pause={!isApplicationActive}
+          id={id}
+        />
       </div>
 
-      <Caption title={uri} className="truncate" as="div" size="sm"><span>{uri}</span></Caption>
+      <Caption title={uri} className="truncate" as="div" size="sm">
+        <span>{uri}</span>
+      </Caption>
 
       <Title className="mt-2 flex items-center gap-3" as="span">
         639400
-        <Badge intent="success" variant="soft" size="xs" className="h-fit flex gap-1.5 items-center">
+        <Badge
+          intent="success"
+          variant="soft"
+          size="xs"
+          className="h-fit flex gap-1.5 items-center"
+        >
           <TrendingUp className="size-3.5" />
           36%
         </Badge>
       </Title>
 
-      <GradientAreaChart intent="primary" dataKey="Primary" />
+      <GradientAreaChart data={statistics} intent="primary" dataKey="CTR" />
     </Card>
   );
 }

@@ -4,19 +4,16 @@ import { useMemo } from 'react';
 function useCategoriesSelect() {
   const { data: listCategoriesResponse, loading: isListCategoriesLoading } = useListCategoriesQuery(
     {
-      fetchPolicy: 'network-only',
       variables: {
-        page: 1,
-        size: 100,
-        filter: {
-          parentID: [0],
-        },
+        filter: { parentID: [0] },
       },
+      fetchPolicy: 'network-only',
     },
   );
-  const listCategories = useMemo(() => listCategoriesResponse?.result?.list.map(({ name, ID }) => ({
+  const listCategories = useMemo(() => listCategoriesResponse?.result?.list.map(({ name, ID, childrens }) => ({
     name,
-    value: `${ID}`,
+    group: childrens.map(({ name, ID }) => ({ name, value: ID })),
+    value: ID,
   })) ?? [], [listCategoriesResponse]);
 
   return {
