@@ -1,5 +1,5 @@
-import ApplicationDrawerOpenButton from '@/components/ApplicationsContent/ApplicationDrawerOpenButton';
-import ApplicationsContent from '@/components/ApplicationsContent/ApplicationsContent';
+import ApplicationDrawerOpenButton from '@/page/ApplicationsPage/ApplicationDrawerOpenButton';
+import ApplicationsPage from '@/page/ApplicationsPage/ApplicationsPage';
 import { Title } from '@tailus-ui/typography';
 import { Fragment } from 'react';
 
@@ -13,7 +13,7 @@ function Applications() {
         <ApplicationDrawerOpenButton size="xs" />
       </div>
       <br />
-      <ApplicationsContent />
+      <ApplicationsPage />
     </Fragment>
   );
 }

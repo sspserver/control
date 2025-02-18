@@ -1,6 +1,6 @@
 'use client';
 
-import useSignInForm from '@/components/SignIn/useSignInForm';
+import useSignInForm from '@/page/SignInPage/useSignInForm';
 import { ButtonLoading } from '@tailus-ui/Button';
 import Input from '@tailus-ui/Input/Input';
 import { Link } from '@tailus-ui/typography';

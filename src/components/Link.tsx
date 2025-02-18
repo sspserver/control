@@ -7,6 +7,7 @@ function Link({ link, label, isActive = false, mainNav = true }: LinkProps) {
   return (
     <Button.Root
       variant={isActive && !mainNav ? 'soft' : 'ghost'}
+      component="a"
       intent="gray"
       href={link}
       size="sm"

@@ -2,7 +2,7 @@ import type { StatisticsQuery } from '@/generated/graphql';
 import { StatisticsDocument } from '@/generated/graphql';
 import { useQuery } from '@apollo/client';
 
-function useRtbPageContent() {
+function useRtbPage() {
   const response = useQuery<StatisticsQuery>(StatisticsDocument, {
     fetchPolicy: 'network-only',
     variables: {
@@ -15,4 +15,4 @@ function useRtbPageContent() {
   return response;
 }
 
-export default useRtbPageContent;
+export default useRtbPage;

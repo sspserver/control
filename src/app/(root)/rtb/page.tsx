@@ -1,9 +1,9 @@
-import RtbPageContent from '@/components/RtbPageContent/RtbPageContent';
+import RtbPage from '@/page/RtbPage/RtbPage';
 
 function Rtb() {
   // const response = useQuery(StatisticsDocument);
 
-  return (<RtbPageContent />);
+  return (<RtbPage />);
 }
 
 export default Rtb;

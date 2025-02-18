@@ -5,6 +5,7 @@ export type ButtonProps = {
   children: React.ReactNode;
   disabled?: boolean;
   href?: string;
+  component?: React.ElementType;
 } & React.HTMLAttributes<HTMLButtonElement | HTMLAnchorElement> & ButtonVariantsProps;
 
 export type ButtonIconProps = {} & React.HTMLAttributes<HTMLElement> & TailusButtonIconProps;

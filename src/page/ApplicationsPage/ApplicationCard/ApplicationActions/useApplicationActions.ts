@@ -1,10 +1,10 @@
-import { listApplicationsDocumentRefetchQueries } from '@/components/ApplicationsContent/useApplicationsContent';
 import { useToastProviderContext } from '@/components/Toast';
 import {
   useDeleteApplicationMutation,
   usePauseApplicationMutation,
   useRunApplicationMutation,
 } from '@/generated/graphql';
+import { listApplicationsDocumentRefetchQueries } from '@/page/ApplicationsPage/useApplicationsPage';
 import { configPathRoutes } from '@configs/routes';
 import { PauseIcon, PlayIcon } from '@heroicons/react/16/solid';
 import { useRouter } from 'next/navigation';

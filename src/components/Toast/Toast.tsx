@@ -1,6 +1,7 @@
 import type { ToastRootProps } from '@tailus-ui/Toast/Toast';
 import type { ReactElement, ReactNode } from 'react';
 import TailusToast from '@tailus-ui/Toast';
+import { Caption, Title } from '@tailus-ui/typography';
 
 export type ToastProps = {
   title?: ReactNode;
@@ -15,11 +16,17 @@ function Toast({ title, icon, description, actions, ...rootProps }: ToastProps) 
       {title && (
         <TailusToast.Title className="flex items-center gap-1 pb-2">
           {icon && <span>{icon}</span>}
-          {title}
+          <Title size="base" as="h6" className="text-sm" weight="medium">
+            {title}
+          </Title>
         </TailusToast.Title>
       )}
       {description && (
-        <TailusToast.Description>{description}</TailusToast.Description>
+        <TailusToast.Description>
+          <Caption size="xs">
+            {description}
+          </Caption>
+        </TailusToast.Description>
       )}
       {/* <TailusToast.Action altText="actions" /> */}
       {/* <TailusToast.Close title="close">close</TailusToast.Close> */}

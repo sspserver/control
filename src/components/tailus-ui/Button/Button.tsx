@@ -25,8 +25,8 @@ export const Label = ({ ref: forwardedRef, className, children, ...props }: Butt
 };
 
 export const Root = (
-  { ref: forwardedRef, className, intent = 'primary', variant = 'solid', size = 'md', disabled, href, children, ...props }: ButtonRootProps) => {
-  const Component = href ? 'a' : 'button';
+  { ref: forwardedRef, className, component, intent = 'primary', variant = 'solid', size = 'md', disabled, href, children, ...props }: ButtonRootProps) => {
+  const MainComponent = component || 'button';
   const iconOnly = React.Children.toArray(children).some((child: React.ReactNode) => {
     if (React.isValidElement(child) && child.type === Icon) {
       const iconChild = child as React.ReactElement<ButtonIconProps>;
@@ -37,9 +37,9 @@ export const Root = (
   const buttonSize = iconOnly ? 'iconOnlyButtonSize' : 'size';
 
   return (
-    <Component ref={forwardedRef} href={href} className={button[variant as keyof typeof button]({ intent, [buttonSize]: size, className })} {...props} disabled={disabled}>
+    <MainComponent ref={forwardedRef} href={href} className={button[variant as keyof typeof button]({ intent, [buttonSize]: size, className })} {...props} disabled={disabled}>
       {children}
-    </Component>
+    </MainComponent>
   );
 };
 

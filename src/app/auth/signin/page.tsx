@@ -1,4 +1,4 @@
-import SignInForm from '@/components/SignIn/SignInForm';
+import SignInForm from '@/page/SignInPage/SignInForm';
 import { Text, Title } from '@tailus-ui/typography';
 import Image from 'next/image';
 import { Fragment } from 'react';

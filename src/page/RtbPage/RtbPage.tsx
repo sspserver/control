@@ -1,9 +1,9 @@
 'use client';
 
-import useRtbPageContent from '@/components/RtbPageContent/useRtbPageContent';
+import useRtbPage from '@/page/RtbPage/useRtbPage';
 
-function RtbPageContent() {
-  const response = useRtbPageContent();
+function RtbPage() {
+  const response = useRtbPage();
 
   return (
     <div>
@@ -20,4 +20,4 @@ function RtbPageContent() {
   );
 }
 
-export default RtbPageContent;
+export default RtbPage;

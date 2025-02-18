@@ -1,5 +1,5 @@
-import ApplicationDrawerOpenButton from '@/components/ApplicationsContent/ApplicationDrawerOpenButton';
 import EmptyPageState from '@/components/EmptyPageState';
+import ApplicationDrawerOpenButton from '@/page/ApplicationsPage/ApplicationDrawerOpenButton';
 
 function ApplicationsEmptyState() {
   return (

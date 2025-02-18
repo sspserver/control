@@ -1,7 +1,10 @@
 import type { SelectProps as RootSelectProps } from '@radix-ui/react-select';
+import type { TriggerProps } from '@tailus/themer';
 import ButtonSpinner from '@/components/Icons/ButtonSpinner';
+import FormElementErrorLabel from '@components/FormElementErrorLabel';
 import Label from '@tailus-ui/Label';
 import SelectUi from '@tailus-ui/Select';
+import classNames from 'classnames';
 import React from 'react';
 import SelectItem from './SelectItem';
 
@@ -20,14 +23,17 @@ export type SelectProps = {
   value?: string;
   items: SelectTypeItems[];
   onChange?: (value: string) => void;
-} & RootSelectProps;
+  classNameTrigger?: string;
+  selectItemClassName?: string;
+  error?: React.ReactNode;
+} & RootSelectProps & TriggerProps;
 
-function Select({ items, value, label, loading, onChange }: SelectProps) {
+function Select({ size = 'sm', classNameTrigger, selectItemClassName, variant, error, items, value, label, loading, onChange }: SelectProps) {
   return (
     <div className="space-y-2">
       {label && (<Label size="sm">{label}</Label>)}
       <SelectUi.Root onValueChange={onChange} value={value}>
-        <SelectUi.Trigger size="sm" className="justify-between">
+        <SelectUi.Trigger variant={variant} size={size} className={classNames('justify-between', classNameTrigger)}>
           {loading && (
             <ButtonSpinner
               className="animate-spin"
@@ -48,14 +54,14 @@ function Select({ items, value, label, loading, onChange }: SelectProps) {
                       <SelectUi.Group key={name}>
                         <SelectUi.Label title={name}>{name}</SelectUi.Label>
                         {group.map(({ name, value }) => (
-                          <SelectItem name={name} value={value} key={value} />
+                          <SelectItem className={selectItemClassName} name={name} value={value} key={value} />
                         ))}
                       </SelectUi.Group>
                     );
                   }
 
                   return (
-                    <SelectItem name={name} value={value} key={value} />
+                    <SelectItem className={selectItemClassName} name={name} value={value} key={value} />
                   );
                 })
               }
@@ -63,6 +69,7 @@ function Select({ items, value, label, loading, onChange }: SelectProps) {
           </SelectUi.Content>
         </SelectUi.Portal>
       </SelectUi.Root>
+      <FormElementErrorLabel error={error} />
     </div>
   );
 }
