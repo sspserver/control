@@ -1,7 +1,7 @@
 import ApplicationActionsPausePlayButton
-  from '@/components/ApplicationsContent/ApplicationCard/ApplicationActions/ApplicationActionsPausePlayButton';
-import useApplicationActions from '@/components/ApplicationsContent/ApplicationCard/ApplicationActions/useApplicationActions';
-import ApplicationDialog from '@/components/ApplicationsContent/ApplicationCard/ApplicationDialog';
+  from '@/page/ApplicationsPage/ApplicationCard/ApplicationActions/ApplicationActionsPausePlayButton';
+import useApplicationActions from '@/page/ApplicationsPage/ApplicationCard/ApplicationActions/useApplicationActions';
+import ApplicationDialog from '@/page/ApplicationsPage/ApplicationCard/ApplicationDialog';
 import { PencilIcon, TrashIcon } from '@heroicons/react/16/solid';
 import Button from '@tailus-ui/Button/Button';
 import Dialog from '@tailus-ui/Dialog';

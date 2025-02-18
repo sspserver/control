@@ -49,6 +49,7 @@ function Multiselect({
       <PopoverRoot modal={false} open={isOpen} onOpenChange={changePopoverRootOpenHandler}>
         <PopoverTrigger className="pl-0.5 w-full">
           <Button.Root
+            component="div"
             role="combobox"
             variant="outlined"
             size="sm"

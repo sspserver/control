@@ -1,13 +1,17 @@
-import type { ApplicationCreateFormState } from '@/components/ApplicationsContent/ApplicationCreateForm/ApplicationCreateForm.types';
 import type { Application } from '@/generated/graphql';
-import { toastSuccessMessage } from '@/components/ApplicationsContent/ApplicationCreateForm/ApplicationCreateForm.const';
-import { listApplicationsDocumentRefetchQueries } from '@/components/ApplicationsContent/useApplicationsContent';
+import type {
+  ApplicationCreateFormState,
+} from '@/page/ApplicationsPage/ApplicationCreateForm/ApplicationCreateForm.types';
+import type { FormikHelpers } from 'formik/dist/types';
 import { useToastProviderContext } from '@/components/Toast';
 import {
   useCreateApplicationMutation,
   useGetApplicationQuery,
   useUpdateApplicationMutation,
 } from '@/generated/graphql';
+import { toastSuccessMessage } from '@/page/ApplicationsPage/ApplicationCreateForm/ApplicationCreateForm.const';
+import { listApplicationsDocumentRefetchQueries } from '@/page/ApplicationsPage/useApplicationsPage';
+import graphQLErrorToMap from '@lib/errors/graphQLErrorToMap';
 import { useParams } from 'next/navigation';
 
 function useApplicationCreateForm(onSubmit: () => void) {
@@ -29,7 +33,7 @@ function useApplicationCreateForm(onSubmit: () => void) {
     });
   const {
     data: responseDataApplication,
-    error: applicationError,
+    // error: applicationError,
     loading: isApplicationsLoading,
   } = useGetApplicationQuery({
     fetchPolicy: 'network-only',
@@ -44,42 +48,53 @@ function useApplicationCreateForm(onSubmit: () => void) {
     createdAt,
     updatedAt,
     deletedAt,
-    ...responseApplication
+    ...applicationData
   } = (responseDataApplication?.result?.data ?? {}) as Application;
   const submitApplicationCreateEditFormHandler = async (
     input: ApplicationCreateFormState,
-    { setSubmitting, setValues },
+    { setErrors }: FormikHelpers<ApplicationCreateFormState>,
   ) => {
     const variables = { id, input };
     const { title, description } = toastSuccessMessage;
 
     if (isCreateMode) {
-      await createApplication({
+      const { errors } = await createApplication({
         variables,
       });
-      showToast({
-        ...toastSuccessMessage,
-        title: `${title} created`,
-        description: `${description} created`,
-      });
-    } else {
-      await updateApplication({ variables });
-      showToast({
-        ...toastSuccessMessage,
-        title: `${title} updated`,
-        description: `${description} updated`,
-      });
-    }
+      if (!errors) {
+        showToast({
+          ...toastSuccessMessage,
+          title: `${title} created`,
+          description: `${description} created`,
+        });
+        onSubmit();
+      } else {
+        const formErrors = graphQLErrorToMap<ApplicationCreateFormState>(errors);
 
-    onSubmit();
+        setErrors(formErrors);
+      }
+    } else {
+      const { errors } = await updateApplication({ variables });
+
+      if (!errors) {
+        showToast({
+          ...toastSuccessMessage,
+          title: `${title} updated`,
+          description: `${description} updated`,
+        });
+        onSubmit();
+      } else {
+        // setErrors(errors);
+      }
+    }
   };
   const isLoading = isCreateApplicationLoading || isUpdateApplicationLoading;
 
   return {
     isLoading,
     isCreateMode,
-    applicationError,
-    responseApplication,
+    // applicationError,
+    applicationData,
     isApplicationsLoading,
     submitApplicationCreateEditFormHandler,
   };

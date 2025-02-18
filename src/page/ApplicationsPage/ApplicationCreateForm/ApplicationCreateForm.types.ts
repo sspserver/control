@@ -1,4 +1,4 @@
-import type { ApplicationType, PlatformType } from '@/generated/graphql';
+import type { ApplicationType, Maybe, PlatformType } from '@/generated/graphql';
 
 export type ApplicationCreateFormProps = {
   onCancel?: () => void;
@@ -11,5 +11,6 @@ export type ApplicationCreateFormState = {
   URI: string;
   type: ApplicationType;
   platform: PlatformType;
-  categories: number[];
+  categories?: Maybe<number[]>;
+  result?: string;
 };

@@ -1,18 +1,20 @@
 import type {
   ApplicationCreateFormProps,
-} from '@/components/ApplicationsContent/ApplicationCreateForm/ApplicationCreateForm.types';
+  ApplicationCreateFormState,
+} from '@/page/ApplicationsPage/ApplicationCreateForm/ApplicationCreateForm.types';
+import CategoriesSelect from '@/components/CategoriesSelect';
+import Select from '@/components/Select';
 import {
   applicationPlatforms,
   applicationTypes,
-} from '@/components/ApplicationsContent/ApplicationCreateForm/ApplicationCreateForm.const';
-import useApplicationCreateForm from '@/components/ApplicationsContent/ApplicationCreateForm/useApplicationCreateForm';
-import CategoriesSelect from '@/components/CategoriesSelect';
-import Select from '@/components/Select';
+} from '@/page/ApplicationsPage/ApplicationCreateForm/ApplicationCreateForm.const';
+import useApplicationCreateForm from '@/page/ApplicationsPage/ApplicationCreateForm/useApplicationCreateForm';
+import FormElementErrorLabel from '@components/FormElementErrorLabel';
 import Button, { ButtonLoading } from '@tailus-ui/Button';
 import Drawer from '@tailus-ui/Drawer/Drawer';
 import Input from '@tailus-ui/Input';
-import Textarea from '@tailus-ui/Textarea';
 
+import Textarea from '@tailus-ui/Textarea';
 import { Formik } from 'formik';
 import React, { Fragment } from 'react';
 
@@ -22,21 +24,20 @@ function ApplicationCreateForm({ onCancel, onSubmit }: ApplicationCreateFormProp
   const {
     isLoading,
     isCreateMode,
-    applicationError,
-    responseApplication,
+    applicationData,
     submitApplicationCreateEditFormHandler,
   } = useApplicationCreateForm(onSubmit);
-  const hasApplicationTitle = !!responseApplication?.title;
-  const applicationTitle = hasApplicationTitle ? responseApplication?.title : defaultFormTitle;
+  const hasApplicationTitle = !!applicationData?.title;
+  const applicationTitle = hasApplicationTitle ? applicationData?.title : defaultFormTitle;
   const formTitle = isCreateMode ? 'Create Application' : `Edit ${applicationTitle}`;
   const formSaveButtonTitle = isCreateMode ? 'Create' : 'Save';
 
   return (
     <Fragment>
       <Drawer.Title className="pb-5">{formTitle}</Drawer.Title>
-      <Formik
+      <Formik<ApplicationCreateFormState>
         enableReinitialize
-        initialValues={{ ...responseApplication }}
+        initialValues={{ ...applicationData }}
         onSubmit={submitApplicationCreateEditFormHandler}
       >
         {({ setFieldValue, handleBlur, submitForm, handleChange, touched, values, errors, isSubmitting }) => {
@@ -67,7 +68,7 @@ function ApplicationCreateForm({ onCancel, onSubmit }: ApplicationCreateFormProp
                     onBlur={handleBlur}
                     onChange={handleChange}
                     disabled={!editable || isSubmitting}
-                    error={!!touched.description && !!errors.description}
+                    error={errors.description}
                   />
                 </div>
                 <div className="pb-4">
@@ -79,7 +80,7 @@ function ApplicationCreateForm({ onCancel, onSubmit }: ApplicationCreateFormProp
                     onBlur={handleBlur}
                     onChange={handleChange}
                     disabled={!editable || isSubmitting}
-                    error={!!touched.URI && !!errors.URI}
+                    error={errors.URI}
                   />
                 </div>
                 <div className="pb-4">
@@ -89,6 +90,7 @@ function ApplicationCreateForm({ onCancel, onSubmit }: ApplicationCreateFormProp
                     items={applicationTypes}
                     value={values.type}
                     onChange={handleChange('type')}
+                    error={errors.type}
                   />
                 </div>
                 <div className="pb-4">
@@ -98,22 +100,27 @@ function ApplicationCreateForm({ onCancel, onSubmit }: ApplicationCreateFormProp
                     items={applicationPlatforms}
                     value={values.platform}
                     onChange={handleChange('platform')}
+                    error={errors.platform}
                   />
                 </div>
                 <div className="pb-4">
                   <CategoriesSelect
-                    values={values.categories}
+                    error={errors.categories}
+                    values={values.categories ?? []}
                     onChange={(values) => {
                       setFieldValue('categories', values);
                     }}
                   />
                 </div>
               </div>
-              <div className="mt-auto h-fit sticky bottom-0 flex gap-3 pt-4">
-                <ButtonLoading loading={isLoading} onClick={submitForm} size="sm">{formSaveButtonTitle}</ButtonLoading>
-                <Button.Root variant="outlined" size="sm" intent="gray" onClick={onCancel}>
-                  <Button.Label>Cancel</Button.Label>
-                </Button.Root>
+              <div className="mt-auto h-fit sticky bottom-0 pt-2">
+                <FormElementErrorLabel error={errors.result} />
+                <div className="flex gap-3 pt-2">
+                  <ButtonLoading loading={isLoading} onClick={submitForm} size="sm">{formSaveButtonTitle}</ButtonLoading>
+                  <Button.Root variant="outlined" size="sm" intent="gray" onClick={onCancel}>
+                    <Button.Label>Cancel</Button.Label>
+                  </Button.Root>
+                </div>
               </div>
             </Fragment>
           );

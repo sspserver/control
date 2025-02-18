@@ -10,6 +10,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@tailus-ui/*": ["./src/components/tailus-ui/*"],
+      "@page/*": ["./src/page/*"],
+      "@components/*": ["./src/components/*"],
       "@lib/*": ["./lib/*"],
       "@configs/*": ["./configs/*"]
     },

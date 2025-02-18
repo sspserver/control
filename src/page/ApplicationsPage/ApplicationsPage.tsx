@@ -1,18 +1,18 @@
 'use client';
 
-import ApplicationCard from '@/components/ApplicationsContent/ApplicationCard/ApplicationCard';
+import ApplicationCard from '@/page/ApplicationsPage/ApplicationCard/ApplicationCard';
 
-import ApplicationsEmptyState from '@/components/ApplicationsContent/ApplicationsEmptyState';
-import useApplicationsContent from './useApplicationsContent';
+import ApplicationsEmptyState from '@/page/ApplicationsPage/ApplicationsEmptyState';
+import useApplicationsPage from './useApplicationsPage';
 
-function ApplicationsContent() {
+function ApplicationsPage() {
   const {
     applicationsList,
     applicationsListError,
     isListApplicationsLoading,
     applicationStatisticsMapById,
     changeApplicationHandler,
-  } = useApplicationsContent();
+  } = useApplicationsPage();
 
   if (!applicationsList) {
     return (
@@ -48,4 +48,4 @@ function ApplicationsContent() {
   );
 }
 
-export default ApplicationsContent;
+export default ApplicationsPage;

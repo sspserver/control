@@ -1,7 +1,7 @@
 'use client';
 
-import ApplicationCreateForm from '@/components/ApplicationsContent/ApplicationCreateForm';
-import useApplicationDrawer from '@/components/ApplicationsContent/ApplicationDrawer/useApplicationDrawer';
+import ApplicationCreateForm from '@/page/ApplicationsPage/ApplicationCreateForm';
+import useApplicationDrawer from '@/page/ApplicationsPage/ApplicationDrawer/useApplicationDrawer';
 import Drawer from '@tailus-ui/Drawer';
 import React, { Fragment } from 'react';
 

@@ -24,7 +24,7 @@ export const listApplicationsDocumentRefetchQueries = [
   },
 ];
 
-function useApplicationsContent() {
+function useApplicationsPage() {
   // const { data: responseApplicationsList, error: applicationsListError, loading: isListApplicationsLoading } = useQuery<ListApplicationsQuery>(ListApplicationsDocument, listApplicationsQueryOptions);
 
   // {
@@ -110,4 +110,4 @@ function useApplicationsContent() {
   };
 }
 
-export default useApplicationsContent;
+export default useApplicationsPage;
