@@ -4,7 +4,6 @@ fragment __zoneData on Zone {
   accountID
   title
   description
-  type
   status
   active
   defaultCode

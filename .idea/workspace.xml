@@ -5,57 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5483ae0-0faa-4d09-a539-795505d72254" name="Changes" comment="#7.2 Applications page edit/create">
-      <change afterPath="$PROJECT_DIR$/lib/errors/graphQLErrorToMap.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/FormElementErrorLabel.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/ApplicationCard/GradientAreaChart.const.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(root)/applications/[ID]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(root)/applications/[ID]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(root)/applications/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(root)/applications/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(root)/rtb/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(root)/rtb/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/@drawer/(.)applications/[ID]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/@drawer/(.)applications/[ID]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/auth/signin/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/auth/signin/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCard/ApplicationActions/ApplicationActions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/ApplicationCard/ApplicationActions/ApplicationActions.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCard/ApplicationActions/ApplicationActionsPausePlayButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/ApplicationCard/ApplicationActions/ApplicationActionsPausePlayButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCard/ApplicationActions/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/ApplicationCard/ApplicationActions/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCard/ApplicationActions/useApplicationActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/ApplicationCard/ApplicationActions/useApplicationActions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCard/ApplicationCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/ApplicationCard/ApplicationCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCard/ApplicationDialog/ApplicationDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/ApplicationCard/ApplicationDialog/ApplicationDialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCard/ApplicationDialog/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/ApplicationCard/ApplicationDialog/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCard/GradientAreaChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/ApplicationCard/GradientAreaChart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCreateForm/ApplicationCreateForm.const.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/ApplicationCreateForm/ApplicationCreateForm.const.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCreateForm/ApplicationCreateForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/ApplicationCreateForm/ApplicationCreateForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCreateForm/ApplicationCreateForm.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/ApplicationCreateForm/ApplicationCreateForm.types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCreateForm/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/ApplicationCreateForm/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationCreateForm/useApplicationCreateForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/ApplicationCreateForm/useApplicationCreateForm.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationDrawer/ApplicationDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/ApplicationDrawer/ApplicationDrawer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationDrawer/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/ApplicationDrawer/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationDrawer/useApplicationDrawer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/ApplicationDrawer/useApplicationDrawer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationDrawerOpenButton/ApplicationDrawerOpenButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/ApplicationDrawerOpenButton/ApplicationDrawerOpenButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationDrawerOpenButton/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/ApplicationDrawerOpenButton/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationsContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/ApplicationsPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationsEmptyState/ApplicationsEmptyState.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/ApplicationsEmptyState/ApplicationsEmptyState.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/ApplicationsEmptyState/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/ApplicationsEmptyState/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationsContent/useApplicationsContent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/useApplicationsPage.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CategoriesSelect/CategoriesSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CategoriesSelect/CategoriesSelect.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Link.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Link.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MainMenu/MainMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MainMenu/MainMenu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/RtbPageContent/RtbPageContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/RtbPage/RtbPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/RtbPageContent/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/RtbPage/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/RtbPageContent/useRtbPageContent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/RtbPage/useRtbPage.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Select/Select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Select/Select.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Select/SelectItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Select/SelectItem.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SignIn/SignInForm.const.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/SignInPage/SignInForm.const.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SignIn/SignInForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/SignInPage/SignInForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SignIn/SignInForm.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/SignInPage/SignInForm.types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SignIn/useSignInForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/SignInPage/useSignInForm.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Toast/Toast.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Toast/Toast.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Button/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Button/Button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Button/Button.types.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Button/Button.types.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/Multiselect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/Multiselect.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Textarea.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Textarea.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-protocol/zone.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/api-protocol/zone.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/errors/graphQLErrorToMap.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/errors/graphQLErrorToMap.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/graphql.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/graphql.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/ApplicationsPage/ApplicationCreateForm/useApplicationCreateForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/ApplicationsPage/ApplicationCreateForm/useApplicationCreateForm.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,35 +58,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Docker.develop.api: Compose Deployment.executor": "Run",
-    "Docker.develop.database: Compose Deployment.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "issues/7",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/src/components/tailus-ui/Multiselect",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.stylelint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.stylelint": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/stylelint",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.gql-gen.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/prettier",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.develop.api: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.develop.database: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;issues/7&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/Oleksandr.Zhukov/Projects/sspserver/control/src/components/tailus-ui/Multiselect&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.stylelint&quot;: &quot;/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/stylelint&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.gql-gen.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/prettier&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/components/tailus-ui/Multiselect" />
@@ -195,8 +149,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.gql-gen" />
-        <item itemvalue="Docker.develop.api: Compose Deployment" />
         <item itemvalue="Docker.develop.database: Compose Deployment" />
+        <item itemvalue="Docker.develop.api: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>

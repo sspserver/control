@@ -2908,7 +2908,6 @@ export type Zone = {
   /** Status of the zone */
   status: ApproveStatus;
   title: Scalars['String']['output'];
-  type: ZoneType;
   updatedAt: Scalars['Time']['output'];
 };
 
@@ -2954,7 +2953,6 @@ export type ZoneInput = {
   minECPMByGeo?: InputMaybe<Scalars['JSON']['input']>;
   /** Title of the Zone. */
   title?: InputMaybe<Scalars['String']['input']>;
-  type?: InputMaybe<ZoneType>;
 };
 
 /** Filter input for listing Zones. */
@@ -2966,7 +2964,6 @@ export type ZoneListFilter = {
   maxECPM?: InputMaybe<Scalars['Float']['input']>;
   minECPM?: InputMaybe<Scalars['Float']['input']>;
   status?: InputMaybe<ApproveStatus>;
-  type?: InputMaybe<ZoneType>;
 };
 
 /** Order input for listing Zones. */
@@ -2993,12 +2990,6 @@ export type ZonePayload = {
   /** The Zone that was created or updated by this mutation. */
   zoneID: Scalars['ID64']['output'];
 };
-
-/** Enumeration of possible Zone types. */
-export enum ZoneType {
-  Default = 'DEFAULT',
-  SmartLink = 'SMART_LINK'
-}
 
 export type __FormatDataFragment = { __typename?: 'AdFormat', ID: any, codename: string, type: string, title: string, description: string, active: ActiveStatus, width: number, height: number, minWidth: number, minHeight: number, config: any, createdAt: any, updatedAt: any, deletedAt?: any | null };
 
@@ -3542,14 +3533,14 @@ export type ListHistoryQueryVariables = Exact<{
 
 export type ListHistoryQuery = { __typename?: 'Query', result?: { __typename?: 'HistoryActionConnection', totalCount: number, list?: Array<{ __typename?: 'HistoryAction', ID: any, RequestID: string, name: string, message: string, userID: any, accountID: any, objectType: string, objectIDs: string, data: any, actionAt: any }> | null, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
 
-export type __ZoneDataFragment = { __typename?: 'Zone', ID: any, codename: string, accountID: any, title: string, description: string, type: ZoneType, status: ApproveStatus, active: ActiveStatus, defaultCode: any, context: any, minECPM: number, fixedPurchasePrice: number, allowedFormats?: Array<string> | null, allowedTypes?: Array<any> | null, allowedSources?: Array<any> | null, disallowedSources?: Array<any> | null, campaigns?: Array<any> | null, createdAt: any, updatedAt: any, deletedAt?: any | null };
+export type __ZoneDataFragment = { __typename?: 'Zone', ID: any, codename: string, accountID: any, title: string, description: string, status: ApproveStatus, active: ActiveStatus, defaultCode: any, context: any, minECPM: number, fixedPurchasePrice: number, allowedFormats?: Array<string> | null, allowedTypes?: Array<any> | null, allowedSources?: Array<any> | null, disallowedSources?: Array<any> | null, campaigns?: Array<any> | null, createdAt: any, updatedAt: any, deletedAt?: any | null };
 
 export type GetZoneQueryVariables = Exact<{
   id: Scalars['ID64']['input'];
 }>;
 
 
-export type GetZoneQuery = { __typename?: 'Query', result: { __typename?: 'ZonePayload', clientMutationID: string, data: { __typename?: 'Zone', ID: any, codename: string, accountID: any, title: string, description: string, type: ZoneType, status: ApproveStatus, active: ActiveStatus, defaultCode: any, context: any, minECPM: number, fixedPurchasePrice: number, allowedFormats?: Array<string> | null, allowedTypes?: Array<any> | null, allowedSources?: Array<any> | null, disallowedSources?: Array<any> | null, campaigns?: Array<any> | null, createdAt: any, updatedAt: any, deletedAt?: any | null } } };
+export type GetZoneQuery = { __typename?: 'Query', result: { __typename?: 'ZonePayload', clientMutationID: string, data: { __typename?: 'Zone', ID: any, codename: string, accountID: any, title: string, description: string, status: ApproveStatus, active: ActiveStatus, defaultCode: any, context: any, minECPM: number, fixedPurchasePrice: number, allowedFormats?: Array<string> | null, allowedTypes?: Array<any> | null, allowedSources?: Array<any> | null, disallowedSources?: Array<any> | null, campaigns?: Array<any> | null, createdAt: any, updatedAt: any, deletedAt?: any | null } } };
 
 export type ListZonesQueryVariables = Exact<{
   page?: Scalars['Int']['input'];
@@ -3559,14 +3550,14 @@ export type ListZonesQueryVariables = Exact<{
 }>;
 
 
-export type ListZonesQuery = { __typename?: 'Query', permApprove?: string | null, permReject?: string | null, result?: { __typename?: 'ZoneConnection', totalCount: number, list?: Array<{ __typename?: 'Zone', ID: any, codename: string, accountID: any, title: string, description: string, type: ZoneType, status: ApproveStatus, active: ActiveStatus, defaultCode: any, context: any, minECPM: number, fixedPurchasePrice: number, allowedFormats?: Array<string> | null, allowedTypes?: Array<any> | null, allowedSources?: Array<any> | null, disallowedSources?: Array<any> | null, campaigns?: Array<any> | null, createdAt: any, updatedAt: any, deletedAt?: any | null }> | null, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
+export type ListZonesQuery = { __typename?: 'Query', permApprove?: string | null, permReject?: string | null, result?: { __typename?: 'ZoneConnection', totalCount: number, list?: Array<{ __typename?: 'Zone', ID: any, codename: string, accountID: any, title: string, description: string, status: ApproveStatus, active: ActiveStatus, defaultCode: any, context: any, minECPM: number, fixedPurchasePrice: number, allowedFormats?: Array<string> | null, allowedTypes?: Array<any> | null, allowedSources?: Array<any> | null, disallowedSources?: Array<any> | null, campaigns?: Array<any> | null, createdAt: any, updatedAt: any, deletedAt?: any | null }> | null, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
 
 export type CreateZoneMutationVariables = Exact<{
   input: ZoneInput;
 }>;
 
 
-export type CreateZoneMutation = { __typename?: 'Mutation', result: { __typename?: 'ZonePayload', clientMutationID: string, zoneID: any, data: { __typename?: 'Zone', ID: any, codename: string, accountID: any, title: string, description: string, type: ZoneType, status: ApproveStatus, active: ActiveStatus, defaultCode: any, context: any, minECPM: number, fixedPurchasePrice: number, allowedFormats?: Array<string> | null, allowedTypes?: Array<any> | null, allowedSources?: Array<any> | null, disallowedSources?: Array<any> | null, campaigns?: Array<any> | null, createdAt: any, updatedAt: any, deletedAt?: any | null } } };
+export type CreateZoneMutation = { __typename?: 'Mutation', result: { __typename?: 'ZonePayload', clientMutationID: string, zoneID: any, data: { __typename?: 'Zone', ID: any, codename: string, accountID: any, title: string, description: string, status: ApproveStatus, active: ActiveStatus, defaultCode: any, context: any, minECPM: number, fixedPurchasePrice: number, allowedFormats?: Array<string> | null, allowedTypes?: Array<any> | null, allowedSources?: Array<any> | null, disallowedSources?: Array<any> | null, campaigns?: Array<any> | null, createdAt: any, updatedAt: any, deletedAt?: any | null } } };
 
 export type UpdateZoneMutationVariables = Exact<{
   id: Scalars['ID64']['input'];
@@ -3574,7 +3565,7 @@ export type UpdateZoneMutationVariables = Exact<{
 }>;
 
 
-export type UpdateZoneMutation = { __typename?: 'Mutation', result: { __typename?: 'ZonePayload', clientMutationID: string, zoneID: any, data: { __typename?: 'Zone', ID: any, codename: string, accountID: any, title: string, description: string, type: ZoneType, status: ApproveStatus, active: ActiveStatus, defaultCode: any, context: any, minECPM: number, fixedPurchasePrice: number, allowedFormats?: Array<string> | null, allowedTypes?: Array<any> | null, allowedSources?: Array<any> | null, disallowedSources?: Array<any> | null, campaigns?: Array<any> | null, createdAt: any, updatedAt: any, deletedAt?: any | null } } };
+export type UpdateZoneMutation = { __typename?: 'Mutation', result: { __typename?: 'ZonePayload', clientMutationID: string, zoneID: any, data: { __typename?: 'Zone', ID: any, codename: string, accountID: any, title: string, description: string, status: ApproveStatus, active: ActiveStatus, defaultCode: any, context: any, minECPM: number, fixedPurchasePrice: number, allowedFormats?: Array<string> | null, allowedTypes?: Array<any> | null, allowedSources?: Array<any> | null, disallowedSources?: Array<any> | null, campaigns?: Array<any> | null, createdAt: any, updatedAt: any, deletedAt?: any | null } } };
 
 export type DeleteZoneMutationVariables = Exact<{
   id: Scalars['ID64']['input'];
@@ -3940,7 +3931,6 @@ export const __ZoneDataFragmentDoc = gql`
   accountID
   title
   description
-  type
   status
   active
   defaultCode
