@@ -33,7 +33,6 @@ function useApplicationCreateForm(onSubmit: () => void) {
     });
   const {
     data: responseDataApplication,
-    // error: applicationError,
     loading: isApplicationsLoading,
   } = useGetApplicationQuery({
     fetchPolicy: 'network-only',
@@ -56,36 +55,33 @@ function useApplicationCreateForm(onSubmit: () => void) {
   ) => {
     const variables = { id, input };
     const { title, description } = toastSuccessMessage;
+    let requestErrors;
 
     if (isCreateMode) {
       const { errors } = await createApplication({
         variables,
       });
-      if (!errors) {
-        showToast({
-          ...toastSuccessMessage,
-          title: `${title} created`,
-          description: `${description} created`,
-        });
-        onSubmit();
-      } else {
-        const formErrors = graphQLErrorToMap<ApplicationCreateFormState>(errors);
-
-        setErrors(formErrors);
-      }
+      requestErrors = errors;
     } else {
       const { errors } = await updateApplication({ variables });
+      requestErrors = errors;
+    }
 
-      if (!errors) {
-        showToast({
-          ...toastSuccessMessage,
-          title: `${title} updated`,
-          description: `${description} updated`,
-        });
-        onSubmit();
-      } else {
-        // setErrors(errors);
-      }
+    if (!requestErrors) {
+      const toastTitle = isCreateMode ? `${title} created` : `${title} updated`;
+      const toastDescription = isCreateMode ? `${description} created` : `${description} updated`;
+
+      showToast({
+        ...toastSuccessMessage,
+        title: toastTitle,
+        description: toastDescription,
+      });
+
+      onSubmit();
+    } else {
+      const formErrors = graphQLErrorToMap<ApplicationCreateFormState>(requestErrors);
+
+      setErrors(formErrors);
     }
   };
   const isLoading = isCreateApplicationLoading || isUpdateApplicationLoading;
@@ -93,7 +89,6 @@ function useApplicationCreateForm(onSubmit: () => void) {
   return {
     isLoading,
     isCreateMode,
-    // applicationError,
     applicationData,
     isApplicationsLoading,
     submitApplicationCreateEditFormHandler,
