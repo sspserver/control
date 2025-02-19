@@ -37,7 +37,7 @@ function ApplicationCreateForm({ onCancel, onSubmit }: ApplicationCreateFormProp
       <Drawer.Title className="pb-5">{formTitle}</Drawer.Title>
       <Formik<ApplicationCreateFormState>
         enableReinitialize
-        initialValues={{ ...applicationData }}
+        initialValues={applicationData}
         onSubmit={submitApplicationCreateEditFormHandler}
       >
         {({ setFieldValue, handleBlur, submitForm, handleChange, values, errors, isSubmitting }) => {
