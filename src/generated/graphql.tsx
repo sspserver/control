@@ -305,6 +305,19 @@ export type ApplicationConnection = {
   totalCount: Scalars['Int']['output'];
 };
 
+export type ApplicationCreateInput = {
+  /** Unique application identifier, e.g., site domain or app bundle */
+  URI: Scalars['String']['input'];
+  /** Account ID associated with the application and can be defined if have permission */
+  accountID?: InputMaybe<Scalars['ID64']['input']>;
+  categories?: InputMaybe<Array<Scalars['Int']['input']>>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  platform: PlatformType;
+  revenueShare?: InputMaybe<Scalars['Float']['input']>;
+  title: Scalars['String']['input'];
+  type: ApplicationType;
+};
+
 /** ApplicationEdge wrapper to access Application objects */
 export type ApplicationEdge = {
   __typename?: 'ApplicationEdge';
@@ -312,23 +325,6 @@ export type ApplicationEdge = {
   cursor: Scalars['String']['output'];
   /** The Application at the end of ApplicationEdge. */
   node: Application;
-};
-
-export type ApplicationInput = {
-  /** Unique application identifier, e.g., site domain or app bundle */
-  URI?: InputMaybe<Scalars['String']['input']>;
-  /** Account ID associated with the application and can be defined if have permission */
-  accountID?: InputMaybe<Scalars['ID64']['input']>;
-  active?: InputMaybe<ActiveStatus>;
-  categories?: InputMaybe<Array<Scalars['Int']['input']>>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  platform?: InputMaybe<PlatformType>;
-  premium?: InputMaybe<Scalars['Boolean']['input']>;
-  private?: InputMaybe<PrivateStatus>;
-  revenueShare?: InputMaybe<Scalars['Float']['input']>;
-  status?: InputMaybe<ApproveStatus>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  type?: InputMaybe<ApplicationType>;
 };
 
 export type ApplicationListFilter = {
@@ -375,6 +371,19 @@ export enum ApplicationType {
   Site = 'SITE',
   Undefined = 'UNDEFINED'
 }
+
+export type ApplicationUpdateInput = {
+  /** Unique application identifier, e.g., site domain or app bundle */
+  URI?: InputMaybe<Scalars['String']['input']>;
+  /** Account ID associated with the application and can be defined if have permission */
+  accountID?: InputMaybe<Scalars['ID64']['input']>;
+  categories?: InputMaybe<Array<Scalars['Int']['input']>>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  platform?: InputMaybe<PlatformType>;
+  revenueShare?: InputMaybe<Scalars['Float']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<ApplicationType>;
+};
 
 /** The list of statuses that shows is object approved or not */
 export enum ApproveStatus {
@@ -1402,7 +1411,7 @@ export type MutationApproveZoneArgs = {
 
 
 export type MutationCreateApplicationArgs = {
-  input: ApplicationInput;
+  input: ApplicationCreateInput;
 };
 
 
@@ -1661,7 +1670,7 @@ export type MutationUpdateAccountMemberArgs = {
 
 export type MutationUpdateApplicationArgs = {
   ID: Scalars['ID64']['input'];
-  input: ApplicationInput;
+  input: ApplicationUpdateInput;
 };
 
 
@@ -3046,7 +3055,7 @@ export type ListApplicationsQueryVariables = Exact<{
 export type ListApplicationsQuery = { __typename?: 'Query', permApprove?: string | null, permReject?: string | null, result?: { __typename?: 'ApplicationConnection', totalCount: number, list: Array<{ __typename?: 'Application', ID: any, accountID: any, creatorID: any, title: string, description: string, URI: string, type: ApplicationType, platform: PlatformType, premium: boolean, status: ApproveStatus, active: ActiveStatus, categories?: Array<number> | null, revenueShare?: number | null, createdAt: any, updatedAt: any, deletedAt?: any | null }>, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
 
 export type CreateApplicationMutationVariables = Exact<{
-  input: ApplicationInput;
+  input: ApplicationCreateInput;
 }>;
 
 
@@ -3054,7 +3063,7 @@ export type CreateApplicationMutation = { __typename?: 'Mutation', result: { __t
 
 export type UpdateApplicationMutationVariables = Exact<{
   id: Scalars['ID64']['input'];
-  input: ApplicationInput;
+  input: ApplicationUpdateInput;
 }>;
 
 
@@ -4220,7 +4229,7 @@ export type ListApplicationsLazyQueryHookResult = ReturnType<typeof useListAppli
 export type ListApplicationsSuspenseQueryHookResult = ReturnType<typeof useListApplicationsSuspenseQuery>;
 export type ListApplicationsQueryResult = Apollo.QueryResult<ListApplicationsQuery, ListApplicationsQueryVariables>;
 export const CreateApplicationDocument = gql`
-    mutation CreateApplication($input: ApplicationInput!) {
+    mutation CreateApplication($input: ApplicationCreateInput!) {
   result: createApplication(input: $input) {
     clientMutationID
     applicationID
@@ -4257,7 +4266,7 @@ export type CreateApplicationMutationHookResult = ReturnType<typeof useCreateApp
 export type CreateApplicationMutationResult = Apollo.MutationResult<CreateApplicationMutation>;
 export type CreateApplicationMutationOptions = Apollo.BaseMutationOptions<CreateApplicationMutation, CreateApplicationMutationVariables>;
 export const UpdateApplicationDocument = gql`
-    mutation UpdateApplication($id: ID64!, $input: ApplicationInput!) {
+    mutation UpdateApplication($id: ID64!, $input: ApplicationUpdateInput!) {
   result: updateApplication(ID: $id, input: $input) {
     clientMutationID
     applicationID

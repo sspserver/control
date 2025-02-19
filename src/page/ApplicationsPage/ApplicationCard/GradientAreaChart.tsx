@@ -11,16 +11,15 @@ type Intent = 'primary' | 'secondary' | 'accent' | 'gray' | 'neutral';
 type GradientAreaChartProps = {
   intent: Intent;
   dataKey: string;
+  showMessage?: boolean;
   data: StatisticAdItem[];
 };
 
-function GradientAreaChart({ intent, data = [], dataKey }: GradientAreaChartProps) {
-  const hasData = !!data.length;
-
+function GradientAreaChart({ intent, data = [], showMessage, dataKey }: GradientAreaChartProps) {
   return (
     <div className="-mb-2 -mx-4">
       <div className="h-24 w-full relative">
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="100%" height="100%" className="h-24 w-full relative">
           <AreaChart data={data}>
             <defs>
               <LinearGradient id="CTR" intent="gray" />
@@ -44,7 +43,7 @@ function GradientAreaChart({ intent, data = [], dataKey }: GradientAreaChartProp
             />
           </AreaChart>
         </ResponsiveContainer>
-        {hasData && (
+        {showMessage && (
           <Caption size="xs" className="text-center absolute bottom-1 left-0 right-0">
             There are no statistics for the last period yet
           </Caption>

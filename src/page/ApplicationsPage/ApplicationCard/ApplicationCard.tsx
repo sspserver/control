@@ -87,7 +87,7 @@ function ApplicationCard({
           />
         )}
       </div>
-      <GradientAreaChart data={chartData} intent={chartIntent} dataKey={selectedStatisticLabel} />
+      <GradientAreaChart showMessage={!hasStatistics} data={chartData} intent={chartIntent} dataKey={selectedStatisticLabel} />
     </Card>
   );
 }

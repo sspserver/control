@@ -11,6 +11,7 @@ import {
 } from '@/generated/graphql';
 import { toastSuccessMessage } from '@/page/ApplicationsPage/ApplicationCreateForm/ApplicationCreateForm.const';
 import { listApplicationsDocumentRefetchQueries } from '@/page/ApplicationsPage/useApplicationsPage';
+import { extractQLErrorFromNetworkError } from '@lib/errors/extractQLErrorFromNetworkError';
 import graphQLErrorToMap from '@lib/errors/graphQLErrorToMap';
 import { useParams } from 'next/navigation';
 
@@ -58,10 +59,15 @@ function useApplicationCreateForm(onSubmit: () => void) {
     let requestErrors;
 
     if (isCreateMode) {
-      const { errors } = await createApplication({
-        variables,
-      });
-      requestErrors = errors;
+      try {
+        const { errors } = await createApplication({
+          variables,
+        });
+        requestErrors = errors;
+      } catch (error) {
+        console.error(error);
+        requestErrors = extractQLErrorFromNetworkError(error);
+      }
     } else {
       const { errors } = await updateApplication({ variables });
       requestErrors = errors;
