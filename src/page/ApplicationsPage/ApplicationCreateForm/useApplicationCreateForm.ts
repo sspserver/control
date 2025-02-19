@@ -43,13 +43,21 @@ function useApplicationCreateForm(onSubmit: () => void) {
     skip: !id,
   });
   const {
-    ID,
-    creatorID,
-    createdAt,
-    updatedAt,
-    deletedAt,
-    ...applicationData
+    categories,
+    title,
+    description,
+    type,
+    platform,
+    URI,
   } = (responseDataApplication?.result?.data ?? {}) as Application;
+  const applicationData = {
+    title,
+    description,
+    URI,
+    type,
+    platform,
+    categories,
+  };
   const submitApplicationCreateEditFormHandler = async (
     input: ApplicationCreateFormState,
     { setErrors }: FormikHelpers<ApplicationCreateFormState>,
