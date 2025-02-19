@@ -38,7 +38,7 @@ query ListApplications(
   permReject: checkPermission(name:"reject.*", key: "adv_application")
 }
 
-mutation CreateApplication($input: ApplicationInput!) {
+mutation CreateApplication($input: ApplicationCreateInput!) {
   result: createApplication(input: $input) {
     clientMutationID
     applicationID
@@ -46,7 +46,7 @@ mutation CreateApplication($input: ApplicationInput!) {
   }
 }
 
-mutation UpdateApplication($id: ID64!, $input: ApplicationInput!) {
+mutation UpdateApplication($id: ID64!, $input: ApplicationUpdateInput!) {
   result: updateApplication(ID: $id, input: $input) {
     clientMutationID
     applicationID

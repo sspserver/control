@@ -46,7 +46,7 @@ function Multiselect({
   return (
     <div className="space-y-2">
       {label && (<Label size="sm">{label}</Label>)}
-      <PopoverRoot modal={false} open={isOpen} onOpenChange={changePopoverRootOpenHandler}>
+      <PopoverRoot modal open={isOpen} onOpenChange={changePopoverRootOpenHandler}>
         <PopoverTrigger className="pl-0.5 w-full">
           <Button.Root
             component="div"

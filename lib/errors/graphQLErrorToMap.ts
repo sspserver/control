@@ -6,8 +6,8 @@ function graphQLErrorToMap<T extends Record<string, any>>(errors: ReadonlyArray<
   const errorMap = new Map<keyof T, string>();
 
   errors.forEach((error) => {
-    const { message, extensions } = error;
-    const field = extensions?.field ?? 'result';
+    const { message, path, extensions } = error;
+    const field = extensions?.field ?? path?.at(-1) ?? 'result';
     const key = field as keyof T;
 
     errorMap.set(key, message);

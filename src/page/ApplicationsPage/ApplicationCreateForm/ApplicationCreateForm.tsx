@@ -40,7 +40,7 @@ function ApplicationCreateForm({ onCancel, onSubmit }: ApplicationCreateFormProp
         initialValues={{ ...applicationData }}
         onSubmit={submitApplicationCreateEditFormHandler}
       >
-        {({ setFieldValue, handleBlur, submitForm, handleChange, touched, values, errors, isSubmitting }) => {
+        {({ setFieldValue, handleBlur, submitForm, handleChange, values, errors, isSubmitting }) => {
           const editable = true; // !id || !responseApplication?.title;
 
           return (
@@ -113,7 +113,7 @@ function ApplicationCreateForm({ onCancel, onSubmit }: ApplicationCreateFormProp
                   />
                 </div>
               </div>
-              <div className="mt-auto h-fit sticky bottom-0 pt-2">
+              <div className="mt-auto h-fit bottom-0 pt-2">
                 <FormElementErrorLabel error={errors.result} />
                 <div className="flex gap-3 pt-2">
                   <ButtonLoading loading={isLoading} onClick={submitForm} size="sm">{formSaveButtonTitle}</ButtonLoading>
