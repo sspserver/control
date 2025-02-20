@@ -1,4 +1,4 @@
-import RtbPage from '@/page/RtbPage/RtbPage';
+import RtbPage from '@/pages/RtbPage/RtbPage';
 
 function Rtb() {
   // const response = useQuery(StatisticsDocument);

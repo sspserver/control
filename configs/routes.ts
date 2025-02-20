@@ -1,5 +1,6 @@
 const authPath = '/auth';
 const applicationsPath = '/applications';
+const adUnitPath = '/adunit';
 
 export const configPathRoutes = {
   signIn: `${authPath}/signin`,
@@ -8,6 +9,7 @@ export const configPathRoutes = {
   rtb: '/rtb',
   applications: applicationsPath,
   crateApplications: `${applicationsPath}/create`,
-  adUnit: '/adunit',
+  adUnit: adUnitPath,
+  createAdUnit: `${adUnitPath}/create`,
   settings: '/settings',
 };
