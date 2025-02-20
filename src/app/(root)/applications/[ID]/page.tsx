@@ -1,4 +1,4 @@
-import ApplicationDrawer from '@/page/ApplicationsPage/ApplicationDrawer';
+import ApplicationDrawer from '@/pages/ApplicationsPage/ApplicationDrawer';
 
 function ApplicationEdit() {
   return (
