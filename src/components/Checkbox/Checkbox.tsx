@@ -2,13 +2,15 @@ import type { CheckboxProps as CheckboxUiProps } from '@tailus-ui/Checkbox/Check
 import CheckIcon from '@heroicons/react/20/solid/CheckIcon';
 import Aligner from '@tailus-ui/Aligner';
 import CheckboxUi from '@tailus-ui/Checkbox';
-import Label from '@tailus-ui/Label';
 import { Caption } from '@tailus-ui/typography';
+import { select } from '@tailus/themer';
 
 type CheckboxProps = {
   label?: string;
   description?: string;
 } & CheckboxUiProps;
+
+const { label: selectLabel } = select.soft();
 
 function Checkbox({ label, description, ...props }: CheckboxProps) {
   return (
@@ -19,9 +21,9 @@ function Checkbox({ label, description, ...props }: CheckboxProps) {
         </CheckboxUi.Indicator>
       </CheckboxUi.Root>
       {label && (
-        <Label htmlFor={props.id} className="col-start-2 cursor-pointer">
+        <label htmlFor={props.id} className={selectLabel({ className: 'm-0 col-start-2 cursor-pointer' })}>
           {label}
-        </Label>
+        </label>
       )}
       {description && (<Caption as="p" size="sm" className="row-start-2 col-start-2">{description}</Caption>)}
     </Aligner>

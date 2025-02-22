@@ -1,9 +1,22 @@
-import RtbPage from '@/pages/RtbPage/RtbPage';
+import RtbPage from '@pages/RtbPage';
+import RtbDrawerOpenButton from '@pages/RtbPage/RtbDrawerOpenButton';
+import { Title } from '@tailus-ui/typography';
+import { Fragment } from 'react';
 
 function Rtb() {
-  // const response = useQuery(StatisticsDocument);
-
-  return (<RtbPage />);
+  return (
+    <Fragment>
+      <div className="flex justify-between items-center">
+        <Title as="h1" size="xl">
+          RTB
+        </Title>
+        {/* <SectionFilter /> */}
+        <RtbDrawerOpenButton />
+      </div>
+      <br />
+      <RtbPage />
+    </Fragment>
+  );
 }
 
 export default Rtb;

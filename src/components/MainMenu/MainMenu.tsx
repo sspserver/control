@@ -12,12 +12,11 @@ function MainMenu() {
     <div className="flex gap-1">
       <nav className="relative flex h-10 gap-2 pb-2">
         {mainMenuItems.map(({ name, path }) => {
-          const isActiveItem = pathname.startsWith(path);
+          const isActiveItem = pathname?.startsWith(path);
 
           return (
             <Link
               mainNav
-
               key={path}
               link={path}
               label={name}

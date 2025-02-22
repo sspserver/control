@@ -1,21 +1,55 @@
 'use client';
 
 import useRtbPage from '@/pages/RtbPage/useRtbPage';
+import RtbCard from '@pages/RtbPage/RtbCard';
+import RtbEmptyState from '@pages/RtbPage/RtbEmptyState';
 
 function RtbPage() {
-  const response = useRtbPage();
+  const {
+    rtbList,
+    rtbListError,
+    isRtbListLoading,
+    rtbStatisticsMapById,
+  } = useRtbPage();
+
+  if (!rtbList && !rtbListError && !isRtbListLoading) {
+    return (
+      <p>
+        No data
+      </p>
+    );
+  }
+
+  if (rtbListError) {
+    return (
+      <p>
+        Error:
+        {rtbListError.message}
+      </p>
+    );
+  }
+
+  if (isRtbListLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (!rtbList?.length) {
+    return (<RtbEmptyState />);
+  }
 
   return (
-    <div>
-      <span>Rtb</span>
-      {response.loading && <p>Loading...</p>}
-      {response.error && (
-        <p>
-          Error:
-          {response.error.message}
-        </p>
-      )}
-      {response.data && <pre>{JSON.stringify(response.data, null, 2)}</pre>}
+    <div className="grid sm:grid-cols-4 gap-3 w-full">
+      {rtbList.map(rtb => (
+        <RtbCard
+          key={rtb.ID}
+          id={rtb.ID}
+          onChange={() => {}}
+          statistics={rtbStatisticsMapById?.get(rtb.ID)}
+          title={rtb.title}
+          url={rtb.URL}
+          active={rtb.active}
+        />
+      ))}
     </div>
   );
 }

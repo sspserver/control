@@ -1,10 +1,12 @@
+import type React from 'react';
+
 type SelectItemType = {
   name: string;
-  value: number;
+  value: number | string;
 };
 
 export type SelectTypeItems = {
-  group: SelectItemType[];
+  group?: SelectItemType[];
 } & SelectItemType;
 
 export type MultiselectProps = {
@@ -12,7 +14,8 @@ export type MultiselectProps = {
   placeholder?: string;
   parentClassName?: string;
   data: SelectTypeItems[];
-  values: number[];
-  onChange: (value: number[]) => void;
+  values?: (number | string)[];
+  onChange: (value: (number | string)[]) => void;
   loading?: boolean;
+  error?: React.ReactNode;
 };
