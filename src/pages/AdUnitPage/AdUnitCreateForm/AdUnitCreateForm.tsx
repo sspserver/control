@@ -80,7 +80,7 @@ function AdUnitCreateForm({ onCancel, onSubmit }: AdUnitCreateFormProps) {
                 <div className="pb-4">
                   <Input
                     size="sm"
-                    label="minECPM"
+                    label="Min ECPM"
                     name="minECPM"
                     type="number"
                     defaultValue={values.minECPM}
@@ -93,7 +93,7 @@ function AdUnitCreateForm({ onCancel, onSubmit }: AdUnitCreateFormProps) {
                 <div className="pb-4">
                   <Input
                     size="sm"
-                    label="fixedPurchasePrice"
+                    label="Fixed Purchase Price (CPM)"
                     name="fixedPurchasePrice"
                     type="number"
                     defaultValue={values.fixedPurchasePrice}

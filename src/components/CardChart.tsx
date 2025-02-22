@@ -1,7 +1,6 @@
 import type { StatisticAdItem } from '@/generated/graphql';
 import GradientAreaChart from '@components/GradientAreaChart';
 import { fakeEmptyChartData } from '@components/GradientAreaChart/GradientAreaChart.const';
-import Select from '@components/Select';
 import Card from '@tailus-ui/Card';
 import IndicatorBadge from '@tailus-ui/IndicatorBadge';
 import { Caption, Link, Title } from '@tailus-ui/typography';
@@ -32,12 +31,10 @@ function CardChart({
   actions,
 }: CardChartProps) {
   const [selectedStatisticLabel, setSelectedStatisticLabel] = React.useState('impressions');
-  // const isApplicationActive = active === ActiveStatus.Active;
+
   const indicatorBadgeIntent = active ? 'accent' : 'warning';
   const amountImpressions = statistics?.reduce((acc, item) => acc + item.impressions, 0);
   const hasStatistics = !!statistics.length;
-
-  // const urlHostname = URL?.parse(uri)?.hostname;
   const chartData = hasStatistics ? statistics : fakeEmptyChartData;
   const chartIntent = hasStatistics ? 'primary' : 'gray';
 
@@ -74,17 +71,6 @@ function CardChart({
           {/*  36% */}
           {/* </Badge> */}
         </Title>
-        {hasStatistics && (
-          <Select
-            size="sm"
-            variant="plain"
-            value={selectedStatisticLabel}
-            items={statisticsLabels}
-            classNameTrigger="text-xs"
-            selectItemClassName="text-xs"
-            onChange={setSelectedStatisticLabel}
-          />
-        )}
       </div>
       <GradientAreaChart showMessage={!hasStatistics} data={chartData} intent={chartIntent} dataKey={selectedStatisticLabel} />
     </Card>

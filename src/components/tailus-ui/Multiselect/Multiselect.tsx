@@ -3,6 +3,7 @@ import type { MultiselectProps } from '@tailus-ui/Multiselect/Multiselect.types'
 import Checkbox from '@/components/Checkbox';
 
 import ButtonSpinner from '@/components/Icons/ButtonSpinner';
+import FormElementErrorLabel from '@components/FormElementErrorLabel';
 import { Portal } from '@radix-ui/react-portal';
 import Label from '@tailus-ui/Label';
 import useMultiselect from '@tailus-ui/Multiselect/useMultiselect';
@@ -33,12 +34,15 @@ function Multiselect({
   values = [],
   onChange,
   loading,
+  error,
 }: MultiselectProps) {
   const {
     isOpen,
     selectedPlaceholder,
+    isGroupAllSelected,
     selectCommandItemHandler,
     changePopoverRootOpenHandler,
+    selectGroupCommandItemHandler,
   } = useMultiselect(data, values, onChange);
   const commandItemClassNames = item({ fancy: true, intent: 'primary', className: 'rounded-[9] pl-4 hover:bg-gray-100 active:bg-gray-200/75 dark:hover:bg-gray-500/10 cursor-pointer' });
   const popoverContentClassNames = content({ fancy: true, className: 'pointer-events-auto z-20 p-0 w-[--radix-popover-trigger-width] max-h-[--radix-popover-content-available-height]' });
@@ -86,26 +90,42 @@ function Multiselect({
             <Command>
               <CommandInput placeholder="Search..." />
               <CommandList>
-                <CommandEmpty>No found.</CommandEmpty>
+                <CommandEmpty>No found</CommandEmpty>
                 {
-                  data.map(({ group, name }) => {
+                  data.map(({ group, value, name }) => {
+                    if (group) {
+                      return (
+                        <CommandGroup key={name}>
+                          <CommandItem title={name} onSelect={selectGroupCommandItemHandler(group)}>
+                            <Checkbox label={name} checked={isGroupAllSelected(group)} />
+                          </CommandItem>
+                          {group.map(({ name, value }) => {
+                            const isChecked = values.includes(value);
+                            return (
+                              <CommandItem
+                                key={value}
+                                value={`${value}`}
+                                onSelect={selectCommandItemHandler}
+                                className={commandItemClassNames}
+                              >
+                                <Checkbox label={name} checked={isChecked} />
+                              </CommandItem>
+                            );
+                          })}
+                        </CommandGroup>
+                      );
+                    }
+
+                    const isChecked = values.includes(value);
                     return (
-                      <CommandGroup key={name}>
-                        <CommandItem title={name}>{name}</CommandItem>
-                        {group.map(({ name, value }) => {
-                          const isChecked = values.includes(value);
-                          return (
-                            <CommandItem
-                              key={value}
-                              value={`${value}`}
-                              onSelect={selectCommandItemHandler}
-                              className={commandItemClassNames}
-                            >
-                              <Checkbox label={name} checked={isChecked} />
-                            </CommandItem>
-                          );
-                        })}
-                      </CommandGroup>
+                      <CommandItem
+                        key={value}
+                        value={`${value}`}
+                        onSelect={selectCommandItemHandler}
+                        className={commandItemClassNames}
+                      >
+                        <Checkbox label={name} checked={isChecked} />
+                      </CommandItem>
                     );
                   })
                 }
@@ -114,6 +134,7 @@ function Multiselect({
           </PopoverContent>
         </Portal>
       </PopoverRoot>
+      <FormElementErrorLabel error={error} />
     </div>
   );
 }

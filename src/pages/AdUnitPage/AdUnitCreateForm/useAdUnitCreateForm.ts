@@ -93,13 +93,12 @@ function useAdUnitCreateForm(onSubmit?: () => void) {
       setErrors(formErrors);
     }
   };
-  const isLoading = isCreateAdUnitLoading || isUpdateAdUnitLoading;
+  const isLoading = isCreateAdUnitLoading || isUpdateAdUnitLoading || isAdUnitLoading;
 
   return {
     isLoading,
     isCreateMode,
     adUnitData,
-    isAdUnitLoading,
     submitAdUnitCreateEditFormHandler,
   };
 }

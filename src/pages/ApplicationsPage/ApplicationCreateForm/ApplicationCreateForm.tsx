@@ -105,6 +105,7 @@ function ApplicationCreateForm({ onCancel, onSubmit }: ApplicationCreateFormProp
                 </div>
                 <div className="pb-4">
                   <CategoriesSelect
+                    label="Categories"
                     error={errors.categories}
                     values={values.categories ?? []}
                     onChange={(values) => {

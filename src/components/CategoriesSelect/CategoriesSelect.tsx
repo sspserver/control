@@ -6,8 +6,8 @@ import Multiselect from '@tailus-ui/Multiselect';
 import React, { Fragment } from 'react';
 
 type CategoriesSelectProps = {
-  values: number[];
-  onChange: (values: number[]) => void;
+  values: (number | string)[];
+  onChange: (values: (number | string)[]) => void;
 } & Partial<SelectProps>;
 
 function CategoriesSelect({ onChange, values, error }: CategoriesSelectProps) {
