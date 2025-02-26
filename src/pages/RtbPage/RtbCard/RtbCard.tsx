@@ -1,6 +1,6 @@
 import type { StatisticAdItem } from '@/generated/graphql';
 import { ActiveStatus } from '@/generated/graphql';
-import CardChart from '@components/CardChart';
+import CardChart from '@components/CardChart/CardChart';
 import React from 'react';
 import RtbActions from './RtbActions';
 
@@ -10,7 +10,7 @@ type RtbCardProps = {
   url: string;
   subTitle?: React.ReactNode;
   id: string;
-  onChange: (id: string) => void;
+  onChange?: (id: string) => void;
   statistics?: StatisticAdItem[];
 };
 
@@ -19,7 +19,6 @@ function RtbCard({
   title,
   url,
   active,
-  onChange,
   statistics = [],
 }: RtbCardProps) {
   const isRtbActive = active === ActiveStatus.Active;
@@ -32,7 +31,6 @@ function RtbCard({
       statistics={statistics}
       actions={(
         <RtbActions
-          onChange={onChange}
           pause={!isRtbActive}
           id={id}
         />

@@ -1,10 +1,11 @@
 'use client';
 
 import type { Session } from 'next-auth';
-import ApolloProvider from '@/components/ApolloProvider';
-import { ToastProvider } from '@/components/Toast';
+import { StatisticFilterProvider } from '@components/StatisticFilter';
 import { SessionProvider } from 'next-auth/react';
 import React from 'react';
+import ApolloProvider from './ApolloProvider';
+import { ToastProvider } from './Toast';
 
 type AppProvidersProps = {
   children: React.ReactNode;
@@ -19,7 +20,9 @@ function AppProviders({
     <SessionProvider session={session}>
       <ApolloProvider session={session}>
         <ToastProvider>
-          {children}
+          <StatisticFilterProvider>
+            {children}
+          </StatisticFilterProvider>
         </ToastProvider>
       </ApolloProvider>
     </SessionProvider>

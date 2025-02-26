@@ -43,7 +43,6 @@ function AdUnitPage() {
         <AdUnitCard
           key={adUnit.ID}
           id={adUnit.ID}
-          onChange={() => {}}
           statistics={adUnitStatisticsMapById?.get(adUnit.ID)}
           title={adUnit.title}
           subTitle={adUnit.codename}

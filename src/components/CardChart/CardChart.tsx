@@ -1,10 +1,11 @@
 import type { StatisticAdItem } from '@/generated/graphql';
+import { getFakeEmptyChartData } from '@components/CardChart/CardChart.utils';
 import GradientAreaChart from '@components/GradientAreaChart';
-import { fakeEmptyChartData } from '@components/GradientAreaChart/GradientAreaChart.const';
 import Card from '@tailus-ui/Card';
 import IndicatorBadge from '@tailus-ui/IndicatorBadge';
 import { Caption, Link, Title } from '@tailus-ui/typography';
 import React from 'react';
+import useStatisticFilter from '../StatisticFilter/StatisticFilterProvider/useStatisticFilter';
 
 type CardChartProps = {
   title: string;
@@ -15,13 +16,6 @@ type CardChartProps = {
   actions?: React.ReactNode;
 };
 
-const statisticsLabels = [
-  { value: 'impressions', name: 'Impressions' },
-  { value: 'clicks', name: 'Clicks' },
-  { value: 'CTR', name: 'CTR' },
-  { value: 'profit', name: 'Profit' },
-];
-
 function CardChart({
   title,
   url,
@@ -30,12 +24,13 @@ function CardChart({
   statistics = [],
   actions,
 }: CardChartProps) {
-  const [selectedStatisticLabel, setSelectedStatisticLabel] = React.useState('impressions');
-
+  const {
+    filterField,
+  } = useStatisticFilter();
   const indicatorBadgeIntent = active ? 'accent' : 'warning';
   const amountImpressions = statistics?.reduce((acc, item) => acc + item.impressions, 0);
   const hasStatistics = !!statistics.length;
-  const chartData = hasStatistics ? statistics : fakeEmptyChartData;
+  const chartData = hasStatistics ? statistics : getFakeEmptyChartData(filterField);
   const chartIntent = hasStatistics ? 'primary' : 'gray';
 
   return (
@@ -72,7 +67,12 @@ function CardChart({
           {/* </Badge> */}
         </Title>
       </div>
-      <GradientAreaChart showMessage={!hasStatistics} data={chartData} intent={chartIntent} dataKey={selectedStatisticLabel} />
+      <GradientAreaChart
+        showMessage={!hasStatistics}
+        data={chartData}
+        intent={chartIntent}
+        dataKey={filterField}
+      />
     </Card>
   );
 }

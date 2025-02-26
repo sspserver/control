@@ -1,16 +1,14 @@
-import type { StatisticAdItem } from '@/generated/graphql';
-
 export const fakeEmptyChartData = [
-  { impressions: 3000 },
-  { impressions: 3000 },
-  { impressions: 2000 },
-  { impressions: 2780 },
-  { impressions: 1890 },
-  { impressions: 2390 },
-  { impressions: 3490 },
-  { impressions: 3490 },
-  { impressions: 5490 },
-  { impressions: 3490 },
-  { impressions: 3000 },
-  { impressions: 3490 },
-] as StatisticAdItem[];
+  { field: 3000 },
+  { field: 3000 },
+  { field: 2000 },
+  { field: 2780 },
+  { field: 1890 },
+  { field: 2390 },
+  { field: 3490 },
+  { field: 3490 },
+  { field: 5490 },
+  { field: 3490 },
+  { field: 3000 },
+  { field: 3490 },
+] as { field: number }[];
