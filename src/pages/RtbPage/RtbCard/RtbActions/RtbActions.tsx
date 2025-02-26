@@ -8,10 +8,10 @@ import useRtbActions from './useRtbActions';
 type RtbActionsProps = {
   pause?: boolean;
   id: string;
-  onChange: (id: string) => void;
+  onChange?: (id: string) => void;
 };
 
-function RtbActions({ id, pause = false, onChange }: RtbActionsProps) {
+function RtbActions({ id, pause = false }: RtbActionsProps) {
   const {
     isOpenDeleteDialog,
     isDeleteRtbLoading,
@@ -23,7 +23,6 @@ function RtbActions({ id, pause = false, onChange }: RtbActionsProps) {
   } = useRtbActions(
     id,
     pause,
-    onChange,
   );
 
   return (

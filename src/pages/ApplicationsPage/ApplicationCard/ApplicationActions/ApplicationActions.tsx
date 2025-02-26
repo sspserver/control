@@ -8,10 +8,10 @@ import Dialog from '@tailus-ui/Dialog';
 type ApplicationActionsProps = {
   pause?: boolean;
   id: string;
-  onChange: (id: string) => void;
+  onChange?: (id: string) => void;
 };
 
-function ApplicationActions({ id, pause = false, onChange }: ApplicationActionsProps) {
+function ApplicationActions({ id, pause = false }: ApplicationActionsProps) {
   const {
     isOpenDeleteDialog,
     isDeleteApplicationLoading,
@@ -23,7 +23,7 @@ function ApplicationActions({ id, pause = false, onChange }: ApplicationActionsP
   } = useApplicationActions(
     id,
     pause,
-    onChange,
+    // onChange,
   );
 
   return (

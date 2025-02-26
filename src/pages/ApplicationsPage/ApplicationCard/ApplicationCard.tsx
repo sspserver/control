@@ -1,7 +1,7 @@
 import type { StatisticAdItem } from '@/generated/graphql';
 import { ActiveStatus } from '@/generated/graphql';
 import ApplicationActions from '@/pages/ApplicationsPage/ApplicationCard/ApplicationActions';
-import CardChart from '@components/CardChart';
+import CardChart from '@components/CardChart/CardChart';
 import React from 'react';
 
 type ApplicationCardProps = {
@@ -9,7 +9,7 @@ type ApplicationCardProps = {
   uri: string;
   active: string;
   id: string;
-  onChange: (id: string) => void;
+  onChange?: (id: string) => void;
   statistics?: StatisticAdItem[];
 };
 
@@ -18,7 +18,6 @@ function ApplicationCard({
   title,
   uri,
   active,
-  onChange,
   statistics = [],
 }: ApplicationCardProps) {
   const isApplicationActive = active === ActiveStatus.Active;
@@ -33,7 +32,7 @@ function ApplicationCard({
       statistics={statistics}
       actions={(
         <ApplicationActions
-          onChange={onChange}
+          // onChange={onChange}
           pause={!isApplicationActive}
           id={id}
         />

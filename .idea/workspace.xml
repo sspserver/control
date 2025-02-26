@@ -4,57 +4,55 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5483ae0-0faa-4d09-a539-795505d72254" name="Changes" comment="#7.2 Applications page edit/create">
-      <change afterPath="$PROJECT_DIR$/src/app/(root)/rtb/[ID]/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/@drawer/(.)rtb/[ID]/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/AdFormatsSelect.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Annonce.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/BrowsersSelect.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/CountriesSelect.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/DeviceTypeSelect.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/DevicesSelect.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/OsSelect.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SectionFilter/SectionFilter.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SectionFilter/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ToggleButtonGroup/ToggleButtonGroup.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ToggleButtonGroup/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Annonce.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/ToggleButtonGroup/ToggleButtonGroup.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/ToggleButtonGroup/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbCard/RtbActions/RtbActions.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbCard/RtbActions/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbCard/RtbActions/useRtbActions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbCard/RtbCard.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbCard/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbCreateForm/RtbCreateForm.const.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbCreateForm/RtbCreateForm.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbCreateForm/RtbCreateForm.types.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbCreateForm/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbCreateForm/useRtbCreateForm.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbDrawer/RtbDrawer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbDrawer/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbDrawerOpenButton/RtbDrawerOpenButton.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbDrawerOpenButton/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbEmptyState/RtbEmptyState.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbEmptyState/index.ts" afterDir="false" />
+    <list default="true" id="d5483ae0-0faa-4d09-a539-795505d72254" name="Changes" comment="* Implement range calendar&#10;* Layouts Statistic filter&#10;* Statistic filter on each page&#10;* Store filter metrics&#10;* Improve statistic chart">
+      <change afterPath="$PROJECT_DIR$/src/components/CardChart/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DatePicker/DatePicker.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DatePicker/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilter.const.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilter.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider/StatisticFilterProvider.const.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider/StatisticFilterProvider.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider/StatisticFilterProvider.types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider/useStatisticFilter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider/useStatisticFilterProvider.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider/useStatisticFilterStore.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/useStatisticFilter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Calendar/Calendar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Calendar/CalendarChevron.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Calendar/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/visualizations/CustomTooltip.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/configs/routes.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(root)/adunit/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(root)/adunit/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(root)/applications/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(root)/applications/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(root)/rtb/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(root)/rtb/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CardChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CardChart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CategoriesSelect/CategoriesSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CategoriesSelect/CategoriesSelect.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Checkbox/Checkbox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Checkbox/Checkbox.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MainMenu/MainMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MainMenu/MainMenu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/Multiselect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/Multiselect.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/Multiselect.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/Multiselect.types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/useMultiselect.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/useMultiselect.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitCreateForm/AdUnitCreateForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitCreateForm/AdUnitCreateForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitCreateForm/useAdUnitCreateForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitCreateForm/useAdUnitCreateForm.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ApplicationsPage/ApplicationCreateForm/ApplicationCreateForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ApplicationsPage/ApplicationCreateForm/ApplicationCreateForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AppProviders.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppProviders.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CardChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CardChart/CardChart.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/GradientAreaChart/GradientAreaChart.const.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GradientAreaChart/GradientAreaChart.const.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/GradientAreaChart/GradientAreaChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GradientAreaChart/GradientAreaChart.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SectionFilter/SectionFilter.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SectionFilter/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CardChart/CardChart.utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/visualizations/LinearGradient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/visualizations/LinearGradient.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitCard/AdUnitActions/AdUnitActions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitCard/AdUnitActions/AdUnitActions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitCard/AdUnitActions/useAdUnitActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitCard/AdUnitActions/useAdUnitActions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitCard/AdUnitCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitCard/AdUnitCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AdUnitPage/useAdUnitPage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdUnitPage/useAdUnitPage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ApplicationsPage/ApplicationCard/ApplicationActions/ApplicationActions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ApplicationsPage/ApplicationCard/ApplicationActions/ApplicationActions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ApplicationsPage/ApplicationCard/ApplicationActions/useApplicationActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ApplicationsPage/ApplicationCard/ApplicationActions/useApplicationActions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ApplicationsPage/ApplicationCard/ApplicationCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ApplicationsPage/ApplicationCard/ApplicationCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ApplicationsPage/ApplicationsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ApplicationsPage/ApplicationsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ApplicationsPage/useApplicationsPage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ApplicationsPage/useApplicationsPage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/RtbPage/RtbCard/RtbActions/RtbActions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbCard/RtbActions/RtbActions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/RtbPage/RtbCard/RtbActions/useRtbActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbCard/RtbActions/useRtbActions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/RtbPage/RtbCard/RtbCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbCard/RtbCard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/RtbPage/RtbPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/RtbPage/useRtbPage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RtbPage/useRtbPage.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/submodules/api" beforeDir="false" afterPath="$PROJECT_DIR$/submodules/api" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,9 +109,9 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "issues/12",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/src/components",
+    "last_opened_file_path": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/src/components/StatisticFilter/StatisticFilterProvider",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.stylelint": "true",
@@ -135,18 +133,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider" />
       <recent name="$PROJECT_DIR$/src/components" />
       <recent name="$PROJECT_DIR$/src/app/@drawer" />
       <recent name="$PROJECT_DIR$/src/pages/RtbPage" />
       <recent name="$PROJECT_DIR$/src/app/(root)/rtb" />
-      <recent name="$PROJECT_DIR$/src/pages/RtbPage/RtbCard" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/CardChart" />
+      <recent name="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider" />
       <recent name="$PROJECT_DIR$/src/components/PageFormDrawer" />
       <recent name="$PROJECT_DIR$/src/components/GradientAreaChart" />
       <recent name="$PROJECT_DIR$/src/page" />
-      <recent name="$PROJECT_DIR$/src/components/Toast/ToastProvider" />
-      <recent name="$PROJECT_DIR$/src/components/tailus-ui/Input" />
     </key>
   </component>
   <component name="RunManager" selected="npm.gql-gen">
@@ -254,7 +252,23 @@
       <option name="project" value="LOCAL" />
       <updated>1739266342793</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="* RTB Page&#10;* RTB Edit/Create Form&#10;* Select group in Multiselect">
+      <option name="closed" value="true" />
+      <created>1740259877774</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1740259877774</updated>
+    </task>
+    <task id="LOCAL-00006" summary="* RTB Page&#10;* RTB Edit/Create Form&#10;* Select group in Multiselect">
+      <option name="closed" value="true" />
+      <created>1740259916892</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1740259916892</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -277,7 +291,9 @@
     <MESSAGE value="#6 Applications page stage 2" />
     <MESSAGE value="#7 Applications page edit/create" />
     <MESSAGE value="#7.2 Applications page edit/create" />
-    <option name="LAST_COMMIT_MESSAGE" value="#7.2 Applications page edit/create" />
+    <MESSAGE value="* RTB Page&#10;* RTB Edit/Create Form&#10;* Select group in Multiselect" />
+    <MESSAGE value="* Implement range calendar&#10;* Layouts Statistic filter&#10;* Statistic filter on each page&#10;* Store filter metrics&#10;* Improve statistic chart" />
+    <option name="LAST_COMMIT_MESSAGE" value="* Implement range calendar&#10;* Layouts Statistic filter&#10;* Statistic filter on each page&#10;* Store filter metrics&#10;* Improve statistic chart" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

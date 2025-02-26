@@ -1,3 +1,4 @@
+import StatisticFilter from '@components/StatisticFilter';
 import RtbPage from '@pages/RtbPage';
 import RtbDrawerOpenButton from '@pages/RtbPage/RtbDrawerOpenButton';
 import { Title } from '@tailus-ui/typography';
@@ -10,9 +11,9 @@ function Rtb() {
         <Title as="h1" size="xl">
           RTB
         </Title>
-        {/* <SectionFilter /> */}
         <RtbDrawerOpenButton />
       </div>
+      <StatisticFilter />
       <br />
       <RtbPage />
     </Fragment>

@@ -1,7 +1,7 @@
 import type { StatisticAdItem } from '@/generated/graphql';
 import { ActiveStatus } from '@/generated/graphql';
 import { LabelCopyCodeButton } from '@components/Button';
-import CardChart from '@components/CardChart';
+import CardChart from '@components/CardChart/CardChart';
 import React from 'react';
 import AdUnitActions from './AdUnitActions';
 
@@ -10,7 +10,7 @@ type AdUnitCardProps = {
   active: string;
   subTitle?: string;
   id: string;
-  onChange: (id: string) => void;
+  onChange?: (id: string) => void;
   statistics?: StatisticAdItem[];
 };
 
@@ -19,7 +19,7 @@ function AdUnitCard({
   title,
   subTitle,
   active,
-  onChange,
+  // onChange,
   statistics = [],
 }: AdUnitCardProps) {
   const isAdUnitCardActive = active === ActiveStatus.Active;
@@ -36,7 +36,6 @@ function AdUnitCard({
       statistics={statistics}
       actions={(
         <AdUnitActions
-          onChange={onChange}
           pause={!isAdUnitCardActive}
           id={id}
         />

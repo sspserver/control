@@ -11,7 +11,6 @@ function ApplicationsPage() {
     applicationsListError,
     isListApplicationsLoading,
     applicationStatisticsMapById,
-    changeApplicationHandler,
   } = useApplicationsPage();
 
   if (!applicationsList && !applicationsListError && !isListApplicationsLoading) {
@@ -42,7 +41,7 @@ function ApplicationsPage() {
   return (
     <div className="grid sm:grid-cols-4 gap-3 w-full">
       {applicationsList?.map(application => (
-        <ApplicationCard onChange={changeApplicationHandler} id={application.ID} statistics={applicationStatisticsMapById?.get(application.ID)} title={application.title} uri={application.URI} active={application.active} key={application.ID} />
+        <ApplicationCard id={application.ID} statistics={applicationStatisticsMapById?.get(application.ID)} title={application.title} uri={application.URI} active={application.active} key={application.ID} />
       ))}
     </div>
   );

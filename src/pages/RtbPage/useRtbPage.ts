@@ -8,11 +8,12 @@ import {
   useStatisticsLazyQuery,
 } from '@/generated/graphql';
 import { useCallback, useEffect, useMemo } from 'react';
+import useStatisticFilter from '../../components/StatisticFilter/StatisticFilterProvider/useStatisticFilter';
 
 const listRtbQueryOptions = {
   variables: {
     order: {
-      ID: Ordering.Asc,
+      createdAt: Ordering.Desc,
     },
   },
 };
@@ -25,6 +26,9 @@ export const listRtbDocumentRefetchQueries = [
 ];
 
 function useRtbPage() {
+  const {
+    date,
+  } = useStatisticFilter();
   const {
     data: responseRtbList,
     error: rtbListError,
@@ -39,10 +43,10 @@ function useRtbPage() {
   );
   const [getStatistics, { data: responseStatistics }]
       = useStatisticsLazyQuery();
-  const loadRtbStatistics = useCallback(() => {
-    // Data week  period
-    const endDate = new Date().toISOString();
-    const startDate = new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000).toISOString();
+  const loadRtbStatistics = useCallback((value: number[], from?: Date, to?: Date) => {
+    const today = new Date().toISOString();
+    const startDate = from ? from.toISOString() : today;
+    const endDate = to ? to.toISOString() : today;
 
     getStatistics({
       fetchPolicy: 'network-only',
@@ -54,7 +58,7 @@ function useRtbPage() {
             {
               key: StatisticKey.SourceId,
               op: StatisticCondition.In,
-              value: rtbIds,
+              value,
             },
           ],
         },
@@ -66,7 +70,7 @@ function useRtbPage() {
         page: { size: 300 },
       },
     });
-  }, [rtbIds, getStatistics]);
+  }, [getStatistics]);
   const rtbStatisticsMapById = useMemo(() => responseStatistics?.result.list?.reduce((acc, statistic) => {
     const { keys } = statistic;
     const adUnitId = keys?.find(key => key.key === StatisticKey.SourceId)?.value;
@@ -82,11 +86,14 @@ function useRtbPage() {
 
     return acc;
   }, new Map()), [responseStatistics]);
-  // const changeHandler = useCallback((id: string) => {}, []);
 
   useEffect(() => {
-    loadRtbStatistics();
-  }, [loadRtbStatistics, rtbIds]);
+    loadRtbStatistics(
+      rtbIds,
+      date?.from,
+      date?.to,
+    );
+  }, [loadRtbStatistics, date, rtbIds]);
 
   return {
     rtbList,
