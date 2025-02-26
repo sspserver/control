@@ -43,7 +43,6 @@ function RtbPage() {
         <RtbCard
           key={rtb.ID}
           id={rtb.ID}
-          onChange={() => {}}
           statistics={rtbStatisticsMapById?.get(rtb.ID)}
           title={rtb.title}
           url={rtb.URL}

@@ -8,10 +8,10 @@ import useAdUnitActions from './useAdUnitActions';
 type AdUnitActionsProps = {
   pause?: boolean;
   id: string;
-  onChange: (id: string) => void;
+  onChange?: (id: string) => void;
 };
 
-function AdUnitActions({ id, pause = false, onChange }: AdUnitActionsProps) {
+function AdUnitActions({ id, pause = false }: AdUnitActionsProps) {
   const {
     isOpenDeleteDialog,
     isDeleteAdUnitLoading,
@@ -23,7 +23,7 @@ function AdUnitActions({ id, pause = false, onChange }: AdUnitActionsProps) {
   } = useAdUnitActions(
     id,
     pause,
-    onChange,
+    // onChange,
   );
 
   return (

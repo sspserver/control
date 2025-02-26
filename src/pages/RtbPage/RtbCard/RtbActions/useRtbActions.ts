@@ -13,7 +13,7 @@ import { createElement, useState } from 'react';
 function useRtbActions(
   id: string,
   pause: boolean,
-  onChange: (id: string) => void,
+  // onChange: (id: string) => void,
 ) {
   const { showToast } = useToastProviderContext();
   const { push } = useRouter();
@@ -51,7 +51,7 @@ function useRtbActions(
         icon: createElement(PauseIcon, { className: 'w-4 h-4 text-warning-600' }),
       });
     }
-    onChange(id);
+    // onChange(id);
   };
   const clickDeleteButtonHandler = () =>
     deleteRtb({ variables: { id } });

@@ -1,3 +1,4 @@
+import StatisticFilter from '@components/StatisticFilter';
 import AdUnitPage from '@pages/AdUnitPage';
 import AdUnitDrawerOpenButton from '@pages/AdUnitPage/AdUnitDrawerOpenButton';
 import { Title } from '@tailus-ui/typography';
@@ -12,6 +13,7 @@ function AdUnit() {
         </Title>
         <AdUnitDrawerOpenButton />
       </div>
+      <StatisticFilter />
       <br />
       <AdUnitPage />
     </Fragment>

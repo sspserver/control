@@ -8,11 +8,12 @@ import {
   useStatisticsLazyQuery,
 } from '@/generated/graphql';
 import { useCallback, useEffect, useMemo } from 'react';
+import useStatisticFilter from '../../components/StatisticFilter/StatisticFilterProvider/useStatisticFilter';
 
 const listApplicationsQueryOptions = {
   variables: {
     order: {
-      ID: Ordering.Asc,
+      createdAt: Ordering.Desc,
     },
   },
 };
@@ -25,19 +26,9 @@ export const listApplicationsDocumentRefetchQueries = [
 ];
 
 function useApplicationsPage() {
-  // const { data: responseApplicationsList, error: applicationsListError, loading: isListApplicationsLoading } = useQuery<ListApplicationsQuery>(ListApplicationsDocument, listApplicationsQueryOptions);
-
-  // {
-  //   fetchPolicy: 'network-only',
-  //       variables: {
-  //   size: 10,
-  //       page: 1,
-  //       order: {
-  //     ID: 'ASC',
-  //   },
-  // },
-  // }
-
+  const {
+    date,
+  } = useStatisticFilter();
   const {
     data: responseApplicationsList,
     error: applicationsListError,
@@ -52,10 +43,10 @@ function useApplicationsPage() {
   );
   const [getApplicationStatistics, { data: responseApplicationStatistics }]
     = useStatisticsLazyQuery();
-  const loadApplicationStatistics = useCallback(() => {
-    // Data week  period
-    const endDate = new Date().toISOString();
-    const startDate = new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000).toISOString();
+  const loadApplicationStatistics = useCallback((value: number[], from?: Date, to?: Date) => {
+    const today = new Date().toISOString();
+    const startDate = from ? from.toISOString() : today;
+    const endDate = to ? to.toISOString() : today;
 
     getApplicationStatistics({
       fetchPolicy: 'network-only',
@@ -67,7 +58,7 @@ function useApplicationsPage() {
             {
               key: StatisticKey.AppId,
               op: StatisticCondition.In,
-              value: applicationsId,
+              value,
             },
           ],
         },
@@ -79,7 +70,7 @@ function useApplicationsPage() {
         page: { size: 300 },
       },
     });
-  }, [applicationsId, getApplicationStatistics]);
+  }, [getApplicationStatistics]);
   const applicationStatisticsMapById = useMemo(() => responseApplicationStatistics?.result.list?.reduce((acc, statistic) => {
     const { keys } = statistic;
     const appId = keys?.find(key => key.key === StatisticKey.AppId)?.value;
@@ -95,18 +86,16 @@ function useApplicationsPage() {
 
     return acc;
   }, new Map()), [responseApplicationStatistics]);
-  const changeApplicationHandler = useCallback((id: string) => {}, []);
 
   useEffect(() => {
-    loadApplicationStatistics();
-  }, [loadApplicationStatistics, applicationsId]);
+    loadApplicationStatistics(applicationsId, date?.from, date?.to);
+  }, [loadApplicationStatistics, date, applicationsId]);
 
   return {
     applicationsList,
     applicationsListError,
     isListApplicationsLoading,
     applicationStatisticsMapById,
-    changeApplicationHandler,
   };
 }
 
