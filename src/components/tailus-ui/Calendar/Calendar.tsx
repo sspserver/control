@@ -1,5 +1,6 @@
 import CalendarChevron from '@tailus-ui/Calendar/CalendarChevron';
 import { calendar, type CalendarProps as CalendarVariants } from '@tailus/themer';
+import cn from 'classnames';
 import * as React from 'react';
 import { DayPicker, type PropsBase, type PropsRange } from 'react-day-picker';
 import { twMerge } from 'tailwind-merge';
@@ -52,9 +53,9 @@ const Calendar = ({
         month_grid: table({ range, class: classNames?.month_grid }),
         weekdays: head_row({ range, class: classNames?.weekdays }),
         weekday: head_cell({ range, class: classNames?.weekday }),
-        week: row({ range, class: '[&>.day-range-start.day-range-end]:rounded-[--calendar-radius]' }),
+        week: row({ range, class: cn('[&>.day-range-start.day-range-end]:rounded-[--calendar-radius]', classNames?.week) }),
         day: cell({ range, class: classNames?.day }),
-        day_button: day({ intent, range, class: classNames?.day }),
+        day_button: day({ intent, range, class: classNames?.day_button }),
         today: day_today({ intent, class: classNames?.today }),
         range_start: 'day-range-start rounded-r-none rounded-[--calendar-radius]',
         range_end: 'day-range-end rounded-l-none rounded-[--calendar-radius]',
@@ -63,7 +64,7 @@ const Calendar = ({
         outside: day_outside({ intent: 'neutral', class: classNames?.outside }),
         disabled: day_disabled({ class: classNames?.disabled }),
         hidden: day_hidden({ class: classNames?.hidden }),
-        ...classNames,
+        // ...classNames,
       }}
       components={{
         Chevron: CalendarChevron,

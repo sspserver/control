@@ -1,8 +1,9 @@
 import { getCustomDatePick } from '@components/CardChart/CardChart.utils';
+import { customDateSelectOptions } from '@components/DatePicker/DatePicker.const';
 import CalendarIcon from '@heroicons/react/16/solid/CalendarIcon';
 import Button from '@tailus-ui/Button';
-import Calendar, { type CalendarProps } from '@tailus-ui/Calendar';
 
+import Calendar, { type CalendarProps } from '@tailus-ui/Calendar';
 import Popover from '@tailus-ui/Popover';
 import ToggleGroup from '@tailus-ui/ToggleButtonGroup';
 import { format } from 'date-fns';
@@ -58,14 +59,9 @@ export const CustomDatePicker = ({ onSelect, selected, classNameButton, ...args 
             onValueChange={handleValueChange}
             defaultValue="last-week"
           >
-            <ToggleGroup.Item withLabel className="w-full justify-start" value="today">Today</ToggleGroup.Item>
-            <ToggleGroup.Item withLabel className="w-full justify-start" value="yesterday">Yesterday</ToggleGroup.Item>
-            <ToggleGroup.Item withLabel className="w-full justify-start" value="last-week">Last Week</ToggleGroup.Item>
-            <ToggleGroup.Item withLabel className="w-full justify-start" value="last-month">Last Month</ToggleGroup.Item>
-            <ToggleGroup.Item withLabel className="w-full justify-start" value="last-3-months">Last 3 Months</ToggleGroup.Item>
-            <ToggleGroup.Item withLabel className="w-full justify-start" value="last-12-months">Last 12 Months</ToggleGroup.Item>
-            <ToggleGroup.Item withLabel className="w-full justify-start" value="month-to-date">Month to date</ToggleGroup.Item>
-            <ToggleGroup.Item withLabel className="w-full justify-start" value="life-time">Life time</ToggleGroup.Item>
+            {customDateSelectOptions.map(({ name, value }) => (
+              <ToggleGroup.Item withLabel className="w-full justify-start" value={value} key={value}>{name}</ToggleGroup.Item>
+            ))}
           </ToggleGroup.Root>
           <Calendar
             {...args}

@@ -2,7 +2,7 @@ import * as AvatarPrimitive from '@radix-ui/react-avatar';
 import { avatar, type AvatarFallbackProps, type AvatarRootProps, fallback, image } from '@tailus/themer';
 import React from 'react';
 
-const AvatarRoot = ({ ref, className, size = 'md', status = 'online', bottomStatus = false, topStatus = false, ...props }: React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> & AvatarRootProps & { ref: React.RefObject<React.ComponentRef<typeof AvatarPrimitive.Root>> }) => {
+const AvatarRoot = ({ ref, className, size = 'md', status = 'online', bottomStatus = false, topStatus = false, ...props }: React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> & AvatarRootProps & { ref?: React.RefObject<React.ComponentRef<typeof AvatarPrimitive.Root>> }) => {
   return (
     <AvatarPrimitive.Root
       {...props}
@@ -12,7 +12,7 @@ const AvatarRoot = ({ ref, className, size = 'md', status = 'online', bottomStat
   );
 };
 
-const AvatarFallback = ({ ref, className, variant = 'solid', intent = 'primary', ...props }: React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback> & AvatarFallbackProps & { ref: React.RefObject<React.ComponentRef<typeof AvatarPrimitive.Fallback>> }) => {
+const AvatarFallback = ({ ref, className, variant = 'solid', intent = 'primary', ...props }: React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback> & AvatarFallbackProps & { ref?: React.RefObject<React.ComponentRef<typeof AvatarPrimitive.Fallback>> }) => {
   return (
     <AvatarPrimitive.Fallback
       {...props}
@@ -22,7 +22,7 @@ const AvatarFallback = ({ ref, className, variant = 'solid', intent = 'primary',
   );
 };
 
-const AvatarImage = ({ ref, className, ...props }: React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image> & { ref: React.RefObject<React.ComponentRef<typeof AvatarPrimitive.Image>> }) => {
+const AvatarImage = ({ ref, className, ...props }: React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image> & { ref?: React.RefObject<React.ComponentRef<typeof AvatarPrimitive.Image>> }) => {
   return (
     <AvatarPrimitive.Image
       {...props}

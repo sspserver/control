@@ -417,7 +417,7 @@ query GetBrowser($id: ID64!) {
 query ListBrowsers(
   $page: Int! = 0, $size: Int! = 10,
   $filter: BrowserListFilter = null,
-  $order: BrowserListOrder = null,
+  $order: [BrowserListOrder!] = null,
 ) {
   result: listBrowsers(filter: $filter, order: $order, page: {startPage: $page, size: $size}) {
     totalCount
@@ -426,7 +426,7 @@ query ListBrowsers(
   }
 }
 
-mutation NewBrowser($input: BrowserInput!) {
+mutation NewBrowser($input: BrowserCreateInput!) {
   result: createBrowser(input: $input) {
     clientMutationID
     browserID
@@ -434,7 +434,7 @@ mutation NewBrowser($input: BrowserInput!) {
   }
 }
 
-mutation UpdateBrowser($id: ID64!, $input: BrowserInput!) {
+mutation UpdateBrowser($id: ID64!, $input: BrowserUpdateInput!) {
   result: updateBrowser(ID: $id, input: $input) {
     clientMutationID
     browserID
@@ -446,12 +446,11 @@ fragment __browserData on Browser {
   ID
   name
   description
-  matchExp
+  matchNameExp
   active
   versions {
     name
-    min
-    max
+    ID
   }
   createdAt
   updatedAt
@@ -475,8 +474,8 @@ fragment __deviceModelShort on DeviceModel {
   name
   description
   matchExp
-  makerID
-  versions { name, min, max }
+  maker { ...__deviceMakerShort }
+  versions { name, ID}
   type { ...__deviceType }
   createdAt
   updatedAt
@@ -499,7 +498,6 @@ fragment __deviceMakerShort on DeviceMaker {
 
 fragment __deviceMaker on DeviceMaker {
   ...__deviceMakerShort
-  types { ...__deviceType }
   models { ...__deviceModelShort }
 }
 
@@ -512,7 +510,7 @@ query GetDeviceMaker($id: ID64!) {
 query ListDeviceMakers(
   $page: Int! = 0, $size: Int! = 10,
   $filter: DeviceMakerListFilter = null,
-  $order: DeviceMakerListOrder = null,
+  $order: [DeviceMakerListOrder!] = null,
 ) {
   result: listDeviceMakers(filter: $filter, order: $order, page: {startPage: $page, size: $size}) {
     list { ...__deviceMaker }
@@ -520,13 +518,13 @@ query ListDeviceMakers(
   }
 }
 
-mutation CreateDeviceMaker($input: DeviceMakerInput!) {
+mutation CreateDeviceMaker($input: DeviceMakerCreateInput!) {
   result: createDeviceMaker(input: $input) {
     data: maker { ... __deviceMaker }
   }
 }
 
-mutation UpdateDeviceMaker($id: ID64!, $input: DeviceMakerInput!) {
+mutation UpdateDeviceMaker($id: ID64!, $input: DeviceMakerUpdateInput!) {
   result: updateDeviceMaker(ID: $id, input: $input) {
     data: maker { ... __deviceMaker }
   }
@@ -555,7 +553,7 @@ query GetDeviceModel($id: ID64!) {
 query ListDeviceModels(
   $page: Int! = 0, $size: Int! = 10,
   $filter: DeviceModelListFilter = null,
-  $order: DeviceModelListOrder = null,
+  $order: [DeviceModelListOrder!] = null,
 ) {
   result: listDeviceModels(filter: $filter, order: $order, page: {startPage: $page, size: $size}) {
     list { ...__deviceModel }

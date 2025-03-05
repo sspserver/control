@@ -1,4 +1,5 @@
 import type { StatisticAdItem } from '@/generated/graphql';
+import AnimatedCounter from '@components/AnimatedCounter';
 import { getFakeEmptyChartData } from '@components/CardChart/CardChart.utils';
 import GradientAreaChart from '@components/GradientAreaChart';
 import Card from '@tailus-ui/Card';
@@ -28,7 +29,7 @@ function CardChart({
     filterField,
   } = useStatisticFilter();
   const indicatorBadgeIntent = active ? 'accent' : 'warning';
-  const amountImpressions = statistics?.reduce((acc, item) => acc + item.impressions, 0);
+  const totalAmountFilterField = statistics?.reduce<number>((acc, item) => acc + Number(item[filterField as keyof StatisticAdItem] ?? 0), 0);
   const hasStatistics = !!statistics.length;
   const chartData = hasStatistics ? statistics : getFakeEmptyChartData(filterField);
   const chartIntent = hasStatistics ? 'primary' : 'gray';
@@ -55,7 +56,10 @@ function CardChart({
 
       <div className="flex justify-between items-center">
         <Title className="flex items-center gap-3" as="span">
-          {amountImpressions}
+
+          <AnimatedCounter from={0} to={totalAmountFilterField} />
+
+          {/* {totalAmountFilterField} */}
           {/* <Badge */}
           {/*  intent="success" */}
           {/*  variant="soft" */}

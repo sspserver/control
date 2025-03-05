@@ -10,7 +10,7 @@ type CheckboxProps = {
   description?: string;
 } & CheckboxUiProps;
 
-const { label: selectLabel } = select.soft();
+const { label: selectLabel } = select.solid();
 
 function Checkbox({ label, description, ...props }: CheckboxProps) {
   return (

@@ -116,7 +116,7 @@ function Multiselect({
                       );
                     }
 
-                    const isChecked = values.includes(value);
+                    const isChecked = values.includes(Number(value));
                     return (
                       <CommandItem
                         key={value}

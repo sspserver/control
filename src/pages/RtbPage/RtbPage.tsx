@@ -1,6 +1,7 @@
 'use client';
 
 import useRtbPage from '@/pages/RtbPage/useRtbPage';
+import PageLoadSpinner from '@components/PageLoadSpinner';
 import RtbCard from '@pages/RtbPage/RtbCard';
 import RtbEmptyState from '@pages/RtbPage/RtbEmptyState';
 
@@ -30,7 +31,7 @@ function RtbPage() {
   }
 
   if (isRtbListLoading) {
-    return <p>Loading...</p>;
+    return <PageLoadSpinner />;
   }
 
   if (!rtbList?.length) {

@@ -3,6 +3,7 @@
 import ApplicationCard from '@/pages/ApplicationsPage/ApplicationCard/ApplicationCard';
 
 import ApplicationsEmptyState from '@/pages/ApplicationsPage/ApplicationsEmptyState';
+import PageLoadSpinner from '@components/PageLoadSpinner';
 import useApplicationsPage from './useApplicationsPage';
 
 function ApplicationsPage() {
@@ -31,7 +32,7 @@ function ApplicationsPage() {
   }
 
   if (isListApplicationsLoading) {
-    return <p>Loading...</p>;
+    return <PageLoadSpinner />;
   }
 
   if (!applicationsList?.length) {

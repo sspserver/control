@@ -8,13 +8,12 @@ function Applications() {
   return (
     <Fragment>
       <div className="flex justify-between items-center">
-        <Title as="h1" size="xl">
+        <Title as="h2" size="lg" weight="medium">
           Applications
         </Title>
         <ApplicationDrawerOpenButton />
       </div>
       <StatisticFilter />
-      <br />
       <ApplicationsPage />
     </Fragment>
   );

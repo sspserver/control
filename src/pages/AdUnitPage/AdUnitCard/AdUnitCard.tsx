@@ -1,9 +1,9 @@
 import type { StatisticAdItem } from '@/generated/graphql';
 import { ActiveStatus } from '@/generated/graphql';
-import { LabelCopyCodeButton } from '@components/Button';
 import CardChart from '@components/CardChart/CardChart';
 import React from 'react';
 import AdUnitActions from './AdUnitActions';
+import AdUnitCardSubTitleCode from './AdUnitCardSubTitleCode';
 
 type AdUnitCardProps = {
   title: string;
@@ -27,11 +27,7 @@ function AdUnitCard({
   return (
     <CardChart
       title={title}
-      subTitle={(
-        <div className="-ml-1">
-          <LabelCopyCodeButton code={subTitle ?? ''} size="xs" className="pl-2 text-left text-xs">{subTitle}</LabelCopyCodeButton>
-        </div>
-      )}
+      subTitle={<AdUnitCardSubTitleCode code={subTitle} name={title} />}
       active={isAdUnitCardActive}
       statistics={statistics}
       actions={(

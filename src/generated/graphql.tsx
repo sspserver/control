@@ -312,10 +312,10 @@ export type ApplicationCreateInput = {
   accountID?: InputMaybe<Scalars['ID64']['input']>;
   categories?: InputMaybe<Array<Scalars['Int']['input']>>;
   description?: InputMaybe<Scalars['String']['input']>;
-  platform: PlatformType;
+  platform?: InputMaybe<PlatformType>;
   revenueShare?: InputMaybe<Scalars['Float']['input']>;
   title: Scalars['String']['input'];
-  type: ApplicationType;
+  type?: InputMaybe<ApplicationType>;
 };
 
 /** ApplicationEdge wrapper to access Application objects */
@@ -553,14 +553,26 @@ export type Browser = {
   deletedAt?: Maybe<Scalars['Time']['output']>;
   /** Description of the browser */
   description: Scalars['String']['output'];
-  /** Match expression for the browser */
-  matchExp: Scalars['String']['output'];
+  matchNameExp: Scalars['String']['output'];
+  matchUserAgentExp: Scalars['String']['output'];
+  matchVersionMaxExp: Scalars['String']['output'];
+  matchVersionMinExp: Scalars['String']['output'];
   /** Name of the browser */
   name: Scalars['String']['output'];
+  /** Parent object of the browser */
+  parent?: Maybe<Browser>;
+  /** Parent ID of the browser group */
+  parentID: Scalars['ID64']['output'];
   /** Last update time of the browser */
   updatedAt: Scalars['Time']['output'];
-  /** List of browser versions */
-  versions?: Maybe<Array<BrowserVersion>>;
+  /** Version of the browser */
+  version: Scalars['String']['output'];
+  /** List of child browser */
+  versions?: Maybe<Array<Browser>>;
+  /** Year of end of support of the browser */
+  yearEndSupport: Scalars['Int']['output'];
+  /** Year of release of the browser */
+  yearRelease: Scalars['Int']['output'];
 };
 
 export type BrowserConnection = {
@@ -575,6 +587,28 @@ export type BrowserConnection = {
   totalCount: Scalars['Int']['output'];
 };
 
+/** Input for querying create browsers */
+export type BrowserCreateInput = {
+  /** Active status of the browser */
+  active?: InputMaybe<ActiveStatus>;
+  /** Description of the browser */
+  description?: InputMaybe<Scalars['String']['input']>;
+  matchNameExp?: InputMaybe<Scalars['String']['input']>;
+  matchUserAgentExp?: InputMaybe<Scalars['String']['input']>;
+  matchVersionMaxExp?: InputMaybe<Scalars['String']['input']>;
+  matchVersionMinExp?: InputMaybe<Scalars['String']['input']>;
+  /** Name of the browser */
+  name: Scalars['String']['input'];
+  /** Parent ID of the OS group */
+  parentID?: InputMaybe<Scalars['ID64']['input']>;
+  /** Version of the browser */
+  version?: InputMaybe<Scalars['String']['input']>;
+  /** Year of end of support of the browser */
+  yearEndSupport?: InputMaybe<Scalars['Int']['input']>;
+  /** Year of release of the browser */
+  yearRelease?: InputMaybe<Scalars['Int']['input']>;
+};
+
 export type BrowserEdge = {
   __typename?: 'BrowserEdge';
   /** A cursor for use in pagination */
@@ -583,24 +617,11 @@ export type BrowserEdge = {
   node: Browser;
 };
 
-/** Input for querying browsers */
-export type BrowserInput = {
-  /** Active status of the browser */
-  active?: InputMaybe<ActiveStatus>;
-  /** Description of the browser */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** Match expression for the browser */
-  matchExp?: InputMaybe<Scalars['String']['input']>;
-  /** Name of the browser */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** List of browser versions */
-  versions?: InputMaybe<Array<BrowserVersionInput>>;
-};
-
 export type BrowserListFilter = {
   ID?: InputMaybe<Array<Scalars['ID64']['input']>>;
   active?: InputMaybe<Array<ActiveStatus>>;
   name?: InputMaybe<Array<Scalars['String']['input']>>;
+  parentID?: InputMaybe<Array<Scalars['ID64']['input']>>;
 };
 
 export type BrowserListOrder = {
@@ -609,6 +630,7 @@ export type BrowserListOrder = {
   createdAt?: InputMaybe<Ordering>;
   name?: InputMaybe<Ordering>;
   updatedAt?: InputMaybe<Ordering>;
+  yearRelease?: InputMaybe<Ordering>;
 };
 
 export type BrowserPayload = {
@@ -621,25 +643,24 @@ export type BrowserPayload = {
   clientMutationID: Scalars['String']['output'];
 };
 
-/** BrowserVersion model schema */
-export type BrowserVersion = {
-  __typename?: 'BrowserVersion';
-  /** Maximum version */
-  max: Scalars['String']['output'];
-  /** Minimum version */
-  min: Scalars['String']['output'];
-  /** Name of the version */
-  name: Scalars['String']['output'];
-};
-
-/** Input for browser versions */
-export type BrowserVersionInput = {
-  /** Maximum version */
-  max?: InputMaybe<Scalars['String']['input']>;
-  /** Minimum version */
-  min?: InputMaybe<Scalars['String']['input']>;
-  /** Name of the version */
+/** Input for querying update browsers */
+export type BrowserUpdateInput = {
+  /** Active status of the browser */
+  active?: InputMaybe<ActiveStatus>;
+  /** Description of the browser */
+  description?: InputMaybe<Scalars['String']['input']>;
+  matchNameExp?: InputMaybe<Scalars['String']['input']>;
+  matchUserAgentExp?: InputMaybe<Scalars['String']['input']>;
+  matchVersionMaxExp?: InputMaybe<Scalars['String']['input']>;
+  matchVersionMinExp?: InputMaybe<Scalars['String']['input']>;
+  /** Name of the browser */
   name?: InputMaybe<Scalars['String']['input']>;
+  /** Version of the browser */
+  version?: InputMaybe<Scalars['String']['input']>;
+  /** Year of end of support of the browser */
+  yearEndSupport?: InputMaybe<Scalars['Int']['input']>;
+  /** Year of release of the browser */
+  yearRelease?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** Advertising category schema */
@@ -791,6 +812,11 @@ export type DeviceMaker = {
   ID: Scalars['ID64']['output'];
   /** Active status of the device maker */
   active: ActiveStatus;
+  /**
+   * Codename of the device maker, equivalent to the device maker ID
+   * Example: "apple", "samsung", "xiaomi", etc.
+   */
+  codename: Scalars['String']['output'];
   /** Creation time of the device maker */
   createdAt: Scalars['Time']['output'];
   /** Deletion time of the device maker */
@@ -803,8 +829,6 @@ export type DeviceMaker = {
   models?: Maybe<Array<DeviceModel>>;
   /** Name of the device maker */
   name: Scalars['String']['output'];
-  /** List of device types */
-  types?: Maybe<Array<DeviceType>>;
   /** Last update time of the device maker */
   updatedAt: Scalars['Time']['output'];
 };
@@ -821,6 +845,20 @@ export type DeviceMakerConnection = {
   totalCount: Scalars['Int']['output'];
 };
 
+/** Input for querying device maker create */
+export type DeviceMakerCreateInput = {
+  /** Active status of the device maker */
+  active: ActiveStatus;
+  /** Codename of the device maker */
+  codename: Scalars['String']['input'];
+  /** Description of the device maker */
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** Expression to match the device maker */
+  matchExp?: InputMaybe<Scalars['String']['input']>;
+  /** Name of the device maker */
+  name: Scalars['String']['input'];
+};
+
 export type DeviceMakerEdge = {
   __typename?: 'DeviceMakerEdge';
   /** A cursor for use in pagination */
@@ -829,27 +867,17 @@ export type DeviceMakerEdge = {
   node: DeviceMaker;
 };
 
-/** Input for querying device makers */
-export type DeviceMakerInput = {
-  /** Active status of the device maker */
-  active?: InputMaybe<ActiveStatus>;
-  /** Description of the device maker */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** Expression to match the device maker */
-  matchExp?: InputMaybe<Scalars['String']['input']>;
-  /** Name of the device maker */
-  name?: InputMaybe<Scalars['String']['input']>;
-};
-
 export type DeviceMakerListFilter = {
   ID?: InputMaybe<Array<Scalars['ID64']['input']>>;
   active?: InputMaybe<Array<ActiveStatus>>;
+  codename?: InputMaybe<Array<Scalars['String']['input']>>;
   name?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type DeviceMakerListOrder = {
   ID?: InputMaybe<Ordering>;
   active?: InputMaybe<Ordering>;
+  codename?: InputMaybe<Ordering>;
   createdAt?: InputMaybe<Ordering>;
   name?: InputMaybe<Ordering>;
   updatedAt?: InputMaybe<Ordering>;
@@ -865,6 +893,20 @@ export type DeviceMakerPayload = {
   makerID: Scalars['ID64']['output'];
 };
 
+/** Input for querying device maker update */
+export type DeviceMakerUpdateInput = {
+  /** Active status of the device maker */
+  active?: InputMaybe<ActiveStatus>;
+  /** Codename of the device maker */
+  codename?: InputMaybe<Scalars['String']['input']>;
+  /** Description of the device maker */
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** Expression to match the device maker */
+  matchExp?: InputMaybe<Scalars['String']['input']>;
+  /** Name of the device maker */
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
 /** Device model schema */
 export type DeviceModel = {
   __typename?: 'DeviceModel';
@@ -872,6 +914,8 @@ export type DeviceModel = {
   ID: Scalars['ID64']['output'];
   /** Active status of the device model */
   active: ActiveStatus;
+  /** Device model codename */
+  codename: Scalars['String']['output'];
   /** Creation time of the device model */
   createdAt: Scalars['Time']['output'];
   /** Deletion time of the device model */
@@ -880,20 +924,35 @@ export type DeviceModel = {
   description: Scalars['String']['output'];
   /** Device maker object */
   maker?: Maybe<DeviceMaker>;
-  /** Device maker ID */
-  makerID: Scalars['ID64']['output'];
+  /** Device maker codename */
+  makerCodename: Scalars['String']['output'];
   /** Expression to match the device model */
   matchExp: Scalars['String']['output'];
   /** Name of the device model */
   name: Scalars['String']['output'];
+  /** Device parent object if exists */
+  parent?: Maybe<DeviceModel>;
+  /** Device parent ID */
+  parentID?: Maybe<Scalars['ID64']['output']>;
   /** Device type object */
   type?: Maybe<DeviceType>;
-  /** Device type ID */
-  typeID: Scalars['ID64']['output'];
+  /** Device type codename */
+  typeCodename: Scalars['String']['output'];
   /** Last update time of the device model */
   updatedAt: Scalars['Time']['output'];
+  /** Version of the device model */
+  version: Scalars['String']['output'];
   /** List of device model versions */
-  versions?: Maybe<Array<DeviceModelVersion>>;
+  versions?: Maybe<Array<DeviceModel>>;
+  /** Year of release of the device model */
+  yearRelease: Scalars['Int']['output'];
+};
+
+
+/** Device model schema */
+export type DeviceModelVersionsArgs = {
+  filter?: InputMaybe<DeviceModelListFilter>;
+  order?: InputMaybe<Array<DeviceModelListOrder>>;
 };
 
 export type DeviceModelConnection = {
@@ -908,6 +967,28 @@ export type DeviceModelConnection = {
   totalCount: Scalars['Int']['output'];
 };
 
+/** Input for querying create device models */
+export type DeviceModelCreateInput = {
+  /** Active status of the device model */
+  active: ActiveStatus;
+  /** Code name of the device model */
+  codename: Scalars['String']['input'];
+  /** Description of the device model */
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** Device maker codename */
+  makerCodename: Scalars['String']['input'];
+  /** Expression to match the device model */
+  matchExp?: InputMaybe<Scalars['String']['input']>;
+  /** Name of the device model */
+  name: Scalars['String']['input'];
+  /** Device parent ID */
+  parentID?: InputMaybe<Scalars['ID64']['input']>;
+  /** Device type codename */
+  typeCodename: Scalars['String']['input'];
+  /** Version of the device model */
+  version: Scalars['String']['input'];
+};
+
 export type DeviceModelEdge = {
   __typename?: 'DeviceModelEdge';
   /** A cursor for use in pagination */
@@ -916,40 +997,27 @@ export type DeviceModelEdge = {
   node: DeviceModel;
 };
 
-/** Input for querying device models */
-export type DeviceModelInput = {
-  /** Active status of the device model */
-  active?: InputMaybe<ActiveStatus>;
-  /** Description of the device model */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** Device maker ID */
-  makerID?: InputMaybe<Scalars['ID64']['input']>;
-  /** Expression to match the device model */
-  matchExp?: InputMaybe<Scalars['String']['input']>;
-  /** Name of the device model */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** Device type ID */
-  typeID?: InputMaybe<Scalars['ID64']['input']>;
-  /** List of device model versions */
-  versions?: InputMaybe<Array<DeviceModelVersionInput>>;
-};
-
+/** Input model list filter */
 export type DeviceModelListFilter = {
   ID?: InputMaybe<Array<Scalars['ID64']['input']>>;
   active?: InputMaybe<Array<ActiveStatus>>;
-  makerID?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  codename?: InputMaybe<Array<Scalars['String']['input']>>;
+  makerCodename?: InputMaybe<Array<Scalars['String']['input']>>;
   name?: InputMaybe<Array<Scalars['String']['input']>>;
-  typeID?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  parentID?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  typeCodename?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type DeviceModelListOrder = {
   ID?: InputMaybe<Ordering>;
   active?: InputMaybe<Ordering>;
+  codename?: InputMaybe<Ordering>;
   createdAt?: InputMaybe<Ordering>;
-  makerID?: InputMaybe<Ordering>;
+  makerCodename?: InputMaybe<Ordering>;
   name?: InputMaybe<Ordering>;
-  typeID?: InputMaybe<Ordering>;
+  typeCodename?: InputMaybe<Ordering>;
   updatedAt?: InputMaybe<Ordering>;
+  yearRelease?: InputMaybe<Ordering>;
 };
 
 export type DeviceModelPayload = {
@@ -962,24 +1030,26 @@ export type DeviceModelPayload = {
   modelID: Scalars['ID64']['output'];
 };
 
-/** DeviceModelVersion model schema */
-export type DeviceModelVersion = {
-  __typename?: 'DeviceModelVersion';
-  /** Maximum version */
-  max: Scalars['String']['output'];
-  /** Minimum version */
-  min: Scalars['String']['output'];
-  /** Name of the version */
-  name: Scalars['String']['output'];
-};
-
-export type DeviceModelVersionInput = {
-  /** Maximum version */
-  max?: InputMaybe<Scalars['String']['input']>;
-  /** Minimum version */
-  min?: InputMaybe<Scalars['String']['input']>;
-  /** Name of the version */
+/** Input for querying update device models */
+export type DeviceModelUpdateInput = {
+  /** Active status of the device model */
+  active?: InputMaybe<ActiveStatus>;
+  /** Code name of the device model */
+  codename?: InputMaybe<Scalars['String']['input']>;
+  /** Description of the device model */
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** Device maker codename */
+  makerCodename?: InputMaybe<Scalars['String']['input']>;
+  /** Expression to match the device model */
+  matchExp?: InputMaybe<Scalars['String']['input']>;
+  /** Name of the device model */
   name?: InputMaybe<Scalars['String']['input']>;
+  /** Device parent ID */
+  parentID?: InputMaybe<Scalars['ID64']['input']>;
+  /** Device type codename */
+  typeCodename?: InputMaybe<Scalars['String']['input']>;
+  /** Version of the device model */
+  version?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Device type schema */
@@ -989,10 +1059,13 @@ export type DeviceType = {
   ID: Scalars['ID64']['output'];
   /** Active status of the device type */
   active: ActiveStatus;
+  /**
+   * Codename of the device type, equivalent to the device type ID
+   * Example: "smartphone", "tablet", "smartwatch", etc.
+   */
+  codename: Scalars['String']['output'];
   /** Description of the device type */
   description: Scalars['String']['output'];
-  /** List of device models */
-  models?: Maybe<Array<DeviceModel>>;
   /** Name of the device type */
   name: Scalars['String']['output'];
 };
@@ -1421,7 +1494,7 @@ export type MutationCreateAuthClientArgs = {
 
 
 export type MutationCreateBrowserArgs = {
-  input: BrowserInput;
+  input: BrowserCreateInput;
 };
 
 
@@ -1431,12 +1504,12 @@ export type MutationCreateCategoryArgs = {
 
 
 export type MutationCreateDeviceMakerArgs = {
-  input: DeviceMakerInput;
+  input: DeviceMakerCreateInput;
 };
 
 
 export type MutationCreateDeviceModelArgs = {
-  input: DeviceModelInput;
+  input: DeviceModelCreateInput;
 };
 
 
@@ -1446,7 +1519,7 @@ export type MutationCreateFormatArgs = {
 
 
 export type MutationCreateOsArgs = {
-  input: OsInput;
+  input: OsCreateInput;
 };
 
 
@@ -1646,8 +1719,10 @@ export type MutationRunRtbSourceArgs = {
 
 
 export type MutationSetOptionArgs = {
-  input: OptionInput;
   name: Scalars['String']['input'];
+  targetID?: Scalars['ID64']['input'];
+  type?: OptionType;
+  value?: InputMaybe<Scalars['NullableJSON']['input']>;
 };
 
 
@@ -1682,7 +1757,7 @@ export type MutationUpdateAuthClientArgs = {
 
 export type MutationUpdateBrowserArgs = {
   ID: Scalars['ID64']['input'];
-  input: BrowserInput;
+  input: BrowserUpdateInput;
 };
 
 
@@ -1694,13 +1769,13 @@ export type MutationUpdateCategoryArgs = {
 
 export type MutationUpdateDeviceMakerArgs = {
   ID: Scalars['ID64']['input'];
-  input: DeviceMakerInput;
+  input: DeviceMakerUpdateInput;
 };
 
 
 export type MutationUpdateDeviceModelArgs = {
   ID: Scalars['ID64']['input'];
-  input: DeviceModelInput;
+  input: DeviceModelUpdateInput;
 };
 
 
@@ -1712,7 +1787,7 @@ export type MutationUpdateFormatArgs = {
 
 export type MutationUpdateOsArgs = {
   ID: Scalars['ID64']['input'];
-  input: OsInput;
+  input: OsUpdateInput;
 };
 
 
@@ -1759,14 +1834,26 @@ export type Os = {
   deletedAt?: Maybe<Scalars['Time']['output']>;
   /** Description of the OS */
   description: Scalars['String']['output'];
-  /** Expression to match the OS */
-  matchExp: Scalars['String']['output'];
+  matchNameExp: Scalars['String']['output'];
+  matchUserAgentExp: Scalars['String']['output'];
+  matchVersionMaxExp: Scalars['String']['output'];
+  matchVersionMinExp: Scalars['String']['output'];
   /** Name of the OS */
   name: Scalars['String']['output'];
+  /** Parent object of the OS */
+  parent?: Maybe<Os>;
+  /** Parent ID of the OS group */
+  parentID: Scalars['ID64']['output'];
   /** Last update time of the OS */
   updatedAt: Scalars['Time']['output'];
-  /** List of OS versions */
-  versions?: Maybe<Array<OsVersion>>;
+  /** Version of the OS */
+  version: Scalars['String']['output'];
+  /** List of child OS */
+  versions?: Maybe<Array<Os>>;
+  /** Year of end of support of the OS */
+  yearEndSupport: Scalars['Int']['output'];
+  /** Year of release of the OS */
+  yearRelease: Scalars['Int']['output'];
 };
 
 export type OsConnection = {
@@ -1781,6 +1868,28 @@ export type OsConnection = {
   totalCount: Scalars['Int']['output'];
 };
 
+/** Input for querying OS */
+export type OsCreateInput = {
+  /** Active status of the OS */
+  active?: InputMaybe<ActiveStatus>;
+  /** Description of the OS */
+  description?: InputMaybe<Scalars['String']['input']>;
+  matchNameExp?: InputMaybe<Scalars['String']['input']>;
+  matchUserAgentExp?: InputMaybe<Scalars['String']['input']>;
+  matchVersionMaxExp?: InputMaybe<Scalars['String']['input']>;
+  matchVersionMinExp?: InputMaybe<Scalars['String']['input']>;
+  /** Name of the OS */
+  name: Scalars['String']['input'];
+  /** Parent ID of the OS group */
+  parentID?: InputMaybe<Scalars['ID64']['input']>;
+  /** Version of the OS */
+  version?: InputMaybe<Scalars['String']['input']>;
+  /** Year of end of support of the OS */
+  yearEndSupport?: InputMaybe<Scalars['Int']['input']>;
+  /** Year of release of the OS */
+  yearRelease?: InputMaybe<Scalars['Int']['input']>;
+};
+
 export type OsEdge = {
   __typename?: 'OSEdge';
   /** A cursor for use in pagination */
@@ -1789,26 +1898,11 @@ export type OsEdge = {
   node: Os;
 };
 
-/** Input for querying OS */
-export type OsInput = {
-  /** Active status of the OS */
-  active?: InputMaybe<ActiveStatus>;
-  /** Description of the OS */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** Expression to match the OS */
-  matchExp?: InputMaybe<Scalars['String']['input']>;
-  /** Name of the OS */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** List of OS versions */
-  versions?: InputMaybe<Array<OsVersionInput>>;
-};
-
 export type OsListFilter = {
   ID?: InputMaybe<Array<Scalars['ID64']['input']>>;
-  active?: InputMaybe<Array<ActiveStatus>>;
-  maxVersion?: InputMaybe<Scalars['String']['input']>;
-  minVersion?: InputMaybe<Scalars['String']['input']>;
+  active?: InputMaybe<ActiveStatus>;
   name?: InputMaybe<Array<Scalars['String']['input']>>;
+  parentID?: InputMaybe<Array<Scalars['ID64']['input']>>;
 };
 
 export type OsListOrder = {
@@ -1817,6 +1911,7 @@ export type OsListOrder = {
   createdAt?: InputMaybe<Ordering>;
   name?: InputMaybe<Ordering>;
   updatedAt?: InputMaybe<Ordering>;
+  yearRelease?: InputMaybe<Ordering>;
 };
 
 export type OsPayload = {
@@ -1829,33 +1924,31 @@ export type OsPayload = {
   clientMutationID: Scalars['String']['output'];
 };
 
-/** OSVersion model schema */
-export type OsVersion = {
-  __typename?: 'OSVersion';
-  /** Maximum version */
-  max: Scalars['String']['output'];
-  /** Minimum version */
-  min: Scalars['String']['output'];
-  /** Name of the version */
-  name: Scalars['String']['output'];
-};
-
-/** Input for OS versions */
-export type OsVersionInput = {
-  /** Maximum version */
-  max?: InputMaybe<Scalars['String']['input']>;
-  /** Minimum version */
-  min?: InputMaybe<Scalars['String']['input']>;
-  /** Name of the version */
+export type OsUpdateInput = {
+  /** Active status of the OS */
+  active?: InputMaybe<ActiveStatus>;
+  /** Description of the OS */
+  description?: InputMaybe<Scalars['String']['input']>;
+  matchNameExp?: InputMaybe<Scalars['String']['input']>;
+  matchUserAgentExp?: InputMaybe<Scalars['String']['input']>;
+  matchVersionMaxExp?: InputMaybe<Scalars['String']['input']>;
+  matchVersionMinExp?: InputMaybe<Scalars['String']['input']>;
+  /** Name of the OS */
   name?: InputMaybe<Scalars['String']['input']>;
+  /** Version of the OS */
+  version?: InputMaybe<Scalars['String']['input']>;
+  /** Year of end of support of the OS */
+  yearEndSupport?: InputMaybe<Scalars['Int']['input']>;
+  /** Year of release of the OS */
+  yearRelease?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** Option type definition represents a single option of the user or the system. */
 export type Option = {
   __typename?: 'Option';
   name: Scalars['String']['output'];
-  optionType: OptionType;
   targetID: Scalars['ID64']['output'];
+  type: OptionType;
   value?: Maybe<Scalars['NullableJSON']['output']>;
 };
 
@@ -1879,26 +1972,17 @@ export type OptionEdge = {
   node: Option;
 };
 
-export type OptionInput = {
-  /** The type of the option. */
-  optionType: OptionType;
-  /** The target ID of the option. */
-  targetID: Scalars['ID64']['input'];
-  /** Value of the option. */
-  value?: InputMaybe<Scalars['NullableJSON']['input']>;
-};
-
 export type OptionListFilter = {
   name?: InputMaybe<Array<Scalars['String']['input']>>;
   namePattern?: InputMaybe<Array<Scalars['String']['input']>>;
-  optionType?: InputMaybe<Array<OptionType>>;
   targetID?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  type?: InputMaybe<Array<OptionType>>;
 };
 
 export type OptionListOrder = {
   name?: InputMaybe<Ordering>;
-  optionType?: InputMaybe<Ordering>;
   targetID?: InputMaybe<Ordering>;
+  type?: InputMaybe<Ordering>;
   value?: InputMaybe<Ordering>;
 };
 
@@ -1906,8 +1990,10 @@ export type OptionPayload = {
   __typename?: 'OptionPayload';
   /** A unique identifier for the client performing the mutation. */
   clientMutationId: Scalars['String']['output'];
+  /** Option name */
+  name: Scalars['String']['output'];
+  /** Option value */
   option?: Maybe<Option>;
-  optionName: Scalars['String']['output'];
 };
 
 export enum OptionType {
@@ -2100,7 +2186,7 @@ export type Query = {
 
 
 export type QueryOsArgs = {
-  ID?: Scalars['ID64']['input'];
+  ID: Scalars['ID64']['input'];
 };
 
 
@@ -2125,7 +2211,7 @@ export type QueryAuthClientArgs = {
 
 
 export type QueryBrowserArgs = {
-  ID?: Scalars['ID64']['input'];
+  ID: Scalars['ID64']['input'];
 };
 
 
@@ -2149,12 +2235,14 @@ export type QueryCurrentSocialAccountsArgs = {
 
 
 export type QueryDeviceMakerArgs = {
-  ID: Scalars['ID64']['input'];
+  ID?: Scalars['ID64']['input'];
+  codename?: Scalars['String']['input'];
 };
 
 
 export type QueryDeviceModelArgs = {
-  ID: Scalars['ID64']['input'];
+  ID?: Scalars['ID64']['input'];
+  codename?: Scalars['String']['input'];
 };
 
 
@@ -2198,7 +2286,7 @@ export type QueryListAuthClientsArgs = {
 
 export type QueryListBrowsersArgs = {
   filter?: InputMaybe<BrowserListFilter>;
-  order?: InputMaybe<BrowserListOrder>;
+  order?: InputMaybe<Array<BrowserListOrder>>;
   page?: InputMaybe<Page>;
 };
 
@@ -2212,14 +2300,14 @@ export type QueryListCategoriesArgs = {
 
 export type QueryListDeviceMakersArgs = {
   filter?: InputMaybe<DeviceMakerListFilter>;
-  order?: InputMaybe<DeviceMakerListOrder>;
+  order?: InputMaybe<Array<DeviceMakerListOrder>>;
   page?: InputMaybe<Page>;
 };
 
 
 export type QueryListDeviceModelsArgs = {
   filter?: InputMaybe<DeviceModelListFilter>;
-  order?: InputMaybe<DeviceModelListOrder>;
+  order?: InputMaybe<Array<DeviceModelListOrder>>;
   page?: InputMaybe<Page>;
 };
 
@@ -2259,7 +2347,7 @@ export type QueryListMyPermissionsArgs = {
 
 export type QueryListOsArgs = {
   filter?: InputMaybe<OsListFilter>;
-  order?: InputMaybe<OsListOrder>;
+  order: Array<OsListOrder>;
   page?: InputMaybe<Page>;
 };
 
@@ -2313,8 +2401,8 @@ export type QueryListZonesArgs = {
 
 export type QueryOptionArgs = {
   name: Scalars['String']['input'];
-  optionType: OptionType;
   targetID?: Scalars['ID64']['input'];
+  type?: OptionType;
 };
 
 
@@ -3142,39 +3230,39 @@ export type UpdateCategoryMutationVariables = Exact<{
 
 export type UpdateCategoryMutation = { __typename?: 'Mutation', result?: { __typename?: 'CategoryPayload', clientMutationID: string, categoryID: any, data: { __typename?: 'Category', ID: any, name: string, description: string, IABCode: string, parentID?: any | null, position: number, active: ActiveStatus, createdAt: any, updatedAt: any, deletedAt?: any | null, parent?: { __typename?: 'Category', ID: any, name: string } | null, childrens: Array<{ __typename?: 'Category', ID: any, name: string, IABCode: string }> } } | null };
 
-export type __OsDataFragment = { __typename?: 'OS', ID: any, name: string, description: string, matchExp: string, active: ActiveStatus, createdAt: any, updatedAt: any, deletedAt?: any | null, versions?: Array<{ __typename?: 'OSVersion', name: string, min: string, max: string }> | null };
+export type __OsDataFragment = { __typename?: 'OS', ID: any, name: string, description: string, matchNameExp: string, active: ActiveStatus, createdAt: any, updatedAt: any, deletedAt?: any | null, versions?: Array<{ __typename?: 'OS', name: string, ID: any }> | null };
 
 export type GetOsQueryVariables = Exact<{
   id: Scalars['ID64']['input'];
 }>;
 
 
-export type GetOsQuery = { __typename?: 'Query', result?: { __typename?: 'OSPayload', clientMutationID: string, data: { __typename?: 'OS', ID: any, name: string, description: string, matchExp: string, active: ActiveStatus, createdAt: any, updatedAt: any, deletedAt?: any | null, versions?: Array<{ __typename?: 'OSVersion', name: string, min: string, max: string }> | null } } | null };
+export type GetOsQuery = { __typename?: 'Query', result?: { __typename?: 'OSPayload', clientMutationID: string, data: { __typename?: 'OS', ID: any, name: string, description: string, matchNameExp: string, active: ActiveStatus, createdAt: any, updatedAt: any, deletedAt?: any | null, versions?: Array<{ __typename?: 'OS', name: string, ID: any }> | null } } | null };
 
 export type ListOsQueryVariables = Exact<{
   page?: Scalars['Int']['input'];
   size?: Scalars['Int']['input'];
   filter?: InputMaybe<OsListFilter>;
-  order?: InputMaybe<OsListOrder>;
+  order: Array<OsListOrder> | OsListOrder;
 }>;
 
 
-export type ListOsQuery = { __typename?: 'Query', result?: { __typename?: 'OSConnection', totalCount: number, list?: Array<{ __typename?: 'OS', ID: any, name: string, description: string, matchExp: string, active: ActiveStatus, createdAt: any, updatedAt: any, deletedAt?: any | null, versions?: Array<{ __typename?: 'OSVersion', name: string, min: string, max: string }> | null }> | null, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
+export type ListOsQuery = { __typename?: 'Query', result?: { __typename?: 'OSConnection', totalCount: number, list?: Array<{ __typename?: 'OS', ID: any, name: string, description: string, matchNameExp: string, active: ActiveStatus, createdAt: any, updatedAt: any, deletedAt?: any | null, versions?: Array<{ __typename?: 'OS', name: string, ID: any }> | null }> | null, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
 
 export type CreateOsMutationVariables = Exact<{
-  input: OsInput;
+  input: OsCreateInput;
 }>;
 
 
-export type CreateOsMutation = { __typename?: 'Mutation', result?: { __typename?: 'OSPayload', clientMutationID: string, data: { __typename?: 'OS', ID: any, name: string, description: string, matchExp: string, active: ActiveStatus, createdAt: any, updatedAt: any, deletedAt?: any | null, versions?: Array<{ __typename?: 'OSVersion', name: string, min: string, max: string }> | null } } | null };
+export type CreateOsMutation = { __typename?: 'Mutation', result?: { __typename?: 'OSPayload', clientMutationID: string, data: { __typename?: 'OS', ID: any, name: string, description: string, matchNameExp: string, active: ActiveStatus, createdAt: any, updatedAt: any, deletedAt?: any | null, versions?: Array<{ __typename?: 'OS', name: string, ID: any }> | null } } | null };
 
 export type UpdateOsMutationVariables = Exact<{
   id: Scalars['ID64']['input'];
-  input: OsInput;
+  input: OsUpdateInput;
 }>;
 
 
-export type UpdateOsMutation = { __typename?: 'Mutation', result?: { __typename?: 'OSPayload', clientMutationID: string, data: { __typename?: 'OS', ID: any, name: string, description: string, matchExp: string, active: ActiveStatus, createdAt: any, updatedAt: any, deletedAt?: any | null, versions?: Array<{ __typename?: 'OSVersion', name: string, min: string, max: string }> | null } } | null };
+export type UpdateOsMutation = { __typename?: 'Mutation', result?: { __typename?: 'OSPayload', clientMutationID: string, data: { __typename?: 'OS', ID: any, name: string, description: string, matchNameExp: string, active: ActiveStatus, createdAt: any, updatedAt: any, deletedAt?: any | null, versions?: Array<{ __typename?: 'OS', name: string, ID: any }> | null } } | null };
 
 export type __PageInfoFragment = { __typename?: 'PageInfo', total: number, page: number, count: number };
 
@@ -3427,76 +3515,76 @@ export type GetBrowserQueryVariables = Exact<{
 }>;
 
 
-export type GetBrowserQuery = { __typename?: 'Query', result?: { __typename?: 'BrowserPayload', clientMutationID: string, data: { __typename?: 'Browser', ID: any, name: string, description: string, matchExp: string, active: ActiveStatus, createdAt: any, updatedAt: any, deletedAt?: any | null, versions?: Array<{ __typename?: 'BrowserVersion', name: string, min: string, max: string }> | null } } | null };
+export type GetBrowserQuery = { __typename?: 'Query', result?: { __typename?: 'BrowserPayload', clientMutationID: string, data: { __typename?: 'Browser', ID: any, name: string, description: string, matchNameExp: string, active: ActiveStatus, createdAt: any, updatedAt: any, deletedAt?: any | null, versions?: Array<{ __typename?: 'Browser', name: string, ID: any }> | null } } | null };
 
 export type ListBrowsersQueryVariables = Exact<{
   page?: Scalars['Int']['input'];
   size?: Scalars['Int']['input'];
   filter?: InputMaybe<BrowserListFilter>;
-  order?: InputMaybe<BrowserListOrder>;
+  order?: InputMaybe<Array<BrowserListOrder> | BrowserListOrder>;
 }>;
 
 
-export type ListBrowsersQuery = { __typename?: 'Query', result?: { __typename?: 'BrowserConnection', totalCount: number, list: Array<{ __typename?: 'Browser', ID: any, name: string, description: string, matchExp: string, active: ActiveStatus, createdAt: any, updatedAt: any, deletedAt?: any | null, versions?: Array<{ __typename?: 'BrowserVersion', name: string, min: string, max: string }> | null }>, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
+export type ListBrowsersQuery = { __typename?: 'Query', result?: { __typename?: 'BrowserConnection', totalCount: number, list: Array<{ __typename?: 'Browser', ID: any, name: string, description: string, matchNameExp: string, active: ActiveStatus, createdAt: any, updatedAt: any, deletedAt?: any | null, versions?: Array<{ __typename?: 'Browser', name: string, ID: any }> | null }>, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
 
 export type NewBrowserMutationVariables = Exact<{
-  input: BrowserInput;
+  input: BrowserCreateInput;
 }>;
 
 
-export type NewBrowserMutation = { __typename?: 'Mutation', result?: { __typename?: 'BrowserPayload', clientMutationID: string, browserID: any, browser: { __typename?: 'Browser', ID: any, name: string, description: string, matchExp: string, active: ActiveStatus, createdAt: any, updatedAt: any, deletedAt?: any | null, versions?: Array<{ __typename?: 'BrowserVersion', name: string, min: string, max: string }> | null } } | null };
+export type NewBrowserMutation = { __typename?: 'Mutation', result?: { __typename?: 'BrowserPayload', clientMutationID: string, browserID: any, browser: { __typename?: 'Browser', ID: any, name: string, description: string, matchNameExp: string, active: ActiveStatus, createdAt: any, updatedAt: any, deletedAt?: any | null, versions?: Array<{ __typename?: 'Browser', name: string, ID: any }> | null } } | null };
 
 export type UpdateBrowserMutationVariables = Exact<{
   id: Scalars['ID64']['input'];
-  input: BrowserInput;
+  input: BrowserUpdateInput;
 }>;
 
 
-export type UpdateBrowserMutation = { __typename?: 'Mutation', result?: { __typename?: 'BrowserPayload', clientMutationID: string, browserID: any, browser: { __typename?: 'Browser', ID: any, name: string, description: string, matchExp: string, active: ActiveStatus, createdAt: any, updatedAt: any, deletedAt?: any | null, versions?: Array<{ __typename?: 'BrowserVersion', name: string, min: string, max: string }> | null } } | null };
+export type UpdateBrowserMutation = { __typename?: 'Mutation', result?: { __typename?: 'BrowserPayload', clientMutationID: string, browserID: any, browser: { __typename?: 'Browser', ID: any, name: string, description: string, matchNameExp: string, active: ActiveStatus, createdAt: any, updatedAt: any, deletedAt?: any | null, versions?: Array<{ __typename?: 'Browser', name: string, ID: any }> | null } } | null };
 
-export type __BrowserDataFragment = { __typename?: 'Browser', ID: any, name: string, description: string, matchExp: string, active: ActiveStatus, createdAt: any, updatedAt: any, deletedAt?: any | null, versions?: Array<{ __typename?: 'BrowserVersion', name: string, min: string, max: string }> | null };
+export type __BrowserDataFragment = { __typename?: 'Browser', ID: any, name: string, description: string, matchNameExp: string, active: ActiveStatus, createdAt: any, updatedAt: any, deletedAt?: any | null, versions?: Array<{ __typename?: 'Browser', name: string, ID: any }> | null };
 
 export type __DeviceTypeFragment = { __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string };
 
-export type __DeviceModelShortFragment = { __typename?: 'DeviceModel', ID: any, active: ActiveStatus, name: string, description: string, matchExp: string, makerID: any, createdAt: any, updatedAt: any, versions?: Array<{ __typename?: 'DeviceModelVersion', name: string, min: string, max: string }> | null, type?: { __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string } | null };
+export type __DeviceModelShortFragment = { __typename?: 'DeviceModel', ID: any, active: ActiveStatus, name: string, description: string, matchExp: string, createdAt: any, updatedAt: any, maker?: { __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any } | null, versions?: Array<{ __typename?: 'DeviceModel', name: string, ID: any }> | null, type?: { __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string } | null };
 
-export type __DeviceModelFragment = { __typename?: 'DeviceModel', ID: any, active: ActiveStatus, name: string, description: string, matchExp: string, makerID: any, createdAt: any, updatedAt: any, maker?: { __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any } | null, versions?: Array<{ __typename?: 'DeviceModelVersion', name: string, min: string, max: string }> | null, type?: { __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string } | null };
+export type __DeviceModelFragment = { __typename?: 'DeviceModel', ID: any, active: ActiveStatus, name: string, description: string, matchExp: string, createdAt: any, updatedAt: any, maker?: { __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any } | null, versions?: Array<{ __typename?: 'DeviceModel', name: string, ID: any }> | null, type?: { __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string } | null };
 
 export type __DeviceMakerShortFragment = { __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any };
 
-export type __DeviceMakerFragment = { __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any, types?: Array<{ __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string }> | null, models?: Array<{ __typename?: 'DeviceModel', ID: any, active: ActiveStatus, name: string, description: string, matchExp: string, makerID: any, createdAt: any, updatedAt: any, versions?: Array<{ __typename?: 'DeviceModelVersion', name: string, min: string, max: string }> | null, type?: { __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string } | null }> | null };
+export type __DeviceMakerFragment = { __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any, models?: Array<{ __typename?: 'DeviceModel', ID: any, active: ActiveStatus, name: string, description: string, matchExp: string, createdAt: any, updatedAt: any, maker?: { __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any } | null, versions?: Array<{ __typename?: 'DeviceModel', name: string, ID: any }> | null, type?: { __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string } | null }> | null };
 
 export type GetDeviceMakerQueryVariables = Exact<{
   id: Scalars['ID64']['input'];
 }>;
 
 
-export type GetDeviceMakerQuery = { __typename?: 'Query', result?: { __typename?: 'DeviceMakerPayload', data: { __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any, types?: Array<{ __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string }> | null, models?: Array<{ __typename?: 'DeviceModel', ID: any, active: ActiveStatus, name: string, description: string, matchExp: string, makerID: any, createdAt: any, updatedAt: any, versions?: Array<{ __typename?: 'DeviceModelVersion', name: string, min: string, max: string }> | null, type?: { __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string } | null }> | null } } | null };
+export type GetDeviceMakerQuery = { __typename?: 'Query', result?: { __typename?: 'DeviceMakerPayload', data: { __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any, models?: Array<{ __typename?: 'DeviceModel', ID: any, active: ActiveStatus, name: string, description: string, matchExp: string, createdAt: any, updatedAt: any, maker?: { __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any } | null, versions?: Array<{ __typename?: 'DeviceModel', name: string, ID: any }> | null, type?: { __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string } | null }> | null } } | null };
 
 export type ListDeviceMakersQueryVariables = Exact<{
   page?: Scalars['Int']['input'];
   size?: Scalars['Int']['input'];
   filter?: InputMaybe<DeviceMakerListFilter>;
-  order?: InputMaybe<DeviceMakerListOrder>;
+  order?: InputMaybe<Array<DeviceMakerListOrder> | DeviceMakerListOrder>;
 }>;
 
 
-export type ListDeviceMakersQuery = { __typename?: 'Query', result?: { __typename?: 'DeviceMakerConnection', list: Array<{ __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any, types?: Array<{ __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string }> | null, models?: Array<{ __typename?: 'DeviceModel', ID: any, active: ActiveStatus, name: string, description: string, matchExp: string, makerID: any, createdAt: any, updatedAt: any, versions?: Array<{ __typename?: 'DeviceModelVersion', name: string, min: string, max: string }> | null, type?: { __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string } | null }> | null }>, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
+export type ListDeviceMakersQuery = { __typename?: 'Query', result?: { __typename?: 'DeviceMakerConnection', list: Array<{ __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any, models?: Array<{ __typename?: 'DeviceModel', ID: any, active: ActiveStatus, name: string, description: string, matchExp: string, createdAt: any, updatedAt: any, maker?: { __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any } | null, versions?: Array<{ __typename?: 'DeviceModel', name: string, ID: any }> | null, type?: { __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string } | null }> | null }>, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
 
 export type CreateDeviceMakerMutationVariables = Exact<{
-  input: DeviceMakerInput;
+  input: DeviceMakerCreateInput;
 }>;
 
 
-export type CreateDeviceMakerMutation = { __typename?: 'Mutation', result?: { __typename?: 'DeviceMakerPayload', data: { __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any, types?: Array<{ __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string }> | null, models?: Array<{ __typename?: 'DeviceModel', ID: any, active: ActiveStatus, name: string, description: string, matchExp: string, makerID: any, createdAt: any, updatedAt: any, versions?: Array<{ __typename?: 'DeviceModelVersion', name: string, min: string, max: string }> | null, type?: { __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string } | null }> | null } } | null };
+export type CreateDeviceMakerMutation = { __typename?: 'Mutation', result?: { __typename?: 'DeviceMakerPayload', data: { __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any, models?: Array<{ __typename?: 'DeviceModel', ID: any, active: ActiveStatus, name: string, description: string, matchExp: string, createdAt: any, updatedAt: any, maker?: { __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any } | null, versions?: Array<{ __typename?: 'DeviceModel', name: string, ID: any }> | null, type?: { __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string } | null }> | null } } | null };
 
 export type UpdateDeviceMakerMutationVariables = Exact<{
   id: Scalars['ID64']['input'];
-  input: DeviceMakerInput;
+  input: DeviceMakerUpdateInput;
 }>;
 
 
-export type UpdateDeviceMakerMutation = { __typename?: 'Mutation', result?: { __typename?: 'DeviceMakerPayload', data: { __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any, types?: Array<{ __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string }> | null, models?: Array<{ __typename?: 'DeviceModel', ID: any, active: ActiveStatus, name: string, description: string, matchExp: string, makerID: any, createdAt: any, updatedAt: any, versions?: Array<{ __typename?: 'DeviceModelVersion', name: string, min: string, max: string }> | null, type?: { __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string } | null }> | null } } | null };
+export type UpdateDeviceMakerMutation = { __typename?: 'Mutation', result?: { __typename?: 'DeviceMakerPayload', data: { __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any, models?: Array<{ __typename?: 'DeviceModel', ID: any, active: ActiveStatus, name: string, description: string, matchExp: string, createdAt: any, updatedAt: any, maker?: { __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any } | null, versions?: Array<{ __typename?: 'DeviceModel', name: string, ID: any }> | null, type?: { __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string } | null }> | null } } | null };
 
 export type ListDeviceTypesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3508,17 +3596,17 @@ export type GetDeviceModelQueryVariables = Exact<{
 }>;
 
 
-export type GetDeviceModelQuery = { __typename?: 'Query', result?: { __typename?: 'DeviceModelPayload', data: { __typename?: 'DeviceModel', ID: any, active: ActiveStatus, name: string, description: string, matchExp: string, makerID: any, createdAt: any, updatedAt: any, maker?: { __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any } | null, versions?: Array<{ __typename?: 'DeviceModelVersion', name: string, min: string, max: string }> | null, type?: { __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string } | null } } | null };
+export type GetDeviceModelQuery = { __typename?: 'Query', result?: { __typename?: 'DeviceModelPayload', data: { __typename?: 'DeviceModel', ID: any, active: ActiveStatus, name: string, description: string, matchExp: string, createdAt: any, updatedAt: any, maker?: { __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any } | null, versions?: Array<{ __typename?: 'DeviceModel', name: string, ID: any }> | null, type?: { __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string } | null } } | null };
 
 export type ListDeviceModelsQueryVariables = Exact<{
   page?: Scalars['Int']['input'];
   size?: Scalars['Int']['input'];
   filter?: InputMaybe<DeviceModelListFilter>;
-  order?: InputMaybe<DeviceModelListOrder>;
+  order?: InputMaybe<Array<DeviceModelListOrder> | DeviceModelListOrder>;
 }>;
 
 
-export type ListDeviceModelsQuery = { __typename?: 'Query', result?: { __typename?: 'DeviceModelConnection', list: Array<{ __typename?: 'DeviceModel', ID: any, active: ActiveStatus, name: string, description: string, matchExp: string, makerID: any, createdAt: any, updatedAt: any, maker?: { __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any } | null, versions?: Array<{ __typename?: 'DeviceModelVersion', name: string, min: string, max: string }> | null, type?: { __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string } | null }>, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
+export type ListDeviceModelsQuery = { __typename?: 'Query', result?: { __typename?: 'DeviceModelConnection', list: Array<{ __typename?: 'DeviceModel', ID: any, active: ActiveStatus, name: string, description: string, matchExp: string, createdAt: any, updatedAt: any, maker?: { __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any } | null, versions?: Array<{ __typename?: 'DeviceModel', name: string, ID: any }> | null, type?: { __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string } | null }>, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
 
 export type __StatItemFragment = { __typename?: 'StatisticAdItem', profit: number, bidPrice: number, requests: any, impressions: any, views: any, directs: any, clicks: any, wins: any, skips: any, nobids: any, errors: any, CTR: number, eCPM: number, eCPC: number, keys?: Array<{ __typename?: 'StatisticItemKey', key: StatisticKey, value: any, text: string }> | null };
 
@@ -3681,12 +3769,11 @@ export const __OsDataFragmentDoc = gql`
   ID
   name
   description
-  matchExp
+  matchNameExp
   active
   versions {
     name
-    min
-    max
+    ID
   }
   createdAt
   updatedAt
@@ -3832,16 +3919,26 @@ export const __BrowserDataFragmentDoc = gql`
   ID
   name
   description
-  matchExp
+  matchNameExp
   active
   versions {
     name
-    min
-    max
+    ID
   }
   createdAt
   updatedAt
   deletedAt
+}
+    `;
+export const __DeviceMakerShortFragmentDoc = gql`
+    fragment __deviceMakerShort on DeviceMaker {
+  ID
+  name
+  description
+  active
+  matchExp
+  createdAt
+  updatedAt
 }
     `;
 export const __DeviceTypeFragmentDoc = gql`
@@ -3859,11 +3956,12 @@ export const __DeviceModelShortFragmentDoc = gql`
   name
   description
   matchExp
-  makerID
+  maker {
+    ...__deviceMakerShort
+  }
   versions {
     name
-    min
-    max
+    ID
   }
   type {
     ...__deviceType
@@ -3871,18 +3969,8 @@ export const __DeviceModelShortFragmentDoc = gql`
   createdAt
   updatedAt
 }
-    ${__DeviceTypeFragmentDoc}`;
-export const __DeviceMakerShortFragmentDoc = gql`
-    fragment __deviceMakerShort on DeviceMaker {
-  ID
-  name
-  description
-  active
-  matchExp
-  createdAt
-  updatedAt
-}
-    `;
+    ${__DeviceMakerShortFragmentDoc}
+${__DeviceTypeFragmentDoc}`;
 export const __DeviceModelFragmentDoc = gql`
     fragment __deviceModel on DeviceModel {
   ...__deviceModelShort
@@ -3895,15 +3983,11 @@ ${__DeviceMakerShortFragmentDoc}`;
 export const __DeviceMakerFragmentDoc = gql`
     fragment __deviceMaker on DeviceMaker {
   ...__deviceMakerShort
-  types {
-    ...__deviceType
-  }
   models {
     ...__deviceModelShort
   }
 }
     ${__DeviceMakerShortFragmentDoc}
-${__DeviceTypeFragmentDoc}
 ${__DeviceModelShortFragmentDoc}`;
 export const __StatItemFragmentDoc = gql`
     fragment __statItem on StatisticAdItem {
@@ -4696,7 +4780,7 @@ export type GetOsLazyQueryHookResult = ReturnType<typeof useGetOsLazyQuery>;
 export type GetOsSuspenseQueryHookResult = ReturnType<typeof useGetOsSuspenseQuery>;
 export type GetOsQueryResult = Apollo.QueryResult<GetOsQuery, GetOsQueryVariables>;
 export const ListOsDocument = gql`
-    query ListOS($page: Int! = 0, $size: Int! = 10, $filter: OSListFilter = null, $order: OSListOrder = null) {
+    query ListOS($page: Int! = 0, $size: Int! = 10, $filter: OSListFilter = null, $order: [OSListOrder!]!) {
   result: listOS(
     filter: $filter
     order: $order
@@ -4733,7 +4817,7 @@ ${__PageInfoFragmentDoc}`;
  *   },
  * });
  */
-export function useListOsQuery(baseOptions?: Apollo.QueryHookOptions<ListOsQuery, ListOsQueryVariables>) {
+export function useListOsQuery(baseOptions: Apollo.QueryHookOptions<ListOsQuery, ListOsQueryVariables> & ({ variables: ListOsQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<ListOsQuery, ListOsQueryVariables>(ListOsDocument, options);
       }
@@ -4750,7 +4834,7 @@ export type ListOsLazyQueryHookResult = ReturnType<typeof useListOsLazyQuery>;
 export type ListOsSuspenseQueryHookResult = ReturnType<typeof useListOsSuspenseQuery>;
 export type ListOsQueryResult = Apollo.QueryResult<ListOsQuery, ListOsQueryVariables>;
 export const CreateOsDocument = gql`
-    mutation CreateOS($input: OSInput!) {
+    mutation CreateOS($input: OSCreateInput!) {
   result: createOS(input: $input) {
     clientMutationID
     data: OS {
@@ -4786,7 +4870,7 @@ export type CreateOsMutationHookResult = ReturnType<typeof useCreateOsMutation>;
 export type CreateOsMutationResult = Apollo.MutationResult<CreateOsMutation>;
 export type CreateOsMutationOptions = Apollo.BaseMutationOptions<CreateOsMutation, CreateOsMutationVariables>;
 export const UpdateOsDocument = gql`
-    mutation UpdateOS($id: ID64!, $input: OSInput!) {
+    mutation UpdateOS($id: ID64!, $input: OSUpdateInput!) {
   result: updateOS(ID: $id, input: $input) {
     clientMutationID
     data: OS {
@@ -6083,7 +6167,7 @@ export type GetBrowserLazyQueryHookResult = ReturnType<typeof useGetBrowserLazyQ
 export type GetBrowserSuspenseQueryHookResult = ReturnType<typeof useGetBrowserSuspenseQuery>;
 export type GetBrowserQueryResult = Apollo.QueryResult<GetBrowserQuery, GetBrowserQueryVariables>;
 export const ListBrowsersDocument = gql`
-    query ListBrowsers($page: Int! = 0, $size: Int! = 10, $filter: BrowserListFilter = null, $order: BrowserListOrder = null) {
+    query ListBrowsers($page: Int! = 0, $size: Int! = 10, $filter: BrowserListFilter = null, $order: [BrowserListOrder!] = null) {
   result: listBrowsers(
     filter: $filter
     order: $order
@@ -6137,7 +6221,7 @@ export type ListBrowsersLazyQueryHookResult = ReturnType<typeof useListBrowsersL
 export type ListBrowsersSuspenseQueryHookResult = ReturnType<typeof useListBrowsersSuspenseQuery>;
 export type ListBrowsersQueryResult = Apollo.QueryResult<ListBrowsersQuery, ListBrowsersQueryVariables>;
 export const NewBrowserDocument = gql`
-    mutation NewBrowser($input: BrowserInput!) {
+    mutation NewBrowser($input: BrowserCreateInput!) {
   result: createBrowser(input: $input) {
     clientMutationID
     browserID
@@ -6174,7 +6258,7 @@ export type NewBrowserMutationHookResult = ReturnType<typeof useNewBrowserMutati
 export type NewBrowserMutationResult = Apollo.MutationResult<NewBrowserMutation>;
 export type NewBrowserMutationOptions = Apollo.BaseMutationOptions<NewBrowserMutation, NewBrowserMutationVariables>;
 export const UpdateBrowserDocument = gql`
-    mutation UpdateBrowser($id: ID64!, $input: BrowserInput!) {
+    mutation UpdateBrowser($id: ID64!, $input: BrowserUpdateInput!) {
   result: updateBrowser(ID: $id, input: $input) {
     clientMutationID
     browserID
@@ -6254,7 +6338,7 @@ export type GetDeviceMakerLazyQueryHookResult = ReturnType<typeof useGetDeviceMa
 export type GetDeviceMakerSuspenseQueryHookResult = ReturnType<typeof useGetDeviceMakerSuspenseQuery>;
 export type GetDeviceMakerQueryResult = Apollo.QueryResult<GetDeviceMakerQuery, GetDeviceMakerQueryVariables>;
 export const ListDeviceMakersDocument = gql`
-    query ListDeviceMakers($page: Int! = 0, $size: Int! = 10, $filter: DeviceMakerListFilter = null, $order: DeviceMakerListOrder = null) {
+    query ListDeviceMakers($page: Int! = 0, $size: Int! = 10, $filter: DeviceMakerListFilter = null, $order: [DeviceMakerListOrder!] = null) {
   result: listDeviceMakers(
     filter: $filter
     order: $order
@@ -6307,7 +6391,7 @@ export type ListDeviceMakersLazyQueryHookResult = ReturnType<typeof useListDevic
 export type ListDeviceMakersSuspenseQueryHookResult = ReturnType<typeof useListDeviceMakersSuspenseQuery>;
 export type ListDeviceMakersQueryResult = Apollo.QueryResult<ListDeviceMakersQuery, ListDeviceMakersQueryVariables>;
 export const CreateDeviceMakerDocument = gql`
-    mutation CreateDeviceMaker($input: DeviceMakerInput!) {
+    mutation CreateDeviceMaker($input: DeviceMakerCreateInput!) {
   result: createDeviceMaker(input: $input) {
     data: maker {
       ...__deviceMaker
@@ -6342,7 +6426,7 @@ export type CreateDeviceMakerMutationHookResult = ReturnType<typeof useCreateDev
 export type CreateDeviceMakerMutationResult = Apollo.MutationResult<CreateDeviceMakerMutation>;
 export type CreateDeviceMakerMutationOptions = Apollo.BaseMutationOptions<CreateDeviceMakerMutation, CreateDeviceMakerMutationVariables>;
 export const UpdateDeviceMakerDocument = gql`
-    mutation UpdateDeviceMaker($id: ID64!, $input: DeviceMakerInput!) {
+    mutation UpdateDeviceMaker($id: ID64!, $input: DeviceMakerUpdateInput!) {
   result: updateDeviceMaker(ID: $id, input: $input) {
     data: maker {
       ...__deviceMaker
@@ -6459,7 +6543,7 @@ export type GetDeviceModelLazyQueryHookResult = ReturnType<typeof useGetDeviceMo
 export type GetDeviceModelSuspenseQueryHookResult = ReturnType<typeof useGetDeviceModelSuspenseQuery>;
 export type GetDeviceModelQueryResult = Apollo.QueryResult<GetDeviceModelQuery, GetDeviceModelQueryVariables>;
 export const ListDeviceModelsDocument = gql`
-    query ListDeviceModels($page: Int! = 0, $size: Int! = 10, $filter: DeviceModelListFilter = null, $order: DeviceModelListOrder = null) {
+    query ListDeviceModels($page: Int! = 0, $size: Int! = 10, $filter: DeviceModelListFilter = null, $order: [DeviceModelListOrder!] = null) {
   result: listDeviceModels(
     filter: $filter
     order: $order

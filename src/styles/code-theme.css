@@ -1,0 +1,113 @@
+/* stylelint-disable */
+
+code[class*="language-"],
+pre[class*="language-"] {
+  background: none;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  font-size: 13px;
+  line-height: 20px;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+
+  @apply text-[#68685d] dark:text-[#adada0];
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  overflow: auto;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  white-space: normal;
+}
+
+.token.comment,
+.token.block-comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  @apply text-[#a9b3c0] dark:text-[#6A7480];
+}
+
+.token.punctuation {
+  @apply text-[#5C6E74];
+}
+
+.token.tag,
+.token.attr-name,
+.token.namespace,
+.token.deleted {
+  @apply dark:text-[#d3dae2] text-[#ae4040];
+}
+
+.token.function-name {
+  @apply text-[#945379];
+}
+
+.token.boolean,
+.token.function {
+  @apply text-[#818652] dark:text-[#dcddcf];
+}
+
+.token.number {
+  @apply dark:text-[#B99365];
+}
+
+.token.property,
+.token.class-name,
+.token.constant,
+.token.symbol {
+  @apply text-[#BF666B] dark:text-[#b8945a];
+}
+
+.token.selector,
+.token.important,
+.token.atrule,
+.token.keyword,
+.token.builtin {
+  @apply text-[#944545] dark:text-[#945353];
+}
+
+.token.string,
+.token.char,
+.token.attr-value,
+.token.regex,
+.token.variable {
+  @apply text-[#689F5D] dark:text-[#BEB968];
+}
+
+.token.operator {
+  @apply text-[#727275] dark:text-[#7e8084];
+}
+.token.entity,
+.token.url {
+  @apply text-[#ED7633] dark:text-[#DEC087];
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.inserted {
+  @apply text-[#ED7633] dark:text-[#DEC087];
+}

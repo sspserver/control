@@ -4,55 +4,102 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5483ae0-0faa-4d09-a539-795505d72254" name="Changes" comment="* Implement range calendar&#10;* Layouts Statistic filter&#10;* Statistic filter on each page&#10;* Store filter metrics&#10;* Improve statistic chart">
-      <change afterPath="$PROJECT_DIR$/src/components/CardChart/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/DatePicker/DatePicker.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/DatePicker/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilter.const.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilter.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider/StatisticFilterProvider.const.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider/StatisticFilterProvider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider/StatisticFilterProvider.types.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider/useStatisticFilter.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider/useStatisticFilterProvider.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider/useStatisticFilterStore.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/useStatisticFilter.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Calendar/Calendar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Calendar/CalendarChevron.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Calendar/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/visualizations/CustomTooltip.tsx" afterDir="false" />
+    <list default="true" id="d5483ae0-0faa-4d09-a539-795505d72254" name="Changes" comment="* fixes&#10;* AdUnit code dialog&#10;* Setting page forms&#10;* Mobile nav bar&#10;* Mobile Header&#10;* Filter&#10;* Animations&#10;* Request fixes&#10;* Account dropdown&#10;* Mobile view improves">
+      <change afterPath="$PROJECT_DIR$/lib/errors/getGraphQlErrorStructure.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/graphql/queries/networkFormOptions.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/loader.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(root)/loading.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(root)/rtb/statistics/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/@drawer/loading.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/AnimatedCounter.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DatePicker/DatePicker.const.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/MobileBottomNavigation/MobileBottomNavigation.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/MobileHeader/MobileHeader.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/MobileHeader/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/PageLoadSpinner.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/PageStreamingSpinner.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/MobileStatisticFilter/MobileStatisticFilter.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/MobileStatisticFilter/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/MobileStatisticFilter/useMobileStatisticFilter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/UserDropdown/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/UserDropdown/useUserDropdown.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/CodeSnippet/CodeSnippet.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/ScrollArea/ScrollArea.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/ScrollArea/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Tabs/Tabs.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Tabs/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitCard/AdUnitCardSubTitleCode/AdUnitCardSubTitleCode.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitCard/AdUnitCardSubTitleCode/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitCard/AdUnitCodeDialog/AdUnitCodeDialog.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitCard/AdUnitCodeDialog/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitCard/AdUnitCodeDialog/useAdUnitCodeDialog.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/SettingsPage/AccountForm/AccountForm.const.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/SettingsPage/AccountForm/AccountForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/SettingsPage/AccountForm/AccountForm.types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/SettingsPage/AccountForm/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/SettingsPage/AccountForm/useAccountForm.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/SettingsPage/NetworkForm/NetworkForm.const.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/SettingsPage/NetworkForm/NetworkForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/SettingsPage/NetworkForm/NetworkForm.types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/SettingsPage/NetworkForm/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/SettingsPage/NetworkForm/useNetworkForm.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/SettingsPage/SettingsPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/SettingsPage/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/SettingsPage/useSettingsPage.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/code-line-highlight.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/code-theme.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-protocol/os.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/api-protocol/os.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-protocol/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/api-protocol/schema.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/configs/routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/api/switchAccount.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/api/switchAccount.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(root)/adunit/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(root)/adunit/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(root)/applications/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(root)/applications/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(root)/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(root)/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(root)/page.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(root)/rtb/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(root)/rtb/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppProviders.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppProviders.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CardChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CardChart/CardChart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/GradientAreaChart/GradientAreaChart.const.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GradientAreaChart/GradientAreaChart.const.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(root)/settings/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(root)/settings/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AdFormatsSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdFormatsSelect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AdminAvatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserDropdown/AdminAvatar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CardChart/CardChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CardChart/CardChart.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CategoriesSelect/CategoriesSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CategoriesSelect/CategoriesSelect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Checkbox/Checkbox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Checkbox/Checkbox.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DatePicker/DatePicker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DatePicker/DatePicker.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DevicesSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DevicesSelect.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/GradientAreaChart/GradientAreaChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GradientAreaChart/GradientAreaChart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SectionFilter/SectionFilter.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SectionFilter/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CardChart/CardChart.utils.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/visualizations/LinearGradient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/visualizations/LinearGradient.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitCard/AdUnitActions/AdUnitActions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitCard/AdUnitActions/AdUnitActions.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitCard/AdUnitActions/useAdUnitActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitCard/AdUnitActions/useAdUnitActions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Icons/ButtonSpinner.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Icons/ButtonSpinner.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Link.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Link.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MainMenu/MainMenu.const.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MainMenu/MainMenu.const.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MainMenu/MainMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MainMenu/MainMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/OsSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/OsSelect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PageFormDrawer/PageFormDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PageFormDrawer/PageFormDrawer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Toast/ToastProvider/ToastProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Toast/ToastProvider/ToastProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserDropdown.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserDropdown/UserDropdown.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Avatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Avatar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Button/ButtonLoading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Button/ButtonLoading.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Calendar/Calendar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Calendar/Calendar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/Multiselect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/Multiselect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/useMultiselect.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/useMultiselect.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Textarea.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Textarea.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Toast/Toast.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Toast/Toast.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/graphql.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/graphql.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitCard/AdUnitCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitCard/AdUnitCard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/AdUnitPage/useAdUnitPage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdUnitPage/useAdUnitPage.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ApplicationsPage/ApplicationCard/ApplicationActions/ApplicationActions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ApplicationsPage/ApplicationCard/ApplicationActions/ApplicationActions.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ApplicationsPage/ApplicationCard/ApplicationActions/useApplicationActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ApplicationsPage/ApplicationCard/ApplicationActions/useApplicationActions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ApplicationsPage/ApplicationCard/ApplicationCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ApplicationsPage/ApplicationCard/ApplicationCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ApplicationsPage/ApplicationDrawerOpenButton/ApplicationDrawerOpenButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ApplicationsPage/ApplicationDrawerOpenButton/ApplicationDrawerOpenButton.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/ApplicationsPage/ApplicationsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ApplicationsPage/ApplicationsPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ApplicationsPage/useApplicationsPage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ApplicationsPage/useApplicationsPage.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/RtbPage/RtbCard/RtbActions/RtbActions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbCard/RtbActions/RtbActions.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/RtbPage/RtbCard/RtbActions/useRtbActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbCard/RtbActions/useRtbActions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/RtbPage/RtbCard/RtbCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbCard/RtbCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/RtbPage/RtbCreateForm/RtbCreateForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbCreateForm/RtbCreateForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/RtbPage/RtbDrawerOpenButton/RtbDrawerOpenButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbDrawerOpenButton/RtbDrawerOpenButton.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/RtbPage/RtbPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RtbPage/RtbPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/RtbPage/useRtbPage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RtbPage/useRtbPage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SignInPage/SignInForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SignInPage/SignInForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SignInPage/useSignInForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SignInPage/useSignInForm.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/submodules/api" beforeDir="false" afterPath="$PROJECT_DIR$/submodules/api" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/submodules/api/cmd/api/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/submodules/api/cmd/api/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,9 +156,9 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "issues/12",
+    "git-widget-placeholder": "issues/14",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/src/components/StatisticFilter/StatisticFilterProvider",
+    "last_opened_file_path": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/src/pages/SettingsPage",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.stylelint": "true",
@@ -133,18 +180,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider" />
+      <recent name="$PROJECT_DIR$/src/pages/SettingsPage" />
       <recent name="$PROJECT_DIR$/src/components" />
-      <recent name="$PROJECT_DIR$/src/app/@drawer" />
-      <recent name="$PROJECT_DIR$/src/pages/RtbPage" />
-      <recent name="$PROJECT_DIR$/src/app/(root)/rtb" />
+      <recent name="$PROJECT_DIR$/src/app/(root)/adunit/[ID]" />
+      <recent name="$PROJECT_DIR$/src/app/(root)" />
+      <recent name="$PROJECT_DIR$/src/pages/SettingsPage/AccountForm" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/components/CardChart" />
-      <recent name="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider" />
-      <recent name="$PROJECT_DIR$/src/components/PageFormDrawer" />
-      <recent name="$PROJECT_DIR$/src/components/GradientAreaChart" />
-      <recent name="$PROJECT_DIR$/src/page" />
+      <recent name="$PROJECT_DIR$/src/pages/AdUnitPage/AdUnitCard/AdUnitCardSubTitleCode" />
+      <recent name="$PROJECT_DIR$/src/components/StatisticFilter/MobileStatisticFilter" />
+      <recent name="$PROJECT_DIR$/src/components/StatisticFilter" />
+      <recent name="$PROJECT_DIR$/src/app/@drawer" />
+      <recent name="$PROJECT_DIR$/src/app" />
     </key>
   </component>
   <component name="RunManager" selected="npm.gql-gen">
@@ -195,6 +242,8 @@
         <item itemvalue="npm.gql-gen" />
         <item itemvalue="Docker.develop.database: Compose Deployment" />
         <item itemvalue="Docker.develop.api: Compose Deployment" />
+        <item itemvalue="npm.gql-gen" />
+        <item itemvalue="Docker.develop.database: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -219,6 +268,9 @@
       <workItem from="1738404436837" duration="127707000" />
       <workItem from="1739607811114" duration="10000" />
       <workItem from="1739607827533" duration="28918000" />
+      <workItem from="1740773320200" duration="28853000" />
+      <workItem from="1740898960546" duration="6818000" />
+      <workItem from="1740931930597" duration="56524000" />
     </task>
     <task id="LOCAL-00001" summary="#6 Applications page">
       <option name="closed" value="true" />
@@ -293,7 +345,8 @@
     <MESSAGE value="#7.2 Applications page edit/create" />
     <MESSAGE value="* RTB Page&#10;* RTB Edit/Create Form&#10;* Select group in Multiselect" />
     <MESSAGE value="* Implement range calendar&#10;* Layouts Statistic filter&#10;* Statistic filter on each page&#10;* Store filter metrics&#10;* Improve statistic chart" />
-    <option name="LAST_COMMIT_MESSAGE" value="* Implement range calendar&#10;* Layouts Statistic filter&#10;* Statistic filter on each page&#10;* Store filter metrics&#10;* Improve statistic chart" />
+    <MESSAGE value="* fixes&#10;* AdUnit code dialog&#10;* Setting page forms&#10;* Mobile nav bar&#10;* Mobile Header&#10;* Filter&#10;* Animations&#10;* Request fixes&#10;* Account dropdown&#10;* Mobile view improves" />
+    <option name="LAST_COMMIT_MESSAGE" value="* fixes&#10;* AdUnit code dialog&#10;* Setting page forms&#10;* Mobile nav bar&#10;* Mobile Header&#10;* Filter&#10;* Animations&#10;* Request fixes&#10;* Account dropdown&#10;* Mobile view improves" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

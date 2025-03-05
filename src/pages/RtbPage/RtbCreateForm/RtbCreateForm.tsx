@@ -132,9 +132,9 @@ function RtbCreateForm({ onCancel, onSubmit }: RTBCreateFormProps) {
                     label="Request Type"
                     name="requestType"
                     items={requestTypeOptions}
-                    value={values.method}
+                    value={values.requestType}
                     onChange={value => setFieldValue('requestType', value)}
-                    error={errors.method}
+                    error={errors.requestType}
                   />
                 </div>
                 <div className="pb-4">

@@ -2,10 +2,9 @@ import type { StatisticAdItem } from '@/generated/graphql';
 import { statisticsFilterFields } from '@components/StatisticFilter/StatisticFilter.const';
 import { Caption } from '@tailus-ui/typography';
 import { LinearGradient } from '@tailus-ui/visualizations';
-import CustomTooltip from '@tailus-ui/visualizations/CustomTooltip';
 import { area } from '@tailus/themer';
 import React from 'react';
-import { Area, AreaChart, ResponsiveContainer, Tooltip } from 'recharts';
+import { Area, AreaChart, ResponsiveContainer } from 'recharts';
 
 // type Fill = 'Primary' | 'Secondary' | 'Accent' | 'Gray' | 'Neutral';
 type Intent = 'primary' | 'secondary' | 'accent' | 'gray' | 'neutral';
@@ -35,10 +34,10 @@ function GradientAreaChart({ intent, data = [], showMessage, dataKey }: Gradient
                 />
               ))}
             </defs>
-            <Tooltip
-              cursor={{ stroke: 'var(--ui-border-color)', strokeWidth: 1 }}
-              content={<CustomTooltip payload={[]} active fancy label="keys" className="px-2 py-2 " />}
-            />
+            {/* <Tooltip */}
+            {/*  cursor={{ stroke: 'var(--ui-border-color)', strokeWidth: 1 }} */}
+            {/*  content={<CustomTooltip payload={[]} active fancy label="keys" className="px-2 py-2 " />} */}
+            {/* /> */}
             {/* <CartesianGrid horizontal={false} stroke="var(--ui-border-color)" strokeDasharray={3} /> */}
             <Area
               className={area({ intent })}

@@ -7,7 +7,7 @@ function useMultiselect(
   onChange: (values: (number | string)[]) => void,
 ) {
   const [isOpen, setOpen] = React.useState(false);
-  const selectedItems = data.flatMap(({ group, ...restProps }) => (group || { ...restProps })).filter(({ value }) => values.includes(value));
+  const selectedItems = data.flatMap(({ group, ...restProps }) => (group || { ...restProps })).filter(({ value }) => values.includes(Number(value)));
   const selectedPlaceholder = selectedItems.map(({ name }) => name).join(', ');
   const changePopoverRootOpenHandler = () => setOpen(!isOpen);
   const selectCommandItemHandler = (value: string) => {

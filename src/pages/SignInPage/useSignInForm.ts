@@ -1,24 +1,21 @@
 import type { GraphQLFormattedError } from 'graphql/index';
 import type React from 'react';
 import type { UserCredentials } from './SignInForm.types';
+import { useToastProviderContext } from '@components/Toast';
+import { ShieldExclamationIcon } from '@heroicons/react/16/solid';
 import CustomGraphQLError from '@lib/errors/CustomGraphQLError';
 import { getCsrfToken, signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import { useMemo, useState } from 'react';
+import { createElement, useMemo, useState } from 'react';
 import { defaultUserCredentials, signInDefaultOptions } from './SignInForm.const';
 
 function useSignInForm() {
-  const { push } = useRouter();
+  const { showToast } = useToastProviderContext();
   const [userCredentials, setUserCredentials] = useState<UserCredentials>(defaultUserCredentials);
   const [error, setError] = useState<ReadonlyArray<GraphQLFormattedError>>([]);
   const signInFormErrors = useMemo(() => error.reduce<Record<string, string>>((acc, { message, path = [] }) => ({ ...acc, [path?.join('.')]: message }), {}), [
     error,
   ]);
   const [isLoading, setLoading] = useState(false);
-  // const { data: _session } = useSession();
-  // const session = _session as any;
-  // const isHalfAuthorized = !!session;
-  // const accessToken: string = useSearchParams().get('access_token') || '';
   const changeUserCredentialInputHandler = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = target;
 
@@ -43,48 +40,32 @@ function useSignInForm() {
       const result = await signIn('credentials', options);
 
       if (result && result.error) {
-        const graphQLError = CustomGraphQLError.toGraphQLFormattedError(result.error);
+        let graphQLError = CustomGraphQLError.toGraphQLFormattedError(result.error);
+
+        if (!graphQLError.length) {
+          graphQLError = [
+            {
+              message: 'Something went wrong',
+              path: ['login'],
+            },
+          ];
+        }
 
         setError(graphQLError);
       } else {
-        push(options.callbackUrl);
+        location.href = options.callbackUrl;
       }
-    } catch (err) {
-      console.error('error: ', err);
-      // TODO: implement the Toast component
-      // snackbar.error(err+'');
+    } catch (error) {
+      console.error(error);
+      showToast({
+        title: 'Something went wrong',
+        description: 'Please try again later',
+        icon: createElement(ShieldExclamationIcon, { className: 'w-4 h-4 text-danger-600' }),
+      });
     }
 
     setLoading(false);
   };
-
-  // useEffect(() => {
-  //   (async () => {
-  //     if (!isHalfAuthorized && !!accessToken) {
-  //       setIsSubmit(true);
-  //       const options = {
-  //         ...signInDefaultOptions,
-  //         token: accessToken,
-  //         csrfToken: await getCsrfToken(),
-  //       };
-  //       const result = await signIn('token', options);
-  //
-  //       if (result && result.error) {
-  //         const graphQLError = CustomGraphQLError.toGraphQLFormattedError(result.error);
-  //
-  //         setError(graphQLError);
-  //         // snackbar.error(result.error);
-  //       } else {
-  //         // window.location.href = result?.url || options.callbackUrl;
-  //       }
-  //     }
-  //   })().catch((err) => {
-  //     console.error('error: ', err);
-  //     // snackbar.error(err+'');
-  //   }).finally(() => {
-  //     setIsSubmit(false);
-  //   });
-  // }, [accessToken, isHalfAuthorized]);
 
   return {
     isLoading,

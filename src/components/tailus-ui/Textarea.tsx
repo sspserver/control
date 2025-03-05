@@ -12,7 +12,16 @@ export type TextAreaProps = {
   error?: React.ReactNode;
 } & Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> & InputProps;
 
-export const Textarea = ({ ref: forwardedRef, error, className, label, variant = 'mixed', fancy = false, size = 'md', ...props }: TextAreaProps & { ref?: React.RefObject<HTMLTextAreaElement> }) => {
+export const Textarea = ({
+  ref: forwardedRef,
+  error,
+  className,
+  label,
+  variant = 'mixed',
+  fancy = false,
+  size = 'md',
+  ...props
+}: TextAreaProps & { ref?: React.RefObject<HTMLTextAreaElement> }) => {
   const { input, label: labelForm, textarea } = form();
 
   if ((variant === 'bottomOutlined' || variant === 'plain') && fancy) {
