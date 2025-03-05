@@ -1,0 +1,47 @@
+/* stylelint-disable */
+
+pre[data-line] {
+  position: relative;
+  padding: 0.5rem 0 1em 1.25rem;
+}
+
+.line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit;
+  margin-top: 0.6em; /* Same as .prism’s padding-top */
+
+  pointer-events: none;
+
+  line-height: inherit;
+  white-space: pre;
+
+  @apply w-full -ml-px border-gray-400 bg-gray-400/10 dark:bg-gray-500/10 border-l-2 rounded-r-sm dark:border-gray-500;
+}
+
+@media print {
+  .line-highlight {
+    /*
+         * This will prevent browsers from replacing the background color with white.
+         * It's necessary because the element is layered on top of the displayed code.
+         */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+.line-numbers .line-highlight:before,
+.line-numbers .line-highlight:after {
+  content: none;
+}
+
+pre[id].linkable-line-numbers span.line-numbers-rows {
+  pointer-events: all;
+}
+pre[id].linkable-line-numbers span.line-numbers-rows > span:before {
+  cursor: pointer;
+}
+pre[id].linkable-line-numbers span.line-numbers-rows > span:hover:before {
+  background-color: rgba(128, 128, 128, 0.2);
+}

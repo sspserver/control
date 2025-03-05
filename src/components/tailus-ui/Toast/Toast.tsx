@@ -68,6 +68,7 @@ const ToastDescription = ({
 
 const ToastViewport = ({
   ref: forwardedRef,
+  className,
   ...props
 }: React.ComponentPropsWithoutRef<typeof ToastPrimitive.Viewport> & {
   ref?: React.RefObject<React.ComponentRef<typeof ToastPrimitive.Viewport>>;
@@ -75,7 +76,7 @@ const ToastViewport = ({
   return (
     <ToastPrimitive.Viewport
       ref={forwardedRef}
-      className={viewport({ class: props.className })}
+      className={viewport({ class: className })}
       {...props}
     />
   );

@@ -1,7 +1,8 @@
-import Link from '@/components/Link';
 import Logo from '@/components/Logo';
 import MainMenu from '@/components/MainMenu/MainMenu';
-import UserDropdown from '@/components/UserDropdown';
+import MobileBottomNavigation from '@components/MobileBottomNavigation/MobileBottomNavigation';
+import MobileHeader from '@components/MobileHeader';
+import UserDropdown from '@components/UserDropdown/UserDropdown';
 import NextLink from 'next/link';
 import React, { Fragment } from 'react';
 
@@ -14,30 +15,36 @@ function RootLayout({
 }: RootLayoutProps) {
   return (
     <Fragment>
-      <header className="feedback-bg fixed top-0 z-10 w-full border-b fancy-border">
+      <div className="md:hidden">
+        <MobileHeader />
+      </div>
+      <header className="feedback-bg fixed top-0 z-10 w-full border-b backdrop-blur fancy-border max-md:hidden">
         <div className="mx-auto max-w-6xl px-5">
-          <div className="flex items-center justify-between py-4">
-            <div className="flex h-7 items-center gap-4">
+          <div className="flex justify-between items-stretchs max-sm:h-16">
+            <div className="flex items-center gap-4 py-3">
               <NextLink href="/" hidden className="sm:block">
                 <Logo
-                  width="28"
-                  height="28"
+                  width="44"
+                  height="44"
+                  className="drum"
                 />
               </NextLink>
             </div>
+            <MainMenu />
             <div className="flex items-center gap-4">
-              <Link link="#" label="Help" mainNav={false} />
               <div className="size-6 hidden sm:block">
                 <UserDropdown />
               </div>
             </div>
           </div>
-          <MainMenu />
         </div>
       </header>
-      <main className="mx-auto mt-28 h-full max-w-6xl px-5 space-y-6 py-6">
-        <div>{children}</div>
+      <main className="mx-auto mt-20 h-full max-w-6xl px-5 space-y-6 py-4 max-md:mt-12 max-md:pb-16">
+        {children}
       </main>
+      <div className="md:hidden">
+        <MobileBottomNavigation />
+      </div>
     </Fragment>
   );
 }

@@ -70,7 +70,7 @@ function useAdUnitPage() {
         page: { size: 300 },
       },
     });
-  }, [adUnitIds, getStatistics]);
+  }, [getStatistics]);
   const adUnitStatisticsMapById = useMemo(() => responseStatistics?.result.list?.reduce((acc, statistic) => {
     const { keys } = statistic;
     const adUnitId = keys?.find(key => key.key === StatisticKey.ZoneId)?.value;

@@ -5,10 +5,10 @@
 @layer base {
   :root {
     /* Padding variables */
-    --card-padding: theme('spacing[6]');
-    --accordion-padding: theme('spacing[4]');
+    --card-padding: theme("spacing[6]");
+    --accordion-padding: theme("spacing[4]");
     --feedback-padding: var(--card-padding);
-    --toast-padding: theme('spacing[4]');
+    --toast-padding: theme("spacing[4]");
 
     /* text colors */
     --display-text-color: theme(colors.gray.950);
@@ -80,4 +80,89 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+.drum {
+  animation: colt-rotate 30s infinite;
+}
+@keyframes colt-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  5% {
+    transform: rotate(50deg);
+    animation-timing-function: ease-in;
+  }
+  15% {
+    transform: rotate(137deg);
+  }
+  25% {
+    transform: rotate(137deg);
+  }
+
+  25.1% {
+    transform: rotate(137deg);
+  }
+  30% {
+    transform: rotate(190deg);
+    animation-timing-function: ease-in;
+  }
+  40% {
+    transform: rotate(203deg);
+    animation-timing-function: ease-out;
+  }
+  50% {
+    transform: rotate(203deg);
+  }
+
+  50.1% {
+    transform: rotate(203deg);
+  }
+  55% {
+    transform: rotate(260deg);
+    animation-timing-function: ease-in;
+  }
+  62% {
+    transform: rotate(299deg);
+    animation-timing-function: ease-out;
+  }
+  65% {
+    transform: rotate(299deg);
+  }
+
+  65.1% {
+    transform: rotate(299deg);
+  }
+  70% {
+    transform: rotate(340deg);
+    animation-timing-function: ease-in;
+  }
+  75% {
+    transform: rotate(373deg);
+    animation-timing-function: ease-out;
+  }
+  80% {
+    transform: rotate(373deg);
+  }
+
+  80.1% {
+    transform: rotate(373deg);
+  }
+  85% {
+    transform: rotate(410deg);
+    animation-timing-function: ease-in;
+  }
+  95% {
+    transform: rotate(450deg);
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.btnAngled {
+  @apply relative;
+
+  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
 }

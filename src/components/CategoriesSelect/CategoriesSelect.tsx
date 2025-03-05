@@ -18,7 +18,13 @@ function CategoriesSelect({ onChange, values, error }: CategoriesSelectProps) {
 
   return (
     <Fragment>
-      <Multiselect label="Categories" loading={isListCategoriesLoading} onChange={onChange} data={listCategories} values={values} />
+      <Multiselect
+        label="Categories"
+        loading={isListCategoriesLoading}
+        onChange={onChange}
+        data={listCategories}
+        values={values}
+      />
       <FormElementErrorLabel error={error} />
     </Fragment>
   );

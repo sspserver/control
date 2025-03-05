@@ -8,13 +8,12 @@ function AdUnit() {
   return (
     <Fragment>
       <div className="flex justify-between items-center">
-        <Title as="h1" size="xl">
+        <Title as="h2" size="lg" weight="medium">
           AdUnit
         </Title>
         <AdUnitDrawerOpenButton />
       </div>
       <StatisticFilter />
-      <br />
       <AdUnitPage />
     </Fragment>
   );

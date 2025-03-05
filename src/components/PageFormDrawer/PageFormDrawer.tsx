@@ -21,7 +21,17 @@ function PageFormDrawer({ children }: PageFormDrawerProps) {
   } = usePageFormDrawer();
 
   return (
-    <Drawer.Root shouldScaleBackground dismissible fixed handleOnly withControler={false} repositionInputs fancy direction="right" open={isDrawerOpen}>
+    <Drawer.Root
+      shouldScaleBackground
+      dismissible
+      fixed
+      handleOnly
+      withControler={false}
+      repositionInputs
+      fancy
+      direction="right"
+      open={isDrawerOpen}
+    >
       <Drawer.Portal>
         <Drawer.Overlay className={drawerOverlayClassName} />
         <Drawer.Content

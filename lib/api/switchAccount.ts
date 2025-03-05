@@ -7,9 +7,6 @@ export const switchAccount = async (accountID: number, token: string) => {
     variables: { accountID },
     context: { headers: { Authorization: `Bearer ${token}` } },
   });
-
-  console.log('xxx switchAccount', data);
-
   const newToken = data?.switchAccount?.token || null;
   const isAdmin = data?.switchAccount?.isAdmin || false;
   const roles = data?.switchAccount?.roles || [];

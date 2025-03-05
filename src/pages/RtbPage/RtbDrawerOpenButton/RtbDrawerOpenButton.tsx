@@ -10,7 +10,7 @@ type RtbDrawerOpenButtonProps = {
 
 function RtbDrawerOpenButton(props: RtbDrawerOpenButtonProps) {
   return (
-    <DrawerOpenButton title="Create a RTB" path={configPathRoutes.createRtb} size="xs" {...props} />
+    <DrawerOpenButton title="Create a RTB" path={configPathRoutes.rtbCreate} size="xs" {...props} />
   );
 }
 

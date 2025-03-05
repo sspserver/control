@@ -30,7 +30,7 @@ function ToastProvider({ children }: ToastProviderProps) {
             />
           );
         })}
-        <TailusToast.Viewport />
+        <TailusToast.Viewport className="max-md:top-0 max-md:p-1 max-md:h-0" />
       </ToastProviderContext>
     </ToastProviderRoot>
   );

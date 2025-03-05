@@ -11,7 +11,11 @@ function AdFormatsSelect(props: AdFormatsSelectProps) {
   const selectData = adFormats?.result?.list?.map(({ ID, title }) => ({ name: title, value: `${ID}` })) ?? [];
 
   return (
-    <Multiselect loading={isLoading} data={selectData} {...props} />
+    <Multiselect
+      loading={isLoading}
+      data={selectData}
+      {...props}
+    />
   );
 }
 

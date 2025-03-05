@@ -1,5 +1,6 @@
 'use client';
 
+import PageLoadSpinner from '@components/PageLoadSpinner';
 import AdUnitCard from '@pages/AdUnitPage/AdUnitCard';
 import AdUnitEmptyState from '@pages/AdUnitPage/AdUnitEmptyState';
 import useAdUnitPage from '@pages/AdUnitPage/useAdUnitPage';
@@ -30,7 +31,7 @@ function AdUnitPage() {
   }
 
   if (isAdUnitListLoading) {
-    return <p>Loading...</p>;
+    return <PageLoadSpinner />;
   }
 
   if (!adUnitList?.length) {

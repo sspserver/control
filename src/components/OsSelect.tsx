@@ -1,22 +1,31 @@
 import type { ListOsQuery } from '@/generated/graphql';
 import type { MultiselectProps } from '@tailus-ui/Multiselect/Multiselect.types';
-import { ActiveStatus, ListOsDocument } from '@/generated/graphql';
+import { ListOsDocument, Ordering } from '@/generated/graphql';
 import { useQuery } from '@apollo/client';
 import Multiselect from '@tailus-ui/Multiselect';
+import { useMemo } from 'react';
 
 type OsSelectProps = {} & Omit<MultiselectProps, 'data'>;
 
 function OsSelect(props: OsSelectProps) {
-  const { loading: isLoading, data: deviceTypes } = useQuery<ListOsQuery>(ListOsDocument, {
+  const { loading: isLoading, data: osesResponse } = useQuery<ListOsQuery>(ListOsDocument, {
     variables: {
       size: 1000,
-      filter: {
-        active: ActiveStatus.Active,
-      },
+      filter: { parentID: [0] },
+      order: [
+        {
+          name: Ordering.Asc,
+        },
+      ],
     },
-    fetchPolicy: 'network-only',
+    fetchPolicy: 'cache-first',
   });
-  const selectData = deviceTypes?.result?.list?.map(({ ID, name }) => ({ name, value: ID })) ?? [];
+  const osesData = useMemo(() => osesResponse?.result?.list ?? [], [osesResponse]);
+  const selectData = useMemo(() => osesData.map(({ name, ID, versions }) => ({
+    name,
+    group: versions?.map(({ name, ID }) => ({ name, value: ID })),
+    value: ID,
+  })) ?? [], [osesData]);
 
   return (
     <Multiselect loading={isLoading} data={selectData} {...props} />

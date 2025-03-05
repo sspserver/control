@@ -10,7 +10,7 @@ type ApplicationDrawerOpenButtonProps = {
 
 function ApplicationDrawerOpenButton(props: ApplicationDrawerOpenButtonProps) {
   return (
-    <DrawerOpenButton title="Add a Application" path={configPathRoutes.crateApplications} size="xs" {...props} />
+    <DrawerOpenButton title="Add a Application" path={configPathRoutes.createApplications} size="xs" {...props} />
   );
 }
 

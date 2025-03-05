@@ -3,11 +3,16 @@
 import useSignInForm from '@/pages/SignInPage/useSignInForm';
 import { ButtonLoading } from '@tailus-ui/Button';
 import Input from '@tailus-ui/Input/Input';
-import { Link } from '@tailus-ui/typography';
 import { Fragment } from 'react';
 
 function SignInForm() {
-  const { isLoading, userCredentials, signInFormErrors, submitSigInFormHandler, changeUserCredentialInputHandler } = useSignInForm();
+  const {
+    isLoading,
+    userCredentials,
+    signInFormErrors,
+    submitSigInFormHandler,
+    changeUserCredentialInputHandler,
+  } = useSignInForm();
 
   return (
     <Fragment>
@@ -75,16 +80,16 @@ function SignInForm() {
             </div>
             <div className="space-y-2.5">
               <Input
-                label={(
-                  <div className="flex items-center justify-between">
-                    <span>
-                      Password
-                    </span>
-                    <Link href="#" size="sm">
-                      Forgot your Password ?
-                    </Link>
-                  </div>
-                )}
+                // label={(
+                //   <div className="flex items-center justify-between">
+                //     <span>
+                //       Password
+                //     </span>
+                //     <Link href="#" size="sm">
+                //       Forgot your Password ?
+                //     </Link>
+                //   </div>
+                // )}
                 id="password"
                 name="password"
                 type="password"
@@ -97,7 +102,12 @@ function SignInForm() {
           </div>
           {signInFormErrors?.login && (<div className="text-red-500 text-sm">{signInFormErrors?.login}</div>)}
         </div>
-        <ButtonLoading loading={isLoading} className="w-full">Sign In</ButtonLoading>
+        <ButtonLoading
+          loading={isLoading}
+          className="w-full"
+        >
+          Sign In
+        </ButtonLoading>
       </form>
     </Fragment>
   );

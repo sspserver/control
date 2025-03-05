@@ -2,12 +2,11 @@ fragment __osData on OS {
   ID
   name
   description
-  matchExp
+  matchNameExp
   active
   versions {
     name
-    min
-    max
+    ID
   }
   createdAt
   updatedAt
@@ -22,9 +21,9 @@ query GetOS($id: ID64!) {
 }
 
 query ListOS(
-  $page: Int! = 0, $size: Int! = 10, 
+  $page: Int! = 0, $size: Int! = 10,
   $filter: OSListFilter = null,
-  $order: OSListOrder = null,
+  $order: [OSListOrder!]!,
 ) {
   result: listOS(filter: $filter, order: $order, page: {startPage: $page, size: $size}) {
     totalCount
@@ -33,14 +32,14 @@ query ListOS(
   }
 }
 
-mutation CreateOS($input: OSInput!) {
+mutation CreateOS($input: OSCreateInput!) {
   result: createOS(input: $input) {
     clientMutationID
     data: OS { ...__osData }
   }
 }
 
-mutation UpdateOS($id: ID64!, $input: OSInput!) {
+mutation UpdateOS($id: ID64!, $input: OSUpdateInput!) {
   result: updateOS(ID: $id, input: $input) {
     clientMutationID
     data: OS { ...__osData }
