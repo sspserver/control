@@ -1,4 +1,4 @@
-import RtbDrawer from '@pages/RtbPage/RtbDrawer';
+import RtbDrawer from '@components/pages/RtbPage/RtbDrawer';
 
 function RtbEditForm() {
   return (

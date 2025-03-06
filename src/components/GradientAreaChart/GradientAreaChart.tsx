@@ -16,7 +16,7 @@ type GradientAreaChartProps = {
   data?: Partial<StatisticAdItem>[];
 };
 
-function GradientAreaChart({ intent, data = [], showMessage, dataKey }: GradientAreaChartProps) {
+function GradientAreaChart({ intent, data, showMessage, dataKey }: GradientAreaChartProps) {
   const linearGradientClassName = showMessage ? 'dark:text-gray-600' : 'dark:text-primary-600';
 
   return (

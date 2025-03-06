@@ -1,6 +1,6 @@
+import AdUnitPage from '@components/pages/AdUnitPage';
+import AdUnitDrawerOpenButton from '@components/pages/AdUnitPage/AdUnitDrawerOpenButton';
 import StatisticFilter from '@components/StatisticFilter';
-import AdUnitPage from '@pages/AdUnitPage';
-import AdUnitDrawerOpenButton from '@pages/AdUnitPage/AdUnitDrawerOpenButton';
 import { Title } from '@tailus-ui/typography';
 import { Fragment } from 'react';
 

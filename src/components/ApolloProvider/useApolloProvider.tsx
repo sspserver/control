@@ -6,7 +6,7 @@ import { apiUrl } from '@configs/api';
 import { useMemo } from 'react';
 
 function useApolloProvider(session: Session | null) {
-  const errorLink = onError(({ graphQLErrors, response, networkError }) => {
+  const errorLink = onError(({ graphQLErrors, networkError }) => {
     if (networkError) {
       console.error(`[Network error]:`, networkError);
     }

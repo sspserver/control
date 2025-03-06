@@ -24,7 +24,7 @@ export default antfu(
         printWidth: 80,
       },
     },
-    ignores: ['next-env.d.ts'],
+    ignores: ['next-env.d.ts', 'src/generated/*'],
   },
   compat.config({
     extends: ['next', 'prettier'],
@@ -47,6 +47,7 @@ export default antfu(
       'react/prefer-destructuring-assignment': 'off',
       'node/prefer-global/process': 'off',
       'react/prefer-shorthand-fragment': ['off'],
+      'format/prettier': 'off',
     },
   },
 );
