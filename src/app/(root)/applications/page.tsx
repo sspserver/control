@@ -1,5 +1,5 @@
-import ApplicationDrawerOpenButton from '@/pages/ApplicationsPage/ApplicationDrawerOpenButton';
-import ApplicationsPage from '@/pages/ApplicationsPage/ApplicationsPage';
+import ApplicationDrawerOpenButton from '@components/pages/ApplicationsPage/ApplicationDrawerOpenButton';
+import ApplicationsPage from '@components/pages/ApplicationsPage/ApplicationsPage';
 import StatisticFilter from '@components/StatisticFilter';
 import { Title } from '@tailus-ui/typography';
 import { Fragment } from 'react';

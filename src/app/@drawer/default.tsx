@@ -1,11 +1,5 @@
 function DrawerDefault() {
-
-    return null;
-  return (
-    <div>
-      <h1>Drawer Default</h1>
-    </div>
-  );
+  return null;
 }
 
 export default DrawerDefault;

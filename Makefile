@@ -31,7 +31,6 @@ build-docker-dev: ## Build project dev container
 .PHONY: build
 build: ## Build project
 	@echo "Build project"
-	@npm run eslint-fix
 	@npm run build
 
 .PHONY: build-docker

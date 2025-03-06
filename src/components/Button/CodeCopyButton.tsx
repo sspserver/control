@@ -1,10 +1,11 @@
 import type { ButtonProps } from '@tailus/themer';
+import useCopyToClipboard from '@components/Button/useCopyToClipboard';
 import CheckIcon from '@heroicons/react/20/solid/CheckIcon';
 import Button from '@tailus-ui/Button';
 import Label from '@tailus-ui/Label';
 import { form } from '@tailus/themer';
 import { Copy } from 'lucide-react';
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 type CodeCopyButtonProps = {
@@ -12,21 +13,6 @@ type CodeCopyButtonProps = {
   className?: string;
   size?: ButtonProps['size'];
 } & React.HTMLAttributes<HTMLModElement>;
-
-export const useCopyToClipboard = (text: string) => {
-  const [copied, setCopied] = useState(false);
-
-  const copy = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => {
-      setCopied(false);
-    }, 1500);
-  };
-
-  return { copied, copy };
-};
 
 const CodeCopyButton: React.FC<CodeCopyButtonProps> = ({ code, className, size = 'xs' }) => {
   const { copied, copy } = useCopyToClipboard(code);

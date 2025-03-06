@@ -1,4 +1,4 @@
-import AdUnitDrawer from '@pages/AdUnitPage/AdUnitDrawer';
+import AdUnitDrawer from '@components/pages/AdUnitPage/AdUnitDrawer';
 
 function AdUnitEditForm() {
   return (

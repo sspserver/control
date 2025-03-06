@@ -13,7 +13,6 @@ function UserDropdown() {
     accountTitle,
     accountLogoURI,
     avatarInitial,
-    accountDescription,
     clickSignOutButtonHandler,
     clickUserSettingsButtonHandler,
   } = useUserDropdown();
@@ -71,6 +70,6 @@ function UserDropdown() {
       </DropdownMenu.Portal>
     </DropdownMenu.Root>
   );
-};
+}
 
 export default UserDropdown;

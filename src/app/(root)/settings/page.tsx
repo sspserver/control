@@ -1,4 +1,4 @@
-import SettingsPage from '@pages/SettingsPage';
+import SettingsPage from '@components/pages/SettingsPage';
 import { Title } from '@tailus-ui/typography';
 import { Fragment } from 'react';
 

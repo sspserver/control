@@ -1,6 +1,6 @@
+import RtbPage from '@components/pages/RtbPage';
+import RtbDrawerOpenButton from '@components/pages/RtbPage/RtbDrawerOpenButton';
 import StatisticFilter from '@components/StatisticFilter';
-import RtbPage from '@pages/RtbPage';
-import RtbDrawerOpenButton from '@pages/RtbPage/RtbDrawerOpenButton';
 import { Title } from '@tailus-ui/typography';
 import React, { Fragment } from 'react';
 
