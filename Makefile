@@ -36,7 +36,8 @@ build: ## Build project
 .PHONY: build-docker
 build-docker: ## Build docker the project
 	@echo "Build docker the project"
-	docker build \
+	docker buildx build \
+		--platform linux/amd64,linux/arm64 \
 		-f deploy/production/Dockerfile ./ \
 		-t ${DOCKER_CONTAINER_IMAGE}
 
