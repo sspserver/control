@@ -66,3 +66,9 @@ jobs:
           platforms: ${{ env.BUILD_PLATFORMS }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ env.IMAGE_NAME }}:${{ env.DEPLOY_TAG_VALUE }},${{ env.IMAGE_NAME }}:latest
+          build-args: |
+            COMMIT_NUMBER=${{ env.DEPLOY_COMMIT_NUMBER }}
+            API_URL=http://api:8080/graphql
+            NEXT_PUBLIC_API_URL=https://apidemo.sspserver.org/graphql
+            NEXTAUTH_SECRET='my-secret'
+            NEXTAUTH_URL='https://demo.sspserver.org'
