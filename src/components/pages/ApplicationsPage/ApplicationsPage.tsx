@@ -13,14 +13,7 @@ function ApplicationsPage() {
     isListApplicationsLoading,
     applicationStatisticsMapById,
   } = useApplicationsPage();
-
-  if (!applicationsList && !applicationsListError && !isListApplicationsLoading) {
-    return (
-      <p>
-        No data
-      </p>
-    );
-  }
+  const isListApplicationsEmpty = (!applicationsList && !applicationsListError && !isListApplicationsLoading) || !applicationsList?.length;
 
   if (applicationsListError) {
     return (
@@ -35,7 +28,7 @@ function ApplicationsPage() {
     return <PageLoadSpinner />;
   }
 
-  if (!applicationsList?.length) {
+  if (isListApplicationsEmpty) {
     return (<ApplicationsEmptyState />);
   }
 

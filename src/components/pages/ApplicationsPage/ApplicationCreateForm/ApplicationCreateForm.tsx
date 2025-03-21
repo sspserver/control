@@ -41,8 +41,6 @@ function ApplicationCreateForm({ onCancel, onSubmit }: ApplicationCreateFormProp
         onSubmit={submitApplicationCreateEditFormHandler}
       >
         {({ setFieldValue, handleBlur, submitForm, handleChange, values, errors, isSubmitting }) => {
-          const editable = true; // !id || !responseApplication?.title;
-
           return (
             <Fragment>
               <div className="overflow-y-auto relative -mr-6 pr-6">
@@ -56,7 +54,7 @@ function ApplicationCreateForm({ onCancel, onSubmit }: ApplicationCreateFormProp
                     required
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    disabled={!editable || isSubmitting}
+                    disabled={isSubmitting}
                     error={errors.title}
                   />
                 </div>
@@ -67,7 +65,7 @@ function ApplicationCreateForm({ onCancel, onSubmit }: ApplicationCreateFormProp
                     value={values.description}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    disabled={!editable || isSubmitting}
+                    disabled={isSubmitting}
                     error={errors.description}
                   />
                 </div>
@@ -79,7 +77,7 @@ function ApplicationCreateForm({ onCancel, onSubmit }: ApplicationCreateFormProp
                     defaultValue={values.URI}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    disabled={!editable || isSubmitting}
+                    disabled={isSubmitting}
                     error={errors.URI}
                   />
                 </div>

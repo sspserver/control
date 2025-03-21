@@ -341,7 +341,7 @@ query GetRTBSource($id: ID64!) {
 query ListRTBSources(
   $page: Int! = 0, $size: Int! = 10,
   $filter: RTBSourceListFilter = null,
-  $order: RTBSourceListOrder = null,
+  $order: [RTBSourceListOrder] = null,
 ) {
   result: listRTBSources(filter: $filter, order: $order, page: {startPage: $page, size: $size}) {
     list { ...__rtbSourceData }
@@ -351,7 +351,7 @@ query ListRTBSources(
   permReject: checkPermission(name:"reject.*", key: "rtb_source")
 }
 
-mutation NewRTBSource($input: RTBSourceInput!) {
+mutation NewRTBSource($input: RTBSourceCreateInput!) {
   result: createRTBSource(input: $input) {
     clientMutationID
     sourceID
@@ -359,7 +359,7 @@ mutation NewRTBSource($input: RTBSourceInput!) {
   }
 }
 
-mutation UpdateRTBSource($id: ID64!, $input: RTBSourceInput!) {
+mutation UpdateRTBSource($id: ID64!, $input: RTBSourceUpdateInput!) {
   result: updateRTBSource(ID: $id, input: $input) {
     clientMutationID
     sourceID

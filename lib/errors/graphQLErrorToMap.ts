@@ -13,6 +13,16 @@ function graphQLErrorToMap<T extends Record<string, any>>(errors: ReadonlyArray<
     errorMap.set(key, message);
   });
 
+  if (errorMap.size) {
+    const listOfFields = Array.from(
+      errorMap
+        .entries()
+        .map(([key, value]) => `${key.toString()}: ${value}`),
+    ).join(': \n');
+
+    errorMap.set('result', listOfFields);
+  }
+
   return Object.fromEntries(errorMap) as ErrorMap<T>;
 }
 

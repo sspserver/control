@@ -63,8 +63,9 @@ export const config = {
      * - _next/image/icons (icons optimization files)
      * - favicon.ico (favicon file)
      * - auth (authentication routes)
-   */
-    '/((?!api|_next/static|_next/image|icons|favicon.ico|public|images|css).*)',
+     * - manifest.webmanifest (web manifest file)
+     */
+    '/((?!api|_next/static|_next/image|icons|favicon.ico|public|images|css|manifest.webmanifest).*)',
   ],
 };
 

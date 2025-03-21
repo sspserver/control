@@ -6,7 +6,6 @@ import { area } from '@tailus/themer';
 import React from 'react';
 import { Area, AreaChart, ResponsiveContainer } from 'recharts';
 
-// type Fill = 'Primary' | 'Secondary' | 'Accent' | 'Gray' | 'Neutral';
 type Intent = 'primary' | 'secondary' | 'accent' | 'gray' | 'neutral';
 
 type GradientAreaChartProps = {
@@ -22,8 +21,8 @@ function GradientAreaChart({ intent, data, showMessage, dataKey }: GradientAreaC
   return (
     <div className="-mb-2 -mx-4">
       <div className="h-24 w-full relative">
-        <ResponsiveContainer width="100%" height="100%" className="h-24 w-full relative">
-          <AreaChart data={data}>
+        <ResponsiveContainer width="100%" height="100%" className="h-24 w-full">
+          <AreaChart data={data} className="!static">
             <defs>
               {statisticsFilterFields.map(({ value }) => (
                 <LinearGradient

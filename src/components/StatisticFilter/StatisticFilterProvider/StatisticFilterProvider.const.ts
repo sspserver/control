@@ -1,13 +1,13 @@
+import { CustomDateOption } from '@lib/date/getCustomDatePick';
+
 export const storeNameFromDate = 'from_date';
 export const storeNameToDate = 'to_date';
 export const storeNameFilterField = 'filter_field';
+export const storeNameActiveStatus = 'active_status';
+export const storeNameCalendarRangeOption = 'calendar_range_option';
 export const defaultFilterField = 'impressions';
 
-const today = new Date();
-const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
-
 export const defaultFilterStoredFields = {
-  storeFromDate: today.toISOString(),
-  storeToDate: lastWeek.toISOString(),
+  storeCalendarRangeOption: CustomDateOption.LastWeek,
   storeFilterField: defaultFilterField,
 };

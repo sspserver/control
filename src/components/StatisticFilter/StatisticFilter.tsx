@@ -6,6 +6,9 @@ import MobileStatisticFilter from '@components/StatisticFilter/MobileStatisticFi
 import { statisticsFilterFields } from '@components/StatisticFilter/StatisticFilter.const';
 import useStatisticFilter from '@components/StatisticFilter/useStatisticFilter';
 import { Root, Separator } from '@radix-ui/react-toolbar';
+import Aligner from '@tailus-ui/Aligner';
+import Label from '@tailus-ui/Label';
+import Switch from '@tailus-ui/Switch';
 import { card } from '@tailus/themer';
 import React, { Fragment } from 'react';
 
@@ -20,8 +23,12 @@ function StatisticFilter() {
     date,
     filterField,
     endMonth,
+    calendarRangeOption,
+    isFilterActiveStatusActive,
     selectDateCalendarHandler,
     changeFilterFieldSelectHandler,
+    changeActiveStatusButtonHandler,
+    changeDateRangeOptionsCalendarHandler,
   } = useStatisticFilter();
 
   return (
@@ -43,10 +50,27 @@ function StatisticFilter() {
             fancy
             selected={date}
             mode="range"
+            rangeOption={calendarRangeOption}
+            onChangeRange={changeDateRangeOptionsCalendarHandler}
             onSelect={selectDateCalendarHandler}
             endMonth={endMonth}
             classNameButton="max-sm:w-full"
           />
+        </div>
+        <Separator className="bg-[--ui-border-color] w-px h-6 max-sm:hidden" />
+        <div>
+          <Aligner fromRight className="max-w-md">
+            <Switch.Root
+              id="active_status"
+              checked={isFilterActiveStatusActive}
+              onCheckedChange={changeActiveStatusButtonHandler}
+            >
+              <Switch.Thumb />
+            </Switch.Root>
+            <Label htmlFor="active_status">
+              Only active
+            </Label>
+          </Aligner>
         </div>
       </Root>
     </Fragment>

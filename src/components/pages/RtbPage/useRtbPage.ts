@@ -1,5 +1,4 @@
 import {
-  ListRtbSourcesDocument,
   Ordering,
   StatisticCondition,
   StatisticKey,
@@ -10,30 +9,25 @@ import {
 import { useCallback, useEffect, useMemo } from 'react';
 import useStatisticFilter from '../../StatisticFilter/StatisticFilterProvider/useStatisticFilter';
 
-const listRtbQueryOptions = {
-  variables: {
-    order: {
-      createdAt: Ordering.Desc,
-    },
-  },
-};
-
-export const listRtbDocumentRefetchQueries = [
-  {
-    query: ListRtbSourcesDocument,
-    variables: listRtbQueryOptions.variables,
-  },
-];
-
 function useRtbPage() {
   const {
     date,
+    filterActiveStatus,
   } = useStatisticFilter();
   const {
     data: responseRtbList,
     error: rtbListError,
     loading: isRtbListLoading,
-  } = useListRtbSourcesQuery(listRtbQueryOptions);
+  } = useListRtbSourcesQuery({
+    variables: {
+      filter: {
+        active: filterActiveStatus,
+      },
+      order: {
+        createdAt: Ordering.Desc,
+      },
+    },
+  });
   const rtbList = responseRtbList?.result?.list;
   const rtbIds = useMemo(
     () =>
@@ -41,8 +35,7 @@ function useRtbPage() {
       ?? [],
     [rtbList],
   );
-  const [getStatistics, { data: responseStatistics }]
-      = useStatisticsLazyQuery();
+  const [getStatistics, { data: responseStatistics }] = useStatisticsLazyQuery();
   const loadRtbStatistics = useCallback((value: number[], from?: Date, to?: Date) => {
     const today = new Date().toISOString();
     const startDate = from ? from.toISOString() : today;

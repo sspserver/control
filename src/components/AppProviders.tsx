@@ -1,6 +1,7 @@
 'use client';
 
 import type { Session } from 'next-auth';
+import useServiceWorkerRegister from '@/hooks/useServiceWorkerRegister';
 import { StatisticFilterProvider } from '@components/StatisticFilter';
 import { SessionProvider } from 'next-auth/react';
 import React from 'react';
@@ -16,6 +17,8 @@ function AppProviders({
   children,
   session,
 }: AppProvidersProps) {
+  useServiceWorkerRegister();
+
   return (
     <SessionProvider session={session}>
       <ApolloProvider session={session}>

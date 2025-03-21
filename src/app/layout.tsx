@@ -1,6 +1,8 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
+
 import authOptions from '@/app/api/auth/[...nextauth]/options';
 import AppProviders from '@/components/AppProviders';
+import LoadingNavigateBar from '@components/LoadingNavigateBar';
 import { getServerSession } from 'next-auth';
 import { Geist, Geist_Mono } from 'next/font/google';
 import React from 'react';
@@ -27,6 +29,13 @@ type RootLayoutProps = Readonly<{
   drawer: React.ReactNode;
 }>;
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1.0,
+  maximumScale: 1.0,
+  userScalable: false,
+};
+
 async function RootLayout({
   children,
   drawer,
@@ -36,6 +45,7 @@ async function RootLayout({
   return (
     <html lang="en" data-shade="glassy">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <LoadingNavigateBar />
         <AppProviders session={session}>
           {children}
           {drawer}

@@ -1,5 +1,4 @@
 import {
-  ListZonesDocument,
   Ordering,
   StatisticCondition,
   StatisticKey,
@@ -10,30 +9,25 @@ import {
 import { useCallback, useEffect, useMemo } from 'react';
 import useStatisticFilter from '../../StatisticFilter/StatisticFilterProvider/useStatisticFilter';
 
-const listAdUnitQueryOptions = {
-  variables: {
-    order: {
-      createdAt: Ordering.Desc,
-    },
-  },
-};
-
-export const listAdZoneDocumentRefetchQueries = [
-  {
-    query: ListZonesDocument,
-    variables: listAdUnitQueryOptions.variables,
-  },
-];
-
 function useAdUnitPage() {
   const {
     date,
+    filterActiveStatus,
   } = useStatisticFilter();
   const {
     data: responseAdUnitList,
     error: adUnitListError,
     loading: isAdUnitListLoading,
-  } = useListZonesQuery(listAdUnitQueryOptions);
+  } = useListZonesQuery({
+    variables: {
+      filter: {
+        active: filterActiveStatus,
+      },
+      order: {
+        createdAt: Ordering.Desc,
+      },
+    },
+  });
   const adUnitList = responseAdUnitList?.result?.list;
   const adUnitIds = useMemo(
     () =>

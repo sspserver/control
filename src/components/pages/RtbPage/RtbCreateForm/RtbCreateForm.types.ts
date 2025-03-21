@@ -6,19 +6,19 @@ export type RTBCreateFormProps = {
 };
 
 export type RTBCreateFormState = {
-  title?: string;
+  title: string;
   description?: string;
-  protocol?: string;
-  auctionType?: AuctionType;
-  URL?: string;
-  method?: string;
-  requestType?: RtbRequestFormatType;
-  RPS?: number;
-  timeout?: number;
-  accuracy?: number;
-  priceCorrectionReduce?: number;
-  minBid?: number;
-  maxBid?: number;
+  protocol: string;
+  auctionType: AuctionType;
+  URL: string;
+  method: string;
+  requestType: RtbRequestFormatType;
+  RPS: number;
+  timeout: number;
+  accuracy: number;
+  priceCorrectionReduce: number;
+  minBid: number;
+  maxBid: number;
   formats?: string[] | null;
   deviceTypes?: string[] | null;
   devices?: string[] | null;

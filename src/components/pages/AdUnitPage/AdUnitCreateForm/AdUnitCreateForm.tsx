@@ -33,8 +33,6 @@ function AdUnitCreateForm({ onCancel, onSubmit }: AdUnitCreateFormProps) {
         onSubmit={submitAdUnitCreateEditFormHandler}
       >
         {({ handleBlur, submitForm, handleChange, values, errors, isSubmitting }) => {
-          const editable = true; // !id || !responseApplication?.title;
-
           return (
             <Fragment>
               <div className="overflow-y-auto relative -mr-6 pr-6 pl-0.5 -ml-0.5">
@@ -46,7 +44,7 @@ function AdUnitCreateForm({ onCancel, onSubmit }: AdUnitCreateFormProps) {
                       variant="outlined"
                       code={values.codename ?? ''}
                       size="sm"
-                      className="text-left"
+                      className="text-left mt-2"
                     >
                       {values.codename}
                     </LabelCopyCodeButton>
@@ -62,7 +60,7 @@ function AdUnitCreateForm({ onCancel, onSubmit }: AdUnitCreateFormProps) {
                     required
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    disabled={!editable || isSubmitting}
+                    disabled={isSubmitting}
                     error={errors.title}
                   />
                 </div>
@@ -73,7 +71,7 @@ function AdUnitCreateForm({ onCancel, onSubmit }: AdUnitCreateFormProps) {
                     value={values.description}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    disabled={!editable || isSubmitting}
+                    disabled={isSubmitting}
                     error={errors.description}
                   />
                 </div>
@@ -86,7 +84,7 @@ function AdUnitCreateForm({ onCancel, onSubmit }: AdUnitCreateFormProps) {
                     defaultValue={values.minECPM}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    disabled={!editable || isSubmitting}
+                    disabled={isSubmitting}
                     error={errors.minECPM}
                   />
                 </div>
@@ -99,7 +97,7 @@ function AdUnitCreateForm({ onCancel, onSubmit }: AdUnitCreateFormProps) {
                     defaultValue={values.fixedPurchasePrice}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    disabled={!editable || isSubmitting}
+                    disabled={isSubmitting}
                     error={errors.fixedPurchasePrice}
                   />
                 </div>

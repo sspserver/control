@@ -1,5 +1,4 @@
 import {
-  ListApplicationsDocument,
   Ordering,
   StatisticCondition,
   StatisticKey,
@@ -10,30 +9,27 @@ import {
 import { useCallback, useEffect, useMemo } from 'react';
 import useStatisticFilter from '../../StatisticFilter/StatisticFilterProvider/useStatisticFilter';
 
-const listApplicationsQueryOptions = {
-  variables: {
-    order: {
-      createdAt: Ordering.Desc,
-    },
-  },
-};
-
-export const listApplicationsDocumentRefetchQueries = [
-  {
-    query: ListApplicationsDocument,
-    variables: listApplicationsQueryOptions.variables,
-  },
-];
-
 function useApplicationsPage() {
   const {
     date,
+    filterActiveStatus,
   } = useStatisticFilter();
   const {
     data: responseApplicationsList,
     error: applicationsListError,
     loading: isListApplicationsLoading,
-  } = useListApplicationsQuery(listApplicationsQueryOptions);
+  } = useListApplicationsQuery(
+    {
+      variables: {
+        filter: {
+          active: filterActiveStatus,
+        },
+        order: {
+          createdAt: Ordering.Desc,
+        },
+      },
+    },
+  );
   const applicationsList = responseApplicationsList?.result?.list;
   const applicationsId = useMemo(
     () =>

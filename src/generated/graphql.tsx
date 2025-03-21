@@ -1311,7 +1311,7 @@ export type Mutation = {
   approveAccountMember: MemberPayload;
   /** Approve the Application to be active */
   approveApplication: StatusResponse;
-  /** Approve RTBSource to start receiving data from it */
+  /** Approve an RTBSource to allow it to start receiving data. */
   approveRTBSource: StatusResponse;
   /** Approve user and leave the comment */
   approveUser: UserPayload;
@@ -1333,10 +1333,12 @@ export type Mutation = {
   createFormat?: Maybe<AdFormatPayload>;
   /** Create new OS */
   createOS?: Maybe<OsPayload>;
-  /** Create the new RTBSource */
+  /** Create a new RTBSource. */
   createRTBSource: RtbSourcePayload;
   /** Create the new RBAC role */
   createRole: RbacRolePayload;
+  /** Create new traffic router */
+  createTrafficRouter?: Maybe<TrafficRouterPayload>;
   /** Create the new user */
   createUser: UserPayload;
   /** Create a new Zone */
@@ -1359,10 +1361,12 @@ export type Mutation = {
   deleteFormat?: Maybe<AdFormatPayload>;
   /** Delete OS */
   deleteOS?: Maybe<OsPayload>;
-  /** Delete RTBSource */
+  /** Delete an RTBSource by its ID. */
   deleteRTBSource?: Maybe<RtbSourcePayload>;
   /** Delete RBAC role */
   deleteRole: RbacRolePayload;
+  /** Delete traffic router */
+  deleteTrafficRouter?: Maybe<TrafficRouterPayload>;
   /** Delete Zone */
   deleteZone?: Maybe<ZonePayload>;
   /** Disconnect a social account */
@@ -1377,8 +1381,10 @@ export type Mutation = {
   logout: Scalars['Boolean']['output'];
   /** Pause the Application */
   pauseApplication: StatusResponse;
-  /** Pause RTBSource to stop receiving data from it */
+  /** Pause an RTBSource to stop receiving data from it. */
   pauseRTBSource: StatusResponse;
+  /** Pause traffic router */
+  pauseTrafficRouter?: Maybe<StatusResponse>;
   poke: Scalars['String']['output'];
   /** Register the new account */
   registerAccount: AccountCreatePayload;
@@ -1388,7 +1394,7 @@ export type Mutation = {
   rejectAccountMember: MemberPayload;
   /** Reject the Application */
   rejectApplication: StatusResponse;
-  /** Reject RTBSource to stop receiving data from it */
+  /** Reject an RTBSource to prevent it from receiving data. */
   rejectRTBSource: StatusResponse;
   /** Reject user and leave the comment */
   rejectUser: UserPayload;
@@ -1402,8 +1408,10 @@ export type Mutation = {
   revokeDirectAccessToken?: Maybe<StatusResponse>;
   /** Run the Application */
   runApplication: StatusResponse;
-  /** Run RTBSource to receive data from it */
+  /** Run an RTBSource to start receiving data from it. */
   runRTBSource: StatusResponse;
+  /** Run traffic router */
+  runTrafficRouter?: Maybe<StatusResponse>;
   /** Set the option value */
   setOption: OptionPayload;
   /** Switch the account by ID */
@@ -1428,10 +1436,12 @@ export type Mutation = {
   updateFormat?: Maybe<AdFormatPayload>;
   /** Update OS */
   updateOS?: Maybe<OsPayload>;
-  /** Update RTBSource info */
+  /** Update an existing RTBSource by its ID. */
   updateRTBSource: RtbSourcePayload;
   /** Update RBAC role info */
   updateRole: RbacRolePayload;
+  /** Update traffic router */
+  updateTrafficRouter?: Maybe<TrafficRouterPayload>;
   /** Update user info */
   updateUser: UserPayload;
   /** Update password of the particular user */
@@ -1524,12 +1534,17 @@ export type MutationCreateOsArgs = {
 
 
 export type MutationCreateRtbSourceArgs = {
-  input: RtbSourceInput;
+  input: RtbSourceCreateInput;
 };
 
 
 export type MutationCreateRoleArgs = {
   input: RbacRoleInput;
+};
+
+
+export type MutationCreateTrafficRouterArgs = {
+  input: TrafficRouterCreateInput;
 };
 
 
@@ -1610,6 +1625,11 @@ export type MutationDeleteRoleArgs = {
 };
 
 
+export type MutationDeleteTrafficRouterArgs = {
+  ID: Scalars['ID64']['input'];
+};
+
+
 export type MutationDeleteZoneArgs = {
   ID: Scalars['ID64']['input'];
   msg?: InputMaybe<Scalars['String']['input']>;
@@ -1648,6 +1668,12 @@ export type MutationPauseApplicationArgs = {
 
 export type MutationPauseRtbSourceArgs = {
   ID: Scalars['ID64']['input'];
+};
+
+
+export type MutationPauseTrafficRouterArgs = {
+  ID: Scalars['ID64']['input'];
+  msg?: Scalars['String']['input'];
 };
 
 
@@ -1715,6 +1741,12 @@ export type MutationRunApplicationArgs = {
 
 export type MutationRunRtbSourceArgs = {
   ID: Scalars['ID64']['input'];
+};
+
+
+export type MutationRunTrafficRouterArgs = {
+  ID: Scalars['ID64']['input'];
+  msg?: Scalars['String']['input'];
 };
 
 
@@ -1793,13 +1825,19 @@ export type MutationUpdateOsArgs = {
 
 export type MutationUpdateRtbSourceArgs = {
   ID: Scalars['ID64']['input'];
-  input: RtbSourceInput;
+  input: RtbSourceUpdateInput;
 };
 
 
 export type MutationUpdateRoleArgs = {
   id: Scalars['ID64']['input'];
   input: RbacRoleInput;
+};
+
+
+export type MutationUpdateTrafficRouterArgs = {
+  ID: Scalars['ID64']['input'];
+  input: TrafficRouterUpdateInput;
 };
 
 
@@ -2092,7 +2130,7 @@ export type ProfileMessanger = {
 export type Query = {
   __typename?: 'Query';
   OS?: Maybe<OsPayload>;
-  /** Get RTBSource object by ID */
+  /** Get an RTBSource object by its unique ID. */
   RTBSource: RtbSourcePayload;
   /** Get account object by ID */
   account: AccountPayload;
@@ -2159,12 +2197,14 @@ export type Query = {
   listOptions?: Maybe<OptionConnection>;
   /** List of the RBAC permissions */
   listPermissions?: Maybe<Array<RbacPermission>>;
-  /** List of the tag objects which can be filtered and ordered by some fields */
+  /** List RTBSource objects with optional filtering, ordering, and pagination. */
   listRTBSources?: Maybe<RtbSourceConnection>;
   /** List of the RBAC role objects which can be filtered and ordered by some fields */
   listRoles?: Maybe<RbacRoleConnection>;
   /** List all social accounts */
   listSocialAccounts: SocialAccountConnection;
+  /** List of traffic routers */
+  listTrafficRouters?: Maybe<TrafficRouterConnection>;
   /** List of the user objects which can be filtered and ordered by some fields */
   listUsers?: Maybe<UserConnection>;
   /** List of the Zone objects which can be filtered and ordered by some fields */
@@ -2178,6 +2218,8 @@ export type Query = {
   socialAccount: SocialAccountPayload;
   /** Get a list of StatisticAdItem objects. */
   statisticAdList: StatisticAdItemConnection;
+  /** Traffic router by ID */
+  trafficRouter?: Maybe<TrafficRouterPayload>;
   /** Get user object by ID or username */
   user: UserPayload;
   /** Get Zone object by ID */
@@ -2366,7 +2408,7 @@ export type QueryListPermissionsArgs = {
 
 export type QueryListRtbSourcesArgs = {
   filter?: InputMaybe<RtbSourceListFilter>;
-  order?: InputMaybe<RtbSourceListOrder>;
+  order?: InputMaybe<Array<InputMaybe<RtbSourceListOrder>>>;
   page?: InputMaybe<Page>;
 };
 
@@ -2381,6 +2423,13 @@ export type QueryListRolesArgs = {
 export type QueryListSocialAccountsArgs = {
   filter?: InputMaybe<SocialAccountListFilter>;
   order?: InputMaybe<SocialAccountListOrder>;
+  page?: InputMaybe<Page>;
+};
+
+
+export type QueryListTrafficRoutersArgs = {
+  filter?: InputMaybe<TrafficRouterListFilter>;
+  order?: InputMaybe<Array<TrafficRouterListOrder>>;
   page?: InputMaybe<Page>;
 };
 
@@ -2421,6 +2470,11 @@ export type QueryStatisticAdListArgs = {
   group?: InputMaybe<Array<StatisticKey>>;
   order?: InputMaybe<Array<StatisticAdKeyOrder>>;
   page?: InputMaybe<Page>;
+};
+
+
+export type QueryTrafficRouterArgs = {
+  ID: Scalars['ID64']['input'];
 };
 
 
@@ -2527,18 +2581,18 @@ export enum RtbRequestFormatType {
   Xml = 'XML'
 }
 
-/** RTBSource object represents a source of RTB advertising */
+/** RTBSource object represents a source of RTB (Real-Time Bidding) advertising. */
 export type RtbSource = {
   __typename?: 'RTBSource';
   ID: Scalars['ID64']['output'];
   IP: AnyIPv4IPv6;
   OS?: Maybe<Array<Scalars['Int64']['output']>>;
   RPS: Scalars['Int']['output'];
-  /** After approval URL can't be changed */
+  /** URL of the RTB source. This cannot be changed after approval. */
   URL: Scalars['String']['output'];
   accountID: Scalars['ID64']['output'];
   accuracy: Scalars['Float']['output'];
-  /** Active status of source */
+  /** Active status of the source, indicating whether the source is currently active. */
   active: ActiveStatus;
   adBlock: AnyOnlyExclude;
   applications?: Maybe<Array<Scalars['Int64']['output']>>;
@@ -2554,7 +2608,7 @@ export type RtbSource = {
   deviceTypes?: Maybe<Array<Scalars['Int64']['output']>>;
   devices?: Maybe<Array<Scalars['Int64']['output']>>;
   domains?: Maybe<Array<Scalars['String']['output']>>;
-  /** Flags of source */
+  /** Flags associated with the source, stored as a JSON object. */
   flags: Scalars['NullableJSON']['output'];
   formats?: Maybe<Array<Scalars['String']['output']>>;
   headers: Scalars['NullableJSON']['output'];
@@ -2568,7 +2622,7 @@ export type RtbSource = {
   protocol: Scalars['String']['output'];
   requestType: RtbRequestFormatType;
   secure: AnyOnlyExclude;
-  /** Status of source approval */
+  /** Status of source approval, indicating whether the source is approved or not. */
   status: ApproveStatus;
   timeout: Scalars['Int']['output'];
   title: Scalars['String']['output'];
@@ -2576,33 +2630,115 @@ export type RtbSource = {
   zones?: Maybe<Array<Scalars['Int64']['output']>>;
 };
 
-/** RTBSourceConnection wrapper to access of RTBSource objects */
+/** RTBSourceConnection wrapper to access RTBSource objects in a paginated list. */
 export type RtbSourceConnection = {
   __typename?: 'RTBSourceConnection';
-  /** Edges of RTBSource objects */
+  /** Edges of RTBSource objects, containing nodes and cursors. */
   edges: Array<RtbSourceEdge>;
-  /** List of RTBSource objects */
+  /** List of RTBSource objects. */
   list: Array<RtbSource>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  /** Total count of RTBSource objects */
+  /** Total count of RTBSource objects. */
   totalCount: Scalars['Int']['output'];
 };
 
-/** RTBSourceEdge wrapper to access of RTBSource objects */
+/** Input for creating a new RTBSource. */
+export type RtbSourceCreateInput = {
+  IP?: InputMaybe<AnyIPv4IPv6>;
+  OS?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  RPS: Scalars['Int']['input'];
+  /** URL of the RTB source. Cannot be changed after approval. */
+  URL: Scalars['String']['input'];
+  accountID?: InputMaybe<Scalars['ID64']['input']>;
+  accuracy: Scalars['Float']['input'];
+  adBlock?: InputMaybe<AnyOnlyExclude>;
+  applications?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  auctionType: AuctionType;
+  browsers?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  carriers?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  categories?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  config?: InputMaybe<Scalars['NullableJSON']['input']>;
+  countries?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Description of the RTB source. */
+  description?: InputMaybe<Scalars['String']['input']>;
+  deviceTypes?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  devices?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  domains?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Flags associated with the source. */
+  flags?: InputMaybe<Scalars['NullableJSON']['input']>;
+  formats?: InputMaybe<Array<Scalars['String']['input']>>;
+  headers?: InputMaybe<Scalars['NullableJSON']['input']>;
+  languages?: InputMaybe<Array<Scalars['String']['input']>>;
+  maxBid: Scalars['Float']['input'];
+  method: Scalars['String']['input'];
+  minBid: Scalars['Float']['input'];
+  minimalWeight?: InputMaybe<Scalars['Float']['input']>;
+  priceCorrectionReduce: Scalars['Float']['input'];
+  privateBrowsing?: InputMaybe<AnyOnlyExclude>;
+  protocol: Scalars['String']['input'];
+  requestType: RtbRequestFormatType;
+  secure?: InputMaybe<AnyOnlyExclude>;
+  timeout: Scalars['Int']['input'];
+  /** Title of the RTB source. */
+  title: Scalars['String']['input'];
+  zones?: InputMaybe<Array<Scalars['Int64']['input']>>;
+};
+
+/** RTBSourceEdge wrapper to access RTBSource objects in a paginated list. */
 export type RtbSourceEdge = {
   __typename?: 'RTBSourceEdge';
   /** A cursor for use in pagination. */
   cursor: Scalars['String']['output'];
-  /** The RTBSource at the end of RTBSourceEdge. */
+  /** The RTBSource at the end of the RTBSourceEdge. */
   node: RtbSource;
 };
 
-export type RtbSourceInput = {
+/** Filter options for listing RTBSource objects. */
+export type RtbSourceListFilter = {
+  ID?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  accountID?: InputMaybe<Scalars['ID64']['input']>;
+  active?: InputMaybe<ActiveStatus>;
+  auctionType?: InputMaybe<Array<AuctionType>>;
+  method?: InputMaybe<Array<Scalars['String']['input']>>;
+  protocol?: InputMaybe<Array<Scalars['String']['input']>>;
+  requestType?: InputMaybe<Array<RtbRequestFormatType>>;
+  status?: InputMaybe<ApproveStatus>;
+};
+
+/** Ordering options for listing RTBSource objects. */
+export type RtbSourceListOrder = {
+  ID?: InputMaybe<Ordering>;
+  accountID?: InputMaybe<Ordering>;
+  active?: InputMaybe<Ordering>;
+  auctionType?: InputMaybe<Ordering>;
+  createdAt?: InputMaybe<Ordering>;
+  deletedAt?: InputMaybe<Ordering>;
+  method?: InputMaybe<Ordering>;
+  protocol?: InputMaybe<Ordering>;
+  requestType?: InputMaybe<Ordering>;
+  status?: InputMaybe<Ordering>;
+  title?: InputMaybe<Ordering>;
+  updatedAt?: InputMaybe<Ordering>;
+};
+
+/** RTBSourcePayload wrapper to access the results of RTBSource operations. */
+export type RtbSourcePayload = {
+  __typename?: 'RTBSourcePayload';
+  /** A unique identifier for the client performing the mutation. */
+  clientMutationID: Scalars['String']['output'];
+  /** The RTBSource object accessible by a client. */
+  source: RtbSource;
+  /** The ID of the RTBSource created or affected by the mutation. */
+  sourceID: Scalars['ID64']['output'];
+};
+
+/** Input for updating an existing RTBSource. */
+export type RtbSourceUpdateInput = {
   IP?: InputMaybe<AnyIPv4IPv6>;
   OS?: InputMaybe<Array<Scalars['Int64']['input']>>;
   RPS?: InputMaybe<Scalars['Int']['input']>;
-  /** After approval URL can't be changed */
+  /** URL of the RTB source. Cannot be changed after approval. */
   URL?: InputMaybe<Scalars['String']['input']>;
   accountID?: InputMaybe<Scalars['ID64']['input']>;
   accuracy?: InputMaybe<Scalars['Float']['input']>;
@@ -2614,11 +2750,12 @@ export type RtbSourceInput = {
   categories?: InputMaybe<Array<Scalars['Int64']['input']>>;
   config?: InputMaybe<Scalars['NullableJSON']['input']>;
   countries?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Description of the RTB source. */
   description?: InputMaybe<Scalars['String']['input']>;
   deviceTypes?: InputMaybe<Array<Scalars['Int64']['input']>>;
   devices?: InputMaybe<Array<Scalars['Int64']['input']>>;
   domains?: InputMaybe<Array<Scalars['String']['input']>>;
-  /** Flags of source */
+  /** Flags associated with the source. */
   flags?: InputMaybe<Scalars['NullableJSON']['input']>;
   formats?: InputMaybe<Array<Scalars['String']['input']>>;
   headers?: InputMaybe<Scalars['NullableJSON']['input']>;
@@ -2633,33 +2770,9 @@ export type RtbSourceInput = {
   requestType?: InputMaybe<RtbRequestFormatType>;
   secure?: InputMaybe<AnyOnlyExclude>;
   timeout?: InputMaybe<Scalars['Int']['input']>;
+  /** Title of the RTB source. */
   title?: InputMaybe<Scalars['String']['input']>;
   zones?: InputMaybe<Array<Scalars['Int64']['input']>>;
-};
-
-export type RtbSourceListFilter = {
-  ID?: InputMaybe<Array<Scalars['ID64']['input']>>;
-  accountID?: InputMaybe<Scalars['ID64']['input']>;
-};
-
-export type RtbSourceListOrder = {
-  ID?: InputMaybe<Ordering>;
-  accountID?: InputMaybe<Ordering>;
-  createdAt?: InputMaybe<Ordering>;
-  deletedAt?: InputMaybe<Ordering>;
-  title?: InputMaybe<Ordering>;
-  updatedAt?: InputMaybe<Ordering>;
-};
-
-/** RTBSourcePayload wrapper to access of RTBSource oprtation results */
-export type RtbSourcePayload = {
-  __typename?: 'RTBSourcePayload';
-  /** A unique identifier for the client performing the mutation. */
-  clientMutationID: Scalars['String']['output'];
-  /** The RTBSource object accessible by a client. */
-  source: RtbSource;
-  /** The RTBSource that was created by this mutation. */
-  sourceID: Scalars['ID64']['output'];
 };
 
 /** Constants of the response status */
@@ -2907,6 +3020,166 @@ export type TimeZone = {
   __typename?: 'TimeZone';
   lon: Scalars['Float']['output'];
   name: Scalars['String']['output'];
+};
+
+/**
+ * Traffic routing represents the way of traffic distribution
+ * between different traffic sources and RTB ad sources
+ */
+export type TrafficRouter = {
+  __typename?: 'TrafficRouter';
+  /** ID of the traffic router */
+  ID: Scalars['ID64']['output'];
+  IP: AnyIPv4IPv6;
+  OS?: Maybe<Array<Scalars['Int64']['output']>>;
+  /** RTB sources of the advertising */
+  RTBSourceIDs?: Maybe<Array<Scalars['ID64']['output']>>;
+  /** RTB sources of the advertising */
+  RTBSources?: Maybe<Array<RtbSource>>;
+  /** Account owner of the traffic router */
+  account?: Maybe<Account>;
+  /** Account ID owner of the traffic router */
+  accountID: Scalars['ID64']['output'];
+  /** Active status of source */
+  active: ActiveStatus;
+  adBlock: AnyOnlyExclude;
+  applications?: Maybe<Array<Scalars['ID64']['output']>>;
+  browsers?: Maybe<Array<Scalars['Int64']['output']>>;
+  carriers?: Maybe<Array<Scalars['Int64']['output']>>;
+  categories?: Maybe<Array<Scalars['Int64']['output']>>;
+  countries?: Maybe<Array<Scalars['String']['output']>>;
+  createdAt: Scalars['Time']['output'];
+  deletedAt?: Maybe<Scalars['Time']['output']>;
+  /** Description of the traffic router */
+  description: Scalars['String']['output'];
+  deviceTypes?: Maybe<Array<Scalars['Int64']['output']>>;
+  devices?: Maybe<Array<Scalars['Int64']['output']>>;
+  domains?: Maybe<Array<Scalars['String']['output']>>;
+  formats?: Maybe<Array<Scalars['String']['output']>>;
+  languages?: Maybe<Array<Scalars['String']['output']>>;
+  /** Traffic router percent of the traffic to share between RTB sources */
+  percent: Scalars['Float']['output'];
+  privateBrowsing: AnyOnlyExclude;
+  secure: AnyOnlyExclude;
+  updatedAt: Scalars['Time']['output'];
+  zones?: Maybe<Array<Scalars['ID64']['output']>>;
+};
+
+export type TrafficRouterConnection = {
+  __typename?: 'TrafficRouterConnection';
+  /** Edges of the traffic router */
+  edges?: Maybe<Array<TrafficRouterEdge>>;
+  /** List of the traffic routers */
+  list?: Maybe<Array<TrafficRouter>>;
+  /** Information about the page */
+  pageInfo: PageInfo;
+  /** Total count of the traffic routers */
+  totalCount: Scalars['Int']['output'];
+};
+
+export type TrafficRouterCreateInput = {
+  IP?: InputMaybe<AnyIPv4IPv6>;
+  OS?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  /** RTB sources of the advertising */
+  RTBSourceIDs: Array<Scalars['ID64']['input']>;
+  /** Account ID owner of the traffic router */
+  accountID?: InputMaybe<Scalars['ID64']['input']>;
+  /** Active status of the traffic router */
+  active: ActiveStatus;
+  adBlock?: InputMaybe<AnyOnlyExclude>;
+  applications?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  browsers?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  carriers?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  categories?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  countries?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Description of the traffic router */
+  description?: InputMaybe<Scalars['String']['input']>;
+  deviceTypes?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  devices?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  domains?: InputMaybe<Array<Scalars['String']['input']>>;
+  formats?: InputMaybe<Array<Scalars['String']['input']>>;
+  languages?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Traffic router percent of the traffic to share between RTB sources */
+  percent: Scalars['Float']['input'];
+  privateBrowsing?: InputMaybe<AnyOnlyExclude>;
+  secure?: InputMaybe<AnyOnlyExclude>;
+  zones?: InputMaybe<Array<Scalars['ID64']['input']>>;
+};
+
+export type TrafficRouterEdge = {
+  __typename?: 'TrafficRouterEdge';
+  /** Cursor for the traffic router */
+  cursor: Scalars['String']['output'];
+  /** Node of the traffic router */
+  node: TrafficRouter;
+};
+
+export type TrafficRouterListFilter = {
+  ID?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  IP?: InputMaybe<AnyIPv4IPv6>;
+  OS?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  RTBSourceIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  accountID?: InputMaybe<Scalars['ID64']['input']>;
+  active?: InputMaybe<ActiveStatus>;
+  adBlock?: InputMaybe<AnyOnlyExclude>;
+  applications?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  browsers?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  carriers?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  categories?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  countries?: InputMaybe<Array<Scalars['String']['input']>>;
+  deviceTypes?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  devices?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  domains?: InputMaybe<Array<Scalars['String']['input']>>;
+  formats?: InputMaybe<Array<Scalars['String']['input']>>;
+  languages?: InputMaybe<Array<Scalars['String']['input']>>;
+  privateBrowsing?: InputMaybe<AnyOnlyExclude>;
+  secure?: InputMaybe<AnyOnlyExclude>;
+  zones?: InputMaybe<Array<Scalars['ID64']['input']>>;
+};
+
+export type TrafficRouterListOrder = {
+  ID?: InputMaybe<Ordering>;
+  active?: InputMaybe<Ordering>;
+  createdAt?: InputMaybe<Ordering>;
+  percent?: InputMaybe<Ordering>;
+  updatedAt?: InputMaybe<Ordering>;
+};
+
+export type TrafficRouterPayload = {
+  __typename?: 'TrafficRouterPayload';
+  /** Unique identifier of the client */
+  clientMutationID: Scalars['String']['output'];
+  /** Traffic router object */
+  router: TrafficRouter;
+  /** ID of the traffic router */
+  routerID: Scalars['ID64']['output'];
+};
+
+export type TrafficRouterUpdateInput = {
+  IP?: InputMaybe<AnyIPv4IPv6>;
+  OS?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  /** RTB sources of the advertising */
+  RTBSourceIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  /** Active status of the traffic router */
+  active?: InputMaybe<ActiveStatus>;
+  adBlock?: InputMaybe<AnyOnlyExclude>;
+  applications?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  browsers?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  carriers?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  categories?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  countries?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Description of the traffic router */
+  description?: InputMaybe<Scalars['String']['input']>;
+  deviceTypes?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  devices?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  domains?: InputMaybe<Array<Scalars['String']['input']>>;
+  formats?: InputMaybe<Array<Scalars['String']['input']>>;
+  languages?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Traffic router percent of the traffic to share between RTB sources */
+  percent?: InputMaybe<Scalars['Float']['input']>;
+  privateBrowsing?: InputMaybe<AnyOnlyExclude>;
+  secure?: InputMaybe<AnyOnlyExclude>;
+  zones?: InputMaybe<Array<Scalars['ID64']['input']>>;
 };
 
 /** User represents a user object of the system */
@@ -3452,14 +3725,14 @@ export type ListRtbSourcesQueryVariables = Exact<{
   page?: Scalars['Int']['input'];
   size?: Scalars['Int']['input'];
   filter?: InputMaybe<RtbSourceListFilter>;
-  order?: InputMaybe<RtbSourceListOrder>;
+  order?: InputMaybe<Array<InputMaybe<RtbSourceListOrder>> | InputMaybe<RtbSourceListOrder>>;
 }>;
 
 
 export type ListRtbSourcesQuery = { __typename?: 'Query', permApprove?: string | null, permReject?: string | null, result?: { __typename?: 'RTBSourceConnection', list: Array<{ __typename?: 'RTBSource', ID: any, title: string, description: string, status: ApproveStatus, active: ActiveStatus, accountID: any, flags: any, protocol: string, minimalWeight: number, URL: string, method: string, requestType: RtbRequestFormatType, headers: any, RPS: number, timeout: number, accuracy: number, priceCorrectionReduce: number, auctionType: AuctionType, minBid: number, maxBid: number, formats?: Array<string> | null, deviceTypes?: Array<any> | null, devices?: Array<any> | null, OS?: Array<any> | null, browsers?: Array<any> | null, carriers?: Array<any> | null, categories?: Array<any> | null, countries?: Array<string> | null, languages?: Array<string> | null, applications?: Array<any> | null, domains?: Array<string> | null, zones?: Array<any> | null, secure: AnyOnlyExclude, adBlock: AnyOnlyExclude, privateBrowsing: AnyOnlyExclude, IP: AnyIPv4IPv6, config: any, createdAt: any, updatedAt: any, deletedAt?: any | null }>, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
 
 export type NewRtbSourceMutationVariables = Exact<{
-  input: RtbSourceInput;
+  input: RtbSourceCreateInput;
 }>;
 
 
@@ -3467,7 +3740,7 @@ export type NewRtbSourceMutation = { __typename?: 'Mutation', result: { __typena
 
 export type UpdateRtbSourceMutationVariables = Exact<{
   id: Scalars['ID64']['input'];
-  input: RtbSourceInput;
+  input: RtbSourceUpdateInput;
 }>;
 
 
@@ -5821,7 +6094,7 @@ export type GetRtbSourceLazyQueryHookResult = ReturnType<typeof useGetRtbSourceL
 export type GetRtbSourceSuspenseQueryHookResult = ReturnType<typeof useGetRtbSourceSuspenseQuery>;
 export type GetRtbSourceQueryResult = Apollo.QueryResult<GetRtbSourceQuery, GetRtbSourceQueryVariables>;
 export const ListRtbSourcesDocument = gql`
-    query ListRTBSources($page: Int! = 0, $size: Int! = 10, $filter: RTBSourceListFilter = null, $order: RTBSourceListOrder = null) {
+    query ListRTBSources($page: Int! = 0, $size: Int! = 10, $filter: RTBSourceListFilter = null, $order: [RTBSourceListOrder] = null) {
   result: listRTBSources(
     filter: $filter
     order: $order
@@ -5876,7 +6149,7 @@ export type ListRtbSourcesLazyQueryHookResult = ReturnType<typeof useListRtbSour
 export type ListRtbSourcesSuspenseQueryHookResult = ReturnType<typeof useListRtbSourcesSuspenseQuery>;
 export type ListRtbSourcesQueryResult = Apollo.QueryResult<ListRtbSourcesQuery, ListRtbSourcesQueryVariables>;
 export const NewRtbSourceDocument = gql`
-    mutation NewRTBSource($input: RTBSourceInput!) {
+    mutation NewRTBSource($input: RTBSourceCreateInput!) {
   result: createRTBSource(input: $input) {
     clientMutationID
     sourceID
@@ -5913,7 +6186,7 @@ export type NewRtbSourceMutationHookResult = ReturnType<typeof useNewRtbSourceMu
 export type NewRtbSourceMutationResult = Apollo.MutationResult<NewRtbSourceMutation>;
 export type NewRtbSourceMutationOptions = Apollo.BaseMutationOptions<NewRtbSourceMutation, NewRtbSourceMutationVariables>;
 export const UpdateRtbSourceDocument = gql`
-    mutation UpdateRTBSource($id: ID64!, $input: RTBSourceInput!) {
+    mutation UpdateRTBSource($id: ID64!, $input: RTBSourceUpdateInput!) {
   result: updateRTBSource(ID: $id, input: $input) {
     clientMutationID
     sourceID

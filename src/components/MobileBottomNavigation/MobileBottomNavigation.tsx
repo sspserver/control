@@ -12,7 +12,7 @@ const { content } = popover();
 function MobileBottomNavigation() {
   const { push } = useRouter();
   const pathname = usePathname();
-  const baseClassNames = 'flex h-12  gap-2 fixed p-0 pb-1 bottom-0 left-0 z-5 w-full rounded-bl-none rounded-br-none rounded-none';
+  const baseClassNames = 'flex h-12 gap-2 fixed p-0 pb-1 bottom-0 left-0 z-10 w-full rounded-bl-none rounded-br-none rounded-none';
   const className = content({
     fancy: true,
     className: baseClassNames,

@@ -1,3 +1,4 @@
+import type { ActiveStatus } from '@/generated/graphql';
 import type React from 'react';
 
 export type StatisticFilterDateType = {
@@ -6,9 +7,13 @@ export type StatisticFilterDateType = {
 };
 
 export type StatisticFilterContextType = {
+  filterActiveStatus?: ActiveStatus;
   filterField: string;
+  calendarRangeOption: string;
   changeFilterFieldHandler: (value: string) => void;
-  changeFilterDateHandler: (value?: StatisticFilterDateType) => void;
+  changeFilterDateRangeOptionHandler: (value?: string) => void;
+  changeFilterDateHandler: (date?: StatisticFilterDateType) => void;
+  changeFilterActiveStatusHandler: (value: ActiveStatus | `${ActiveStatus}` | string | null) => void;
   date?: StatisticFilterDateType;
 };
 
@@ -17,6 +22,8 @@ export type StatisticFilterProviderProps = {
 };
 
 export type StatisticFilterStoredFields = {
+  storeActiveStatus?: ActiveStatus;
+  storeCalendarRangeOption?: string;
   storeFromDate?: string | null;
   storeToDate?: string | null;
   storeFilterField: string;
