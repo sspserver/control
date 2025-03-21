@@ -1,14 +1,14 @@
+import type { ApolloCache } from '@apollo/client';
 import {
   useActivateZoneMutation,
   useDeactivateZoneMutation,
   useDeleteZoneMutation,
 } from '@/generated/graphql';
-import { listAdZoneDocumentRefetchQueries } from '@components/pages/AdUnitPage/useAdUnitPage';
 import { useToastProviderContext } from '@components/Toast';
 import { configPathRoutes } from '@configs/routes';
 import { PauseIcon, PlayIcon } from '@heroicons/react/16/solid';
 import { useRouter } from 'next/navigation';
-import { createElement, useState } from 'react';
+import { createElement, useMemo, useState } from 'react';
 
 function useAdUnitActions(
   id: string,
@@ -18,22 +18,28 @@ function useAdUnitActions(
   const { showToast } = useToastProviderContext();
   const { push } = useRouter();
   const [isOpenDeleteDialog, setOpenDeleteDialog] = useState<boolean>(false);
+  const updateAdUnitCacheStrategy = useMemo(() => ({
+    update(cache: ApolloCache<unknown>) {
+      cache.modify({
+        optimistic: true,
+        fields: {
+          listZones(cache = []) {
+            return cache?.list ?? [];
+          },
+        },
+      });
+    },
+  }), []);
   const [
     deleteAdUnit,
     {
       loading: isDeleteAdUnitLoading,
     },
-  ] = useDeleteZoneMutation({
-    refetchQueries: listAdZoneDocumentRefetchQueries,
-  });
+  ] = useDeleteZoneMutation(updateAdUnitCacheStrategy);
   const [activateAdUnit, { loading: isActivateAdUnitLoading }]
-    = useActivateZoneMutation({
-      refetchQueries: listAdZoneDocumentRefetchQueries,
-    });
+    = useActivateZoneMutation(updateAdUnitCacheStrategy);
   const [deactivateAdUnit, { loading: isDeactivateAdUnitLoading }]
-    = useDeactivateZoneMutation({
-      refetchQueries: listAdZoneDocumentRefetchQueries,
-    });
+    = useDeactivateZoneMutation(updateAdUnitCacheStrategy);
   const clickPlayPauseButtonHandler = async () => {
     const variables = { variables: { id } };
     if (pause) {

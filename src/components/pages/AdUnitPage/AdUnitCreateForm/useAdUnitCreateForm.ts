@@ -1,11 +1,8 @@
+import type { Application, UpdateZoneMutation } from '@/generated/graphql';
+import type { ApolloCache, FetchResult } from '@apollo/client';
 import type { FormikHelpers } from 'formik/dist/types';
 import type { AdUnitCreateFormState } from './AdUnitCreateForm.types';
-import {
-  useCreateZoneMutation,
-  useGetZoneQuery,
-  useUpdateZoneMutation,
-} from '@/generated/graphql';
-import { listAdZoneDocumentRefetchQueries } from '@components/pages/AdUnitPage/useAdUnitPage';
+import { useCreateZoneMutation, useGetZoneQuery, useUpdateZoneMutation } from '@/generated/graphql';
 import { useToastProviderContext } from '@components/Toast';
 import { extractQLErrorFromNetworkError } from '@lib/errors/extractQLErrorFromNetworkError';
 import graphQLErrorToMap from '@lib/errors/graphQLErrorToMap';
@@ -21,13 +18,43 @@ function useAdUnitCreateForm(onSubmit?: () => void) {
     = useCreateZoneMutation({
       fetchPolicy: 'network-only',
       errorPolicy: 'all',
-      refetchQueries: listAdZoneDocumentRefetchQueries,
+      update(cache: ApolloCache<unknown>, { data }) {
+        cache.modify({
+          optimistic: true,
+          fields: {
+            listZones(cache) {
+              let newCache = cache?.list ?? [];
+              const newItem = data?.result?.data;
+
+              if (newItem != null) {
+                newCache = [...newCache, newItem];
+              }
+
+              return newCache;
+            },
+          },
+        });
+      },
     });
   const [updateAdUnit, { loading: isUpdateAdUnitLoading }]
     = useUpdateZoneMutation({
       fetchPolicy: 'network-only',
       errorPolicy: 'all',
-      refetchQueries: listAdZoneDocumentRefetchQueries,
+      update(cache: ApolloCache<UpdateZoneMutation>, { data }: FetchResult<UpdateZoneMutation>) {
+        cache.modify({
+          optimistic: true,
+          fields: {
+            listZones(cache) {
+              const newCache = Array.isArray(cache) ? cache : cache?.list;
+              const newItem = data?.result?.data;
+
+              return newCache?.map(
+                (item: Application) => item.ID === newItem?.ID ? newItem : item,
+              );
+            },
+          },
+        });
+      },
     });
   const {
     data: responseDataAdUnit,

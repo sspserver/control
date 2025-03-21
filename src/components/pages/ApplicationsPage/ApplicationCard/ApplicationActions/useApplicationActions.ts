@@ -1,14 +1,14 @@
+import type { ApolloCache } from '@apollo/client';
 import {
   useDeleteApplicationMutation,
   usePauseApplicationMutation,
   useRunApplicationMutation,
 } from '@/generated/graphql';
-import { listApplicationsDocumentRefetchQueries } from '@components/pages/ApplicationsPage/useApplicationsPage';
 import { useToastProviderContext } from '@components/Toast';
 import { configPathRoutes } from '@configs/routes';
 import { PauseIcon, PlayIcon } from '@heroicons/react/16/solid';
 import { useRouter } from 'next/navigation';
-import { createElement, useState } from 'react';
+import { createElement, useMemo, useState } from 'react';
 
 function useApplicationActions(
   id: string,
@@ -18,22 +18,28 @@ function useApplicationActions(
   const { showToast } = useToastProviderContext();
   const { push } = useRouter();
   const [isOpenDeleteDialog, setOpenDeleteDialog] = useState<boolean>(false);
+  const updateApplicationCacheStrategy = useMemo(() => ({
+    update(cache: ApolloCache<unknown>) {
+      cache.modify({
+        optimistic: true,
+        fields: {
+          listApplications(cache = []) {
+            return cache?.list ?? [];
+          },
+        },
+      });
+    },
+  }), []);
   const [
     deleteApplication,
     {
       loading: isDeleteApplicationLoading,
     },
-  ] = useDeleteApplicationMutation({
-    refetchQueries: listApplicationsDocumentRefetchQueries,
-  });
+  ] = useDeleteApplicationMutation(updateApplicationCacheStrategy);
   const [runApplication, { loading: isRunApplicationLoading }]
-    = useRunApplicationMutation({
-      refetchQueries: listApplicationsDocumentRefetchQueries,
-    });
+    = useRunApplicationMutation(updateApplicationCacheStrategy);
   const [pauseApplication, { loading: isPauseApplicationLoading }]
-    = usePauseApplicationMutation({
-      refetchQueries: listApplicationsDocumentRefetchQueries,
-    });
+    = usePauseApplicationMutation(updateApplicationCacheStrategy);
   const clickPlayPauseButtonHandler = async () => {
     const variables = { variables: { id } };
     if (pause) {
@@ -51,7 +57,6 @@ function useApplicationActions(
         icon: createElement(PauseIcon, { className: 'w-4 h-4 text-warning-600' }),
       });
     }
-    // onChange(id);
   };
   const clickDeleteButtonHandler = () =>
     deleteApplication({ variables: { id } });

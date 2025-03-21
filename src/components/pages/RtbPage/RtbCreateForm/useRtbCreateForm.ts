@@ -1,3 +1,8 @@
+import type {
+  RtbSource,
+  UpdateRtbSourceMutation,
+} from '@/generated/graphql';
+import type { ApolloCache, FetchResult } from '@apollo/client';
 import type { FormikHelpers } from 'formik/dist/types';
 import type { RTBCreateFormState } from './RtbCreateForm.types';
 import {
@@ -5,7 +10,6 @@ import {
   useNewRtbSourceMutation,
   useUpdateRtbSourceMutation,
 } from '@/generated/graphql';
-import { listRtbDocumentRefetchQueries } from '@components/pages/RtbPage/useRtbPage';
 import { useToastProviderContext } from '@components/Toast';
 import { extractQLErrorFromNetworkError } from '@lib/errors/extractQLErrorFromNetworkError';
 import graphQLErrorToMap from '@lib/errors/graphQLErrorToMap';
@@ -21,13 +25,43 @@ function useRtbCreateForm(onSubmit?: () => void) {
     = useNewRtbSourceMutation({
       fetchPolicy: 'network-only',
       errorPolicy: 'all',
-      refetchQueries: listRtbDocumentRefetchQueries,
+      update(cache: ApolloCache<unknown>, { data }) {
+        cache.modify({
+          optimistic: true,
+          fields: {
+            listRTBSources(cache) {
+              let newCache = cache?.list ?? [];
+              const newItem = data?.result?.data;
+
+              if (newItem != null) {
+                newCache = [...newCache, newItem];
+              }
+
+              return newCache;
+            },
+          },
+        });
+      },
     });
   const [updateRtb, { loading: isUpdateRtbLoading }]
     = useUpdateRtbSourceMutation({
       fetchPolicy: 'network-only',
       errorPolicy: 'all',
-      refetchQueries: listRtbDocumentRefetchQueries,
+      update(cache: ApolloCache<UpdateRtbSourceMutation>, { data }: FetchResult<UpdateRtbSourceMutation>) {
+        cache.modify({
+          optimistic: true,
+          fields: {
+            listRTBSources(cache) {
+              const newCache = Array.isArray(cache) ? cache : cache?.list;
+              const newItem = data?.result?.data;
+
+              return newCache?.map(
+                (item: RtbSource) => item.ID === newItem?.ID ? newItem : item,
+              );
+            },
+          },
+        });
+      },
     });
   const {
     data: responseDataRtb,
@@ -64,7 +98,7 @@ function useRtbCreateForm(onSubmit?: () => void) {
     adBlock,
     privateBrowsing,
     IP,
-  } = responseDataRtb?.result?.data ?? {};
+  } = (responseDataRtb?.result?.data ?? {}) as RTBCreateFormState;
   const rtbData = {
     title,
     description,

@@ -12,14 +12,7 @@ function AdUnitPage() {
     isAdUnitListLoading,
     adUnitStatisticsMapById,
   } = useAdUnitPage();
-
-  if (!adUnitList && !adUnitListError && !isAdUnitListLoading) {
-    return (
-      <p>
-        No data
-      </p>
-    );
-  }
+  const isAdUnitListEmpty = (!adUnitList && !adUnitListError && !isAdUnitListLoading) || !adUnitList?.length;
 
   if (adUnitListError) {
     return (
@@ -34,7 +27,7 @@ function AdUnitPage() {
     return <PageLoadSpinner />;
   }
 
-  if (!adUnitList?.length) {
+  if (isAdUnitListEmpty) {
     return (<AdUnitEmptyState />);
   }
 

@@ -1,14 +1,14 @@
+import type { ApolloCache } from '@apollo/client';
 import {
   useDeleteRtbSourceMutation,
   usePauseRtbSourceMutation,
   useRunRtbSourceMutation,
 } from '@/generated/graphql';
-import { listRtbDocumentRefetchQueries } from '@components/pages/RtbPage/useRtbPage';
 import { useToastProviderContext } from '@components/Toast';
 import { configPathRoutes } from '@configs/routes';
 import { PauseIcon, PlayIcon } from '@heroicons/react/16/solid';
 import { useRouter } from 'next/navigation';
-import { createElement, useState } from 'react';
+import { createElement, useMemo, useState } from 'react';
 
 function useRtbActions(
   id: string,
@@ -18,22 +18,28 @@ function useRtbActions(
   const { showToast } = useToastProviderContext();
   const { push } = useRouter();
   const [isOpenDeleteDialog, setOpenDeleteDialog] = useState<boolean>(false);
+  const updateRtbSourceCacheStrategy = useMemo(() => ({
+    update(cache: ApolloCache<unknown>) {
+      cache.modify({
+        optimistic: true,
+        fields: {
+          listRTBSources(cache) {
+            return cache?.list ?? [];
+          },
+        },
+      });
+    },
+  }), []);
   const [
     deleteRtb,
     {
       loading: isDeleteRtbLoading,
     },
-  ] = useDeleteRtbSourceMutation({
-    refetchQueries: listRtbDocumentRefetchQueries,
-  });
+  ] = useDeleteRtbSourceMutation(updateRtbSourceCacheStrategy);
   const [runRtb, { loading: isRunRtbLoading }]
-    = useRunRtbSourceMutation({
-      refetchQueries: listRtbDocumentRefetchQueries,
-    });
+    = useRunRtbSourceMutation(updateRtbSourceCacheStrategy);
   const [pauseRtb, { loading: isPauseRtbLoading }]
-    = usePauseRtbSourceMutation({
-      refetchQueries: listRtbDocumentRefetchQueries,
-    });
+    = usePauseRtbSourceMutation(updateRtbSourceCacheStrategy);
   const clickPlayPauseButtonHandler = async () => {
     const variables = { variables: { id } };
     if (pause) {

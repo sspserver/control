@@ -1,22 +1,31 @@
-import { getCustomDatePick } from '@components/CardChart/CardChart.utils';
-import { customDateSelectOptions } from '@components/DatePicker/DatePicker.const';
 import CalendarIcon from '@heroicons/react/16/solid/CalendarIcon';
-import Button from '@tailus-ui/Button';
+import { customDateSelectOptions, getCustomDatePick } from '@lib/date/getCustomDatePick';
 
+import Button from '@tailus-ui/Button';
 import Calendar, { type CalendarProps } from '@tailus-ui/Calendar';
 import Popover from '@tailus-ui/Popover';
 import ToggleGroup from '@tailus-ui/ToggleButtonGroup';
 import { format } from 'date-fns';
 
 type CustomCalendarProps = {
+  rangeOption?: string;
   onSelect?: (value?: { from: Date | undefined; to?: Date }) => void;
+  onChangeRange: (value?: string) => void;
   classNameButton?: string;
 } & CalendarProps;
 
-export const CustomDatePicker = ({ onSelect, selected, classNameButton, ...args }: CustomCalendarProps) => {
+export const CustomDatePicker = ({
+  onSelect,
+  rangeOption,
+  onChangeRange,
+  selected,
+  classNameButton,
+  ...args
+}: CustomCalendarProps) => {
   const handleValueChange = (value: string) => {
     const date = getCustomDatePick(value);
 
+    onChangeRange?.(value);
     onSelect?.(date);
   };
 
@@ -57,10 +66,17 @@ export const CustomDatePicker = ({ onSelect, selected, classNameButton, ...args 
             type="single"
             // value="last-week"
             onValueChange={handleValueChange}
-            defaultValue="last-week"
+            defaultValue={rangeOption}
           >
             {customDateSelectOptions.map(({ name, value }) => (
-              <ToggleGroup.Item withLabel className="w-full justify-start" value={value} key={value}>{name}</ToggleGroup.Item>
+              <ToggleGroup.Item
+                withLabel
+                className="w-full justify-start"
+                value={value}
+                key={value}
+              >
+                {name}
+              </ToggleGroup.Item>
             ))}
           </ToggleGroup.Root>
           <Calendar

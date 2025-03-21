@@ -12,14 +12,7 @@ function RtbPage() {
     isRtbListLoading,
     rtbStatisticsMapById,
   } = useRtbPage();
-
-  if (!rtbList && !rtbListError && !isRtbListLoading) {
-    return (
-      <p>
-        No data
-      </p>
-    );
-  }
+  const isListRtbEmpty = (!rtbList && !rtbListError && !isRtbListLoading) || !rtbList?.length;
 
   if (rtbListError) {
     return (
@@ -34,7 +27,7 @@ function RtbPage() {
     return <PageLoadSpinner />;
   }
 
-  if (!rtbList?.length) {
+  if (isListRtbEmpty) {
     return (<RtbEmptyState />);
   }
 

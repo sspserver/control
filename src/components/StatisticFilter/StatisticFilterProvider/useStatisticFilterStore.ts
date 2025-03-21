@@ -1,3 +1,4 @@
+import type { ActiveStatus } from '@/generated/graphql';
 import type {
   StatisticFilterDateType,
   StatisticFilterStoredFields,
@@ -6,26 +7,29 @@ import { useEffect, useState } from 'react';
 import {
   defaultFilterField,
   defaultFilterStoredFields,
+  storeNameActiveStatus,
+  storeNameCalendarRangeOption,
   storeNameFilterField,
   storeNameFromDate,
   storeNameToDate,
 } from './StatisticFilterProvider.const';
+import { getInitFilterDate } from './StatisticFilterProvider.utils';
 
 function useStatisticFilterStore() {
-  const today = new Date();
-  const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
   const [{
     storeFromDate,
     storeToDate,
     storeFilterField,
+    storeActiveStatus,
+    storeCalendarRangeOption = '',
   }, setStoredFields] = useState<StatisticFilterStoredFields>(defaultFilterStoredFields);
-  const storeFromDateParsed = storeFromDate ? new Date(storeFromDate) : null;
-  const storeToDateParsed = storeToDate ? new Date(storeToDate) : null;
-  const fromDate = storeFromDateParsed ?? today;
-  const toDate = storeToDateParsed ?? lastWeek;
-  const storeDate = { from: fromDate, to: toDate };
-  const storeDateHandler = (value?: StatisticFilterDateType) => {
-    const { from, to } = value ?? {};
+  const storeDate = getInitFilterDate(storeCalendarRangeOption, storeFromDate, storeToDate);
+  const storeDateRangeOptionHandler = (storeCalendarRangeOption?: string) => {
+    setStoredFields(state => ({ ...state, storeCalendarRangeOption }));
+    localStorage.setItem(storeNameCalendarRangeOption, storeCalendarRangeOption ?? '');
+  };
+  const storeDateHandler = (date?: StatisticFilterDateType) => {
+    const { from, to } = date ?? {};
     setStoredFields(state => ({
       ...state,
       storeFromDate: from?.toISOString(),
@@ -48,13 +52,23 @@ function useStatisticFilterStore() {
     setStoredFields(state => ({ ...state, storeFilterField: value }));
     localStorage.setItem(storeNameFilterField, value);
   };
+  const storeActiveStatusHandler = (value: string | null) => {
+    setStoredFields(state => ({ ...state, storeActiveStatus: value as ActiveStatus }));
+    if (value) {
+      localStorage.setItem(storeNameActiveStatus, value);
+    } else {
+      localStorage.removeItem(storeNameActiveStatus);
+    }
+  };
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setStoredFields({
+        storeCalendarRangeOption: localStorage.getItem(storeNameCalendarRangeOption) ?? '',
         storeFromDate: localStorage.getItem(storeNameFromDate),
         storeToDate: localStorage.getItem(storeNameToDate),
         storeFilterField: localStorage.getItem(storeNameFilterField) ?? defaultFilterField,
+        storeActiveStatus: (localStorage.getItem(storeNameActiveStatus) as ActiveStatus) ?? undefined,
       });
     }
   }, []);
@@ -62,8 +76,12 @@ function useStatisticFilterStore() {
   return {
     storeDate,
     storeFilterField,
+    storeActiveStatus,
+    storeCalendarRangeOption,
     storeDateHandler,
     storeFilterFieldHandler,
+    storeActiveStatusHandler,
+    storeDateRangeOptionHandler,
   };
 }
 

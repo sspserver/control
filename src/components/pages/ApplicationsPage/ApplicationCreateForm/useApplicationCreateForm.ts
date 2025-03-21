@@ -1,4 +1,8 @@
-import type { Application } from '@/generated/graphql';
+import type {
+  Application,
+  UpdateApplicationMutation,
+} from '@/generated/graphql';
+import type { ApolloCache, FetchResult } from '@apollo/client';
 import type { FormikHelpers } from 'formik/dist/types';
 import type {
   ApplicationCreateFormState,
@@ -8,7 +12,6 @@ import {
   useGetApplicationQuery,
   useUpdateApplicationMutation,
 } from '@/generated/graphql';
-import { listApplicationsDocumentRefetchQueries } from '@components/pages/ApplicationsPage/useApplicationsPage';
 import { useToastProviderContext } from '@components/Toast';
 import { extractQLErrorFromNetworkError } from '@lib/errors/extractQLErrorFromNetworkError';
 import graphQLErrorToMap from '@lib/errors/graphQLErrorToMap';
@@ -24,13 +27,43 @@ function useApplicationCreateForm(onSubmit?: () => void) {
     = useCreateApplicationMutation({
       fetchPolicy: 'network-only',
       errorPolicy: 'all',
-      refetchQueries: listApplicationsDocumentRefetchQueries,
+      update(cache: ApolloCache<unknown>, { data }) {
+        cache.modify({
+          optimistic: true,
+          fields: {
+            listApplications(cache) {
+              let newCache = cache?.list ?? [];
+              const newItem = data?.result?.data;
+
+              if (newItem != null) {
+                newCache = [...newCache, newItem];
+              }
+
+              return newCache;
+            },
+          },
+        });
+      },
     });
   const [updateApplication, { loading: isUpdateApplicationLoading }]
     = useUpdateApplicationMutation({
       fetchPolicy: 'network-only',
       errorPolicy: 'all',
-      refetchQueries: listApplicationsDocumentRefetchQueries,
+      update(cache: ApolloCache<UpdateApplicationMutation>, { data }: FetchResult<UpdateApplicationMutation>) {
+        cache.modify({
+          optimistic: true,
+          fields: {
+            listApplications(cache) {
+              const newCache = Array.isArray(cache) ? cache : cache?.list;
+              const newItem = data?.result?.data;
+
+              return newCache?.map(
+                (item: Application) => item.ID === newItem?.ID ? newItem : item,
+              );
+            },
+          },
+        });
+      },
     });
   const {
     data: responseDataApplication,

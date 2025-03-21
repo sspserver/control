@@ -54,8 +54,6 @@ function RtbCreateForm({ onCancel, onSubmit }: RTBCreateFormProps) {
         onSubmit={submitRtbCreateEditFormHandler}
       >
         {({ setFieldValue, handleBlur, submitForm, handleChange, values, errors, isSubmitting }) => {
-          const editable = true; // !id || !responseApplication?.title;
-
           return (
             <Fragment>
               <div className="overflow-y-auto relative -mr-6 pr-6 pl-0.5 -ml-0.5">
@@ -69,7 +67,7 @@ function RtbCreateForm({ onCancel, onSubmit }: RTBCreateFormProps) {
                     required
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    disabled={!editable || isSubmitting}
+                    disabled={isSubmitting}
                     error={errors.title}
                   />
                 </div>
@@ -80,7 +78,7 @@ function RtbCreateForm({ onCancel, onSubmit }: RTBCreateFormProps) {
                     value={values.description}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    disabled={!editable || isSubmitting}
+                    disabled={isSubmitting}
                     error={errors.description}
                   />
                 </div>
@@ -113,7 +111,7 @@ function RtbCreateForm({ onCancel, onSubmit }: RTBCreateFormProps) {
                     defaultValue={values.URL}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    disabled={!editable || isSubmitting}
+                    disabled={isSubmitting}
                     error={errors.URL}
                   />
                 </div>
@@ -146,7 +144,7 @@ function RtbCreateForm({ onCancel, onSubmit }: RTBCreateFormProps) {
                     defaultValue={values.RPS}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    disabled={!editable || isSubmitting}
+                    disabled={isSubmitting}
                     error={errors.RPS}
                   />
                 </div>
@@ -159,7 +157,7 @@ function RtbCreateForm({ onCancel, onSubmit }: RTBCreateFormProps) {
                     defaultValue={values.timeout}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    disabled={!editable || isSubmitting}
+                    disabled={isSubmitting}
                     error={errors.timeout}
                   />
                 </div>
@@ -167,12 +165,12 @@ function RtbCreateForm({ onCancel, onSubmit }: RTBCreateFormProps) {
                   <Input
                     size="sm"
                     label="Accuracy"
-                    name="timeout"
+                    name="accuracy"
                     type="number"
                     defaultValue={values.accuracy}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    disabled={!editable || isSubmitting}
+                    disabled={isSubmitting}
                     error={errors.accuracy}
                   />
                 </div>
@@ -185,7 +183,7 @@ function RtbCreateForm({ onCancel, onSubmit }: RTBCreateFormProps) {
                     defaultValue={values.priceCorrectionReduce}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    disabled={!editable || isSubmitting}
+                    disabled={isSubmitting}
                     error={errors.priceCorrectionReduce}
                   />
                 </div>
@@ -198,7 +196,7 @@ function RtbCreateForm({ onCancel, onSubmit }: RTBCreateFormProps) {
                     defaultValue={values.minBid}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    disabled={!editable || isSubmitting}
+                    disabled={isSubmitting}
                     error={errors.minBid}
                   />
                 </div>
@@ -211,7 +209,7 @@ function RtbCreateForm({ onCancel, onSubmit }: RTBCreateFormProps) {
                     defaultValue={values.maxBid}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    disabled={!editable || isSubmitting}
+                    disabled={isSubmitting}
                     error={errors.maxBid}
                   />
                 </div>

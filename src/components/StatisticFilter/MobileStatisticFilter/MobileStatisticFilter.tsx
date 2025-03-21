@@ -1,9 +1,14 @@
-import { customDateSelectOptions } from '@components/DatePicker/DatePicker.const';
+import {
+  mobileCustomDateSelectOptions,
+} from '@components/StatisticFilter/MobileStatisticFilter/MobileStatisticFilter.const';
 import { statisticsFilterFields } from '@components/StatisticFilter/StatisticFilter.const';
 import * as Tabs from '@radix-ui/react-tabs';
+import Aligner from '@tailus-ui/Aligner';
 import Button from '@tailus-ui/Button';
 import Calendar from '@tailus-ui/Calendar';
 import Drawer from '@tailus-ui/Drawer';
+import Label from '@tailus-ui/Label';
+import Switch from '@tailus-ui/Switch/Switch';
 import { motion } from 'framer-motion';
 import { SlidersHorizontal } from 'lucide-react';
 import React from 'react';
@@ -22,12 +27,14 @@ function MobileStatisticFilter() {
     spanFieldLeft,
     spanFieldWidth,
     isCustomDate,
-    customSelectDate,
+    calendarRangeOption,
+    isFilterActiveStatusActive,
     drawerAnimationEndHandler,
     changeFilterDateSelectHandler,
     selectDateCalendarHandler,
     changeFilterFieldSelectHandler,
     clickFilterOpenClickHandler,
+    changeActiveStatusButtonHandler,
   } = useMobileStatisticFilter();
 
   return (
@@ -64,16 +71,21 @@ function MobileStatisticFilter() {
         </Drawer.Trigger>
         <Drawer.Portal>
           <Drawer.Overlay className="blur-md" />
-          <Drawer.Content fancy>
+          <Drawer.Content className="z-20" fancy>
             <div className="max-w-md mx-auto mt-2">
               <Drawer.Title>Date</Drawer.Title>
               <Tabs.Root
-                defaultValue={customSelectDate}
+                value={calendarRangeOption}
                 onValueChange={changeFilterDateSelectHandler}
-                className="text-[--title-text-color]"
+                className="text-[--title-text-color] pl-3 -ml-3"
+                orientation="horizontal"
+                activationMode="automatic"
                 data-shade="800"
               >
-                <Tabs.List className="relative -mx-3.5 mb-5 flex h-9 p-1">
+                <Tabs.List
+                  loop
+                  className="relative overflow-x-auto snap-mandatory [&::-webkit-scrollbar]:hidden -mx-3.5 mb-5 flex h-9 p-1"
+                >
                   <motion.span
                     animate={{
                       left: spanDateLeft,
@@ -83,23 +95,17 @@ function MobileStatisticFilter() {
                     className="absolute inset-y-1 -z-[1] block rounded-full border border-gray-950/5 bg-gray-100 dark:border-white/5 dark:bg-gray-500/25"
                     ref={spanDateRef}
                   />
-                  {customDateSelectOptions.slice(0, 3).map(({ name, value }) => (
-                    <Tabs.Trigger
-                      key={value}
-                      value={value}
-                      id={`date_${value}`}
-                      className="flex h-full items-center gap-2 px-2.5 text-sm duration-200 data-[state=inactive]:opacity-50"
-                    >
-                      <span className="uppercase">{name}</span>
-                    </Tabs.Trigger>
-                  ))}
-                  <Tabs.Trigger
-                    value="custom"
-                    id="date_custom"
-                    className="flex h-full items-center gap-2 px-2.5 text-sm duration-200 data-[state=inactive]:opacity-50"
-                  >
-                    <span className="uppercase">CUSTOM</span>
-                  </Tabs.Trigger>
+                  {mobileCustomDateSelectOptions
+                    .map(({ name, value }) => (
+                      <Tabs.Trigger
+                        key={value}
+                        value={value}
+                        id={`date_${value}`}
+                        className="flex h-full items-center whitespace-nowrap gap-2 px-3.5 text-sm duration-200 data-[state=inactive]:opacity-50"
+                      >
+                        <span className="uppercase">{name}</span>
+                      </Tabs.Trigger>
+                    ))}
                 </Tabs.List>
               </Tabs.Root>
 
@@ -155,6 +161,21 @@ function MobileStatisticFilter() {
                   ))}
                 </Tabs.List>
               </Tabs.Root>
+
+              <div>
+                <Aligner className="max-w-md">
+                  <Label htmlFor="active_status">
+                    <Drawer.Title>Only active</Drawer.Title>
+                  </Label>
+                  <Switch.Root
+                    id="active_status"
+                    checked={isFilterActiveStatusActive}
+                    onCheckedChange={changeActiveStatusButtonHandler}
+                  >
+                    <Switch.Thumb />
+                  </Switch.Root>
+                </Aligner>
+              </div>
             </div>
           </Drawer.Content>
         </Drawer.Portal>
