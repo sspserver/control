@@ -2,6 +2,29 @@ import { AnyIPv4IPv6, AnyOnlyExclude, AuctionType, RtbRequestFormatType } from '
 import CheckIcon from '@heroicons/react/20/solid/CheckIcon';
 import { createElement } from 'react';
 
+export const rtbCreateFormTab = {
+  main: 'main',
+  bids: 'bids',
+  targeting: 'targeting',
+};
+
+export const tabBidsFieldNames = ['accuracy', 'priceCorrectionReduce', 'minBid', 'maxBid'];
+
+export const rtbCreateFormTabs = [
+  {
+    name: 'Main',
+    value: rtbCreateFormTab.main,
+  },
+  {
+    name: 'Bids (correction)',
+    value: rtbCreateFormTab.bids,
+  },
+  {
+    name: 'Targeting',
+    value: rtbCreateFormTab.targeting,
+  },
+];
+
 export const toastSuccessMessage = {
   title: 'RTB was',
   description: 'The RTB was successfully',

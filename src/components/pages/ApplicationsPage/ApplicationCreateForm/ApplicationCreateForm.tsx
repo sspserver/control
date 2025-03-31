@@ -8,9 +8,10 @@ import Select from '@components/Select';
 import Button, { ButtonLoading } from '@tailus-ui/Button';
 import Drawer from '@tailus-ui/Drawer/Drawer';
 import Input from '@tailus-ui/Input';
+import Separator from '@tailus-ui/Separator';
 import Textarea from '@tailus-ui/Textarea';
-import { Formik } from 'formik';
 
+import { Formik } from 'formik';
 import React, { Fragment } from 'react';
 import {
   applicationPlatforms,
@@ -34,7 +35,10 @@ function ApplicationCreateForm({ onCancel, onSubmit }: ApplicationCreateFormProp
 
   return (
     <Fragment>
-      <Drawer.Title className="pb-5">{formTitle}</Drawer.Title>
+      <Drawer.Title size="lg" className="pb-0">
+        {formTitle}
+      </Drawer.Title>
+      <Separator />
       <Formik<ApplicationCreateFormState>
         enableReinitialize
         initialValues={applicationData}
@@ -43,7 +47,7 @@ function ApplicationCreateForm({ onCancel, onSubmit }: ApplicationCreateFormProp
         {({ setFieldValue, handleBlur, submitForm, handleChange, values, errors, isSubmitting }) => {
           return (
             <Fragment>
-              <div className="overflow-y-auto relative -mr-6 pr-6">
+              <div className="overflow-y-auto h-full relative pl-0.5 !m-0 pt-2">
 
                 <div className="pb-4">
                   <Input
@@ -112,10 +116,17 @@ function ApplicationCreateForm({ onCancel, onSubmit }: ApplicationCreateFormProp
                   />
                 </div>
               </div>
-              <div className="mt-auto h-fit bottom-0 pt-2">
+              <div className="h-fit !mt-0 bottom-0">
+                <Separator />
                 <FormElementErrorLabel error={errors.result} />
-                <div className="flex gap-3 pt-2">
-                  <ButtonLoading loading={isLoading} onClick={submitForm} size="sm">{formSaveButtonTitle}</ButtonLoading>
+                <div className="flex gap-3 pt-2 justify-end">
+                  <ButtonLoading
+                    loading={isLoading}
+                    onClick={submitForm}
+                    size="sm"
+                  >
+                    {formSaveButtonTitle}
+                  </ButtonLoading>
                   <Button.Root variant="outlined" size="sm" intent="gray" onClick={onCancel}>
                     <Button.Label>Cancel</Button.Label>
                   </Button.Root>

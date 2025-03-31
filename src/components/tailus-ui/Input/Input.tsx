@@ -4,6 +4,7 @@ import {
   form,
   type InputProps as InputVariants,
 } from '@tailus/themer';
+import cn from 'classnames';
 import React from 'react';
 
 export type InputProps = {
@@ -14,6 +15,13 @@ export type InputProps = {
 
 const Input = ({ ref: forwardedRef, label, error, variant = 'mixed', fancy = true, className, size = 'md', ...props }: InputProps) => {
   const { input, label: labelForm } = form();
+  const errorTextColor = 'text-red-400';
+  const inputClassName = cn(className, {
+    'border-red-400': !!error,
+  });
+  const inputLabelClassName = cn({
+    [errorTextColor]: !!error,
+  });
 
   if ((variant === 'bottomOutlined' || variant === 'plain') && fancy) {
     throw new Error('Fancy is not supported with the bottomOutlined or plain variant !');
@@ -21,13 +29,21 @@ const Input = ({ ref: forwardedRef, label, error, variant = 'mixed', fancy = tru
 
   return (
     <div className="space-y-2">
-      {label && (<Label size="sm" className={labelForm({})} htmlFor={props.id}>{label}</Label>)}
+      {label && (
+        <Label
+          size="sm"
+          className={labelForm({ className: inputLabelClassName })}
+          htmlFor={props.id}
+        >
+          {label}
+        </Label>
+      )}
       <input
         ref={forwardedRef}
-        className={input({ variant, fancy: true, size, className })}
+        className={input({ variant, fancy: true, size, className: inputClassName })}
         {...props}
       />
-      {error && (<Caption size="xs" className="text-red-400">{error}</Caption>)}
+      {error && (<Caption size="xs" className={errorTextColor}>{error}</Caption>)}
     </div>
   );
 };

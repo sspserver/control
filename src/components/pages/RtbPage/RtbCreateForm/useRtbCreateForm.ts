@@ -14,13 +14,16 @@ import { useToastProviderContext } from '@components/Toast';
 import { extractQLErrorFromNetworkError } from '@lib/errors/extractQLErrorFromNetworkError';
 import graphQLErrorToMap from '@lib/errors/graphQLErrorToMap';
 import { useParams } from 'next/navigation';
-import { toastSuccessMessage } from './RtbCreateForm.const';
+import { useEffect, useRef, useState } from 'react';
+import { rtbCreateFormTab, tabBidsFieldNames, toastSuccessMessage } from './RtbCreateForm.const';
 
 function useRtbCreateForm(onSubmit?: () => void) {
   const { showToast } = useToastProviderContext();
   const { ID: pathParamId } = useParams() ?? {};
   const id = Number(pathParamId);
   const isCreateMode = Number.isNaN(id);
+  const [tabState, setTabState] = useState(rtbCreateFormTab.main);
+  const spanRef = useRef<HTMLSpanElement>(null);
   const [createRtb, { loading: isCreateRtbLoading }]
     = useNewRtbSourceMutation({
       fetchPolicy: 'network-only',
@@ -161,13 +164,30 @@ function useRtbCreateForm(onSubmit?: () => void) {
       onSubmit?.();
     } else {
       const formErrors = graphQLErrorToMap<RTBCreateFormState>(requestErrors);
+      const errorKeys = new Set(Object.keys(formErrors));
+      const isTabBidsHasError = tabBidsFieldNames.find(name => errorKeys.has(name));
+
+      if (isTabBidsHasError) {
+        setTabState(rtbCreateFormTab.bids);
+      }
 
       setErrors(formErrors);
     }
   };
   const isLoading = isCreateRtbLoading || isUpdateRtbLoading || isRtbLoading;
 
+  useEffect(() => {
+    const activeTrigger = document.getElementById(tabState) as HTMLElement;
+    if (spanRef.current) {
+      spanRef.current.style.left = `${activeTrigger.offsetLeft}px`;
+      spanRef.current.style.width = `${activeTrigger.offsetWidth}px`;
+    }
+  }, [tabState]);
+
   return {
+    tabState,
+    setTabState,
+    spanRef,
     rtbData,
     isLoading,
     isCreateMode,

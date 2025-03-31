@@ -6,6 +6,7 @@ import useAdUnitCreateForm from '@components/pages/AdUnitPage/AdUnitCreateForm/u
 import Button, { ButtonLoading } from '@tailus-ui/Button';
 import Drawer from '@tailus-ui/Drawer/Drawer';
 import Input from '@tailus-ui/Input';
+import Separator from '@tailus-ui/Separator';
 import Textarea from '@tailus-ui/Textarea';
 import { Formik } from 'formik';
 import React, { Fragment } from 'react';
@@ -26,7 +27,10 @@ function AdUnitCreateForm({ onCancel, onSubmit }: AdUnitCreateFormProps) {
 
   return (
     <Fragment>
-      <Drawer.Title className="pb-5">{formTitle}</Drawer.Title>
+      <Drawer.Title size="lg" className="pb-0">
+        {formTitle}
+      </Drawer.Title>
+      <Separator />
       <Formik<AdUnitCreateFormState>
         enableReinitialize
         initialValues={adUnitData}
@@ -35,7 +39,7 @@ function AdUnitCreateForm({ onCancel, onSubmit }: AdUnitCreateFormProps) {
         {({ handleBlur, submitForm, handleChange, values, errors, isSubmitting }) => {
           return (
             <Fragment>
-              <div className="overflow-y-auto relative -mr-6 pr-6 pl-0.5 -ml-0.5">
+              <div className="overflow-y-auto h-full relative pl-0.5 !m-0 pt-2">
 
                 {values.codename && (
                   <div className="pb-4">
@@ -102,9 +106,10 @@ function AdUnitCreateForm({ onCancel, onSubmit }: AdUnitCreateFormProps) {
                   />
                 </div>
               </div>
-              <div className="mt-auto h-fit bottom-0 pt-2">
+              <div className="h-fit !mt-0 bottom-0">
+                <Separator />
                 <FormElementErrorLabel error={errors.result} />
-                <div className="flex gap-3 pt-2">
+                <div className="flex gap-3 pt-2 justify-end">
                   <ButtonLoading
                     loading={isLoading}
                     onClick={submitForm}

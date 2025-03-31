@@ -7,7 +7,7 @@ type FormElementErrorLabelProps = {
 
 function FormElementErrorLabel({ error }: FormElementErrorLabelProps) {
   if (error) {
-    return (<Caption size="xs" className="text-red-400">{error}</Caption>);
+    return (<Caption size="xs" className=" pt-2 text-red-400">{error}</Caption>);
   }
 
   return null;
