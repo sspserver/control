@@ -63,31 +63,23 @@ mutation DeleteApplication($id: ID64!) {
 mutation ApproveApplication($id: ID64!, $msg: String = null) {
   result: approveApplication(ID: $id, msg: $msg) {
     clientMutationID
-    status
-    message
   }
 }
 
 mutation RejectApplication($id: ID64!, $msg: String = null) {
   result: rejectApplication(ID: $id, msg: $msg) {
     clientMutationID
-    status
-    message
   }
 }
 
 mutation RunApplication($id: ID64!, $msg: String = null) {
   result: runApplication(ID: $id, msg: $msg) {
     clientMutationID
-    status
-    message
   }
 }
 
 mutation PauseApplication($id: ID64!, $msg: String = null) {
   result: pauseApplication(ID: $id, msg: $msg) {
     clientMutationID
-    status
-    message
   }
 }

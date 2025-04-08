@@ -15,4 +15,6 @@ export const configPathRoutes = {
   adUnit: adUnitPath,
   createAdUnit: `${adUnitPath}/create`,
   settings: '/settings',
+  trafficRouters: '/traffic-routers',
+  trafficRouterCreate: '/traffic-routers/create',
 };

@@ -74,7 +74,7 @@ function useRtbCreateForm(onSubmit?: () => void) {
     variables: {
       id,
     },
-    skip: !id,
+    skip: isCreateMode,
   });
   const {
     title,
@@ -136,19 +136,19 @@ function useRtbCreateForm(onSubmit?: () => void) {
     const { title, description } = toastSuccessMessage;
     let requestErrors;
 
-    if (isCreateMode) {
-      try {
+    try {
+      if (isCreateMode) {
         const { errors } = await createRtb({
           variables,
         });
         requestErrors = errors;
-      } catch (error) {
-        console.error(error);
-        requestErrors = extractQLErrorFromNetworkError(error);
+      } else {
+        const { errors } = await updateRtb({ variables });
+        requestErrors = errors;
       }
-    } else {
-      const { errors } = await updateRtb({ variables });
-      requestErrors = errors;
+    } catch (error) {
+      console.error(error);
+      requestErrors = extractQLErrorFromNetworkError(error);
     }
 
     if (!requestErrors) {
