@@ -376,30 +376,24 @@ mutation DeleteRTBSource($id: ID64!) {
 mutation RunRTBSource($id: ID64!) {
   result: runRTBSource(ID: $id) {
     clientMutationID
-    status
   }
 }
 
 mutation PauseRTBSource($id: ID64!) {
   result: pauseRTBSource(ID: $id) {
     clientMutationID
-    status
   }
 }
 
 mutation ApproveRTBSource($id: ID64!, $msg: String = null) {
   result: approveRTBSource(ID: $id, msg: $msg) {
     clientMutationID
-    status
-    message
   }
 }
 
 mutation RejectRTBSource($id: ID64!, $msg: String = null) {
   result: rejectRTBSource(ID: $id, msg: $msg) {
     clientMutationID
-    status
-    message
   }
 }
 

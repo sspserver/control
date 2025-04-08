@@ -4,67 +4,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5483ae0-0faa-4d09-a539-795505d72254" name="Changes" comment="* Add only Active filter&#10;* fixes">
-      <change afterPath="$PROJECT_DIR$/lib/date/getCustomDatePick.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/logo_color.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/sw.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/web-app-manifest-192x192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/web-app-manifest-512x512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/apple-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/icon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/manifest.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/LoadingNavigateBar/LoadingNavigateBar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/LoadingNavigateBar/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/LoadingNavigateBar/useLoadingNavigateBar.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/MobileStatisticFilter/MobileStatisticFilter.const.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider/StatisticFilterProvider.utils.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Progress/Progress.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Switch/Switch.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Switch/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/useServiceWorkerRegister.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="d5483ae0-0faa-4d09-a539-795505d72254" name="Changes" comment="* TrafficRouters List&#10;* TrafficRouters Create\Update form&#10;* TrafficRouters Actions run\stop">
+      <change afterPath="$PROJECT_DIR$/lib/graphql/queries/languages.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/graphql/queries/trafficRouters.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(root)/traffic-routers/[ID]/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(root)/traffic-routers/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/@drawer/(.)traffic-routers/[ID]/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/AdUnitSelect.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ApplicationsSelect.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/LanguagesSelect.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/RTBSourceSelect.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRouteActions/TrafficRouteActions.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRouteActions/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRouteActions/useTrafficRouteActions.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRouters.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersCreateForm/TrafficRoutersCreateForm.const.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersCreateForm/TrafficRoutersCreateForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersCreateForm/TrafficRoutersCreateForm.types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersCreateForm/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersCreateForm/useTrafficRoutersCreateForm.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersDrawer/TrafficRoutersDrawer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersDrawer/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersDrawerOpenButton/TrafficRoutersDrawerOpenButton.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersDrawerOpenButton/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersEmptyState/TrafficRoutersEmptyState.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersEmptyState/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/useTrafficRouters.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-protocol/application.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/api-protocol/application.graphql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api-protocol/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/api-protocol/schema.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/api/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/api/client.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/errors/graphQLErrorToMap.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/errors/graphQLErrorToMap.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppProviders.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppProviders.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CardChart/CardChart.utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CardChart/CardChart.utils.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DatePicker/DatePicker.const.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DatePicker/DatePicker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DatePicker/DatePicker.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/GradientAreaChart/GradientAreaChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GradientAreaChart/GradientAreaChart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MobileBottomNavigation/MobileBottomNavigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MobileBottomNavigation/MobileBottomNavigation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StatisticFilter/MobileStatisticFilter/MobileStatisticFilter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StatisticFilter/MobileStatisticFilter/MobileStatisticFilter.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StatisticFilter/MobileStatisticFilter/useMobileStatisticFilter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StatisticFilter/MobileStatisticFilter/useMobileStatisticFilter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilter.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider/StatisticFilterProvider.const.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider/StatisticFilterProvider.const.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider/StatisticFilterProvider.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider/StatisticFilterProvider.types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider/useStatisticFilterProvider.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider/useStatisticFilterProvider.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider/useStatisticFilterStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StatisticFilter/StatisticFilterProvider/useStatisticFilterStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StatisticFilter/useStatisticFilter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StatisticFilter/useStatisticFilter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/AdUnitPage/AdUnitCard/AdUnitActions/useAdUnitActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/AdUnitPage/AdUnitCard/AdUnitActions/useAdUnitActions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/AdUnitPage/AdUnitCreateForm/AdUnitCreateForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/AdUnitPage/AdUnitCreateForm/AdUnitCreateForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/AdUnitPage/AdUnitCreateForm/useAdUnitCreateForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/AdUnitPage/AdUnitCreateForm/useAdUnitCreateForm.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/AdUnitPage/AdUnitPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/AdUnitPage/AdUnitPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/AdUnitPage/useAdUnitPage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/AdUnitPage/useAdUnitPage.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/ApplicationsPage/ApplicationCard/ApplicationActions/useApplicationActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/ApplicationsPage/ApplicationCard/ApplicationActions/useApplicationActions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/ApplicationsPage/ApplicationCreateForm/ApplicationCreateForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/ApplicationsPage/ApplicationCreateForm/ApplicationCreateForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/ApplicationsPage/ApplicationCreateForm/ApplicationCreateForm.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/ApplicationsPage/ApplicationCreateForm/ApplicationCreateForm.types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/ApplicationsPage/ApplicationCreateForm/useApplicationCreateForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/ApplicationsPage/ApplicationCreateForm/useApplicationCreateForm.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/ApplicationsPage/ApplicationsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/ApplicationsPage/ApplicationsPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/ApplicationsPage/useApplicationsPage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/ApplicationsPage/useApplicationsPage.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/RtbPage/RtbCard/RtbActions/useRtbActions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/RtbPage/RtbCard/RtbActions/useRtbActions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/RtbPage/RtbCreateForm/RtbCreateForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/RtbPage/RtbCreateForm/RtbCreateForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/RtbPage/RtbCreateForm/RtbCreateForm.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/RtbPage/RtbCreateForm/RtbCreateForm.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-protocol/zone.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/api-protocol/zone.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/configs/routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MainMenu/MainMenu.const.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MainMenu/MainMenu.const.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/pages/RtbPage/RtbCreateForm/useRtbCreateForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/RtbPage/RtbCreateForm/useRtbCreateForm.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/RtbPage/RtbPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/RtbPage/RtbPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/RtbPage/useRtbPage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/RtbPage/useRtbPage.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Button/ButtonLoading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Button/ButtonLoading.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/generated/graphql.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/graphql.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middleware.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/submodules/api" beforeDir="false" afterPath="$PROJECT_DIR$/submodules/api" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,9 +96,9 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "issues/16",
+    "git-widget-placeholder": "issues/17",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/public",
+    "last_opened_file_path": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/src/components",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.stylelint": "true",
@@ -146,11 +120,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components" />
+      <recent name="$PROJECT_DIR$/src/app/(root)/traffic-routers" />
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/src/app" />
       <recent name="$PROJECT_DIR$/src/components/Button" />
-      <recent name="$PROJECT_DIR$/src/pages/SettingsPage" />
-      <recent name="$PROJECT_DIR$/src/components" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
@@ -208,8 +182,6 @@
         <item itemvalue="npm.gql-gen" />
         <item itemvalue="Docker.develop.database: Compose Deployment" />
         <item itemvalue="Docker.develop.api: Compose Deployment" />
-        <item itemvalue="npm.gql-gen" />
-        <item itemvalue="Docker.develop.database: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -243,6 +215,9 @@
       <workItem from="1742389405028" duration="13654000" />
       <workItem from="1742489726757" duration="34000" />
       <workItem from="1742539865335" duration="20398000" />
+      <workItem from="1743403926452" duration="21991000" />
+      <workItem from="1743537097266" duration="19553000" />
+      <workItem from="1743767309184" duration="27726000" />
     </task>
     <task id="LOCAL-00001" summary="#6 Applications page">
       <option name="closed" value="true" />
@@ -300,7 +275,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741256802547</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="* Improve create\updates drawer&#10;* fixes">
+      <option name="closed" value="true" />
+      <created>1743433149607</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1743433149607</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -328,7 +311,9 @@
     <MESSAGE value="* fixes&#10;* AdUnit code dialog&#10;* Setting page forms&#10;* Mobile nav bar&#10;* Mobile Header&#10;* Filter&#10;* Animations&#10;* Request fixes&#10;* Account dropdown&#10;* Mobile view improves" />
     <MESSAGE value="Build fixes" />
     <MESSAGE value="* Add only Active filter&#10;* fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="* Add only Active filter&#10;* fixes" />
+    <MESSAGE value="* Improve create\updates drawer&#10;* fixes" />
+    <MESSAGE value="* TrafficRouters List&#10;* TrafficRouters Create\Update form&#10;* TrafficRouters Actions run\stop" />
+    <option name="LAST_COMMIT_MESSAGE" value="* TrafficRouters List&#10;* TrafficRouters Create\Update form&#10;* TrafficRouters Actions run\stop" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

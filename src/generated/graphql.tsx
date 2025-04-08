@@ -1216,6 +1216,25 @@ export type InviteMemberInput = {
   roles: Array<Scalars['String']['input']>;
 };
 
+/** Lang is a language used in the system. */
+export type Lang = {
+  __typename?: 'Lang';
+  ID: Scalars['ID64']['output'];
+  /** Language code (ISO 639-1) */
+  iso2: Scalars['String']['output'];
+  /** Name of the language */
+  name: Scalars['String']['output'];
+  /** Native name of the language */
+  nativeName: Scalars['String']['output'];
+};
+
+export type LangListFilter = {
+  ID?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  iso2?: InputMaybe<Array<Scalars['String']['input']>>;
+  name?: InputMaybe<Array<Scalars['String']['input']>>;
+  nativeName?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
 /** Account Member represents a member of the account */
 export type Member = {
   __typename?: 'Member';
@@ -1304,19 +1323,19 @@ export enum MessangerType {
 export type Mutation = {
   __typename?: 'Mutation';
   /** Activate the Zone */
-  activateZone: StatusResponse;
+  activateZone: ZonePayload;
   /** Approve account and leave the comment */
   approveAccount: AccountPayload;
   /** Approve the member to join the account */
   approveAccountMember: MemberPayload;
   /** Approve the Application to be active */
-  approveApplication: StatusResponse;
+  approveApplication: ApplicationPayload;
   /** Approve an RTBSource to allow it to start receiving data. */
-  approveRTBSource: StatusResponse;
+  approveRTBSource: RtbSourcePayload;
   /** Approve user and leave the comment */
   approveUser: UserPayload;
   /** Approve the Zone to be active */
-  approveZone: StatusResponse;
+  approveZone: ZonePayload;
   /** Create a new Application */
   createApplication: ApplicationPayload;
   /** Create the new auth client */
@@ -1344,7 +1363,7 @@ export type Mutation = {
   /** Create a new Zone */
   createZone: ZonePayload;
   /** Deactivate the Zone */
-  deactivateZone: StatusResponse;
+  deactivateZone: ZonePayload;
   /** Delete Application */
   deleteApplication?: Maybe<ApplicationPayload>;
   /** Delete auth client */
@@ -1380,11 +1399,11 @@ export type Mutation = {
   /** Logout from the system */
   logout: Scalars['Boolean']['output'];
   /** Pause the Application */
-  pauseApplication: StatusResponse;
+  pauseApplication: ApplicationPayload;
   /** Pause an RTBSource to stop receiving data from it. */
-  pauseRTBSource: StatusResponse;
+  pauseRTBSource: RtbSourcePayload;
   /** Pause traffic router */
-  pauseTrafficRouter?: Maybe<StatusResponse>;
+  pauseTrafficRouter?: Maybe<TrafficRouterPayload>;
   poke: Scalars['String']['output'];
   /** Register the new account */
   registerAccount: AccountCreatePayload;
@@ -1393,13 +1412,13 @@ export type Mutation = {
   /** Reject the member to join the account */
   rejectAccountMember: MemberPayload;
   /** Reject the Application */
-  rejectApplication: StatusResponse;
+  rejectApplication: ApplicationPayload;
   /** Reject an RTBSource to prevent it from receiving data. */
-  rejectRTBSource: StatusResponse;
+  rejectRTBSource: RtbSourcePayload;
   /** Reject user and leave the comment */
   rejectUser: UserPayload;
   /** Reject the Zone */
-  rejectZone: StatusResponse;
+  rejectZone: ZonePayload;
   /** Remove the member from the account */
   removeAccountMember: MemberPayload;
   /** Reset password of the particular user in case if user forgot it */
@@ -1407,11 +1426,11 @@ export type Mutation = {
   /** Revoke a DirectAccessToken */
   revokeDirectAccessToken?: Maybe<StatusResponse>;
   /** Run the Application */
-  runApplication: StatusResponse;
+  runApplication: ApplicationPayload;
   /** Run an RTBSource to start receiving data from it. */
-  runRTBSource: StatusResponse;
+  runRTBSource: RtbSourcePayload;
   /** Run traffic router */
-  runTrafficRouter?: Maybe<StatusResponse>;
+  runTrafficRouter?: Maybe<TrafficRouterPayload>;
   /** Set the option value */
   setOption: OptionPayload;
   /** Switch the account by ID */
@@ -2164,6 +2183,8 @@ export type Query = {
   format?: Maybe<AdFormatPayload>;
   /** Get a DirectAccessToken by its ID */
   getDirectAccessToken?: Maybe<DirectAccessTokenPayload>;
+  /** List of languages */
+  languages?: Maybe<Array<Lang>>;
   /** List of the account roles/permissions */
   listAccountRolesAndPermissions?: Maybe<RbacRoleConnection>;
   /** List of the account objects which can be filtered and ordered by some fields */
@@ -2296,6 +2317,11 @@ export type QueryFormatArgs = {
 
 export type QueryGetDirectAccessTokenArgs = {
   id: Scalars['ID64']['input'];
+};
+
+
+export type QueryLanguagesArgs = {
+  filter?: InputMaybe<LangListFilter>;
 };
 
 
@@ -3061,6 +3087,8 @@ export type TrafficRouter = {
   percent: Scalars['Float']['output'];
   privateBrowsing: AnyOnlyExclude;
   secure: AnyOnlyExclude;
+  /** Title of the traffic router */
+  title: Scalars['String']['output'];
   updatedAt: Scalars['Time']['output'];
   zones?: Maybe<Array<Scalars['ID64']['output']>>;
 };
@@ -3103,6 +3131,8 @@ export type TrafficRouterCreateInput = {
   percent: Scalars['Float']['input'];
   privateBrowsing?: InputMaybe<AnyOnlyExclude>;
   secure?: InputMaybe<AnyOnlyExclude>;
+  /** Title of the traffic router */
+  title: Scalars['String']['input'];
   zones?: InputMaybe<Array<Scalars['ID64']['input']>>;
 };
 
@@ -3179,6 +3209,8 @@ export type TrafficRouterUpdateInput = {
   percent?: InputMaybe<Scalars['Float']['input']>;
   privateBrowsing?: InputMaybe<AnyOnlyExclude>;
   secure?: InputMaybe<AnyOnlyExclude>;
+  /** Title of the traffic router */
+  title?: InputMaybe<Scalars['String']['input']>;
   zones?: InputMaybe<Array<Scalars['ID64']['input']>>;
 };
 
@@ -3443,7 +3475,7 @@ export type ApproveApplicationMutationVariables = Exact<{
 }>;
 
 
-export type ApproveApplicationMutation = { __typename?: 'Mutation', result: { __typename?: 'StatusResponse', clientMutationID: string, status: ResponseStatus, message?: string | null } };
+export type ApproveApplicationMutation = { __typename?: 'Mutation', result: { __typename?: 'ApplicationPayload', clientMutationID: string } };
 
 export type RejectApplicationMutationVariables = Exact<{
   id: Scalars['ID64']['input'];
@@ -3451,7 +3483,7 @@ export type RejectApplicationMutationVariables = Exact<{
 }>;
 
 
-export type RejectApplicationMutation = { __typename?: 'Mutation', result: { __typename?: 'StatusResponse', clientMutationID: string, status: ResponseStatus, message?: string | null } };
+export type RejectApplicationMutation = { __typename?: 'Mutation', result: { __typename?: 'ApplicationPayload', clientMutationID: string } };
 
 export type RunApplicationMutationVariables = Exact<{
   id: Scalars['ID64']['input'];
@@ -3459,7 +3491,7 @@ export type RunApplicationMutationVariables = Exact<{
 }>;
 
 
-export type RunApplicationMutation = { __typename?: 'Mutation', result: { __typename?: 'StatusResponse', clientMutationID: string, status: ResponseStatus, message?: string | null } };
+export type RunApplicationMutation = { __typename?: 'Mutation', result: { __typename?: 'ApplicationPayload', clientMutationID: string } };
 
 export type PauseApplicationMutationVariables = Exact<{
   id: Scalars['ID64']['input'];
@@ -3467,7 +3499,7 @@ export type PauseApplicationMutationVariables = Exact<{
 }>;
 
 
-export type PauseApplicationMutation = { __typename?: 'Mutation', result: { __typename?: 'StatusResponse', clientMutationID: string, status: ResponseStatus, message?: string | null } };
+export type PauseApplicationMutation = { __typename?: 'Mutation', result: { __typename?: 'ApplicationPayload', clientMutationID: string } };
 
 export type __CategoryDataFragment = { __typename?: 'Category', ID: any, name: string, description: string, IABCode: string, parentID?: any | null, position: number, active: ActiveStatus, createdAt: any, updatedAt: any, deletedAt?: any | null, parent?: { __typename?: 'Category', ID: any, name: string } | null, childrens: Array<{ __typename?: 'Category', ID: any, name: string, IABCode: string }> };
 
@@ -3758,14 +3790,14 @@ export type RunRtbSourceMutationVariables = Exact<{
 }>;
 
 
-export type RunRtbSourceMutation = { __typename?: 'Mutation', result: { __typename?: 'StatusResponse', clientMutationID: string, status: ResponseStatus } };
+export type RunRtbSourceMutation = { __typename?: 'Mutation', result: { __typename?: 'RTBSourcePayload', clientMutationID: string } };
 
 export type PauseRtbSourceMutationVariables = Exact<{
   id: Scalars['ID64']['input'];
 }>;
 
 
-export type PauseRtbSourceMutation = { __typename?: 'Mutation', result: { __typename?: 'StatusResponse', clientMutationID: string, status: ResponseStatus } };
+export type PauseRtbSourceMutation = { __typename?: 'Mutation', result: { __typename?: 'RTBSourcePayload', clientMutationID: string } };
 
 export type ApproveRtbSourceMutationVariables = Exact<{
   id: Scalars['ID64']['input'];
@@ -3773,7 +3805,7 @@ export type ApproveRtbSourceMutationVariables = Exact<{
 }>;
 
 
-export type ApproveRtbSourceMutation = { __typename?: 'Mutation', result: { __typename?: 'StatusResponse', clientMutationID: string, status: ResponseStatus, message?: string | null } };
+export type ApproveRtbSourceMutation = { __typename?: 'Mutation', result: { __typename?: 'RTBSourcePayload', clientMutationID: string } };
 
 export type RejectRtbSourceMutationVariables = Exact<{
   id: Scalars['ID64']['input'];
@@ -3781,7 +3813,7 @@ export type RejectRtbSourceMutationVariables = Exact<{
 }>;
 
 
-export type RejectRtbSourceMutation = { __typename?: 'Mutation', result: { __typename?: 'StatusResponse', clientMutationID: string, status: ResponseStatus, message?: string | null } };
+export type RejectRtbSourceMutation = { __typename?: 'Mutation', result: { __typename?: 'RTBSourcePayload', clientMutationID: string } };
 
 export type GetBrowserQueryVariables = Exact<{
   id: Scalars['ID64']['input'];
@@ -3950,7 +3982,7 @@ export type ApproveZoneMutationVariables = Exact<{
 }>;
 
 
-export type ApproveZoneMutation = { __typename?: 'Mutation', result: { __typename?: 'StatusResponse', clientMutationID: string, status: ResponseStatus, message?: string | null } };
+export type ApproveZoneMutation = { __typename?: 'Mutation', result: { __typename?: 'ZonePayload', clientMutationID: string } };
 
 export type RejectZoneMutationVariables = Exact<{
   id: Scalars['ID64']['input'];
@@ -3958,7 +3990,7 @@ export type RejectZoneMutationVariables = Exact<{
 }>;
 
 
-export type RejectZoneMutation = { __typename?: 'Mutation', result: { __typename?: 'StatusResponse', clientMutationID: string, status: ResponseStatus, message?: string | null } };
+export type RejectZoneMutation = { __typename?: 'Mutation', result: { __typename?: 'ZonePayload', clientMutationID: string } };
 
 export type ActivateZoneMutationVariables = Exact<{
   id: Scalars['ID64']['input'];
@@ -3966,7 +3998,7 @@ export type ActivateZoneMutationVariables = Exact<{
 }>;
 
 
-export type ActivateZoneMutation = { __typename?: 'Mutation', result: { __typename?: 'StatusResponse', clientMutationID: string, status: ResponseStatus, message?: string | null } };
+export type ActivateZoneMutation = { __typename?: 'Mutation', result: { __typename?: 'ZonePayload', clientMutationID: string } };
 
 export type DeactivateZoneMutationVariables = Exact<{
   id: Scalars['ID64']['input'];
@@ -3974,7 +4006,7 @@ export type DeactivateZoneMutationVariables = Exact<{
 }>;
 
 
-export type DeactivateZoneMutation = { __typename?: 'Mutation', result: { __typename?: 'StatusResponse', clientMutationID: string, status: ResponseStatus, message?: string | null } };
+export type DeactivateZoneMutation = { __typename?: 'Mutation', result: { __typename?: 'ZonePayload', clientMutationID: string } };
 
 export const __FormatDataFragmentDoc = gql`
     fragment __formatData on AdFormat {
@@ -4697,8 +4729,6 @@ export const ApproveApplicationDocument = gql`
     mutation ApproveApplication($id: ID64!, $msg: String = null) {
   result: approveApplication(ID: $id, msg: $msg) {
     clientMutationID
-    status
-    message
   }
 }
     `;
@@ -4733,8 +4763,6 @@ export const RejectApplicationDocument = gql`
     mutation RejectApplication($id: ID64!, $msg: String = null) {
   result: rejectApplication(ID: $id, msg: $msg) {
     clientMutationID
-    status
-    message
   }
 }
     `;
@@ -4769,8 +4797,6 @@ export const RunApplicationDocument = gql`
     mutation RunApplication($id: ID64!, $msg: String = null) {
   result: runApplication(ID: $id, msg: $msg) {
     clientMutationID
-    status
-    message
   }
 }
     `;
@@ -4805,8 +4831,6 @@ export const PauseApplicationDocument = gql`
     mutation PauseApplication($id: ID64!, $msg: String = null) {
   result: pauseApplication(ID: $id, msg: $msg) {
     clientMutationID
-    status
-    message
   }
 }
     `;
@@ -6260,7 +6284,6 @@ export const RunRtbSourceDocument = gql`
     mutation RunRTBSource($id: ID64!) {
   result: runRTBSource(ID: $id) {
     clientMutationID
-    status
   }
 }
     `;
@@ -6294,7 +6317,6 @@ export const PauseRtbSourceDocument = gql`
     mutation PauseRTBSource($id: ID64!) {
   result: pauseRTBSource(ID: $id) {
     clientMutationID
-    status
   }
 }
     `;
@@ -6328,8 +6350,6 @@ export const ApproveRtbSourceDocument = gql`
     mutation ApproveRTBSource($id: ID64!, $msg: String = null) {
   result: approveRTBSource(ID: $id, msg: $msg) {
     clientMutationID
-    status
-    message
   }
 }
     `;
@@ -6364,8 +6384,6 @@ export const RejectRtbSourceDocument = gql`
     mutation RejectRTBSource($id: ID64!, $msg: String = null) {
   result: rejectRTBSource(ID: $id, msg: $msg) {
     clientMutationID
-    status
-    message
   }
 }
     `;
@@ -7196,8 +7214,6 @@ export const ApproveZoneDocument = gql`
     mutation ApproveZone($id: ID64!, $msg: String = null) {
   result: approveZone(ID: $id, msg: $msg) {
     clientMutationID
-    status
-    message
   }
 }
     `;
@@ -7232,8 +7248,6 @@ export const RejectZoneDocument = gql`
     mutation RejectZone($id: ID64!, $msg: String = null) {
   result: rejectZone(ID: $id, msg: $msg) {
     clientMutationID
-    status
-    message
   }
 }
     `;
@@ -7268,8 +7282,6 @@ export const ActivateZoneDocument = gql`
     mutation ActivateZone($id: ID64!, $msg: String = null) {
   result: activateZone(ID: $id, msg: $msg) {
     clientMutationID
-    status
-    message
   }
 }
     `;
@@ -7304,8 +7316,6 @@ export const DeactivateZoneDocument = gql`
     mutation DeactivateZone($id: ID64!, $msg: String = null) {
   result: deactivateZone(ID: $id, msg: $msg) {
     clientMutationID
-    status
-    message
   }
 }
     `;

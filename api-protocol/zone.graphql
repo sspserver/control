@@ -66,31 +66,23 @@ mutation DeleteZone($id: ID64!) {
 mutation ApproveZone($id: ID64!, $msg: String = null) {
   result: approveZone(ID: $id, msg: $msg) {
     clientMutationID
-    status
-    message
   }
 }
 
 mutation RejectZone($id: ID64!, $msg: String = null) {
   result: rejectZone(ID: $id, msg: $msg) {
     clientMutationID
-    status
-    message
   }
 }
 
 mutation ActivateZone($id: ID64!, $msg: String = null) {
   result: activateZone(ID: $id, msg: $msg) {
     clientMutationID
-    status
-    message
   }
 }
 
 mutation DeactivateZone($id: ID64!, $msg: String = null) {
   result: deactivateZone(ID: $id, msg: $msg) {
     clientMutationID
-    status
-    message
   }
 }
