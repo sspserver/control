@@ -4,8 +4,10 @@ import Checkbox from '@/components/Checkbox';
 
 import ButtonSpinner from '@/components/Icons/ButtonSpinner';
 import FormElementErrorLabel from '@components/FormElementErrorLabel';
+import { FocusScope } from '@radix-ui/react-focus-scope';
 import { Portal } from '@radix-ui/react-portal';
 import Label from '@tailus-ui/Label';
+import MultiselectPlaceholder from '@tailus-ui/Multiselect/MultiselectPlaceholder';
 import useMultiselect from '@tailus-ui/Multiselect/useMultiselect';
 import { select } from '@tailus/themer';
 import { ChevronsUpDown } from 'lucide-react';
@@ -38,29 +40,39 @@ function Multiselect({
 }: MultiselectProps) {
   const {
     isOpen,
-    selectedPlaceholder,
+    selectedItems,
     isGroupAllSelected,
     selectCommandItemHandler,
     changePopoverRootOpenHandler,
     selectGroupCommandItemHandler,
+    removeSelectedItemButtonClickHandler,
   } = useMultiselect(data, values, onChange);
-  const commandItemClassNames = item({ fancy: true, intent: 'primary', className: 'rounded-[9] pl-4 hover:bg-gray-100 active:bg-gray-200/75 dark:hover:bg-gray-500/10 cursor-pointer' });
-  const popoverContentClassNames = content({ fancy: true, className: 'pointer-events-auto z-20 p-0 w-[--radix-popover-trigger-width] max-h-[--radix-popover-content-available-height]' });
+  const commandItemClassNames = item({ fancy: true, intent: 'primary', className: 'rounded-[9] pl-4 hover:bg-gray-100 active:bg-gray-200/75 dark:hover:bg-gray-500/10 cursor-pointer dark:data-[disabled]:text-[--display-text-color] data-[disabled]:opacity-60' });
+  const popoverContentClassNames = content({ fancy: true, className: '!pointer-events-auto z-20 p-0 w-[--radix-popover-trigger-width] max-h-[--radix-popover-content-available-height]' });
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 pr-[1]">
       {label && (<Label size="sm">{label}</Label>)}
-      <PopoverRoot modal open={isOpen} onOpenChange={changePopoverRootOpenHandler}>
-        <PopoverTrigger className="pl-0.5 w-full">
+      <PopoverRoot
+        modal
+        open={isOpen}
+        onOpenChange={changePopoverRootOpenHandler}
+      >
+        <PopoverTrigger asChild className="w-full">
           <Button.Root
             component="div"
             role="combobox"
             variant="outlined"
             size="sm"
             intent="gray"
-            className="p-0 w-full pl-2 pr-2 justify-between"
+            className="p-0 w-full pl-2  pr-2 gap-0 justify-between"
+            onClick={event => event.stopPropagation()}
           >
-            {selectedPlaceholder || placeholder}
+            <MultiselectPlaceholder
+              placeholder={placeholder}
+              items={selectedItems}
+              onRemove={removeSelectedItemButtonClickHandler}
+            />
             <div className="flex items-center">
               {loading && (
                 <ButtonSpinner
@@ -69,70 +81,67 @@ function Multiselect({
                   height="22"
                 />
               )}
-              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0" />
+              <ChevronsUpDown className="h-4 w-4 shrink-0 ml-2" />
             </div>
           </Button.Root>
         </PopoverTrigger>
-        <Portal>
-          <PopoverContent
-            fancy
-            className={popoverContentClassNames}
-            onFocus={(e) => {
-              e.stopPropagation();
-            }}
-            onWheel={(e) => {
-              e.stopPropagation();
-            }}
-            onTouchMove={(e) => {
-              e.stopPropagation();
-            }}
+        <FocusScope asChild loop trapped={isOpen}>
+          <Portal
+            className="pointer-events-auto"
           >
-            <Command>
-              <CommandInput placeholder="Search..." />
-              <CommandList>
-                <CommandEmpty>No found</CommandEmpty>
-                {
-                  data.map(({ group, value, name }) => {
-                    if (group) {
-                      return (
-                        <CommandGroup key={name}>
-                          <CommandItem title={name} onSelect={selectGroupCommandItemHandler(group)}>
-                            <Checkbox label={name} checked={isGroupAllSelected(group)} />
-                          </CommandItem>
-                          {group.map(({ name, value }) => {
-                            const isChecked = values.includes(value);
-                            return (
-                              <CommandItem
-                                key={value}
-                                value={`${value}`}
-                                onSelect={selectCommandItemHandler}
-                                className={commandItemClassNames}
-                              >
-                                <Checkbox label={name} checked={isChecked} />
-                              </CommandItem>
-                            );
-                          })}
-                        </CommandGroup>
-                      );
-                    }
+            <PopoverContent
+              fancy
+              className={popoverContentClassNames}
+            >
+              <Command disablePointerSelection>
+                <CommandInput placeholder="Search..." />
+                <CommandList>
+                  <CommandEmpty>No found</CommandEmpty>
+                  {
+                    data.map(({ group, value, name }) => {
+                      if (group) {
+                        return (
+                          <CommandGroup key={name}>
+                            <CommandItem title={name} onSelect={selectGroupCommandItemHandler(group)}>
+                              <Checkbox label={name} checked={isGroupAllSelected(group)} />
+                            </CommandItem>
+                            {group.map(({ name, value }) => {
+                              const isChecked = values.includes(value);
+                              return (
+                                <CommandItem
+                                  key={value}
+                                  value={`${value}`}
+                                  onSelect={selectCommandItemHandler}
+                                  className={commandItemClassNames}
+                                  keywords={[name, `${value}`]}
+                                >
+                                  <Checkbox label={name} checked={isChecked} />
+                                </CommandItem>
+                              );
+                            })}
+                          </CommandGroup>
+                        );
+                      }
 
-                    const isChecked = values.includes(Number(value));
-                    return (
-                      <CommandItem
-                        key={value}
-                        value={`${value}`}
-                        onSelect={selectCommandItemHandler}
-                        className={commandItemClassNames}
-                      >
-                        <Checkbox label={name} checked={isChecked} />
-                      </CommandItem>
-                    );
-                  })
-                }
-              </CommandList>
-            </Command>
-          </PopoverContent>
-        </Portal>
+                      const isChecked = values.includes(Number(value));
+                      return (
+                        <CommandItem
+                          key={value}
+                          value={`${value}`}
+                          onSelect={selectCommandItemHandler}
+                          keywords={[name, `${value}`]}
+                          className={commandItemClassNames}
+                        >
+                          <Checkbox label={name} checked={isChecked} />
+                        </CommandItem>
+                      );
+                    })
+                  }
+                </CommandList>
+              </Command>
+            </PopoverContent>
+          </Portal>
+        </FocusScope>
       </PopoverRoot>
       <FormElementErrorLabel error={error} />
     </div>

@@ -8,7 +8,6 @@ function useMultiselect(
 ) {
   const [isOpen, setOpen] = React.useState(false);
   const selectedItems = data.flatMap(({ group, ...restProps }) => (group || { ...restProps })).filter(({ value }) => values.includes(Number(value)));
-  const selectedPlaceholder = selectedItems.map(({ name }) => name).join(', ');
   const changePopoverRootOpenHandler = () => setOpen(!isOpen);
   const selectCommandItemHandler = (value: string) => {
     const id = Number(value);
@@ -34,14 +33,19 @@ function useMultiselect(
     const groupValues = group.map(({ value }) => Number(value));
     return groupValues.every(value => values.includes(value));
   };
+  const removeSelectedItemButtonClickHandler = (value: string | number) => (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    onChange(values.filter(item => item.toString() !== value.toString()));
+  };
 
   return {
     isOpen,
-    selectedPlaceholder,
+    selectedItems,
     isGroupAllSelected,
     selectCommandItemHandler,
     changePopoverRootOpenHandler,
     selectGroupCommandItemHandler,
+    removeSelectedItemButtonClickHandler,
   };
 }
 
