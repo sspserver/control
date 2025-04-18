@@ -5,40 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5483ae0-0faa-4d09-a539-795505d72254" name="Changes" comment="* TrafficRouters List&#10;* TrafficRouters Create\Update form&#10;* TrafficRouters Actions run\stop">
-      <change afterPath="$PROJECT_DIR$/lib/graphql/queries/languages.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/graphql/queries/trafficRouters.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(root)/traffic-routers/[ID]/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(root)/traffic-routers/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/@drawer/(.)traffic-routers/[ID]/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/AdUnitSelect.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ApplicationsSelect.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/LanguagesSelect.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/RTBSourceSelect.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRouteActions/TrafficRouteActions.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRouteActions/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRouteActions/useTrafficRouteActions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRouters.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersCreateForm/TrafficRoutersCreateForm.const.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersCreateForm/TrafficRoutersCreateForm.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersCreateForm/TrafficRoutersCreateForm.types.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersCreateForm/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersCreateForm/useTrafficRoutersCreateForm.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersDrawer/TrafficRoutersDrawer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersDrawer/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersDrawerOpenButton/TrafficRoutersDrawerOpenButton.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersDrawerOpenButton/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersEmptyState/TrafficRoutersEmptyState.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersEmptyState/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/useTrafficRouters.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/MultiselectPlaceholder.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/MultiselectPlaceholder.utils.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/useMultiselectPlaceholder.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-protocol/application.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/api-protocol/application.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-protocol/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/api-protocol/schema.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-protocol/zone.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/api-protocol/zone.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/configs/routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MainMenu/MainMenu.const.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MainMenu/MainMenu.const.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/RtbPage/RtbCreateForm/useRtbCreateForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/RtbPage/RtbCreateForm/useRtbCreateForm.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/graphql.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/graphql.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AdFormatsSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdFormatsSelect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CategoriesSelect/CategoriesSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CategoriesSelect/CategoriesSelect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PageFormDrawer/PageFormDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PageFormDrawer/PageFormDrawer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/ApplicationsPage/ApplicationCreateForm/ApplicationCreateForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/ApplicationsPage/ApplicationCreateForm/ApplicationCreateForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/SignInPage/useSignInForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/SignInPage/useSignInForm.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Command/Command.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Command/Command.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/Multiselect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/Multiselect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/useMultiselect.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/useMultiselect.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/submodules/api" beforeDir="false" afterPath="$PROJECT_DIR$/submodules/api" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -89,42 +69,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Docker.develop.api: Compose Deployment.executor": "Run",
-    "Docker.develop.database: Compose Deployment.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "issues/17",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/src/components",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.stylelint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.stylelint": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/stylelint",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.gql-gen.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/prettier",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.develop.api: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.develop.database: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;issues/17&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/Oleksandr.Zhukov/Projects/sspserver/control/src/components/tailus-ui/Multiselect&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.stylelint&quot;: &quot;/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/stylelint&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.gql-gen.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/prettier&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/tailus-ui/Multiselect" />
       <recent name="$PROJECT_DIR$/src/components" />
       <recent name="$PROJECT_DIR$/src/app/(root)/traffic-routers" />
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/src/app" />
-      <recent name="$PROJECT_DIR$/src/components/Button" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
@@ -217,7 +197,7 @@
       <workItem from="1742539865335" duration="20398000" />
       <workItem from="1743403926452" duration="21991000" />
       <workItem from="1743537097266" duration="19553000" />
-      <workItem from="1743767309184" duration="27726000" />
+      <workItem from="1743767309184" duration="81809000" />
     </task>
     <task id="LOCAL-00001" summary="#6 Applications page">
       <option name="closed" value="true" />
@@ -283,7 +263,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743433149607</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="* TrafficRouters List&#10;* TrafficRouters Create\Update form&#10;* TrafficRouters Actions run\stop">
+      <option name="closed" value="true" />
+      <created>1744091238206</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1744091238206</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,6 +289,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="the first iteration of the skeleton of the project" />
     <MESSAGE value="#6 Applications page" />
     <MESSAGE value="#6 Applications page stage 2" />

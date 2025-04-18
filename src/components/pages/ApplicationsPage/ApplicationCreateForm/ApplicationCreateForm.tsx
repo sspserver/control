@@ -9,8 +9,8 @@ import Button, { ButtonLoading } from '@tailus-ui/Button';
 import Drawer from '@tailus-ui/Drawer/Drawer';
 import Input from '@tailus-ui/Input';
 import Separator from '@tailus-ui/Separator';
-import Textarea from '@tailus-ui/Textarea';
 
+import Textarea from '@tailus-ui/Textarea';
 import { Formik } from 'formik';
 import React, { Fragment } from 'react';
 import {

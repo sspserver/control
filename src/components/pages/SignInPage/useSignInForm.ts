@@ -5,11 +5,13 @@ import { useToastProviderContext } from '@components/Toast';
 import { ShieldExclamationIcon } from '@heroicons/react/16/solid';
 import CustomGraphQLError from '@lib/errors/CustomGraphQLError';
 import { getCsrfToken, signIn } from 'next-auth/react';
+import { useSearchParams } from 'next/navigation';
 import { createElement, useMemo, useState } from 'react';
 import { defaultUserCredentials, signInDefaultOptions } from './SignInForm.const';
 
 function useSignInForm() {
   const { showToast } = useToastProviderContext();
+  const searchParams = useSearchParams();
   const [userCredentials, setUserCredentials] = useState<UserCredentials>(defaultUserCredentials);
   const [error, setError] = useState<ReadonlyArray<GraphQLFormattedError>>([]);
   const signInFormErrors = useMemo(() => error.reduce<Record<string, string>>((acc, { message, path = [] }) => ({ ...acc, [path?.join('.')]: message }), {}), [
@@ -38,6 +40,7 @@ function useSignInForm() {
       setLoading(true);
 
       const result = await signIn('credentials', options);
+      const callbackUrl = searchParams.get('callbackUrl') ?? options.callbackUrl;
 
       if (result && result.error) {
         let graphQLError = CustomGraphQLError.toGraphQLFormattedError(result.error);
@@ -53,7 +56,7 @@ function useSignInForm() {
 
         setError(graphQLError);
       } else {
-        location.href = options.callbackUrl;
+        location.href = callbackUrl;
       }
     } catch (error) {
       console.error(error);
