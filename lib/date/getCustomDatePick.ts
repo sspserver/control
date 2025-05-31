@@ -9,6 +9,10 @@ export enum CustomDateOption {
 
 export const customDateSelectOptions = [
   {
+    name: 'Custom',
+    value: CustomDateOption.Custom,
+  },
+  {
     name: 'Today',
     value: CustomDateOption.Today,
   },

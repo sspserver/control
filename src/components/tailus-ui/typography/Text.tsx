@@ -1,8 +1,7 @@
+import type { TextAlignProp, TextProps as TextVariants, TextWeightProp } from '@tailus/themer';
 import {
   text,
-  type TextAlignProp,
-  type TextProps as TextVariants,
-  type TextWeightProp,
+
 } from '@tailus/themer';
 import React from 'react';
 

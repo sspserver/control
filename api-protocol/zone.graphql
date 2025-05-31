@@ -41,7 +41,27 @@ query ListZones(
   permReject: checkPermission(name:"reject.*", key: "adv_zone")
 }
 
-mutation CreateZone($input: ZoneInput!) {
+input ZoneInput {
+  id: ID
+  codename: String
+  accountID: ID
+  title: String!
+  description: String
+  status: String
+  active: Boolean
+  defaultCode: String
+  context: String
+  minECPM: Float
+  fixedPurchasePrice: Float
+  allowedFormats: [String]
+  allowedTypes: [String]
+  allowedSources: [String]
+  disallowedSources: [String]
+  campaigns: [ID]
+  country: String
+}
+
+mutation CreateZone($input: ZoneCreateInput!) {
   result: createZone(input: $input) {
     clientMutationID
     zoneID
@@ -49,7 +69,7 @@ mutation CreateZone($input: ZoneInput!) {
   }
 }
 
-mutation UpdateZone($id: ID64!, $input: ZoneInput!) {
+mutation UpdateZone($id: ID64!, $input: ZoneUpdateInput!) {
   result: updateZone(ID: $id, input: $input) {
     clientMutationID
     zoneID

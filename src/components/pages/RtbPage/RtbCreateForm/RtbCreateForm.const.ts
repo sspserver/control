@@ -9,6 +9,9 @@ export const rtbCreateFormTab = {
 };
 
 export const tabBidsFieldNames = ['accuracy', 'priceCorrectionReduce', 'minBid', 'maxBid'];
+export const tabBidsFieldNamesSet = new Set(tabBidsFieldNames);
+export const tabMainFieldNames = ['title', 'description', 'protocol', 'auctionType', 'method', 'URL', 'requestType', 'RPS', 'timeout'];
+export const tabMainFieldNamesSet = new Set(tabMainFieldNames);
 
 export const rtbCreateFormTabs = [
   {

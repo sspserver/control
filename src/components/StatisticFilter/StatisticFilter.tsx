@@ -10,7 +10,7 @@ import Aligner from '@tailus-ui/Aligner';
 import Label from '@tailus-ui/Label';
 import Switch from '@tailus-ui/Switch';
 import { card } from '@tailus/themer';
-import React, { Fragment } from 'react';
+import React from 'react';
 
 const rootClassNames = card({
   variant: 'elevated',
@@ -32,7 +32,8 @@ function StatisticFilter() {
   } = useStatisticFilter();
 
   return (
-    <Fragment>
+    <div className="pb-4">
+
       <MobileStatisticFilter />
       <Root className={rootClassNames} aria-label="Page filter">
         <div className="w-1/4 max-sm:w-full">
@@ -73,7 +74,7 @@ function StatisticFilter() {
           </Aligner>
         </div>
       </Root>
-    </Fragment>
+    </div>
   );
 }
 

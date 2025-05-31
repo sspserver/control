@@ -39,7 +39,7 @@ function RootLayout({
           </div>
         </div>
       </header>
-      <main className="mx-auto mt-20 h-full max-w-6xl px-5 space-y-6 py-4 max-md:mt-12 max-md:pb-16">
+      <main className="mx-auto mt-20 h-full max-w-6xl px-5 py-4 max-md:mt-12 max-md:pb-16">
         {children}
       </main>
       <div className="md:hidden">

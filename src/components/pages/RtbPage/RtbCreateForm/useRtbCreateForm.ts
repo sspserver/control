@@ -10,12 +10,13 @@ import {
   useNewRtbSourceMutation,
   useUpdateRtbSourceMutation,
 } from '@/generated/graphql';
+import { getErrorFormTab } from '@components/pages/RtbPage/RtbCreateForm/RtbCreateForm.utils';
 import { useToastProviderContext } from '@components/Toast';
 import { extractQLErrorFromNetworkError } from '@lib/errors/extractQLErrorFromNetworkError';
 import graphQLErrorToMap from '@lib/errors/graphQLErrorToMap';
 import { useParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import { rtbCreateFormTab, tabBidsFieldNames, toastSuccessMessage } from './RtbCreateForm.const';
+import { rtbCreateFormTab, toastSuccessMessage } from './RtbCreateForm.const';
 
 function useRtbCreateForm(onSubmit?: () => void) {
   const { showToast } = useToastProviderContext();
@@ -90,13 +91,13 @@ function useRtbCreateForm(onSubmit?: () => void) {
     priceCorrectionReduce,
     minBid,
     maxBid,
-    formats,
-    deviceTypes,
-    devices,
-    OS,
-    browsers,
-    carriers,
-    countries,
+    formatCodes,
+    deviceTypeIDs,
+    deviceIDs,
+    OSIDs,
+    browserIDs,
+    carrierIDs,
+    countryCodes,
     secure,
     adBlock,
     privateBrowsing,
@@ -116,13 +117,13 @@ function useRtbCreateForm(onSubmit?: () => void) {
     priceCorrectionReduce,
     minBid,
     maxBid,
-    formats,
-    deviceTypes,
-    devices,
-    OS,
-    browsers,
-    carriers,
-    countries,
+    formatCodes,
+    deviceTypeIDs,
+    deviceIDs,
+    OSIDs,
+    browserIDs,
+    carrierIDs,
+    countryCodes,
     secure,
     adBlock,
     privateBrowsing,
@@ -164,11 +165,11 @@ function useRtbCreateForm(onSubmit?: () => void) {
       onSubmit?.();
     } else {
       const formErrors = graphQLErrorToMap<RTBCreateFormState>(requestErrors);
-      const errorKeys = new Set(Object.keys(formErrors));
-      const isTabBidsHasError = tabBidsFieldNames.find(name => errorKeys.has(name));
+      const errorKeys = Object.keys(formErrors);
+      const errorTab = getErrorFormTab(errorKeys);
 
-      if (isTabBidsHasError) {
-        setTabState(rtbCreateFormTab.bids);
+      if (errorTab) {
+        setTabState(errorTab);
       }
 
       setErrors(formErrors);
