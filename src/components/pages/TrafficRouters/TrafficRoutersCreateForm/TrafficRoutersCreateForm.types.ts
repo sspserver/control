@@ -10,16 +10,16 @@ export type TrafficRoutersCreateFormState = {
   privateBrowsing?: AnyOnlyExclude;
   IP?: AnyIPv4IPv6;
   RTBSourceIDs: string[] | null;
-  zones: string[] | null;
-  applications?: string[] | null;
-  formats?: string[] | null;
-  deviceTypes?: string[] | null;
-  devices?: string[] | null;
-  OS?: string[] | null;
-  browsers?: string[] | null;
-  carriers?: string[] | null;
-  countries?: string[] | null;
-  languages?: string[] | null;
+  zoneIDs: string[] | null;
+  applicationIDs?: string[] | null;
+  formatCodes?: string[] | null;
+  deviceTypeIDs?: string[] | null;
+  deviceIDs?: string[] | null;
+  OSIDs?: string[] | null;
+  browserIDs?: string[] | null;
+  carrierIDs?: string[] | null;
+  countryCodes?: string[] | null;
+  languageCodes?: string[] | null;
   result?: string;
 };
 

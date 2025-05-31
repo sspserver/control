@@ -4,7 +4,7 @@ export type AdUnitCreateFormProps = {
 };
 
 export type AdUnitCreateFormState = {
-  title?: string;
+  title: string;
   description?: string;
   codename?: string;
   minECPM?: number;

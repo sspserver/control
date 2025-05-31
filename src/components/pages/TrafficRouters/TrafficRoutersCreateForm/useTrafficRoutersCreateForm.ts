@@ -31,22 +31,22 @@ function useTrafficRoutersCreateForm(onSubmit?: () => void) {
   const isCreateMode = Number.isNaN(id);
   const [tabState, setTabState] = useState(trafficRoutersFormTab.main);
   const spanRef = useRef<HTMLSpanElement>(null);
-  const updateRtbSourceCacheStrategy = useMemo(() => ({
+  const updateTrafficRoutersSourceCacheStrategy = useMemo(() => ({
     fetchPolicy: 'network-only',
     errorPolicy: 'all',
     onCompleted: () => {
       client.cache.modify({
         optimistic: true,
         fields: {
-          listTrafficRouters(cache) {
-            return cache?.list ?? [];
+          listTrafficRouters(_) {
+            return {};
           },
         },
       });
     },
   } as MutationHookOptions), [client]);
-  const [updateTrafficRoutersCreateResponse] = useMutation(gqlupdateTrafficRouterMutation, updateRtbSourceCacheStrategy);
-  const [createTrafficRoutersCreateResponse] = useMutation(gqlTrafficRoutersCreateMutation, updateRtbSourceCacheStrategy);
+  const [updateTrafficRoutersCreateResponse] = useMutation(gqlupdateTrafficRouterMutation, updateTrafficRoutersSourceCacheStrategy);
+  const [createTrafficRoutersCreateResponse] = useMutation(gqlTrafficRoutersCreateMutation, updateTrafficRoutersSourceCacheStrategy);
   const { data: responseDataTrafficRouter, loading: isTrafficRouterLoading } = useQuery(gqlGetTrafficRouters, {
     fetchPolicy: 'network-only',
     errorPolicy: 'all',

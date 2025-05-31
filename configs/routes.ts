@@ -17,4 +17,5 @@ export const configPathRoutes = {
   settings: '/settings',
   trafficRouters: '/traffic-routers',
   trafficRouterCreate: '/traffic-routers/create',
+  statistics: '/statistics',
 };

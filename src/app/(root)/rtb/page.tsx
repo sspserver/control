@@ -28,6 +28,7 @@ function Rtb() {
         <RtbDrawerOpenButton />
       </div>
       <StatisticFilter />
+
       <RtbPage />
     </Fragment>
   );

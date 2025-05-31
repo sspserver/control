@@ -309,18 +309,16 @@ fragment __rtbSourceData on RTBSource {
   auctionType
   minBid
   maxBid
-  formats
-  deviceTypes
-  devices
-  OS
-  browsers
-  carriers
-  categories
-  countries
-  languages
-  applications
-  domains
-  zones
+  formatCodes
+  zoneIDs
+  applicationIDs
+  deviceTypeIDs
+  deviceIDs
+  OSIDs
+  browserIDs
+  countryCodes
+  languageCodes
+  carrierIDs
   secure
   adBlock
   privateBrowsing

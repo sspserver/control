@@ -81,9 +81,10 @@ function useAdUnitCreateForm(onSubmit?: () => void) {
     fixedPurchasePrice,
   };
   const submitAdUnitCreateEditFormHandler = async (
-    input: AdUnitCreateFormState,
+    formInput: AdUnitCreateFormState,
     { setErrors }: FormikHelpers<AdUnitCreateFormState>,
   ) => {
+    const {codename, ...input} = formInput
     const variables = { id, input };
     const { title, description } = toastSuccessMessage;
     let requestErrors;

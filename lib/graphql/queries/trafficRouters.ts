@@ -14,15 +14,16 @@ export const gqlGetTrafficRouters = gql`
                 privateBrowsing
                 IP
                 RTBSourceIDs
-                applications
-                formats
-                deviceTypes
-                devices
-                OS
-                browsers
-                carriers
-                countries
-                languages
+                formatCodes
+                zoneIDs
+                applicationIDs
+                deviceTypeIDs
+                deviceIDs
+                OSIDs
+                browserIDs
+                countryCodes
+                languageCodes
+                carrierIDs
             }
         }
     }
@@ -35,13 +36,25 @@ export const gqlTrafficRouters = gql`
         $page: Page,
     ) {
         listTrafficRouters(filter: $filter, order: $order, page: $page) {
+            pageInfo {
+                total
+                page
+                count
+            }
             list {
                 ID
                 active
                 description
                 title
-                browsers
-                formats
+                browsers {
+                    ID
+                    name
+                    version
+                }
+                formats {
+                    ID
+                    description
+                } 
                 percent
                 privateBrowsing
                 secure
@@ -51,7 +64,11 @@ export const gqlTrafficRouters = gql`
                     title
                     active
                 }
-                applications
+                applications {
+                    ID
+                    title
+                    active
+                }
             }
         }
     }
@@ -69,16 +86,16 @@ export const gqlupdateTrafficRouterMutation = gql`
         $privateBrowsing: AnyOnlyExclude!,
         $IP: AnyIPv4IPv6!
         $RTBSourceIDs: [ID64!]!
-        $applications: [ID64!]
-        $zones: [ID64!]
-        $formats: [String!]
-        $deviceTypes: [Int64!]
-        $devices: [Int64!]
-        $OS: [Int64!]
-        $browsers: [Int64!]
-        $carriers: [Int64!]
-        $countries: [String!]
-        $languages: [String!]
+        $applicationIDs: [ID64!]
+        $zoneIDs: [ID64!]
+        $formatCodes: [String!]
+        $deviceTypeIDs: [ID64!]
+        $deviceIDs: [ID64!]
+        $OSIDs: [ID64!]
+        $browserIDs: [ID64!]
+        $carrierIDs: [ID64!]
+        $countryCodes: [String!]
+        $languageCodes: [String!]
     ) {
         result: updateTrafficRouter(ID: $id, input: {
             title: $title,
@@ -90,16 +107,16 @@ export const gqlupdateTrafficRouterMutation = gql`
             privateBrowsing: $privateBrowsing,
             IP: $IP,
             RTBSourceIDs: $RTBSourceIDs
-            applications:  $applications
-            zones: $zones
-            formats: $formats
-            deviceTypes: $deviceTypes
-            devices: $devices
-            OS: $OS
-            browsers: $browsers
-            carriers: $carriers
-            countries: $countries
-            languages: $languages
+            applicationIDs:  $applicationIDs
+            zoneIDs: $zoneIDs
+            formatCodes: $formatCodes
+            deviceTypeIDs: $deviceTypeIDs
+            deviceIDs: $deviceIDs
+            OSIDs: $OSIDs
+            browserIDs: $browserIDs
+            carrierIDs: $carrierIDs
+            countryCodes: $countryCodes
+            languageCodes: $languageCodes
         }) {
             clientMutationID
             object: router {
@@ -121,16 +138,16 @@ export const gqlTrafficRoutersCreateMutation = gql`
         $privateBrowsing: AnyOnlyExclude!,
         $IP: AnyIPv4IPv6!
         $RTBSourceIDs: [ID64!]!
-        $applications: [ID64!]
-        $zones: [ID64!]
-        $formats: [String!]
-        $deviceTypes: [Int64!]
-        $devices: [Int64!]
-        $OS: [Int64!]
-        $browsers: [Int64!]
-        $carriers: [Int64!]
-        $countries: [String!]
-        $languages: [String!]
+        $applicationIDs: [ID64!]
+        $zoneIDs: [ID64!]
+        $formatCodes: [String!]
+        $deviceTypeIDs: [ID64!]
+        $deviceIDs: [ID64!]
+        $OSIDs: [ID64!]
+        $browserIDs: [ID64!]
+        $carrierIDs: [ID64!]
+        $countryCodes: [String!]
+        $languageCodes: [String!]
     ) {
       result: createTrafficRouter(input: {
         title: $title,
@@ -142,16 +159,16 @@ export const gqlTrafficRoutersCreateMutation = gql`
         privateBrowsing: $privateBrowsing,
         IP: $IP,
         RTBSourceIDs: $RTBSourceIDs
-        applications:  $applications
-        zones: $zones
-        formats: $formats
-        deviceTypes: $deviceTypes
-        devices: $devices
-        OS: $OS
-        browsers: $browsers
-        carriers: $carriers
-        countries: $countries
-        languages: $languages
+        applicationIDs:  $applicationIDs
+        zoneIDs: $zoneIDs
+        formatCodes: $formatCodes
+        deviceTypeIDs: $deviceTypeIDs
+        deviceIDs: $deviceIDs
+        OSIDs: $OSIDs
+        browserIDs: $browserIDs
+        carrierIDs: $carrierIDs
+        countryCodes: $countryCodes
+        languageCodes: $languageCodes
       }) {
         clientMutationID
         object: router {

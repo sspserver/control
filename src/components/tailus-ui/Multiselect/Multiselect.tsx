@@ -123,7 +123,11 @@ function Multiselect({
                         );
                       }
 
-                      const isChecked = values.includes(Number(value));
+                      const numberId = Number(value);
+                      const isIdNumber = !Number.isNaN(numberId);
+                      const id = isIdNumber ? numberId : value;
+                      const isChecked = values.includes(id);
+
                       return (
                         <CommandItem
                           key={value}

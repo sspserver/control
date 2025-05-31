@@ -7,10 +7,18 @@ function useMultiselect(
   onChange: (values: (number | string)[]) => void,
 ) {
   const [isOpen, setOpen] = React.useState(false);
-  const selectedItems = data.flatMap(({ group, ...restProps }) => (group || { ...restProps })).filter(({ value }) => values.includes(Number(value)));
+  const selectedItems = data.flatMap(({ group, ...restProps }) => (group || { ...restProps })).filter(({ value }) => {
+    const numberId = Number(value);
+    const isIdNumber = !Number.isNaN(numberId);
+    const id = isIdNumber ? numberId : value;
+
+    return values.includes(id);
+  });
   const changePopoverRootOpenHandler = () => setOpen(!isOpen);
   const selectCommandItemHandler = (value: string) => {
-    const id = Number(value);
+    const numberId = Number(value);
+    const isIdNumber = !Number.isNaN(numberId);
+    const id = isIdNumber ? numberId : value;
     const hasValue = values.includes(id);
 
     if (hasValue) {

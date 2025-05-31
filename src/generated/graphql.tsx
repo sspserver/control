@@ -1573,7 +1573,7 @@ export type MutationCreateUserArgs = {
 
 
 export type MutationCreateZoneArgs = {
-  input: ZoneInput;
+  input: ZoneCreateInput;
 };
 
 
@@ -1875,7 +1875,7 @@ export type MutationUpdateUserPasswordArgs = {
 
 export type MutationUpdateZoneArgs = {
   ID: Scalars['ID64']['input'];
-  input: ZoneInput;
+  input: ZoneUpdateInput;
 };
 
 /** OS model schema */
@@ -2612,33 +2612,44 @@ export type RtbSource = {
   __typename?: 'RTBSource';
   ID: Scalars['ID64']['output'];
   IP: AnyIPv4IPv6;
-  OS?: Maybe<Array<Scalars['Int64']['output']>>;
+  OS?: Maybe<Array<Os>>;
+  OSIDs?: Maybe<Array<Scalars['ID64']['output']>>;
   RPS: Scalars['Int']['output'];
   /** URL of the RTB source. This cannot be changed after approval. */
   URL: Scalars['String']['output'];
+  /** Account owner of the traffic router */
+  account?: Maybe<Account>;
   accountID: Scalars['ID64']['output'];
   accuracy: Scalars['Float']['output'];
   /** Active status of the source, indicating whether the source is currently active. */
   active: ActiveStatus;
   adBlock: AnyOnlyExclude;
-  applications?: Maybe<Array<Scalars['Int64']['output']>>;
+  applicationIDs?: Maybe<Array<Scalars['ID64']['output']>>;
+  applications?: Maybe<Array<Application>>;
   auctionType: AuctionType;
-  browsers?: Maybe<Array<Scalars['Int64']['output']>>;
-  carriers?: Maybe<Array<Scalars['Int64']['output']>>;
-  categories?: Maybe<Array<Scalars['Int64']['output']>>;
+  browserIDs?: Maybe<Array<Scalars['ID64']['output']>>;
+  browsers?: Maybe<Array<Browser>>;
+  carrierIDs?: Maybe<Array<Scalars['ID64']['output']>>;
+  categories?: Maybe<Array<Category>>;
+  categoryIDs?: Maybe<Array<Scalars['ID64']['output']>>;
   config: Scalars['NullableJSON']['output'];
-  countries?: Maybe<Array<Scalars['String']['output']>>;
+  countries?: Maybe<Array<Country>>;
+  countryCodes?: Maybe<Array<Scalars['String']['output']>>;
   createdAt: Scalars['Time']['output'];
   deletedAt?: Maybe<Scalars['Time']['output']>;
   description: Scalars['String']['output'];
-  deviceTypes?: Maybe<Array<Scalars['Int64']['output']>>;
-  devices?: Maybe<Array<Scalars['Int64']['output']>>;
+  deviceIDs?: Maybe<Array<Scalars['ID64']['output']>>;
+  deviceTypeIDs?: Maybe<Array<Scalars['ID64']['output']>>;
+  deviceTypes?: Maybe<Array<DeviceType>>;
+  devices?: Maybe<Array<DeviceModel>>;
   domains?: Maybe<Array<Scalars['String']['output']>>;
   /** Flags associated with the source, stored as a JSON object. */
   flags: Scalars['NullableJSON']['output'];
-  formats?: Maybe<Array<Scalars['String']['output']>>;
+  formatCodes?: Maybe<Array<Scalars['String']['output']>>;
+  formats?: Maybe<Array<AdFormat>>;
   headers: Scalars['NullableJSON']['output'];
-  languages?: Maybe<Array<Scalars['String']['output']>>;
+  languageCodes?: Maybe<Array<Scalars['String']['output']>>;
+  languages?: Maybe<Array<Lang>>;
   maxBid: Scalars['Float']['output'];
   method: Scalars['String']['output'];
   minBid: Scalars['Float']['output'];
@@ -2653,7 +2664,8 @@ export type RtbSource = {
   timeout: Scalars['Int']['output'];
   title: Scalars['String']['output'];
   updatedAt: Scalars['Time']['output'];
-  zones?: Maybe<Array<Scalars['Int64']['output']>>;
+  zoneIDs?: Maybe<Array<Scalars['ID64']['output']>>;
+  zones?: Maybe<Array<Zone>>;
 };
 
 /** RTBSourceConnection wrapper to access RTBSource objects in a paginated list. */
@@ -2672,30 +2684,30 @@ export type RtbSourceConnection = {
 /** Input for creating a new RTBSource. */
 export type RtbSourceCreateInput = {
   IP?: InputMaybe<AnyIPv4IPv6>;
-  OS?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  OSIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
   RPS: Scalars['Int']['input'];
   /** URL of the RTB source. Cannot be changed after approval. */
   URL: Scalars['String']['input'];
   accountID?: InputMaybe<Scalars['ID64']['input']>;
   accuracy: Scalars['Float']['input'];
   adBlock?: InputMaybe<AnyOnlyExclude>;
-  applications?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  applicationIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
   auctionType: AuctionType;
-  browsers?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  carriers?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  categories?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  browserIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  carrierIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  categoryIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
   config?: InputMaybe<Scalars['NullableJSON']['input']>;
-  countries?: InputMaybe<Array<Scalars['String']['input']>>;
+  countryCodes?: InputMaybe<Array<Scalars['String']['input']>>;
   /** Description of the RTB source. */
   description?: InputMaybe<Scalars['String']['input']>;
-  deviceTypes?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  devices?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  deviceIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  deviceTypeIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
   domains?: InputMaybe<Array<Scalars['String']['input']>>;
   /** Flags associated with the source. */
   flags?: InputMaybe<Scalars['NullableJSON']['input']>;
-  formats?: InputMaybe<Array<Scalars['String']['input']>>;
+  formatCodes?: InputMaybe<Array<Scalars['String']['input']>>;
   headers?: InputMaybe<Scalars['NullableJSON']['input']>;
-  languages?: InputMaybe<Array<Scalars['String']['input']>>;
+  languageCodes?: InputMaybe<Array<Scalars['String']['input']>>;
   maxBid: Scalars['Float']['input'];
   method: Scalars['String']['input'];
   minBid: Scalars['Float']['input'];
@@ -2708,7 +2720,7 @@ export type RtbSourceCreateInput = {
   timeout: Scalars['Int']['input'];
   /** Title of the RTB source. */
   title: Scalars['String']['input'];
-  zones?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  zoneIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
 };
 
 /** RTBSourceEdge wrapper to access RTBSource objects in a paginated list. */
@@ -2762,30 +2774,30 @@ export type RtbSourcePayload = {
 /** Input for updating an existing RTBSource. */
 export type RtbSourceUpdateInput = {
   IP?: InputMaybe<AnyIPv4IPv6>;
-  OS?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  OSIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
   RPS?: InputMaybe<Scalars['Int']['input']>;
   /** URL of the RTB source. Cannot be changed after approval. */
   URL?: InputMaybe<Scalars['String']['input']>;
   accountID?: InputMaybe<Scalars['ID64']['input']>;
   accuracy?: InputMaybe<Scalars['Float']['input']>;
   adBlock?: InputMaybe<AnyOnlyExclude>;
-  applications?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  applicationIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
   auctionType?: InputMaybe<AuctionType>;
-  browsers?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  carriers?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  categories?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  browserIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  carrierIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  categoryIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
   config?: InputMaybe<Scalars['NullableJSON']['input']>;
-  countries?: InputMaybe<Array<Scalars['String']['input']>>;
+  countryCodes?: InputMaybe<Array<Scalars['String']['input']>>;
   /** Description of the RTB source. */
   description?: InputMaybe<Scalars['String']['input']>;
-  deviceTypes?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  devices?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  deviceIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  deviceTypeIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
   domains?: InputMaybe<Array<Scalars['String']['input']>>;
   /** Flags associated with the source. */
   flags?: InputMaybe<Scalars['NullableJSON']['input']>;
-  formats?: InputMaybe<Array<Scalars['String']['input']>>;
+  formatCodes?: InputMaybe<Array<Scalars['String']['input']>>;
   headers?: InputMaybe<Scalars['NullableJSON']['input']>;
-  languages?: InputMaybe<Array<Scalars['String']['input']>>;
+  languageCodes?: InputMaybe<Array<Scalars['String']['input']>>;
   maxBid?: InputMaybe<Scalars['Float']['input']>;
   method?: InputMaybe<Scalars['String']['input']>;
   minBid?: InputMaybe<Scalars['Float']['input']>;
@@ -2798,7 +2810,7 @@ export type RtbSourceUpdateInput = {
   timeout?: InputMaybe<Scalars['Int']['input']>;
   /** Title of the RTB source. */
   title?: InputMaybe<Scalars['String']['input']>;
-  zones?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  zoneIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
 };
 
 /** Constants of the response status */
@@ -3057,7 +3069,8 @@ export type TrafficRouter = {
   /** ID of the traffic router */
   ID: Scalars['ID64']['output'];
   IP: AnyIPv4IPv6;
-  OS?: Maybe<Array<Scalars['Int64']['output']>>;
+  OS?: Maybe<Array<Os>>;
+  OSIDs?: Maybe<Array<Scalars['ID64']['output']>>;
   /** RTB sources of the advertising */
   RTBSourceIDs?: Maybe<Array<Scalars['ID64']['output']>>;
   /** RTB sources of the advertising */
@@ -3069,20 +3082,28 @@ export type TrafficRouter = {
   /** Active status of source */
   active: ActiveStatus;
   adBlock: AnyOnlyExclude;
-  applications?: Maybe<Array<Scalars['ID64']['output']>>;
-  browsers?: Maybe<Array<Scalars['Int64']['output']>>;
-  carriers?: Maybe<Array<Scalars['Int64']['output']>>;
-  categories?: Maybe<Array<Scalars['Int64']['output']>>;
-  countries?: Maybe<Array<Scalars['String']['output']>>;
+  applicationIDs?: Maybe<Array<Scalars['ID64']['output']>>;
+  applications?: Maybe<Array<Application>>;
+  browserIDs?: Maybe<Array<Scalars['ID64']['output']>>;
+  browsers?: Maybe<Array<Browser>>;
+  carrierIDs?: Maybe<Array<Scalars['ID64']['output']>>;
+  categories?: Maybe<Array<Category>>;
+  categoryIDs?: Maybe<Array<Scalars['ID64']['output']>>;
+  countries?: Maybe<Array<Country>>;
+  countryCodes?: Maybe<Array<Scalars['String']['output']>>;
   createdAt: Scalars['Time']['output'];
   deletedAt?: Maybe<Scalars['Time']['output']>;
   /** Description of the traffic router */
   description: Scalars['String']['output'];
-  deviceTypes?: Maybe<Array<Scalars['Int64']['output']>>;
-  devices?: Maybe<Array<Scalars['Int64']['output']>>;
+  deviceIDs?: Maybe<Array<Scalars['ID64']['output']>>;
+  deviceTypeIDs?: Maybe<Array<Scalars['ID64']['output']>>;
+  deviceTypes?: Maybe<Array<DeviceType>>;
+  devices?: Maybe<Array<DeviceModel>>;
   domains?: Maybe<Array<Scalars['String']['output']>>;
-  formats?: Maybe<Array<Scalars['String']['output']>>;
-  languages?: Maybe<Array<Scalars['String']['output']>>;
+  formatCodes?: Maybe<Array<Scalars['String']['output']>>;
+  formats?: Maybe<Array<AdFormat>>;
+  languageCodes?: Maybe<Array<Scalars['String']['output']>>;
+  languages?: Maybe<Array<Lang>>;
   /** Traffic router percent of the traffic to share between RTB sources */
   percent: Scalars['Float']['output'];
   privateBrowsing: AnyOnlyExclude;
@@ -3090,7 +3111,8 @@ export type TrafficRouter = {
   /** Title of the traffic router */
   title: Scalars['String']['output'];
   updatedAt: Scalars['Time']['output'];
-  zones?: Maybe<Array<Scalars['ID64']['output']>>;
+  zoneIDs?: Maybe<Array<Scalars['ID64']['output']>>;
+  zones?: Maybe<Array<Zone>>;
 };
 
 export type TrafficRouterConnection = {
@@ -3107,7 +3129,7 @@ export type TrafficRouterConnection = {
 
 export type TrafficRouterCreateInput = {
   IP?: InputMaybe<AnyIPv4IPv6>;
-  OS?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  OSIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
   /** RTB sources of the advertising */
   RTBSourceIDs: Array<Scalars['ID64']['input']>;
   /** Account ID owner of the traffic router */
@@ -3115,25 +3137,25 @@ export type TrafficRouterCreateInput = {
   /** Active status of the traffic router */
   active: ActiveStatus;
   adBlock?: InputMaybe<AnyOnlyExclude>;
-  applications?: InputMaybe<Array<Scalars['ID64']['input']>>;
-  browsers?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  carriers?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  categories?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  countries?: InputMaybe<Array<Scalars['String']['input']>>;
+  applicationIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  browserIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  carrierIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  categoryIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  countryCodes?: InputMaybe<Array<Scalars['String']['input']>>;
   /** Description of the traffic router */
   description?: InputMaybe<Scalars['String']['input']>;
-  deviceTypes?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  devices?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  deviceIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  deviceTypeIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
   domains?: InputMaybe<Array<Scalars['String']['input']>>;
-  formats?: InputMaybe<Array<Scalars['String']['input']>>;
-  languages?: InputMaybe<Array<Scalars['String']['input']>>;
+  formatCodes?: InputMaybe<Array<Scalars['String']['input']>>;
+  languageCodes?: InputMaybe<Array<Scalars['String']['input']>>;
   /** Traffic router percent of the traffic to share between RTB sources */
   percent: Scalars['Float']['input'];
   privateBrowsing?: InputMaybe<AnyOnlyExclude>;
   secure?: InputMaybe<AnyOnlyExclude>;
   /** Title of the traffic router */
   title: Scalars['String']['input'];
-  zones?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  zoneIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
 };
 
 export type TrafficRouterEdge = {
@@ -3147,24 +3169,24 @@ export type TrafficRouterEdge = {
 export type TrafficRouterListFilter = {
   ID?: InputMaybe<Array<Scalars['ID64']['input']>>;
   IP?: InputMaybe<AnyIPv4IPv6>;
-  OS?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  OSIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
   RTBSourceIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
   accountID?: InputMaybe<Scalars['ID64']['input']>;
   active?: InputMaybe<ActiveStatus>;
   adBlock?: InputMaybe<AnyOnlyExclude>;
-  applications?: InputMaybe<Array<Scalars['ID64']['input']>>;
-  browsers?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  carriers?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  categories?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  countries?: InputMaybe<Array<Scalars['String']['input']>>;
-  deviceTypes?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  devices?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  applicationIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  browserIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  carrierIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  categoryIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  countryCodes?: InputMaybe<Array<Scalars['String']['input']>>;
+  deviceIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  deviceTypeIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
   domains?: InputMaybe<Array<Scalars['String']['input']>>;
-  formats?: InputMaybe<Array<Scalars['String']['input']>>;
-  languages?: InputMaybe<Array<Scalars['String']['input']>>;
+  formatCodes?: InputMaybe<Array<Scalars['String']['input']>>;
+  languageCodes?: InputMaybe<Array<Scalars['String']['input']>>;
   privateBrowsing?: InputMaybe<AnyOnlyExclude>;
   secure?: InputMaybe<AnyOnlyExclude>;
-  zones?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  zoneIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
 };
 
 export type TrafficRouterListOrder = {
@@ -3172,6 +3194,7 @@ export type TrafficRouterListOrder = {
   active?: InputMaybe<Ordering>;
   createdAt?: InputMaybe<Ordering>;
   percent?: InputMaybe<Ordering>;
+  title?: InputMaybe<Ordering>;
   updatedAt?: InputMaybe<Ordering>;
 };
 
@@ -3187,31 +3210,31 @@ export type TrafficRouterPayload = {
 
 export type TrafficRouterUpdateInput = {
   IP?: InputMaybe<AnyIPv4IPv6>;
-  OS?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  OSIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
   /** RTB sources of the advertising */
   RTBSourceIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
   /** Active status of the traffic router */
   active?: InputMaybe<ActiveStatus>;
   adBlock?: InputMaybe<AnyOnlyExclude>;
-  applications?: InputMaybe<Array<Scalars['ID64']['input']>>;
-  browsers?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  carriers?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  categories?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  countries?: InputMaybe<Array<Scalars['String']['input']>>;
+  applicationIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  browserIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  carrierIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  categoryIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  countryCodes?: InputMaybe<Array<Scalars['String']['input']>>;
   /** Description of the traffic router */
   description?: InputMaybe<Scalars['String']['input']>;
-  deviceTypes?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  devices?: InputMaybe<Array<Scalars['Int64']['input']>>;
+  deviceIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  deviceTypeIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
   domains?: InputMaybe<Array<Scalars['String']['input']>>;
-  formats?: InputMaybe<Array<Scalars['String']['input']>>;
-  languages?: InputMaybe<Array<Scalars['String']['input']>>;
+  formatCodes?: InputMaybe<Array<Scalars['String']['input']>>;
+  languageCodes?: InputMaybe<Array<Scalars['String']['input']>>;
   /** Traffic router percent of the traffic to share between RTB sources */
   percent?: InputMaybe<Scalars['Float']['input']>;
   privateBrowsing?: InputMaybe<AnyOnlyExclude>;
   secure?: InputMaybe<AnyOnlyExclude>;
   /** Title of the traffic router */
   title?: InputMaybe<Scalars['String']['input']>;
-  zones?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  zoneIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
 };
 
 /** User represents a user object of the system */
@@ -3295,16 +3318,16 @@ export type Zone = {
   /** Active status of the zone */
   active: ActiveStatus;
   allowedFormats?: Maybe<Array<Scalars['String']['output']>>;
-  allowedSources?: Maybe<Array<Scalars['Int64']['output']>>;
-  allowedTypes?: Maybe<Array<Scalars['Int64']['output']>>;
-  campaigns?: Maybe<Array<Scalars['Int64']['output']>>;
+  allowedSources?: Maybe<Array<Scalars['ID64']['output']>>;
+  allowedTypes?: Maybe<Array<Scalars['ID64']['output']>>;
+  campaigns?: Maybe<Array<Scalars['ID64']['output']>>;
   codename: Scalars['String']['output'];
   context: Scalars['NullableJSON']['output'];
   createdAt: Scalars['Time']['output'];
   defaultCode: Scalars['NullableJSON']['output'];
   deletedAt?: Maybe<Scalars['Time']['output']>;
   description: Scalars['String']['output'];
-  disallowedSources?: Maybe<Array<Scalars['Int64']['output']>>;
+  disallowedSources?: Maybe<Array<Scalars['ID64']['output']>>;
   fixedPurchasePrice: Scalars['Float']['output'];
   minECPM: Scalars['Float']['output'];
   /** Status of the zone */
@@ -3326,6 +3349,26 @@ export type ZoneConnection = {
   totalCount: Scalars['Int']['output'];
 };
 
+/** Input type for creating a Zone. */
+export type ZoneCreateInput = {
+  /** Account ID associated with the Zone. Must have appropriate permissions. */
+  accountID?: InputMaybe<Scalars['ID64']['input']>;
+  allowedFormats?: InputMaybe<Array<Scalars['String']['input']>>;
+  allowedSources?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  allowedTypes?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  campaigns?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  context?: InputMaybe<Scalars['JSON']['input']>;
+  defaultCode?: InputMaybe<Scalars['JSON']['input']>;
+  /** Description of the Zone. */
+  description?: InputMaybe<Scalars['String']['input']>;
+  disallowedSources?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  fixedPurchasePrice?: InputMaybe<Scalars['Float']['input']>;
+  minECPM?: InputMaybe<Scalars['Float']['input']>;
+  minECPMByGeo?: InputMaybe<Scalars['JSON']['input']>;
+  /** Title of the Zone. */
+  title: Scalars['String']['input'];
+};
+
 /** ZoneEdge wrapper to access Zone objects */
 export type ZoneEdge = {
   __typename?: 'ZoneEdge';
@@ -3333,28 +3376,6 @@ export type ZoneEdge = {
   cursor: Scalars['String']['output'];
   /** The Zone at the end of ZoneEdge. */
   node: Zone;
-};
-
-/** Input type for creating or updating a Zone. */
-export type ZoneInput = {
-  /** Account ID associated with the Zone. Must have appropriate permissions. */
-  accountID?: InputMaybe<Scalars['ID64']['input']>;
-  allowedFormats?: InputMaybe<Array<Scalars['String']['input']>>;
-  allowedSources?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  allowedTypes?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  campaigns?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  /** Unique codename for the Zone. */
-  codename?: InputMaybe<Scalars['String']['input']>;
-  context?: InputMaybe<Scalars['JSON']['input']>;
-  defaultCode?: InputMaybe<Scalars['JSON']['input']>;
-  /** Description of the Zone. */
-  description?: InputMaybe<Scalars['String']['input']>;
-  disallowedSources?: InputMaybe<Array<Scalars['Int64']['input']>>;
-  fixedPurchasePrice?: InputMaybe<Scalars['Float']['input']>;
-  minECPM?: InputMaybe<Scalars['Float']['input']>;
-  minECPMByGeo?: InputMaybe<Scalars['JSON']['input']>;
-  /** Title of the Zone. */
-  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Filter input for listing Zones. */
@@ -3391,6 +3412,26 @@ export type ZonePayload = {
   zone: Zone;
   /** The Zone that was created or updated by this mutation. */
   zoneID: Scalars['ID64']['output'];
+};
+
+/** Input type for updating a Zone. */
+export type ZoneUpdateInput = {
+  /** Account ID associated with the Zone. Must have appropriate permissions. */
+  accountID?: InputMaybe<Scalars['ID64']['input']>;
+  allowedFormats?: InputMaybe<Array<Scalars['String']['input']>>;
+  allowedSources?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  allowedTypes?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  campaigns?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  context?: InputMaybe<Scalars['JSON']['input']>;
+  defaultCode?: InputMaybe<Scalars['JSON']['input']>;
+  /** Description of the Zone. */
+  description?: InputMaybe<Scalars['String']['input']>;
+  disallowedSources?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  fixedPurchasePrice?: InputMaybe<Scalars['Float']['input']>;
+  minECPM?: InputMaybe<Scalars['Float']['input']>;
+  minECPMByGeo?: InputMaybe<Scalars['JSON']['input']>;
+  /** Title of the Zone. */
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type __FormatDataFragment = { __typename?: 'AdFormat', ID: any, codename: string, type: string, title: string, description: string, active: ActiveStatus, width: number, height: number, minWidth: number, minHeight: number, config: any, createdAt: any, updatedAt: any, deletedAt?: any | null };
@@ -3744,14 +3785,14 @@ export type RevokeDirectAccessTokenMutationVariables = Exact<{
 
 export type RevokeDirectAccessTokenMutation = { __typename?: 'Mutation', result?: { __typename?: 'StatusResponse', clientMutationID: string, status: ResponseStatus } | null };
 
-export type __RtbSourceDataFragment = { __typename?: 'RTBSource', ID: any, title: string, description: string, status: ApproveStatus, active: ActiveStatus, accountID: any, flags: any, protocol: string, minimalWeight: number, URL: string, method: string, requestType: RtbRequestFormatType, headers: any, RPS: number, timeout: number, accuracy: number, priceCorrectionReduce: number, auctionType: AuctionType, minBid: number, maxBid: number, formats?: Array<string> | null, deviceTypes?: Array<any> | null, devices?: Array<any> | null, OS?: Array<any> | null, browsers?: Array<any> | null, carriers?: Array<any> | null, categories?: Array<any> | null, countries?: Array<string> | null, languages?: Array<string> | null, applications?: Array<any> | null, domains?: Array<string> | null, zones?: Array<any> | null, secure: AnyOnlyExclude, adBlock: AnyOnlyExclude, privateBrowsing: AnyOnlyExclude, IP: AnyIPv4IPv6, config: any, createdAt: any, updatedAt: any, deletedAt?: any | null };
+export type __RtbSourceDataFragment = { __typename?: 'RTBSource', ID: any, title: string, description: string, status: ApproveStatus, active: ActiveStatus, accountID: any, flags: any, protocol: string, minimalWeight: number, URL: string, method: string, requestType: RtbRequestFormatType, headers: any, RPS: number, timeout: number, accuracy: number, priceCorrectionReduce: number, auctionType: AuctionType, minBid: number, maxBid: number, formatCodes?: Array<string> | null, zoneIDs?: Array<any> | null, applicationIDs?: Array<any> | null, deviceTypeIDs?: Array<any> | null, deviceIDs?: Array<any> | null, OSIDs?: Array<any> | null, browserIDs?: Array<any> | null, countryCodes?: Array<string> | null, languageCodes?: Array<string> | null, carrierIDs?: Array<any> | null, secure: AnyOnlyExclude, adBlock: AnyOnlyExclude, privateBrowsing: AnyOnlyExclude, IP: AnyIPv4IPv6, config: any, createdAt: any, updatedAt: any, deletedAt?: any | null };
 
 export type GetRtbSourceQueryVariables = Exact<{
   id: Scalars['ID64']['input'];
 }>;
 
 
-export type GetRtbSourceQuery = { __typename?: 'Query', result: { __typename?: 'RTBSourcePayload', clientMutationID: string, data: { __typename?: 'RTBSource', ID: any, title: string, description: string, status: ApproveStatus, active: ActiveStatus, accountID: any, flags: any, protocol: string, minimalWeight: number, URL: string, method: string, requestType: RtbRequestFormatType, headers: any, RPS: number, timeout: number, accuracy: number, priceCorrectionReduce: number, auctionType: AuctionType, minBid: number, maxBid: number, formats?: Array<string> | null, deviceTypes?: Array<any> | null, devices?: Array<any> | null, OS?: Array<any> | null, browsers?: Array<any> | null, carriers?: Array<any> | null, categories?: Array<any> | null, countries?: Array<string> | null, languages?: Array<string> | null, applications?: Array<any> | null, domains?: Array<string> | null, zones?: Array<any> | null, secure: AnyOnlyExclude, adBlock: AnyOnlyExclude, privateBrowsing: AnyOnlyExclude, IP: AnyIPv4IPv6, config: any, createdAt: any, updatedAt: any, deletedAt?: any | null } } };
+export type GetRtbSourceQuery = { __typename?: 'Query', result: { __typename?: 'RTBSourcePayload', clientMutationID: string, data: { __typename?: 'RTBSource', ID: any, title: string, description: string, status: ApproveStatus, active: ActiveStatus, accountID: any, flags: any, protocol: string, minimalWeight: number, URL: string, method: string, requestType: RtbRequestFormatType, headers: any, RPS: number, timeout: number, accuracy: number, priceCorrectionReduce: number, auctionType: AuctionType, minBid: number, maxBid: number, formatCodes?: Array<string> | null, zoneIDs?: Array<any> | null, applicationIDs?: Array<any> | null, deviceTypeIDs?: Array<any> | null, deviceIDs?: Array<any> | null, OSIDs?: Array<any> | null, browserIDs?: Array<any> | null, countryCodes?: Array<string> | null, languageCodes?: Array<string> | null, carrierIDs?: Array<any> | null, secure: AnyOnlyExclude, adBlock: AnyOnlyExclude, privateBrowsing: AnyOnlyExclude, IP: AnyIPv4IPv6, config: any, createdAt: any, updatedAt: any, deletedAt?: any | null } } };
 
 export type ListRtbSourcesQueryVariables = Exact<{
   page?: Scalars['Int']['input'];
@@ -3761,14 +3802,14 @@ export type ListRtbSourcesQueryVariables = Exact<{
 }>;
 
 
-export type ListRtbSourcesQuery = { __typename?: 'Query', permApprove?: string | null, permReject?: string | null, result?: { __typename?: 'RTBSourceConnection', list: Array<{ __typename?: 'RTBSource', ID: any, title: string, description: string, status: ApproveStatus, active: ActiveStatus, accountID: any, flags: any, protocol: string, minimalWeight: number, URL: string, method: string, requestType: RtbRequestFormatType, headers: any, RPS: number, timeout: number, accuracy: number, priceCorrectionReduce: number, auctionType: AuctionType, minBid: number, maxBid: number, formats?: Array<string> | null, deviceTypes?: Array<any> | null, devices?: Array<any> | null, OS?: Array<any> | null, browsers?: Array<any> | null, carriers?: Array<any> | null, categories?: Array<any> | null, countries?: Array<string> | null, languages?: Array<string> | null, applications?: Array<any> | null, domains?: Array<string> | null, zones?: Array<any> | null, secure: AnyOnlyExclude, adBlock: AnyOnlyExclude, privateBrowsing: AnyOnlyExclude, IP: AnyIPv4IPv6, config: any, createdAt: any, updatedAt: any, deletedAt?: any | null }>, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
+export type ListRtbSourcesQuery = { __typename?: 'Query', permApprove?: string | null, permReject?: string | null, result?: { __typename?: 'RTBSourceConnection', list: Array<{ __typename?: 'RTBSource', ID: any, title: string, description: string, status: ApproveStatus, active: ActiveStatus, accountID: any, flags: any, protocol: string, minimalWeight: number, URL: string, method: string, requestType: RtbRequestFormatType, headers: any, RPS: number, timeout: number, accuracy: number, priceCorrectionReduce: number, auctionType: AuctionType, minBid: number, maxBid: number, formatCodes?: Array<string> | null, zoneIDs?: Array<any> | null, applicationIDs?: Array<any> | null, deviceTypeIDs?: Array<any> | null, deviceIDs?: Array<any> | null, OSIDs?: Array<any> | null, browserIDs?: Array<any> | null, countryCodes?: Array<string> | null, languageCodes?: Array<string> | null, carrierIDs?: Array<any> | null, secure: AnyOnlyExclude, adBlock: AnyOnlyExclude, privateBrowsing: AnyOnlyExclude, IP: AnyIPv4IPv6, config: any, createdAt: any, updatedAt: any, deletedAt?: any | null }>, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
 
 export type NewRtbSourceMutationVariables = Exact<{
   input: RtbSourceCreateInput;
 }>;
 
 
-export type NewRtbSourceMutation = { __typename?: 'Mutation', result: { __typename?: 'RTBSourcePayload', clientMutationID: string, sourceID: any, data: { __typename?: 'RTBSource', ID: any, title: string, description: string, status: ApproveStatus, active: ActiveStatus, accountID: any, flags: any, protocol: string, minimalWeight: number, URL: string, method: string, requestType: RtbRequestFormatType, headers: any, RPS: number, timeout: number, accuracy: number, priceCorrectionReduce: number, auctionType: AuctionType, minBid: number, maxBid: number, formats?: Array<string> | null, deviceTypes?: Array<any> | null, devices?: Array<any> | null, OS?: Array<any> | null, browsers?: Array<any> | null, carriers?: Array<any> | null, categories?: Array<any> | null, countries?: Array<string> | null, languages?: Array<string> | null, applications?: Array<any> | null, domains?: Array<string> | null, zones?: Array<any> | null, secure: AnyOnlyExclude, adBlock: AnyOnlyExclude, privateBrowsing: AnyOnlyExclude, IP: AnyIPv4IPv6, config: any, createdAt: any, updatedAt: any, deletedAt?: any | null } } };
+export type NewRtbSourceMutation = { __typename?: 'Mutation', result: { __typename?: 'RTBSourcePayload', clientMutationID: string, sourceID: any, data: { __typename?: 'RTBSource', ID: any, title: string, description: string, status: ApproveStatus, active: ActiveStatus, accountID: any, flags: any, protocol: string, minimalWeight: number, URL: string, method: string, requestType: RtbRequestFormatType, headers: any, RPS: number, timeout: number, accuracy: number, priceCorrectionReduce: number, auctionType: AuctionType, minBid: number, maxBid: number, formatCodes?: Array<string> | null, zoneIDs?: Array<any> | null, applicationIDs?: Array<any> | null, deviceTypeIDs?: Array<any> | null, deviceIDs?: Array<any> | null, OSIDs?: Array<any> | null, browserIDs?: Array<any> | null, countryCodes?: Array<string> | null, languageCodes?: Array<string> | null, carrierIDs?: Array<any> | null, secure: AnyOnlyExclude, adBlock: AnyOnlyExclude, privateBrowsing: AnyOnlyExclude, IP: AnyIPv4IPv6, config: any, createdAt: any, updatedAt: any, deletedAt?: any | null } } };
 
 export type UpdateRtbSourceMutationVariables = Exact<{
   id: Scalars['ID64']['input'];
@@ -3776,7 +3817,7 @@ export type UpdateRtbSourceMutationVariables = Exact<{
 }>;
 
 
-export type UpdateRtbSourceMutation = { __typename?: 'Mutation', result: { __typename?: 'RTBSourcePayload', clientMutationID: string, sourceID: any, data: { __typename?: 'RTBSource', ID: any, title: string, description: string, status: ApproveStatus, active: ActiveStatus, accountID: any, flags: any, protocol: string, minimalWeight: number, URL: string, method: string, requestType: RtbRequestFormatType, headers: any, RPS: number, timeout: number, accuracy: number, priceCorrectionReduce: number, auctionType: AuctionType, minBid: number, maxBid: number, formats?: Array<string> | null, deviceTypes?: Array<any> | null, devices?: Array<any> | null, OS?: Array<any> | null, browsers?: Array<any> | null, carriers?: Array<any> | null, categories?: Array<any> | null, countries?: Array<string> | null, languages?: Array<string> | null, applications?: Array<any> | null, domains?: Array<string> | null, zones?: Array<any> | null, secure: AnyOnlyExclude, adBlock: AnyOnlyExclude, privateBrowsing: AnyOnlyExclude, IP: AnyIPv4IPv6, config: any, createdAt: any, updatedAt: any, deletedAt?: any | null } } };
+export type UpdateRtbSourceMutation = { __typename?: 'Mutation', result: { __typename?: 'RTBSourcePayload', clientMutationID: string, sourceID: any, data: { __typename?: 'RTBSource', ID: any, title: string, description: string, status: ApproveStatus, active: ActiveStatus, accountID: any, flags: any, protocol: string, minimalWeight: number, URL: string, method: string, requestType: RtbRequestFormatType, headers: any, RPS: number, timeout: number, accuracy: number, priceCorrectionReduce: number, auctionType: AuctionType, minBid: number, maxBid: number, formatCodes?: Array<string> | null, zoneIDs?: Array<any> | null, applicationIDs?: Array<any> | null, deviceTypeIDs?: Array<any> | null, deviceIDs?: Array<any> | null, OSIDs?: Array<any> | null, browserIDs?: Array<any> | null, countryCodes?: Array<string> | null, languageCodes?: Array<string> | null, carrierIDs?: Array<any> | null, secure: AnyOnlyExclude, adBlock: AnyOnlyExclude, privateBrowsing: AnyOnlyExclude, IP: AnyIPv4IPv6, config: any, createdAt: any, updatedAt: any, deletedAt?: any | null } } };
 
 export type DeleteRtbSourceMutationVariables = Exact<{
   id: Scalars['ID64']['input'];
@@ -3955,7 +3996,7 @@ export type ListZonesQueryVariables = Exact<{
 export type ListZonesQuery = { __typename?: 'Query', permApprove?: string | null, permReject?: string | null, result?: { __typename?: 'ZoneConnection', totalCount: number, list?: Array<{ __typename?: 'Zone', ID: any, codename: string, accountID: any, title: string, description: string, status: ApproveStatus, active: ActiveStatus, defaultCode: any, context: any, minECPM: number, fixedPurchasePrice: number, allowedFormats?: Array<string> | null, allowedTypes?: Array<any> | null, allowedSources?: Array<any> | null, disallowedSources?: Array<any> | null, campaigns?: Array<any> | null, createdAt: any, updatedAt: any, deletedAt?: any | null }> | null, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
 
 export type CreateZoneMutationVariables = Exact<{
-  input: ZoneInput;
+  input: ZoneCreateInput;
 }>;
 
 
@@ -3963,7 +4004,7 @@ export type CreateZoneMutation = { __typename?: 'Mutation', result: { __typename
 
 export type UpdateZoneMutationVariables = Exact<{
   id: Scalars['ID64']['input'];
-  input: ZoneInput;
+  input: ZoneUpdateInput;
 }>;
 
 
@@ -4197,18 +4238,16 @@ export const __RtbSourceDataFragmentDoc = gql`
   auctionType
   minBid
   maxBid
-  formats
-  deviceTypes
-  devices
-  OS
-  browsers
-  carriers
-  categories
-  countries
-  languages
-  applications
-  domains
-  zones
+  formatCodes
+  zoneIDs
+  applicationIDs
+  deviceTypeIDs
+  deviceIDs
+  OSIDs
+  browserIDs
+  countryCodes
+  languageCodes
+  carrierIDs
   secure
   adBlock
   privateBrowsing
@@ -7103,7 +7142,7 @@ export type ListZonesLazyQueryHookResult = ReturnType<typeof useListZonesLazyQue
 export type ListZonesSuspenseQueryHookResult = ReturnType<typeof useListZonesSuspenseQuery>;
 export type ListZonesQueryResult = Apollo.QueryResult<ListZonesQuery, ListZonesQueryVariables>;
 export const CreateZoneDocument = gql`
-    mutation CreateZone($input: ZoneInput!) {
+    mutation CreateZone($input: ZoneCreateInput!) {
   result: createZone(input: $input) {
     clientMutationID
     zoneID
@@ -7140,7 +7179,7 @@ export type CreateZoneMutationHookResult = ReturnType<typeof useCreateZoneMutati
 export type CreateZoneMutationResult = Apollo.MutationResult<CreateZoneMutation>;
 export type CreateZoneMutationOptions = Apollo.BaseMutationOptions<CreateZoneMutation, CreateZoneMutationVariables>;
 export const UpdateZoneDocument = gql`
-    mutation UpdateZone($id: ID64!, $input: ZoneInput!) {
+    mutation UpdateZone($id: ID64!, $input: ZoneUpdateInput!) {
   result: updateZone(ID: $id, input: $input) {
     clientMutationID
     zoneID

@@ -1,8 +1,13 @@
 import { configPathRoutes } from '@configs/routes';
-import { AppWindowIcon, BoxesIcon, CogIcon, GavelIcon, TrafficConeIcon } from 'lucide-react';
+import { AppWindowIcon, BoxesIcon, ChartBar, CogIcon, GavelIcon, TrafficConeIcon } from 'lucide-react';
 
-const { rtb, applications, adUnit, trafficRouters, settings } = configPathRoutes;
+const { statistics, rtb, applications, adUnit, trafficRouters, settings } = configPathRoutes;
 export const mainMenuItems = [
+  {
+    name: 'Statistics',
+    path: statistics,
+    Icon: ChartBar,
+  },
   {
     name: 'RTB',
     path: rtb,

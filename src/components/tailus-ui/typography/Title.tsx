@@ -1,8 +1,8 @@
+import type { TextAlignProp, TextWeightProp, TitleProps as TitleVariants } from '@tailus/themer';
 import {
-  type TextAlignProp,
-  type TextWeightProp,
+
   title,
-  type TitleProps as TitleVariants,
+
 } from '@tailus/themer';
 import React from 'react';
 

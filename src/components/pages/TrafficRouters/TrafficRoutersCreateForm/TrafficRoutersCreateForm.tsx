@@ -138,81 +138,17 @@ function TrafficRoutersCreateForm({ onCancel, onSubmit }: TrafficRoutersCreateFo
                     <div className="pb-4">
                       <ApplicationsSelect
                         label="Applications"
-                        values={values.applications ?? []}
-                        onChange={values => setFieldValue('applications', values)}
-                        error={errors.applications}
+                        values={values.applicationIDs ?? []}
+                        onChange={values => setFieldValue('applicationIDs', values)}
+                        error={errors.applicationIDs}
                       />
                     </div>
                     <div className="pb-4">
                       <AdUnitSelect
                         label="Ad Unit"
-                        values={values.zones ?? []}
-                        onChange={values => setFieldValue('zones', values)}
-                        error={errors.zones}
-                      />
-                    </div>
-                    <div className="pb-4">
-                      <AdFormatsSelect
-                        label="Ad formats"
-                        values={values.formats ?? []}
-                        onChange={values => setFieldValue('formats', values)}
-                        error={errors.formats}
-                      />
-                    </div>
-                    <div className="pb-4">
-                      <DeviceTypeSelect
-                        label="Device types"
-                        values={values.deviceTypes ?? []}
-                        onChange={values => setFieldValue('deviceTypes', values)}
-                        error={errors.deviceTypes}
-                      />
-                    </div>
-                    <div className="pb-4">
-                      <DevicesSelect
-                        label="Devices"
-                        values={values.devices ?? []}
-                        onChange={values => setFieldValue('devices', values)}
-                        error={errors.devices}
-                      />
-                    </div>
-                    <div className="pb-4">
-                      <OsSelect
-                        label="Operating Systems"
-                        values={values.OS ?? []}
-                        onChange={values => setFieldValue('OS', values)}
-                        error={errors.OS}
-                      />
-                    </div>
-                    <div className="pb-4">
-                      <BrowsersSelect
-                        label="Browsers"
-                        values={values.browsers ?? []}
-                        onChange={values => setFieldValue('browsers', values)}
-                        error={errors.browsers}
-                      />
-                    </div>
-                    <div className="pb-4">
-                      <CategoriesSelect
-                        label="Categories"
-                        values={values.carriers ?? []}
-                        onChange={values => setFieldValue('carriers', values)}
-                        error={errors.carriers}
-                      />
-                    </div>
-                    <div className="pb-4">
-                      <CountriesSelect
-                        label="Countries"
-                        values={values.countries ?? []}
-                        onChange={values => setFieldValue('countries', values)}
-                        error={errors.countries}
-                      />
-                    </div>
-                    <div className="pb-4">
-                      <LanguagesSelect
-                        label="Languages"
-                        values={values.languages ?? []}
-                        onChange={values => setFieldValue('languages', values)}
-                        error={errors.languages}
+                        values={values.zoneIDs ?? []}
+                        onChange={values => setFieldValue('zoneIDs', values)}
+                        error={errors.zoneIDs}
                       />
                     </div>
 
@@ -257,6 +193,72 @@ function TrafficRoutersCreateForm({ onCancel, onSubmit }: TrafficRoutersCreateFo
                         />
                       </div>
                     </div>
+                    <FormSeparator>Advanced targeting</FormSeparator>
+                    <div className="pb-4">
+                      <AdFormatsSelect
+                        label="Ad formats"
+                        values={values.formatCodes ?? []}
+                        onChange={values => setFieldValue('formatCodes', values)}
+                        error={errors.formatCodes}
+                      />
+                    </div>
+                    <div className="pb-4">
+                      <DeviceTypeSelect
+                        label="Device types"
+                        values={values.deviceTypeIDs ?? []}
+                        onChange={values => setFieldValue('deviceTypeIDs', values)}
+                        error={errors.deviceTypeIDs}
+                      />
+                    </div>
+                    <div className="pb-4">
+                      <DevicesSelect
+                        label="Devices"
+                        values={values.deviceIDs ?? []}
+                        onChange={values => setFieldValue('deviceIDs', values)}
+                        error={errors.deviceIDs}
+                      />
+                    </div>
+                    <div className="pb-4">
+                      <OsSelect
+                        label="Operating Systems"
+                        values={values.OSIDs ?? []}
+                        onChange={values => setFieldValue('OSIDs', values)}
+                        error={errors.OSIDs}
+                      />
+                    </div>
+                    <div className="pb-4">
+                      <BrowsersSelect
+                        label="Browsers"
+                        values={values.browserIDs ?? []}
+                        onChange={values => setFieldValue('browserIDs', values)}
+                        error={errors.browserIDs}
+                      />
+                    </div>
+                    <div className="pb-4">
+                      <CategoriesSelect
+                        label="Categories"
+                        values={values.carrierIDs ?? []}
+                        onChange={values => setFieldValue('carrierIDs', values)}
+                        error={errors.carrierIDs}
+                      />
+                    </div>
+                    <div className="pb-4">
+                      <CountriesSelect
+                        label="Countries"
+                        values={values.countryCodes ?? []}
+                        onChange={values => setFieldValue('countryCodes', values)}
+                        error={errors.countryCodes}
+                      />
+                    </div>
+                    <div className="pb-4">
+                      <LanguagesSelect
+                        label="Languages"
+                        values={values.languageCodes ?? []}
+                        onChange={values => setFieldValue('languageCodes', values)}
+                        error={errors.languageCodes}
+                      />
+                    </div>
+
                   </Tabs.Content>
                 </div>
                 <div className="h-fit !mt-0 bottom-0">
@@ -266,6 +268,7 @@ function TrafficRoutersCreateForm({ onCancel, onSubmit }: TrafficRoutersCreateFo
                     <ButtonLoading
                       loading={isLoading}
                       onClick={submitForm}
+                      disabled={isLoading}
                       size="sm"
                     >
                       {formSaveButtonTitle}

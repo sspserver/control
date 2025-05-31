@@ -9,6 +9,9 @@ export const Icon: React.FC<ButtonIconProps> = ({
   size = 'md',
   type = 'leading',
 }) => {
+  if (!children) {
+    return null;
+  }
   return (
     <>
       {

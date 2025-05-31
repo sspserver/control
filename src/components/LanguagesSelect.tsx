@@ -17,7 +17,7 @@ function LanguagesSelect(props: LanguagesSelectProps) {
   const selectData = responseLanguagesList
     ?.languages
     ?.map(
-      ({ ID, name }) => ({ name, value: ID }),
+      ({ iso2, name }) => ({ name, value: iso2 }),
     ) ?? [];
 
   return (

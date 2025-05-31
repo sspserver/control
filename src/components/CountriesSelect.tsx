@@ -8,7 +8,7 @@ type CountriesSelectProps = {} & Omit<MultiselectProps, 'data'>;
 
 function CountriesSelect(props: CountriesSelectProps) {
   const { loading: isLoading, data: deviceTypes } = useQuery<ListCountriesQuery>(ListCountriesDocument, { fetchPolicy: 'cache-first' });
-  const selectData = deviceTypes?.list?.map(({ ID, name }) => ({ name, value: `${ID}` })) ?? [];
+  const selectData = deviceTypes?.list?.map(({ code2, name }) => ({ name, value: code2 })) ?? [];
 
   return (
     <Multiselect loading={isLoading} data={selectData} {...props} />

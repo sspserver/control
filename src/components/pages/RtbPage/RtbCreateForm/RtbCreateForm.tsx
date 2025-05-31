@@ -262,57 +262,57 @@ function RtbCreateForm({ onCancel, onSubmit }: RTBCreateFormProps) {
                     <div className="pb-4">
                       <AdFormatsSelect
                         label="Ad formats"
-                        values={values.formats ?? []}
-                        onChange={values => setFieldValue('formats', values)}
-                        error={errors.formats}
+                        values={values.formatCodes ?? []}
+                        onChange={values => setFieldValue('formatCodes', values)}
+                        error={errors.formatCodes}
                       />
                     </div>
                     <div className="pb-4">
                       <DeviceTypeSelect
                         label="Device types"
-                        values={values.deviceTypes ?? []}
-                        onChange={values => setFieldValue('deviceTypes', values)}
-                        error={errors.deviceTypes}
+                        values={values.deviceTypeIDs ?? []}
+                        onChange={values => setFieldValue('deviceTypeIDs', values)}
+                        error={errors.deviceTypeIDs}
                       />
                     </div>
                     <div className="pb-4">
                       <DevicesSelect
                         label="Devices"
-                        values={values.devices ?? []}
-                        onChange={values => setFieldValue('devices', values)}
-                        error={errors.devices}
+                        values={values.deviceIDs ?? []}
+                        onChange={values => setFieldValue('deviceIDs', values)}
+                        error={errors.deviceIDs}
                       />
                     </div>
                     <div className="pb-4">
                       <OsSelect
                         label="Operating Systems"
-                        values={values.OS ?? []}
-                        onChange={values => setFieldValue('OS', values)}
-                        error={errors.OS}
+                        values={values.OSIDs ?? []}
+                        onChange={values => setFieldValue('OSIDs', values)}
+                        error={errors.OSIDs}
                       />
                     </div>
                     <div className="pb-4">
                       <BrowsersSelect
                         label="Browsers"
-                        values={values.browsers ?? []}
-                        onChange={values => setFieldValue('browsers', values)}
-                        error={errors.browsers}
+                        values={values.browserIDs ?? []}
+                        onChange={values => setFieldValue('browserIDs', values)}
+                        error={errors.browserIDs}
                       />
                     </div>
                     <div className="pb-4">
                       <CategoriesSelect
                         label="Categories"
-                        values={values.carriers ?? []}
-                        onChange={values => setFieldValue('carriers', values)}
-                        error={errors.carriers}
+                        values={values.carrierIDs ?? []}
+                        onChange={values => setFieldValue('carrierIDs', values)}
+                        error={errors.carrierIDs}
                       />
                     </div>
                     <div className="pb-4">
                       <CountriesSelect
                         label="Countries"
-                        values={values.countries ?? []}
-                        onChange={values => setFieldValue('countries', values)}
-                        error={errors.countries}
+                        values={values.countryCodes ?? []}
+                        onChange={values => setFieldValue('countryCodes', values)}
+                        error={errors.countryCodes}
                       />
                     </div>
                     <FormSeparator>Traffic types</FormSeparator>
