@@ -38,7 +38,7 @@ function ColumOrder({
   ), [active, direction, isOrderingAsc, isOrderingDesc]);
 
   return (
-    <div className={classNames(className, wrapperClassNames, 'flex')}>
+    <div className={classNames(wrapperClassNames, className, 'flex')}>
       <Button.Root
         variant="ghost"
         intent="info"

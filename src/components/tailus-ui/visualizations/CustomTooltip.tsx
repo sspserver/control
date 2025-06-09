@@ -1,6 +1,6 @@
-import type { StatisticAdItem } from '@/generated/graphql';
-import { StatisticKey } from '@/generated/graphql';
-import { vTooltip as tooltip, type VTooltipProps as TooltipVariants } from '@tailus/themer';
+import type { StatisticCustomAdItem } from '@/types/statistic';
+import type { VTooltipProps as TooltipVariants } from '@tailus/themer';
+import { vTooltip as tooltip } from '@tailus/themer';
 import { format } from 'date-fns';
 import React from 'react';
 
@@ -8,7 +8,7 @@ type PayloadEntry = {
   name: string;
   value: number;
   color: string;
-  payload: StatisticAdItem;
+  payload: StatisticCustomAdItem;
 };
 
 type CustomTooltipProps = {
@@ -31,9 +31,7 @@ export const CustomTooltip: React.FC<CustomTooltipProps> = ({
     throw new Error('Tooltip cannot be both mixed and fancy');
   }
   const [firstPayload] = payload || [];
-  const payloadKeys = firstPayload?.payload?.keys ?? [];
-  const payloadKeyDate = payloadKeys.find(({ key }) => key === StatisticKey.Datemark);
-  const eventDate = payloadKeyDate?.value;
+  const eventDate = firstPayload?.payload?.date ?? '';
   const tooltipLabel = eventDate ? format(eventDate, 'LLL dd, y') : label;
 
   if (active && payload && payload.length) {
