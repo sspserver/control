@@ -12,17 +12,19 @@ type PaginationProps = {
 
 function Pagination({
   total = 0,
-  current = 0,
+  current = 1,
   onChange,
 }: PaginationProps) {
   const buttonClassName = button.ghost({ size: 'sm', intent: 'info', className: 'cursor-pointer' });
   const buttonActiveClassName = button.outlined({ size: 'sm', intent: 'info', className: 'cursor-pointer' });
 
+  console.log('xxx current', current);
+
   return (
     <HeadlessPagination
-      currentPage={current}
+      currentPage={current - 1}
       totalPages={total}
-      setCurrentPage={onChange}
+      setCurrentPage={page => onChange(page + 1)}
       edgePageCount={total}
       middlePagesSiblingCount={total}
       className="flex items-center justify-center"
