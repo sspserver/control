@@ -18,5 +18,16 @@ export const gqlCurrentAccountQuery = gql`
         logoURI
       }
     }
+    agreement: nextAgreement {
+      codename
+      textHTML
+      textMD
+      title
+      type
+      version
+      acceptedAt
+      acceptAccountID
+      acceptByUserID
+    }
   }
 `;

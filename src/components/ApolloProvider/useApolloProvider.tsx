@@ -1,11 +1,29 @@
 import type { Session } from 'next-auth';
-import { ApolloLink, HttpLink } from '@apollo/client';
+import { ApolloLink, HttpLink, Observable } from '@apollo/client';
+import { ApolloClient, InMemoryCache, SSRMultipartLink } from '@apollo/client-integration-nextjs';
 import { onError } from '@apollo/client/link/error';
-import { ApolloClient, InMemoryCache, SSRMultipartLink } from '@apollo/experimental-nextjs-app-support';
 import { apiUrl } from '@configs/api';
+import { configPathRoutes } from '@configs/routes';
+import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
 
+const userUnagreedMessage = 'you must accept the agreements before proceeding';
+
 function useApolloProvider(session: Session | null) {
+  const router = useRouter();
+  const agreementCheckLink = new ApolloLink((operation, forward) => {
+    const { pathname } = window.location;
+    const isAgreementRoute = pathname === configPathRoutes.agreement;
+
+    if (!session?.user?.isAcceptAgreement && typeof window !== 'undefined' && !isAgreementRoute) {
+      const callbackUrl = encodeURIComponent(pathname);
+
+      window.location.href = `${configPathRoutes.agreement}?callbackUrl=${callbackUrl}`;
+
+      return new Observable(() => {});
+    }
+    return forward(operation);
+  });
   const errorLink = onError(({ graphQLErrors, networkError }) => {
     if (networkError) {
       console.error(`[Network error]:`, networkError);
@@ -21,6 +39,10 @@ function useApolloProvider(session: Session | null) {
           // eslint-disable-next-line no-console
           console.debug('Signing out due to 401 error');
           // signOut({ redirect: true });
+
+          if (error.message === userUnagreedMessage) {
+            router.push(configPathRoutes.agreement);
+          }
           return;
         } catch (e) {
           // eslint-disable-next-line no-console
@@ -58,7 +80,7 @@ function useApolloProvider(session: Session | null) {
           errorLink,
           httpLink,
         ])
-      : ApolloLink.from([errorLink, httpLink]),
+      : ApolloLink.from([errorLink, agreementCheckLink, httpLink]),
   });
 }
 

@@ -26,5 +26,16 @@ export const gqlCurrentAccountTotalQuery = gql`
       isAdmin
       roles
     }
+    agreement: nextAgreement {
+      codename
+      textHTML
+      textMD
+      title
+      type
+      version
+      acceptedAt
+      acceptAccountID
+      acceptByUserID
+    }
   }
 `;

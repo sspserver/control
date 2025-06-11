@@ -18,8 +18,6 @@ function Pagination({
   const buttonClassName = button.ghost({ size: 'sm', intent: 'info', className: 'cursor-pointer' });
   const buttonActiveClassName = button.outlined({ size: 'sm', intent: 'info', className: 'cursor-pointer' });
 
-  console.log('xxx current', current);
-
   return (
     <HeadlessPagination
       currentPage={current - 1}

@@ -76,6 +76,33 @@ a {
   text-decoration: none;
 }
 
+.htmlContainer {
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
+    @apply pb-4;
+  }
+  p {
+    @apply text-base;
+    @apply pb-4;
+  }
+
+  ul {
+    @apply list-disc;
+    @apply pl-8;
+    @apply pb-4;
+  }
+
+  hr {
+    @apply my-4;
+    @apply border-t;
+    @apply border-gray-200;
+  }
+}
+
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

@@ -1,8 +1,7 @@
+import type { CaptionProps as CaptionVariants, TextAlignProp, TextWeightProp } from '@tailus/themer';
 import {
   caption,
-  type CaptionProps as CaptionVariants,
-  type TextAlignProp,
-  type TextWeightProp,
+
 } from '@tailus/themer';
 import React from 'react';
 

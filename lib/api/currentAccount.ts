@@ -7,7 +7,12 @@ export const currentAccount = async (token: string) => {
     context: { headers: { Authorization: `Bearer ${token}` } },
   });
   const account = data?.account?.account || {};
-  const user = data?.user?.user || {};
+  const dataUser = data?.user?.user || {};
+  const isAcceptAgreement = data?.agreement === null;
+  const user = {
+    ...dataUser,
+    isAcceptAgreement,
+  };
 
   return { user, account };
 };
