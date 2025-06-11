@@ -4,30 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5483ae0-0faa-4d09-a539-795505d72254" name="Changes" comment="* Statistic page&#10;* Statistic filter&#10;* Statistic table&#10;* Statistic Chart">
-      <change afterPath="$PROJECT_DIR$/lib/graphql/mutations/agreement.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/graphql/queries/agreement.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(root)/agreement/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/@modal/(.)agreement/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/@modal/default.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/@modal/loading.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/AgreementModal/AgreementModal.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/AgreementModal/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/AgreementModal/useAgreementModal.ts" afterDir="false" />
+    <list default="true" id="d5483ae0-0faa-4d09-a539-795505d72254" name="Changes" comment="add commit">
+      <change afterPath="$PROJECT_DIR$/src/components/pages/Statistics/StatisticsTable/StatisticsTable.const.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/configs/routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/api/currentAccount.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/api/currentAccount.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/api/currentAccountTotal.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/api/currentAccountTotal.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/graphql/queries/currentAccount.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/graphql/queries/currentAccount.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/graphql/queries/currentAccountTotal.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/graphql/queries/currentAccountTotal.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApolloProvider/ApolloProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ApolloProvider/ApolloProvider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApolloProvider/useApolloProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ApolloProvider/useApolloProvider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Pagination/Pagination.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Pagination/Pagination.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-protocol/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/api-protocol/schema.graphql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/pages/AdUnitPage/AdUnitCreateForm/AdUnitCreateForm.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/AdUnitPage/AdUnitCreateForm/AdUnitCreateForm.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/AdUnitPage/AdUnitCreateForm/useAdUnitCreateForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/AdUnitPage/AdUnitCreateForm/useAdUnitCreateForm.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/Statistics/StatisticsChart/StatisticsChart.const.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Statistics/StatisticsChart/StatisticsChart.const.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/pages/Statistics/StatisticsTable/StatisticsTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Statistics/StatisticsTable/StatisticsTable.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/typography/Caption.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/typography/Caption.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/Statistics/StatisticsTable/useStatisticsTable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Statistics/StatisticsTable/useStatisticsTable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/Statistics/useStatistics.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Statistics/useStatistics.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Select.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Switch/Switch.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Switch/Switch.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Tabs/Tabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Tabs/Tabs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Textarea.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Textarea.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/typography/Link.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/typography/Link.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/visualizations/LinearGradient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/visualizations/LinearGradient.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/generated/graphql.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/graphql.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/statistic.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/statistic.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/submodules/api" beforeDir="false" afterPath="$PROJECT_DIR$/submodules/api" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +35,7 @@
         <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
-    <option name="RECENT_COMMON_BRANCH" value="issues/19" />
+    <option name="RECENT_COMMON_BRANCH" value="issues/15" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -86,7 +81,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/src/app/(root)/agreement",
+    "last_opened_file_path": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/src/components/pages/Statistics/StatisticsTable",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.stylelint": "true",
@@ -108,11 +103,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/app/(root)/agreement" />
-      <recent name="$PROJECT_DIR$/src/app/@modal" />
+      <recent name="$PROJECT_DIR$/src/components/pages/Statistics/StatisticsTable" />
       <recent name="$PROJECT_DIR$/src/components/tailus-ui/Multiselect" />
       <recent name="$PROJECT_DIR$/src/components" />
       <recent name="$PROJECT_DIR$/src/app/(root)/traffic-routers" />
+      <recent name="$PROJECT_DIR$/public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
@@ -170,8 +165,6 @@
         <item itemvalue="npm.gql-gen" />
         <item itemvalue="Docker.develop.database: Compose Deployment" />
         <item itemvalue="Docker.develop.api: Compose Deployment" />
-        <item itemvalue="npm.gql-gen" />
-        <item itemvalue="Docker.develop.database: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -209,7 +202,6 @@
       <workItem from="1743537097266" duration="19553000" />
       <workItem from="1743767309184" duration="81809000" />
       <workItem from="1748673482568" duration="4137000" />
-      <workItem from="1749192410454" duration="56368000" />
     </task>
     <task id="LOCAL-00001" summary="#6 Applications page">
       <option name="closed" value="true" />
@@ -283,15 +275,7 @@
       <option name="project" value="LOCAL" />
       <updated>1744091238206</updated>
     </task>
-    <task id="LOCAL-00010" summary="* Statistic page&#10;* Statistic filter&#10;* Statistic table&#10;* Statistic Chart">
-      <option name="closed" value="true" />
-      <created>1749453727954</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1749453727954</updated>
-    </task>
-    <option name="localTasksCounter" value="11" />
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -302,7 +286,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -322,8 +318,7 @@
     <MESSAGE value="* Add only Active filter&#10;* fixes" />
     <MESSAGE value="* Improve create\updates drawer&#10;* fixes" />
     <MESSAGE value="* TrafficRouters List&#10;* TrafficRouters Create\Update form&#10;* TrafficRouters Actions run\stop" />
-    <MESSAGE value="* Statistic page&#10;* Statistic filter&#10;* Statistic table&#10;* Statistic Chart" />
-    <option name="LAST_COMMIT_MESSAGE" value="* Statistic page&#10;* Statistic filter&#10;* Statistic table&#10;* Statistic Chart" />
+    <option name="LAST_COMMIT_MESSAGE" value="* TrafficRouters List&#10;* TrafficRouters Create\Update form&#10;* TrafficRouters Actions run\stop" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

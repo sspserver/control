@@ -1,5 +1,6 @@
+import type { PopoverProps } from '@tailus/themer';
 import * as Popover from '@radix-ui/react-popover';
-import { popover, type PopoverProps } from '@tailus/themer';
+import { popover } from '@tailus/themer';
 import React from 'react';
 
 const PopoverRoot = Popover.Root;

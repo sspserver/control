@@ -11,11 +11,11 @@ function AdFormatsSelect(props: AdFormatsSelectProps) {
   const selectData = adFormats?.result?.list?.map(({ codename, title }) => ({ name: title, value: codename })) ?? [];
 
   return (
-      <Multiselect
-        loading={isLoading}
-        data={selectData}
-        {...props}
-      />
+    <Multiselect
+      loading={isLoading}
+      data={selectData}
+      {...props}
+    />
   );
 }
 

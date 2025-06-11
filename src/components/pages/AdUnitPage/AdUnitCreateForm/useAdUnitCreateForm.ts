@@ -67,7 +67,7 @@ function useAdUnitCreateForm(onSubmit?: () => void) {
     skip: !id,
   });
   const {
-    title,
+    title = '',
     description,
     codename,
     minECPM,
@@ -84,7 +84,7 @@ function useAdUnitCreateForm(onSubmit?: () => void) {
     formInput: AdUnitCreateFormState,
     { setErrors }: FormikHelpers<AdUnitCreateFormState>,
   ) => {
-    const {codename, ...input} = formInput
+    const { codename, ...input } = formInput;
     const variables = { id, input };
     const { title, description } = toastSuccessMessage;
     let requestErrors;

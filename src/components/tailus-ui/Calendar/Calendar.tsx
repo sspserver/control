@@ -1,8 +1,10 @@
+import type { CalendarProps as CalendarVariants } from '@tailus/themer';
+import type { PropsBase, PropsRange } from 'react-day-picker';
 import CalendarChevron from '@tailus-ui/Calendar/CalendarChevron';
-import { calendar, type CalendarProps as CalendarVariants } from '@tailus/themer';
+import { calendar } from '@tailus/themer';
 import cn from 'classnames';
 import * as React from 'react';
-import { DayPicker, type PropsBase, type PropsRange } from 'react-day-picker';
+import { DayPicker } from 'react-day-picker';
 import { twMerge } from 'tailwind-merge';
 
 export type CalendarProps = PropsBase & PropsRange & CalendarVariants;

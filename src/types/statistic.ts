@@ -1,6 +1,6 @@
 import type { Ordering, StatisticAdItem } from '@/generated/graphql';
 
-export type StatisticCustomAdItem = Omit<StatisticAdItem, 'bids'> & {
+export type StatisticCustomAdItem = Partial<StatisticAdItem> & {
   date: string;
 };
 

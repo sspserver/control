@@ -1,4 +1,5 @@
-import { drawer, type DrawerProps, text, type TextAlignProp, type TextProps, type TextSizeProp, type TextWeightProp, title, type TitleSizeProp,
+import type { DrawerProps, TextAlignProp, TextProps, TextSizeProp, TextWeightProp, TitleSizeProp } from '@tailus/themer';
+import { drawer, text, title,
 } from '@tailus/themer';
 import React from 'react';
 
@@ -23,9 +24,9 @@ const Root = ({ ref, direction, withControler, ...props }: RootProps & { ref?: R
   );
 };
 
-const Content = ({ ref: forwardedRef, className, fancy, mixed, ...props }: React.ComponentProps < typeof Primitive.Content > & Omit<DrawerProps, 'direction'> & { ref?: React.RefObject<React.ComponentRef<typeof Primitive.Content>> }) => {
+const Content = ({ ref: forwardedRef, className, fancy, mixed, ...props }: React.ComponentProps <typeof Primitive.Content> & Omit<DrawerProps, 'direction'> & { ref?: React.RefObject<React.ComponentRef<typeof Primitive.Content>> }) => {
   const { content } = drawer();
-  const { direction, withControler } = React.useContext(DirectionContext);
+  const { direction, withControler } = React.use(DirectionContext);
 
   if (fancy && mixed) {
     throw new Error('The fancy and mixed props cannot be used together.');

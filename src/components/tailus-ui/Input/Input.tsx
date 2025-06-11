@@ -1,8 +1,9 @@
+import type { InputProps as InputVariants } from '@tailus/themer';
 import Label from '@tailus-ui/Label';
 import { Caption } from '@tailus-ui/typography';
 import {
   form,
-  type InputProps as InputVariants,
+
 } from '@tailus/themer';
 import cn from 'classnames';
 import React from 'react';

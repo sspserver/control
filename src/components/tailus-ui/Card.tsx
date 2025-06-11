@@ -1,4 +1,5 @@
-import { card, type CardProps as CardVariantsProps, gradientCard, type GradientCardProps } from '@tailus/themer';
+import type { CardProps as CardVariantsProps, GradientCardProps } from '@tailus/themer';
+import { card, gradientCard } from '@tailus/themer';
 import React from 'react';
 
 type InnerProps = {} & React.HTMLAttributes<HTMLDivElement> & GradientCardProps;

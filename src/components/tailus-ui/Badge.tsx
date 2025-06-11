@@ -1,4 +1,5 @@
-import { badge, type BadgeProps } from '@tailus/themer';
+import type { BadgeProps } from '@tailus/themer';
+import { badge } from '@tailus/themer';
 import React from 'react';
 
 export type BadgeVariantsProps = {} & React.HTMLAttributes<HTMLDivElement> & BadgeProps;

@@ -1,5 +1,6 @@
+import type { CheckboxProps as CheckboxVariants } from '@tailus/themer';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
-import { checkbox, type CheckboxProps as CheckboxVariants, fancyCheckbox } from '@tailus/themer';
+import { checkbox, fancyCheckbox } from '@tailus/themer';
 import React from 'react';
 
 export type CheckboxProps = {

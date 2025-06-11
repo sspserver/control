@@ -1,5 +1,6 @@
+import type { IndicatorProps as IndicatorVariants, RootProps } from '@tailus/themer';
 import * as ProgressPrimitive from '@radix-ui/react-progress';
-import { type IndicatorProps as IndicatorVariants, progress, type RootProps } from '@tailus/themer';
+import { progress } from '@tailus/themer';
 import React from 'react';
 
 const { root, indicator } = progress();

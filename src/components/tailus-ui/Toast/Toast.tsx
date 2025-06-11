@@ -1,5 +1,6 @@
+import type { ToastProps } from '@tailus/themer';
 import * as ToastPrimitive from '@radix-ui/react-toast';
-import { toast, type ToastProps } from '@tailus/themer';
+import { toast } from '@tailus/themer';
 import * as React from 'react';
 
 const { root, title, description, viewport } = toast();

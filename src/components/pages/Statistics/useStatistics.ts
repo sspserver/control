@@ -73,8 +73,7 @@ function useStatistics() {
     loading: isStatisticsDataLoading,
     data: currentStatisticsData,
     previousData: previousStatisticsData,
-  }]
-        = useStatisticsLazyQuery();
+  }] = useStatisticsLazyQuery();
   const responseStatisticsData = currentStatisticsData || previousStatisticsData;
   const loadStatistics = useCallback(() => {
     const today = new Date().toISOString();

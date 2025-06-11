@@ -1,4 +1,5 @@
-import { tv, type VariantProps } from 'tailwind-variants';
+import type { VariantProps } from 'tailwind-variants';
+import { tv } from 'tailwind-variants';
 
 const indicatorStatuses = tv({
   base: 'block size-3 relative before:absolute before:inset-0 before:rounded-full before:m-auto before:size-2',

@@ -1,5 +1,6 @@
+import type { SeparatorProps } from '@tailus/themer';
 import * as SeparatorPrimitive from '@radix-ui/react-separator';
-import { separator, type SeparatorProps } from '@tailus/themer';
+import { separator } from '@tailus/themer';
 import React from 'react';
 
 type SeparatorVariantProps = {} & React.ComponentProps<typeof SeparatorPrimitive.Root> & Pick<SeparatorProps, 'fancy' | 'dashed'>;

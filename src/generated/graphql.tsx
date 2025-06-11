@@ -2986,8 +2986,8 @@ export type StatisticAdItem = {
   impressions: Scalars['Uint64']['output'];
   keys?: Maybe<Array<StatisticItemKey>>;
   nobids: Scalars['Uint64']['output'];
-  profit: Scalars['Float']['output'];
   requests: Scalars['Uint64']['output'];
+  revenue: Scalars['Float']['output'];
   skips: Scalars['Uint64']['output'];
   views: Scalars['Uint64']['output'];
   wins: Scalars['Uint64']['output'];
@@ -3069,7 +3069,6 @@ export enum StatisticKey {
 export enum StatisticOrderingKey {
   AppId = 'APP_ID',
   Bids = 'BIDS',
-  BidPrice = 'BID_PRICE',
   BrowserId = 'BROWSER_ID',
   CarrierId = 'CARRIER_ID',
   Clicks = 'CLICKS',
@@ -3080,7 +3079,6 @@ export enum StatisticOrderingKey {
   DeviceType = 'DEVICE_TYPE',
   Directs = 'DIRECTS',
   Domain = 'DOMAIN',
-  Ecpa = 'ECPA',
   Ecpc = 'ECPC',
   Ecpm = 'ECPM',
   Errors = 'ERRORS',
@@ -3092,8 +3090,7 @@ export enum StatisticOrderingKey {
   Nobids = 'NOBIDS',
   OsId = 'OS_ID',
   PlatformType = 'PLATFORM_TYPE',
-  Profit = 'PROFIT',
-  Requests = 'REQUESTS',
+  Revenue = 'REVENUE',
   Skips = 'SKIPS',
   SourceId = 'SOURCE_ID',
   Timemark = 'TIMEMARK',
@@ -4012,7 +4009,7 @@ export type ListDeviceModelsQueryVariables = Exact<{
 
 export type ListDeviceModelsQuery = { __typename?: 'Query', result?: { __typename?: 'DeviceModelConnection', list: Array<{ __typename?: 'DeviceModel', ID: any, active: ActiveStatus, name: string, description: string, matchExp: string, createdAt: any, updatedAt: any, maker?: { __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any } | null, versions?: Array<{ __typename?: 'DeviceModel', name: string, ID: any }> | null, type?: { __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string } | null }>, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
 
-export type __StatItemFragment = { __typename?: 'StatisticAdItem', profit: number, bidPrice: number, requests: any, impressions: any, views: any, directs: any, clicks: any, wins: any, skips: any, nobids: any, errors: any, CTR: number, eCPM: number, eCPC: number, keys?: Array<{ __typename?: 'StatisticItemKey', key: StatisticKey, value: any, text: string }> | null };
+export type __StatItemFragment = { __typename?: 'StatisticAdItem', bidPrice: number, requests: any, impressions: any, views: any, directs: any, clicks: any, wins: any, skips: any, nobids: any, errors: any, CTR: number, eCPM: number, eCPC: number, keys?: Array<{ __typename?: 'StatisticItemKey', key: StatisticKey, value: any, text: string }> | null };
 
 export type StatisticsQueryVariables = Exact<{
   filter?: InputMaybe<StatisticAdListFilter>;
@@ -4022,7 +4019,7 @@ export type StatisticsQueryVariables = Exact<{
 }>;
 
 
-export type StatisticsQuery = { __typename?: 'Query', result: { __typename?: 'StatisticAdItemConnection', totalCount: number, list?: Array<{ __typename?: 'StatisticAdItem', profit: number, bidPrice: number, requests: any, impressions: any, views: any, directs: any, clicks: any, wins: any, skips: any, nobids: any, errors: any, CTR: number, eCPM: number, eCPC: number, keys?: Array<{ __typename?: 'StatisticItemKey', key: StatisticKey, value: any, text: string }> | null }> | null, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } };
+export type StatisticsQuery = { __typename?: 'Query', result: { __typename?: 'StatisticAdItemConnection', totalCount: number, list?: Array<{ __typename?: 'StatisticAdItem', bidPrice: number, requests: any, impressions: any, views: any, directs: any, clicks: any, wins: any, skips: any, nobids: any, errors: any, CTR: number, eCPM: number, eCPC: number, keys?: Array<{ __typename?: 'StatisticItemKey', key: StatisticKey, value: any, text: string }> | null }> | null, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } };
 
 export type ListHistoryQueryVariables = Exact<{
   page?: Scalars['Int']['input'];
@@ -4398,7 +4395,6 @@ export const __StatItemFragmentDoc = gql`
     value
     text
   }
-  profit
   bidPrice
   requests
   impressions

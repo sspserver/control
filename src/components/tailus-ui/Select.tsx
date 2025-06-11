@@ -1,12 +1,10 @@
+import type { SelectProps, SeparatorProps, TriggerProps } from '@tailus/themer';
 import { cloneElement } from '@lib/utils';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import {
   caption,
   select,
-  type SelectProps,
-  type SeparatorProps,
   trigger,
-  type TriggerProps,
 } from '@tailus/themer';
 
 import { ChevronDown, ChevronUp } from 'lucide-react';
@@ -69,7 +67,7 @@ const SelectContent = ({ ref: forwardedRef, className, variant = 'solid', intent
     intent: contextIntent,
     fancy: contextFancy,
     mixed: contextMixed,
-  } = React.useContext(SelectContext);
+  } = React.use(SelectContext);
 
   variant = variant || contextVariant || 'solid';
   intent = intent || contextIntent || 'primary';
@@ -107,7 +105,7 @@ const SelectItem = ({ ref: forwardedRef, className, variant, children, ...props 
   const {
     variant: contextVariant,
     intent,
-  } = React.useContext(SelectContext);
+  } = React.use(SelectContext);
 
   variant = contextVariant || 'solid';
 
@@ -135,7 +133,7 @@ const SelectLabel = ({ ref: forwardedRef, className, ...props }: React.Component
 const SelectSeparator = ({ ref: forwardedRef, className, fancy = false, dashed = false, ...props }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Separator> & Pick<SeparatorProps, 'fancy' | 'dashed'> & { ref?: React.RefObject<React.ElementRef<typeof SelectPrimitive.Separator>> }) => {
   const {
     fancy: contextFancy,
-  } = React.useContext(SelectContext);
+  } = React.use(SelectContext);
 
   fancy = fancy || contextFancy || false;
   return (
