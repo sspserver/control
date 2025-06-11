@@ -1,5 +1,6 @@
+import type { AvatarFallbackProps, AvatarRootProps } from '@tailus/themer';
 import * as AvatarPrimitive from '@radix-ui/react-avatar';
-import { avatar, type AvatarFallbackProps, type AvatarRootProps, fallback, image } from '@tailus/themer';
+import { avatar, fallback, image } from '@tailus/themer';
 import React from 'react';
 
 const AvatarRoot = ({ ref, className, size = 'md', status = 'online', bottomStatus = false, topStatus = false, ...props }: React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> & AvatarRootProps & { ref?: React.RefObject<React.ComponentRef<typeof AvatarPrimitive.Root>> }) => {

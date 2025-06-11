@@ -1,4 +1,5 @@
-import { type AreaProps as AreaVariants, gradientStop } from '@tailus/themer';
+import type { AreaProps as AreaVariants } from '@tailus/themer';
+import { gradientStop } from '@tailus/themer';
 import React from 'react';
 
 export const LinearGradient: React.FC<Omit<AreaVariants, 'gradient'> & { id: string; className?: string }> = ({ intent, className, id }) => {

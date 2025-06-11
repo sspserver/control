@@ -1,6 +1,7 @@
+import type { SwitchProps } from '@tailus/themer';
 import * as Switch from '@radix-ui/react-switch';
-import { fancySwitch, type SwitchProps, switchTheme } from '@tailus/themer';
-import React, { useContext } from 'react';
+import { fancySwitch, switchTheme } from '@tailus/themer';
+import React, { use } from 'react';
 
 export type SwitchVariantsProps = {
   fancy?: boolean;
@@ -17,7 +18,7 @@ const SwitchRoot = ({ ref: forwardedRef, className, intent = 'primary', fancy = 
 };
 
 const SwitchThumb = ({ ref: forwardedRef, className, ...props }: React.ComponentPropsWithoutRef<typeof Switch.Thumb> & SwitchProps & { ref?: React.RefObject<React.ComponentRef<typeof Switch.Thumb>> }) => {
-  const { intent } = useContext(SwitchContext);
+  const { intent } = use(SwitchContext);
   const { thumb } = switchTheme({ intent });
   return (
     <Switch.Thumb className={thumb({ intent, className })} {...props} ref={forwardedRef} />

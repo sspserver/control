@@ -1,8 +1,8 @@
+import type { InputProps } from '@tailus/themer';
 import FormElementErrorLabel from '@components/FormElementErrorLabel';
 import Label from '@tailus-ui/Label';
 import {
   form,
-  type InputProps,
 } from '@tailus/themer';
 import React, { Fragment } from 'react';
 import { twMerge } from 'tailwind-merge';

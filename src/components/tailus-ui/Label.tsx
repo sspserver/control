@@ -1,7 +1,8 @@
+import type { LabelProps } from '@tailus/themer';
 import * as LabelPrimitive from '@radix-ui/react-label';
 import {
   form,
-  type LabelProps,
+
 } from '@tailus/themer';
 import React from 'react';
 

@@ -1,34 +1,18 @@
-export const lineChartColors = [
-  '#2563eb',
-  '#9333ea',
-  '#65a30d',
-  '#60a5fa',
-  '#16a34a',
-  '#ca8a04',
-  '#dc2626',
-  '#475569',
-  '#3b0764',
-  '#365314',
-  '#1e40af',
-  '#14532d',
-  '#991b1b',
-];
-
-export const listChatFields = [
+export const tableFields = [
   {
     name: 'Revenue',
-    value: 'revenue',
+    value: 'REVENUE',
   },
   {
-    name: 'Bid price',
-    value: 'bidPrice',
+    name: 'Bid',
+    value: 'BIDS',
   },
   {
-    name: 'Requests',
+    name: 'Req',
     value: 'requests',
   },
   {
-    name: 'Impressions',
+    name: 'Imp',
     value: 'impressions',
   },
   {

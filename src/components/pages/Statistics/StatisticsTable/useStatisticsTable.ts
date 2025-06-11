@@ -1,4 +1,4 @@
-import type { Ordering, StatisticOrderingKey } from '@/generated/graphql';
+import { Ordering, StatisticOrderingKey } from '@/generated/graphql';
 import { useRef } from 'react';
 
 function useStatisticsTable(
@@ -13,7 +13,7 @@ function useStatisticsTable(
 
     if (isCurrentFieldEqual && orderFieldCounter >= resetOrderCount) {
       orderFieldCounterRef.current = 0;
-      onOrderChange(field, state);
+      onOrderChange(StatisticOrderingKey.Datemark, Ordering.Desc);
     } else {
       onOrderChange(field, state);
 

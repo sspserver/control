@@ -1,7 +1,6 @@
+import type { TabsIndicatorProps as IndicatorProps, TabsListProps as ListProps } from '@tailus/themer';
 import * as TabsPrimitive from '@radix-ui/react-tabs';
 import {
-  type TabsIndicatorProps as IndicatorProps,
-  type TabsListProps as ListProps,
   tabs,
 } from '@tailus/themer';
 import React from 'react';
@@ -31,7 +30,7 @@ const TabsList = ({ ref: forwardedRef, className, variant = 'soft', triggerVaria
 };
 
 const TabsTrigger = ({ ref: forwardedRef, className, ...props }: React.ComponentProps<typeof TabsPrimitive.Trigger> & { ref?: React.Ref<React.ComponentRef<typeof TabsPrimitive.Trigger>> | null }) => {
-  const { triggerVariant, size, intent } = React.useContext(TabsContext);
+  const { triggerVariant, size, intent } = React.use(TabsContext);
 
   return (
     <TabsPrimitive.Trigger
@@ -43,7 +42,7 @@ const TabsTrigger = ({ ref: forwardedRef, className, ...props }: React.Component
 };
 
 const TabsIndicator = ({ ref: forwardedRef, className, variant = 'bottom', ...props }: React.ComponentProps<'span'> & Pick<IndicatorProps, 'variant'> & { ref?: React.Ref<React.ComponentRef<'span'>> | null }) => {
-  const { intent } = React.useContext(TabsContext);
+  const { intent } = React.use(TabsContext);
 
   return (
     <span

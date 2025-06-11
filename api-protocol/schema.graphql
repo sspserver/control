@@ -563,7 +563,6 @@ fragment __statItem on StatisticAdItem {
     value
     text
   }
-  profit
   bidPrice
   requests
   impressions

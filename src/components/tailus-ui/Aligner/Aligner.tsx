@@ -1,4 +1,5 @@
-import { aligner, type AlignerProps as AlignerVariants } from '@tailus/themer';
+import type { AlignerProps as AlignerVariants } from '@tailus/themer';
+import { aligner } from '@tailus/themer';
 import React from 'react';
 
 export type AlignerProps = {} & React.HTMLAttributes<HTMLDivElement> & AlignerVariants;

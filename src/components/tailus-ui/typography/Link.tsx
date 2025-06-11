@@ -1,8 +1,7 @@
+import type { LinkProps as LinkVariants, TextAlignProp, TextWeightProp } from '@tailus/themer';
 import {
   link,
-  type LinkProps as LinkVariants,
-  type TextAlignProp,
-  type TextWeightProp,
+
 } from '@tailus/themer';
 import React from 'react';
 

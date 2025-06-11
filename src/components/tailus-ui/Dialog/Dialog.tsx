@@ -1,15 +1,13 @@
+import type { DialogProps, TextAlignProp, TextProps, TextSizeProp, TextWeightProp, TitleSizeProp } from '@tailus/themer';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import Button from '@tailus-ui/Button';
 import {
   dialog,
-  type DialogProps,
+
   text,
-  type TextAlignProp,
-  type TextProps,
-  type TextSizeProp,
-  type TextWeightProp,
+
   title,
-  type TitleSizeProp,
+
 } from '@tailus/themer';
 import React from 'react';
 

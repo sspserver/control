@@ -1,11 +1,12 @@
+import type { MenuProps, MenuSeparatorProps as SeparatorProps } from '@tailus/themer';
 import { cloneElement } from '@lib/utils';
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 import {
   defaultMenuProps,
   menu,
-  type MenuProps,
+
   menuSeparator as separator,
-  type MenuSeparatorProps as SeparatorProps,
+
 } from '@tailus/themer';
 import React from 'react';
 
@@ -27,7 +28,7 @@ const DropdownMenuContent = ({ ref: forwardedRef, className, variant, intent, mi
     intent: contextIntent,
     mixed: contextMixed,
     fancy: contextFancy,
-  } = React.useContext(MenuContext);
+  } = React.use(MenuContext);
 
   variant = variant || contextVariant || 'soft';
   intent = intent || contextIntent;
@@ -55,7 +56,7 @@ const DropdownMenuContent = ({ ref: forwardedRef, className, variant, intent, mi
 const DropdownMenuArrow = DropdownMenuPrimitive.Arrow;
 
 const DropdownMenuItem = ({ ref: forwardedRef, className, variant, intent, ...props }: React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item> & MenuProps & { ref?: React.RefObject<React.ElementRef<typeof DropdownMenuPrimitive.Item>> }) => {
-  const contextValues = React.useContext(MenuContext);
+  const contextValues = React.use(MenuContext);
 
   variant = variant || contextValues.variant || 'soft';
   intent = intent || contextValues.intent;
@@ -72,7 +73,7 @@ const DropdownMenuItem = ({ ref: forwardedRef, className, variant, intent, ...pr
 };
 
 const DropdownMenuSeparator = ({ ref: forwardedRef, className, fancy, ...props }: React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Separator> & SeparatorProps & { ref?: React.RefObject<React.ElementRef<typeof DropdownMenuPrimitive.Separator>> }) => {
-  const { fancy: contextVariant } = React.useContext(MenuContext);
+  const { fancy: contextVariant } = React.use(MenuContext);
   fancy = fancy || contextVariant;
 
   return (
@@ -87,7 +88,7 @@ const DropdownMenuSeparator = ({ ref: forwardedRef, className, fancy, ...props }
 const DropdownMenuSub = DropdownMenuPrimitive.Sub;
 
 const DropdownMenuSubTrigger = ({ ref: forwardedRef, className, variant, intent, ...props }: React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubTrigger> & MenuProps & { ref?: React.RefObject<React.ElementRef<typeof DropdownMenuPrimitive.SubTrigger>> }) => {
-  const contextValues = React.useContext(MenuContext);
+  const contextValues = React.use(MenuContext);
   variant = variant || contextValues.variant || 'soft';
   intent = intent || contextValues.intent;
 
@@ -108,7 +109,7 @@ const DropdownMenuSubContent = ({ ref: forwardedRef, className, variant, intent,
     intent: contextIntent,
     fancy: contextFancy,
     mixed: contextMixed,
-  } = React.useContext(MenuContext);
+  } = React.use(MenuContext);
 
   variant = variant || contextVariant || 'soft';
   intent = intent || contextIntent;

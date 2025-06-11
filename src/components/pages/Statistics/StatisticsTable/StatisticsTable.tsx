@@ -3,6 +3,7 @@ import type { StatisticCustomAdItemKeys, StatisticPageInfo, StatisticsCustomAd }
 import { StatisticOrderingKey } from '@/generated/graphql';
 import ColumOrder from '@components/ColumOrder';
 import { listChatFields } from '@components/pages/Statistics/StatisticsChart/StatisticsChart.const';
+import { tableFields } from '@components/pages/Statistics/StatisticsTable/StatisticsTable.const';
 import useStatisticsTable from '@components/pages/Statistics/StatisticsTable/useStatisticsTable';
 import Pagination from '@components/Pagination/Pagination';
 import Card from '@tailus-ui/Card';
@@ -47,12 +48,12 @@ function StatisticsTable({ orderField, orderDirection, data, pageInfo, onPageCha
                   Date
                 </ColumOrder>
               </th>
-              {listChatFields.map(({ name }) => (
-                <th key={name} className="text-right text-nowrap last:rounded-r-[--card-radius]">
+              {tableFields.map(({ name, value }) => (
+                <th key={value} className="text-right text-nowrap last:rounded-r-[--card-radius]">
                   <ColumOrder
                     direction={orderDirection}
-                    active={orderField === name.toUpperCase()}
-                    onChange={changeColumnOrderHandler(name.toUpperCase() as StatisticOrderingKey)}
+                    active={orderField === value.toUpperCase()}
+                    onChange={changeColumnOrderHandler(value.toUpperCase() as StatisticOrderingKey)}
                     className="justify-end"
                     align="right"
                   >

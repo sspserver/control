@@ -1,4 +1,5 @@
-import { annonceConcern, type AnnonceConcernProps, annonceRoot, type AnnonceRootProps } from '@tailus/themer';
+import type { AnnonceConcernProps, AnnonceRootProps } from '@tailus/themer';
+import { annonceConcern, annonceRoot } from '@tailus/themer';
 import React from 'react';
 
 export type AnnonceRootVariantsProps = {
