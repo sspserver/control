@@ -251,6 +251,39 @@ export type AdFormatPayload = {
   formatID: Scalars['ID64']['output'];
 };
 
+export type Agreement = {
+  __typename?: 'Agreement';
+  /** Account ID which the agreement is associated with */
+  acceptAccountID: Scalars['ID64']['output'];
+  /** User ID who accepted the agreement */
+  acceptByUserID: Scalars['ID64']['output'];
+  /** Date of acceptance */
+  acceptedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Agreement codename */
+  codename: Scalars['String']['output'];
+  /** Date of creation */
+  createdAt: Scalars['DateTime']['output'];
+  /** Signature of the agreement */
+  signature?: Maybe<Scalars['String']['output']>;
+  /** Text of the agreement in HTML format */
+  textHTML: Scalars['String']['output'];
+  /** Text of the agreement in Markdown format */
+  textMD: Scalars['String']['output'];
+  /** Title of the agreement */
+  title: Scalars['String']['output'];
+  /** Type of the agreement */
+  type: AgreementType;
+  /** Version of the agreement */
+  version: Scalars['String']['output'];
+};
+
+export enum AgreementType {
+  Contract = 'CONTRACT',
+  License = 'LICENSE',
+  TermsOfUse = 'TERMS_OF_USE',
+  Unknown = 'UNKNOWN'
+}
+
 export enum AnyIPv4IPv6 {
   Any = 'ANY',
   IPv4 = 'IPv4',
@@ -1322,6 +1355,8 @@ export enum MessangerType {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  /** Accept an agreement by its codename */
+  acceptAgreement: Agreement;
   /** Activate the Zone */
   activateZone: ZonePayload;
   /** Approve account and leave the comment */
@@ -1467,6 +1502,13 @@ export type Mutation = {
   updateUserPassword: StatusResponse;
   /** Update Zone information */
   updateZone: ZonePayload;
+};
+
+
+export type MutationAcceptAgreementArgs = {
+  codename: Scalars['String']['input'];
+  date: Scalars['DateTime']['input'];
+  signature: Scalars['String']['input'];
 };
 
 
@@ -2153,6 +2195,8 @@ export type Query = {
   RTBSource: RtbSourcePayload;
   /** Get account object by ID */
   account: AccountPayload;
+  /** Get an agreement by its codename */
+  agreement?: Maybe<Agreement>;
   /** Get Application object by ID */
   application: ApplicationPayload;
   /** Get auth client object by ID */
@@ -2189,6 +2233,8 @@ export type Query = {
   listAccountRolesAndPermissions?: Maybe<RbacRoleConnection>;
   /** List of the account objects which can be filtered and ordered by some fields */
   listAccounts?: Maybe<AccountConnection>;
+  /** List agreements with optional filters and ordering */
+  listAgreements: Array<Agreement>;
   /** List of the application objects which can be filtered and ordered by some fields */
   listApplications?: Maybe<ApplicationConnection>;
   /** List of the auth client objects which can be filtered and ordered by some fields */
@@ -2230,6 +2276,8 @@ export type Query = {
   listUsers?: Maybe<UserConnection>;
   /** List of the Zone objects which can be filtered and ordered by some fields */
   listZones?: Maybe<ZoneConnection>;
+  /** Get next agreement to accept */
+  nextAgreement?: Maybe<Agreement>;
   /** Get the option value by name */
   option: OptionPayload;
   /** Get RBAC role object by ID */
@@ -2260,6 +2308,11 @@ export type QueryRtbSourceArgs = {
 
 export type QueryAccountArgs = {
   id: Scalars['ID64']['input'];
+};
+
+
+export type QueryAgreementArgs = {
+  codename: Scalars['String']['input'];
 };
 
 
@@ -2335,6 +2388,11 @@ export type QueryListAccountsArgs = {
   filter?: InputMaybe<AccountListFilter>;
   order?: InputMaybe<AccountListOrder>;
   page?: InputMaybe<Page>;
+};
+
+
+export type QueryListAgreementsArgs = {
+  accepted?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -2996,6 +3054,7 @@ export enum StatisticKey {
   DeviceId = 'DEVICE_ID',
   DeviceType = 'DEVICE_TYPE',
   Domain = 'DOMAIN',
+  FormatCode = 'FORMAT_CODE',
   FormatId = 'FORMAT_ID',
   Ip = 'IP',
   Language = 'LANGUAGE',
@@ -3025,6 +3084,7 @@ export enum StatisticOrderingKey {
   Ecpc = 'ECPC',
   Ecpm = 'ECPM',
   Errors = 'ERRORS',
+  FormatCode = 'FORMAT_CODE',
   FormatId = 'FORMAT_ID',
   Impressions = 'IMPRESSIONS',
   Ip = 'IP',
@@ -3127,6 +3187,7 @@ export type TrafficRouterConnection = {
   totalCount: Scalars['Int']['output'];
 };
 
+/** Input for creating a new traffic router */
 export type TrafficRouterCreateInput = {
   IP?: InputMaybe<AnyIPv4IPv6>;
   OSIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
@@ -3134,8 +3195,6 @@ export type TrafficRouterCreateInput = {
   RTBSourceIDs: Array<Scalars['ID64']['input']>;
   /** Account ID owner of the traffic router */
   accountID?: InputMaybe<Scalars['ID64']['input']>;
-  /** Active status of the traffic router */
-  active: ActiveStatus;
   adBlock?: InputMaybe<AnyOnlyExclude>;
   applicationIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
   browserIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
@@ -3208,13 +3267,12 @@ export type TrafficRouterPayload = {
   routerID: Scalars['ID64']['output'];
 };
 
+/** Input for updating an existing traffic router */
 export type TrafficRouterUpdateInput = {
   IP?: InputMaybe<AnyIPv4IPv6>;
   OSIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
   /** RTB sources of the advertising */
   RTBSourceIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
-  /** Active status of the traffic router */
-  active?: InputMaybe<ActiveStatus>;
   adBlock?: InputMaybe<AnyOnlyExclude>;
   applicationIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
   browserIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;

@@ -26,8 +26,6 @@ function StatisticsTable({ orderField, orderDirection, data, pageInfo, onPageCha
     onOrderChange,
   );
 
-  console.log('xxx pageInfo', pageInfo);
-
   return (
     <div className="pt-6">
       <Pagination
