@@ -4,19 +4,8 @@ import authOptions from '@/app/api/auth/[...nextauth]/options';
 import AppProviders from '@/components/AppProviders';
 import LoadingNavigateBar from '@components/LoadingNavigateBar';
 import { getServerSession } from 'next-auth';
-import { Geist, Geist_Mono } from 'next/font/google';
 import React from 'react';
 import './globals.css';
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
 
 export const metadata: Metadata
     = {
@@ -44,7 +33,7 @@ async function RootLayout({
 
   return (
     <html lang="en" data-shade="glassy">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body>
         <LoadingNavigateBar />
         <AppProviders session={session}>
           {children}
