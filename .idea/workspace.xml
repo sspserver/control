@@ -5,23 +5,74 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5483ae0-0faa-4d09-a539-795505d72254" name="Changes" comment="add commit">
-      <change afterPath="$PROJECT_DIR$/src/components/pages/Statistics/StatisticsTable/StatisticsTable.const.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist/Geist-Black.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist/Geist-BlackItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist/Geist-Bold.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist/Geist-BoldItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist/Geist-ExtraBold.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist/Geist-ExtraBoldItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist/Geist-ExtraLight.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist/Geist-ExtraLightItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist/Geist-Italic[wght].woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist/Geist-Light.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist/Geist-LightItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist/Geist-Medium.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist/Geist-MediumItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist/Geist-Regular.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist/Geist-RegularItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist/Geist-SemiBold.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist/Geist-SemiBoldItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist/Geist-Thin.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist/Geist-ThinItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist/Geist[wght].woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist_Mono/GeistMono-Black.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist_Mono/GeistMono-BlackItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist_Mono/GeistMono-Bold.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist_Mono/GeistMono-BoldItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist_Mono/GeistMono-ExtraBold.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist_Mono/GeistMono-ExtraBoldItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist_Mono/GeistMono-ExtraLight.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist_Mono/GeistMono-ExtraLightItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist_Mono/GeistMono-Italic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist_Mono/GeistMono-Italic[wght].woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist_Mono/GeistMono-Light.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist_Mono/GeistMono-LightItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist_Mono/GeistMono-Medium.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist_Mono/GeistMono-MediumItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist_Mono/GeistMono-Regular.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist_Mono/GeistMono-SemiBold.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist_Mono/GeistMono-SemiBoldItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist_Mono/GeistMono-Thin.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist_Mono/GeistMono-ThinItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Geist_Mono/GeistMono[wght].woff2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-protocol/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/api-protocol/schema.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/AdUnitPage/AdUnitCreateForm/AdUnitCreateForm.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/AdUnitPage/AdUnitCreateForm/AdUnitCreateForm.types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/AdUnitPage/AdUnitCreateForm/useAdUnitCreateForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/AdUnitPage/AdUnitCreateForm/useAdUnitCreateForm.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/Statistics/StatisticsChart/StatisticsChart.const.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Statistics/StatisticsChart/StatisticsChart.const.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/Statistics/StatisticsTable/StatisticsTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Statistics/StatisticsTable/StatisticsTable.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/Statistics/StatisticsTable/useStatisticsTable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Statistics/StatisticsTable/useStatisticsTable.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/Statistics/useStatistics.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Statistics/useStatistics.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Select.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Switch/Switch.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Switch/Switch.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Tabs/Tabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Tabs/Tabs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Textarea.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Textarea.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/typography/Link.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/typography/Link.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/visualizations/LinearGradient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/visualizations/LinearGradient.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/graphql.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/graphql.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/statistic.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/statistic.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Geist/Geist-VariableFont_wght.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Geist/OFL.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Geist/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Geist/static/Geist-Black.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Geist/static/Geist-Bold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Geist/static/Geist-ExtraBold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Geist/static/Geist-ExtraLight.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Geist/static/Geist-Light.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Geist/static/Geist-Medium.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Geist/static/Geist-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Geist/static/Geist-SemiBold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Geist/static/Geist-Thin.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Geist_Mono/GeistMono-VariableFont_wght.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Geist_Mono/OFL.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Geist_Mono/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Geist_Mono/static/GeistMono-Black.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Geist_Mono/static/GeistMono-Bold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Geist_Mono/static/GeistMono-ExtraBold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Geist_Mono/static/GeistMono-ExtraLight.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Geist_Mono/static/GeistMono-Light.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Geist_Mono/static/GeistMono-Medium.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Geist_Mono/static/GeistMono-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Geist_Mono/static/GeistMono-SemiBold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/Geist_Mono/static/GeistMono-Thin.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(root)/page.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/submodules/api" beforeDir="false" afterPath="$PROJECT_DIR$/submodules/api" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,7 +132,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/src/components/pages/Statistics/StatisticsTable",
+    "last_opened_file_path": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/public/fonts/Geist",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.stylelint": "true",
@@ -103,11 +154,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/fonts/Geist" />
+      <recent name="$PROJECT_DIR$/public/fonts/Geist_Mono" />
       <recent name="$PROJECT_DIR$/src/components/pages/Statistics/StatisticsTable" />
       <recent name="$PROJECT_DIR$/src/components/tailus-ui/Multiselect" />
       <recent name="$PROJECT_DIR$/src/components" />
-      <recent name="$PROJECT_DIR$/src/app/(root)/traffic-routers" />
-      <recent name="$PROJECT_DIR$/public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
