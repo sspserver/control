@@ -1,11 +1,12 @@
 'use client';
 
 import type { StatisticsCustomAd } from '@/types/statistic';
+import { getHasStatisticDataField } from '@components/pages/Statistics/Statistics.utils';
 import { lineChartColors, listChatFields } from '@components/pages/Statistics/StatisticsChart/StatisticsChart.const';
+import useStatisticsFilterStore from '@components/pages/Statistics/useStatisticsFilterStore';
 import Multiselect from '@tailus-ui/Multiselect';
 import CustomTooltip from '@tailus-ui/visualizations/CustomTooltip';
 import { format } from 'date-fns';
-import { useState } from 'react';
 import { Customized, Legend, Line, LineChart, ResponsiveContainer, Text, Tooltip, XAxis, YAxis } from 'recharts';
 
 type StatisticsChartProps = {
@@ -13,9 +14,13 @@ type StatisticsChartProps = {
 };
 
 function StatisticsChart({ data }: StatisticsChartProps) {
-  const [lineFields, setLineFields] = useState<(string | number)[]>(['views', 'impressions']);
-  const changeLineChatFieldsHandler = (value: (string | number)[]) => setLineFields(value);
+  const {
+    lineFields,
+    storeLineFieldsHandler,
+  } = useStatisticsFilterStore();
+  const changeLineChatFieldsHandler = (value: (string | number)[]) => storeLineFieldsHandler(value);
   const isEmptyData = !data.length;
+  const hasDateField = getHasStatisticDataField('date', data);
 
   return (
     <div>
@@ -38,19 +43,21 @@ function StatisticsChart({ data }: StatisticsChartProps) {
               bottom: 5,
             }}
           >
-            <XAxis
-              dataKey="date"
-              name="date"
-              angle={-45}
-              hide={isEmptyData}
-              tick={(event) => {
-                const { y, payload: { value } } = event;
-                const date = format(value, 'dd.MM');
-                const yIndent = y + 5;
+            {hasDateField && (
+              <XAxis
+                dataKey="date"
+                name="date"
+                angle={-45}
+                hide={isEmptyData}
+                tick={(event) => {
+                  const { y, payload: { value } } = event;
+                  const date = value ? format(value, 'dd.MM') : '';
+                  const yIndent = y + 5;
 
-                return (<Text {...event} y={yIndent} className="text-xs ">{date}</Text>);
-              }}
-            />
+                  return (<Text {...event} y={yIndent} className="text-xs">{date}</Text>);
+                }}
+              />
+            )}
             <YAxis
               hide={isEmptyData}
               tick={(event) => {

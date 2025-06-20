@@ -65,7 +65,7 @@ function Multiselect({
             variant="outlined"
             size="sm"
             intent="gray"
-            className="p-0 w-full pl-2  pr-2 gap-0 justify-between"
+            className="p-0 w-full pl-0.5  pr-2 gap-0 justify-between"
             onClick={event => event.stopPropagation()}
           >
             <MultiselectPlaceholder

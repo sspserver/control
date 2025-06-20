@@ -26,3 +26,10 @@ export const groupByData = [
     value: StatisticKey.Country,
   },
 ];
+
+export const statisticValueToFix: Record<string, number> = {
+  revenue: 5,
+  CTR: 5,
+  eCPM: 5,
+  eCPC: 5,
+};

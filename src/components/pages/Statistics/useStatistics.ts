@@ -1,38 +1,35 @@
 import type { StatisticAdKeyCondition } from '@/generated/graphql';
-import type { StatisticsCustomAd, TablePagination } from '@/types/statistic';
+import type { StatisticCustomAdItem, StatisticsCustomAd, TablePagination } from '@/types/statistic';
 import type {
   StatisticFilterDateType,
 } from '@components/StatisticFilter/StatisticFilterProvider/StatisticFilterProvider.types';
 import {
   Ordering,
-
   StatisticCondition,
   StatisticKey,
   StatisticOrderingKey,
   useStatisticsLazyQuery,
 } from '@/generated/graphql';
+import useStatisticsFilterStore from '@components/pages/Statistics/useStatisticsFilterStore';
+import usePaginationControl from '@components/Pagination/usePaginationControl';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-const today = new Date();
-const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
-
-const defaultFilterDate = {
-  from: lastWeek,
-  to: today,
-};
 const defaultOrderField = StatisticOrderingKey.Datemark;
 const defaultOrderDirection = Ordering.Desc;
 
-const defaultPageSize = 20;
-
 function useStatistics() {
+  const {
+    date,
+    groupBy,
+    storeDateHandler,
+    storeGroupByHandler,
+  } = useStatisticsFilterStore();
   const [orderField, setOrderField] = useState<StatisticOrderingKey | null>(defaultOrderField);
-  const [pagination, setPagination] = useState<TablePagination>({ startPage: 1, size: defaultPageSize });
+  const { pageSize, changePageSizeStorageHandler } = usePaginationControl();
+  const [pagination, setPagination] = useState<TablePagination>({ startPage: 1, size: pageSize });
   const [orderDirection, setOrderDirection] = useState<Ordering | null | undefined>(defaultOrderDirection);
   const [isAdvancedFilterOpen, setIsAdvancedFilterOpen] = useState(false);
-  const [date, setDate] = useState<StatisticFilterDateType>(defaultFilterDate);
-  const [groupBy, setGroupBy] = useState<StatisticKey[]>([StatisticKey.Datemark]);
-  const [statisticFilterData, setStatisticFilterData] = useState<Partial<Record<`${StatisticKey}`, string[]>> | null>();
+  const [statisticFilterData, setStatisticFilterData] = useState<Partial<Record<`${StatisticKey}`, string[]>> | null>(null);
   const requestOrder = useMemo(() => {
     if (orderDirection && orderField) {
       return {
@@ -46,8 +43,12 @@ function useStatistics() {
       order: defaultOrderDirection,
     };
   }, [orderDirection, orderField]);
+  const changePageSizeHandler = (size: number) => {
+    setPagination(state => ({ ...state, size }));
+    changePageSizeStorageHandler(size);
+  };
   const changePageHandler = (startPage: number) => setPagination(state => ({ ...state, startPage }));
-  const changeStatisticFilterDate = (key: `${StatisticKey}`) => (value: (string | number)[]) => {
+  const changeStatisticFilterData = (key: `${StatisticKey}`) => (value: (string | number)[]) => {
     setStatisticFilterData(state => ({
       ...state,
       [key]: value,
@@ -59,16 +60,8 @@ function useStatistics() {
   };
   const clickButtonAdvancedFilterHandler = () => setIsAdvancedFilterOpen(state => !state);
   const endMonth = new Date();
-  const selectGroupByChangeHandler = (value: (string | number)[]) => setGroupBy(value as StatisticKey[]);
-  const selectDateCalendarHandler = (date?: StatisticFilterDateType) => {
-    const { from, to } = date ?? {};
-
-    setDate(state => ({
-      ...state,
-      from,
-      to,
-    }));
-  };
+  const selectGroupByChangeHandler = (value: (string | number)[]) => storeGroupByHandler(value as StatisticKey[]);
+  const selectDateCalendarHandler = (date?: StatisticFilterDateType) => storeDateHandler(date);
   const [getStatistics, {
     loading: isStatisticsDataLoading,
     data: currentStatisticsData,
@@ -112,15 +105,23 @@ function useStatistics() {
     });
   }, [date?.from, date?.to, getStatistics, groupBy, pagination, requestOrder, statisticFilterData]);
   const clickApplyButtonHandler = () => loadStatistics();
-  const dataStatistic: StatisticsCustomAd = useMemo(() => responseStatisticsData?.result?.list?.map(({ keys, ...item }) => ({
-    date: keys?.find(({ key }) => key === StatisticKey.Datemark)?.value ?? '',
-    ...item,
-  })) ?? [], [responseStatisticsData?.result?.list]);
+  const dataStatistic: StatisticsCustomAd = useMemo(() => responseStatisticsData?.result?.list?.reduce<StatisticsCustomAd>((acc, { keys, ...item }) => {
+    const date = keys?.find(({ key }) => key === StatisticKey.Datemark)?.value;
+    const statisticItem: StatisticCustomAdItem = item;
+
+    if (date) {
+      statisticItem.date = date;
+    }
+
+    acc.push(statisticItem);
+
+    return acc;
+  }, []) ?? [], [responseStatisticsData?.result?.list]);
   const pageInfo = responseStatisticsData?.result?.pageInfo;
 
   useEffect(() => {
     loadStatistics();
-  }, [pagination, orderDirection, orderField]);
+  }, [date?.from, date?.to, pagination, orderDirection, orderField]);
 
   return {
     isStatisticsDataLoading,
@@ -133,13 +134,15 @@ function useStatistics() {
     statisticFilterData,
     dataStatistic,
     endMonth,
-    changeStatisticFilterDate,
+    pagination,
+    changeStatisticFilterData,
     clickButtonAdvancedFilterHandler,
     selectGroupByChangeHandler,
     selectDateCalendarHandler,
     changePageHandler,
     clickApplyButtonHandler,
     changeStatisticTableOrderHandler,
+    changePageSizeHandler,
   };
 }
 

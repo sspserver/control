@@ -1,5 +1,5 @@
-import TrafficRouters from '@components/pages/TrafficRouters';
 import TrafficRoutersDrawerOpenButton from '@components/pages/TrafficRouters/TrafficRoutersDrawerOpenButton';
+import TrafficRoutersDynamic from '@components/pages/TrafficRouters/TrafficRoutersDynamic';
 import { Title } from '@tailus-ui/typography';
 import React, { Fragment } from 'react';
 
@@ -12,7 +12,7 @@ function TrafficRoutersPage() {
         </Title>
         <TrafficRoutersDrawerOpenButton />
       </div>
-      <TrafficRouters />
+      <TrafficRoutersDynamic />
     </Fragment>
   );
 }

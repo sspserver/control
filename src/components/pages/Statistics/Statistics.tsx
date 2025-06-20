@@ -1,5 +1,3 @@
-'use client';
-
 import {
   StatisticKey,
 } from '@/generated/graphql';
@@ -15,7 +13,7 @@ import RTBSourceSelect from '@components/RTBSourceSelect';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid';
 import Button from '@tailus-ui/Button';
 import Multiselect from '@tailus-ui/Multiselect';
-import React from 'react';
+import React, { Fragment } from 'react';
 import ButtonLoading from '../../tailus-ui/Button/ButtonLoading';
 import { groupByData } from './Statistics.const';
 import StatisticsChart from './StatisticsChart/StatisticsChart';
@@ -31,23 +29,24 @@ function Statistics() {
     date,
     pageInfo,
     groupBy,
+    pagination,
     statisticFilterData,
-    changeStatisticFilterDate,
+    changeStatisticFilterData,
     clickButtonAdvancedFilterHandler,
     selectGroupByChangeHandler,
     selectDateCalendarHandler,
     clickApplyButtonHandler,
     changeStatisticTableOrderHandler,
     changePageHandler,
+    changePageSizeHandler,
   } = useStatistics();
 
   return (
     <div>
-
       <div className="pt-4">
         <div className="flex justify-between gap-4 pb-4 items-end">
           <Button.Root size="sm" variant="outlined" onClick={clickButtonAdvancedFilterHandler}>
-            <Button.Icon>
+            <Button.Icon type="only">
               {isAdvancedFilterOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
             </Button.Icon>
           </Button.Root>
@@ -67,7 +66,7 @@ function Statistics() {
               classNameButton="max-sm:w-full"
             />
           </div>
-          <div className="flex-1">
+          <div className="flex-1 max-w-sm">
             <Multiselect
               label="Group by"
               data={groupByData}
@@ -75,11 +74,11 @@ function Statistics() {
               onChange={selectGroupByChangeHandler}
             />
           </div>
-          <div className="flex-1">
+          <div className="flex-1  max-w-sm">
             <RTBSourceSelect
               values={statisticFilterData?.[StatisticKey.SourceId]}
               label="RTB"
-              onChange={changeStatisticFilterDate(StatisticKey.SourceId)}
+              onChange={changeStatisticFilterData(StatisticKey.SourceId)}
             />
           </div>
           {!isAdvancedFilterOpen && (
@@ -95,57 +94,63 @@ function Statistics() {
           )}
         </div>
         {isAdvancedFilterOpen && (
-          <div className="flex justify-between gap-4 pb-4 items-end">
-            <div className="flex-1">
-              <ApplicationsSelect
-                values={statisticFilterData?.[StatisticKey.AppId]}
-                label="Applications"
-                onChange={changeStatisticFilterDate(StatisticKey.AppId)}
-              />
-            </div>
-            <div className="flex-1">
-              <AdUnitSelect
-                values={statisticFilterData?.[StatisticKey.ZoneId]}
-                label="AdUnit"
-                onChange={changeStatisticFilterDate(StatisticKey.ZoneId)}
-              />
-            </div>
-            <div className="flex-1">
-              <CountriesSelect
-                values={statisticFilterData?.[StatisticKey.Country]}
-                label="Countries"
-                onChange={changeStatisticFilterDate(StatisticKey.Country)}
-              />
-            </div>
-            <div className="flex-1">
-              <AdFormatsSelect
-                values={statisticFilterData?.[StatisticKey.FormatId]}
-                label="AdFormats"
-                onChange={changeStatisticFilterDate(StatisticKey.FormatId)}
-              />
-            </div>
-            {isAdvancedFilterOpen && (
-              <div>
-                <ButtonLoading
-                  className="inline-block"
-                  onClick={clickApplyButtonHandler}
-                >
-                  Apply
-                </ButtonLoading>
+          <Fragment>
+            <div className="flex justify-between gap-4 pb-4 items-end">
+              <div className="flex-1 max-w-[50%]">
+                <ApplicationsSelect
+                  values={statisticFilterData?.[StatisticKey.AppId]}
+                  label="Applications"
+                  onChange={changeStatisticFilterData(StatisticKey.AppId)}
+                />
               </div>
-            )}
-          </div>
+              <div className="flex-1 max-w-[50%]">
+                <AdUnitSelect
+                  values={statisticFilterData?.[StatisticKey.ZoneId]}
+                  label="AdUnit"
+                  onChange={changeStatisticFilterData(StatisticKey.ZoneId)}
+                />
+              </div>
+            </div>
+            <div className="flex justify-between gap-4 pb-4 items-end">
+              <div className="flex-1 max-w-[45%]">
+                <CountriesSelect
+                  values={statisticFilterData?.[StatisticKey.Country]}
+                  label="Countries"
+                  onChange={changeStatisticFilterData(StatisticKey.Country)}
+                />
+              </div>
+              <div className="flex-1 max-w-[45%]">
+                <AdFormatsSelect
+                  values={statisticFilterData?.[StatisticKey.FormatId]}
+                  label="AdFormats"
+                  onChange={changeStatisticFilterData(StatisticKey.FormatId)}
+                />
+              </div>
+              {isAdvancedFilterOpen && (
+                <div>
+                  <ButtonLoading
+                    className="inline-block"
+                    onClick={clickApplyButtonHandler}
+                  >
+                    Apply
+                  </ButtonLoading>
+                </div>
+              )}
+            </div>
+          </Fragment>
         )}
       </div>
       <StatisticsChart data={dataStatistic} />
       {!!dataStatistic.length && (
         <StatisticsTable
           onPageChange={changePageHandler}
+          onPageSizeChange={changePageSizeHandler}
           orderField={orderField}
           orderDirection={orderDirection}
           onOrderChange={changeStatisticTableOrderHandler}
           data={dataStatistic}
           pageInfo={pageInfo}
+          pageSize={pagination.size}
         />
       )}
     </div>

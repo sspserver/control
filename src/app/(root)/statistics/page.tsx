@@ -1,6 +1,6 @@
-import Statistics from '@components/pages/Statistics';
+import StatisticsDynamic from '@components/pages/Statistics/StatisticsDynamic';
 import { Title } from '@tailus-ui/typography';
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 
 function StatisticsPage() {
   return (
@@ -10,7 +10,7 @@ function StatisticsPage() {
           Statistics
         </Title>
       </div>
-      <Statistics />
+      <StatisticsDynamic />
     </Fragment>
   );
 }

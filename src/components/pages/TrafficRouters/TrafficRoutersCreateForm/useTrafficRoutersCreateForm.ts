@@ -4,7 +4,6 @@ import type {
 } from '@components/pages/TrafficRouters/TrafficRoutersCreateForm/TrafficRoutersCreateForm.types';
 
 import type { FormikHelpers } from 'formik/dist/types';
-import { ActiveStatus } from '@/generated/graphql';
 import { useApolloClient, useMutation, useQuery } from '@apollo/client';
 import { rtbCreateFormTab } from '@components/pages/RtbPage/RtbCreateForm/RtbCreateForm.const';
 import {
@@ -68,7 +67,7 @@ function useTrafficRoutersCreateForm(onSubmit?: () => void) {
       if (isCreateMode) {
         const { errors } = await createTrafficRoutersCreateResponse({
           variables: {
-            active: ActiveStatus.Paused,
+            // active: ActiveStatus.Paused,
             ...variables,
           },
         });
