@@ -2,24 +2,40 @@ import type { Ordering } from '@/generated/graphql';
 import type { StatisticCustomAdItemKeys, StatisticPageInfo, StatisticsCustomAd } from '@/types/statistic';
 import { StatisticOrderingKey } from '@/generated/graphql';
 import ColumOrder from '@components/ColumOrder';
-import { listChatFields } from '@components/pages/Statistics/StatisticsChart/StatisticsChart.const';
-import { tableFields } from '@components/pages/Statistics/StatisticsTable/StatisticsTable.const';
+import { statisticValueToFix } from '@components/pages/Statistics/Statistics.const';
+import { getHasStatisticDataField } from '@components/pages/Statistics/Statistics.utils';
 import useStatisticsTable from '@components/pages/Statistics/StatisticsTable/useStatisticsTable';
 import Pagination from '@components/Pagination/Pagination';
 import Card from '@tailus-ui/Card';
 import { format } from 'date-fns';
 import React from 'react';
+import {
+  tableFields,
+  tableFieldsSeparator,
+} from './StatisticsTable.const';
 
 type StatisticsTableProps = {
   data: StatisticsCustomAd;
   pageInfo?: StatisticPageInfo;
+  pageSize?: number;
   onOrderChange: (field: StatisticOrderingKey, direction?: Ordering) => void;
   onPageChange: (page: number) => void;
+  onPageSizeChange: (size: number) => void;
   orderField: StatisticOrderingKey | null;
   orderDirection: Ordering | null | undefined;
 };
 
-function StatisticsTable({ orderField, orderDirection, data, pageInfo, onPageChange, onOrderChange }: StatisticsTableProps) {
+function StatisticsTable({
+  orderField,
+  orderDirection,
+  data,
+  pageInfo,
+  pageSize,
+  onPageChange,
+  onPageSizeChange,
+  onOrderChange,
+}: StatisticsTableProps) {
+  const hasDateField = getHasStatisticDataField('date', data);
   const {
     changeColumnOrderHandler,
   } = useStatisticsTable(
@@ -32,39 +48,49 @@ function StatisticsTable({ orderField, orderDirection, data, pageInfo, onPageCha
       <Pagination
         current={pageInfo?.page}
         total={pageInfo?.count}
+        size={`${pageSize}`}
+        onChangeSize={onPageSizeChange}
         onChange={onPageChange}
       />
       <Card fancy className="p-4 mt-4">
-        <table className="border-collapse table-fixed w-full text-left" data-rounded="medium">
+        <table className="border-collapse table-fixed w-full text-left " data-rounded="medium">
           <thead>
-            <tr className="text-sm text-[--title-text-color] *:bg-[--ui-soft-bg] *:p-3 *:font-medium">
-              <th className="rounded-l-[--card-radius]">
-                <ColumOrder
-                  className="-ml-0"
-                  direction={orderDirection}
-                  active={orderField === StatisticOrderingKey.Datemark}
-                  onChange={changeColumnOrderHandler(StatisticOrderingKey.Datemark)}
-                >
-                  Date
-                </ColumOrder>
-              </th>
-              {tableFields.map(({ name, value }) => (
-                <th key={value} className="text-right text-nowrap last:rounded-r-[--card-radius]">
+            <tr className="text-xs text-[--title-text-color] *:bg-[--ui-soft-bg] *:p-3 *:font-medium">
+              {hasDateField && (
+                <th className="rounded-l-[--card-radius]">
                   <ColumOrder
+                    className="-ml-0"
                     direction={orderDirection}
-                    active={orderField === value.toUpperCase()}
-                    onChange={changeColumnOrderHandler(value.toUpperCase() as StatisticOrderingKey)}
-                    className="justify-end"
-                    align="right"
+                    active={orderField === StatisticOrderingKey.Datemark}
+                    onChange={changeColumnOrderHandler(StatisticOrderingKey.Datemark)}
                   >
-                    {name}
+                    Date
                   </ColumOrder>
                 </th>
-              ))}
+              )}
+              {tableFields.map(({ name, value }) => {
+                const hasSeparator = tableFieldsSeparator.has(value);
+                const separatorClassName = hasSeparator ? 'border-r-2' : '';
+                const classNames = `text-right text-nowrap first:rounded-l-[--card-radius] last:rounded-r-[--card-radius] ${separatorClassName}`;
+
+                return (
+                  <th key={value} className={classNames}>
+                    <ColumOrder
+                      direction={orderDirection}
+                      active={orderField === value.toUpperCase()}
+                      onChange={changeColumnOrderHandler(value.toUpperCase() as StatisticOrderingKey)}
+                      className="justify-end"
+                      align="right"
+                    >
+                      {name}
+                    </ColumOrder>
+                  </th>
+                );
+              })}
             </tr>
           </thead>
           <tbody
-            className="align-top text-sm pt-1 [--ui-soft-bg:theme(colors.gray.50)] dark:[--ui-soft-bg:theme(colors.gray.925)]"
+            className="align-top text-xs pt-1 [--ui-soft-bg:theme(colors.gray.50)] dark:[--ui-soft-bg:theme(colors.gray.925)]"
           >
             {data?.map(({
               date,
@@ -76,14 +102,26 @@ function StatisticsTable({ orderField, orderDirection, data, pageInfo, onPageCha
                   key={key}
                   className="*:p-3 [&:not(:last-child)>*]:border-b border-l-2 border-transparent"
                 >
-                  <td>
-                    {format(date, 'LLL dd, y')}
-                  </td>
-                  {listChatFields.map(({ name, value }) => (
-                    <td key={name} className="text-right">
-                      {(stats[value as StatisticCustomAdItemKeys] ?? 0).toFixed(2)}
+                  {date && (
+                    <td>
+                      {/* {format(date, 'LLL dd, y')} */}
+                      {format(date, 'dd.MM.y')}
                     </td>
-                  ))}
+                  )}
+                  {tableFields.map(({ name, value }) => {
+                    const keyValue = stats[value as StatisticCustomAdItemKeys] ?? 0;
+                    const toFixed = statisticValueToFix[value];
+                    const fieldValue = Number.isNaN(toFixed) || !keyValue ? keyValue : keyValue.toFixed(toFixed);
+                    const hasSeparator = tableFieldsSeparator.has(value);
+                    const separatorClassName = hasSeparator ? 'border-r-2' : '';
+                    const classNames = `text-right ${separatorClassName}`;
+
+                    return (
+                      <td key={name} className={classNames}>
+                        {fieldValue}
+                      </td>
+                    );
+                  })}
                 </tr>
               );
             })}

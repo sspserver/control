@@ -1,15 +1,9 @@
+export const tableFieldsSeparator = new Set(['clicks', 'errors']);
+
 export const tableFields = [
   {
     name: 'Revenue',
     value: 'REVENUE',
-  },
-  {
-    name: 'Bid',
-    value: 'BIDS',
-  },
-  {
-    name: 'Req',
-    value: 'requests',
   },
   {
     name: 'Imp',
@@ -26,6 +20,10 @@ export const tableFields = [
   {
     name: 'Clicks',
     value: 'clicks',
+  },
+  {
+    name: 'Bid',
+    value: 'BIDS',
   },
   {
     name: 'Skips',

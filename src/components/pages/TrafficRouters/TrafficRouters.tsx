@@ -1,5 +1,3 @@
-'use client';
-
 import { ActiveStatus } from '@/generated/graphql';
 import ColumOrder from '@components/ColumOrder';
 import PageLoadSpinner from '@components/PageLoadSpinner';
@@ -20,11 +18,13 @@ function TrafficRouters() {
     orderField,
     pageInfo,
     countPageSize,
+    pagination,
     trafficRoutersList,
     trafficRoutersListError,
     isTrafficRoutersLoading,
     isPaginationLoading,
     changePageHandler,
+    changePageSizeHandler,
     changeColumnOrderHandler,
   } = useTrafficRouters();
   const isTrafficRoutersListEmpty = (!trafficRoutersList && !trafficRoutersListError && !isTrafficRoutersLoading) || !trafficRoutersList?.length;
@@ -49,8 +49,10 @@ function TrafficRouters() {
   return (
     <div className="pt-6">
       <Pagination
+        size={`${pagination.size}`}
         current={pageInfo?.page}
         total={countPageSize}
+        onChangeSize={changePageSizeHandler}
         onChange={changePageHandler}
       />
       <Card fancy className="p-4 mt-4">

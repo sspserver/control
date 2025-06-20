@@ -1,7 +1,7 @@
 import type { Ordering, StatisticAdItem } from '@/generated/graphql';
 
 export type StatisticCustomAdItem = Partial<StatisticAdItem> & {
-  date: string;
+  date?: string;
 };
 
 export type StatisticCustomAdItemKeys = keyof Omit<StatisticCustomAdItem, 'date'>;

@@ -24,10 +24,16 @@ function ColumOrder({
   className,
 }: ColumOrderProps) {
   const isAlignRight = align === 'right';
-  const wrapperClassNames = isAlignRight ? 'justify-end -mr-4' : '-ml-4';
+  const wrapperClassNames = isAlignRight ? 'justify-end -mr-3' : '-ml-3';
   const isOrderingAsc = direction === Ordering.Asc;
   const isOrderingDesc = direction === Ordering.Desc;
-  const clickOrderHandler = () => onChange?.(isOrderingAsc ? Ordering.Desc : Ordering.Asc);
+  const clickOrderHandler = () => {
+    if (active) {
+      onChange?.(isOrderingAsc ? Ordering.Desc : Ordering.Asc);
+    } else {
+      onChange?.(Ordering.Desc);
+    }
+  };
   const arrows = useMemo(() => active && (
     <Button.Icon size="sm" type="leading">
       <div key={direction}>
@@ -43,6 +49,7 @@ function ColumOrder({
         variant="ghost"
         intent="info"
         size="sm"
+        className="p-2 h-auto pt-1 pb-1 text-xs"
         onClick={clickOrderHandler}
       >
         {!isAlignRight && arrows}

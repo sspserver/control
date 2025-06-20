@@ -129,7 +129,6 @@ export const gqlupdateTrafficRouterMutation = gql`
 
 export const gqlTrafficRoutersCreateMutation = gql`
     mutation createTrafficRouter(    
-        $active: ActiveStatus!,
         $title: String!,
         $description: String!,
         $percent: Float!,
@@ -151,7 +150,6 @@ export const gqlTrafficRoutersCreateMutation = gql`
     ) {
       result: createTrafficRouter(input: {
         title: $title,
-        active: $active,
         description: $description,
         percent: $percent,
         secure: $secure,

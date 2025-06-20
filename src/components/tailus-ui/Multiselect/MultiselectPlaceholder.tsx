@@ -26,7 +26,7 @@ function MultiselectPlaceholder({
     hasItems,
   } = useMultiselectPlaceholder(items);
   if (!hasItems) {
-    return placeholder;
+    return <div className="pl-1.5">{placeholder}</div>;
   }
 
   return (
@@ -34,7 +34,7 @@ function MultiselectPlaceholder({
       <div className="w-full overflow-hidden relative rounded-r-[--btn-radius]">
         <div
           id={placeholderContainerId}
-          className="flex gap-1 justify-start"
+          className="flex gap-0.5 justify-start"
         >
           {items.map(({ name, value }) =>
             (
