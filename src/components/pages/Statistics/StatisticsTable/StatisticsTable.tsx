@@ -1,17 +1,17 @@
-import type { Ordering } from '@/generated/graphql';
+import type { Ordering, StatisticOrderingKey } from '@/generated/graphql';
 import type { StatisticCustomAdItemKeys, StatisticPageInfo, StatisticsCustomAd } from '@/types/statistic';
-import { StatisticOrderingKey } from '@/generated/graphql';
+
+import { StatisticKey } from '@/generated/graphql';
 import ColumOrder from '@components/ColumOrder';
 import { statisticValueToFix } from '@components/pages/Statistics/Statistics.const';
-import { getHasStatisticDataField } from '@components/pages/Statistics/Statistics.utils';
 import useStatisticsTable from '@components/pages/Statistics/StatisticsTable/useStatisticsTable';
 import Pagination from '@components/Pagination/Pagination';
 import Card from '@tailus-ui/Card';
 import { format } from 'date-fns';
-import React from 'react';
 import {
   tableFields,
   tableFieldsSeparator,
+  tableGroupFields,
 } from './StatisticsTable.const';
 
 type StatisticsTableProps = {
@@ -21,11 +21,13 @@ type StatisticsTableProps = {
   onOrderChange: (field: StatisticOrderingKey, direction?: Ordering) => void;
   onPageChange: (page: number) => void;
   onPageSizeChange: (size: number) => void;
+  groupByField: StatisticKey;
   orderField: StatisticOrderingKey | null;
   orderDirection: Ordering | null | undefined;
 };
 
 function StatisticsTable({
+  groupByField,
   orderField,
   orderDirection,
   data,
@@ -35,7 +37,6 @@ function StatisticsTable({
   onPageSizeChange,
   onOrderChange,
 }: StatisticsTableProps) {
-  const hasDateField = getHasStatisticDataField('date', data);
   const {
     changeColumnOrderHandler,
   } = useStatisticsTable(
@@ -56,18 +57,16 @@ function StatisticsTable({
         <table className="border-collapse table-fixed w-full text-left " data-rounded="medium">
           <thead>
             <tr className="text-xs text-[--title-text-color] *:bg-[--ui-soft-bg] *:p-3 *:font-medium">
-              {hasDateField && (
-                <th className="rounded-l-[--card-radius]">
-                  <ColumOrder
-                    className="-ml-0"
-                    direction={orderDirection}
-                    active={orderField === StatisticOrderingKey.Datemark}
-                    onChange={changeColumnOrderHandler(StatisticOrderingKey.Datemark)}
-                  >
-                    Date
-                  </ColumOrder>
-                </th>
-              )}
+              <th className="rounded-l-[--card-radius]">
+                <ColumOrder
+                  className="-ml-0"
+                  direction={orderDirection}
+                  active={orderField === (groupByField.toString() as StatisticOrderingKey)}
+                  onChange={changeColumnOrderHandler(groupByField.toString() as StatisticOrderingKey)}
+                >
+                  {tableGroupFields.find(it => it.value === groupByField)?.name || groupByField}
+                </ColumOrder>
+              </th>
               {tableFields.map(({ name, value }) => {
                 const hasSeparator = tableFieldsSeparator.has(value);
                 const separatorClassName = hasSeparator ? 'border-r-2' : '';
@@ -92,22 +91,23 @@ function StatisticsTable({
           <tbody
             className="align-top text-xs pt-1 [--ui-soft-bg:theme(colors.gray.50)] dark:[--ui-soft-bg:theme(colors.gray.925)]"
           >
-            {data?.map(({
-              date,
-              ...stats
-            }, index) => {
-              const key = `${date}-${index}`;
+            {data?.map((stats, index) => {
+              const groupField = stats.keys?.find(it => it.key === groupByField) || { value: '', text: '' };
+              const key = `${groupField?.value}-${index}`;
               return (
                 <tr
                   key={key}
                   className="*:p-3 [&:not(:last-child)>*]:border-b border-l-2 border-transparent"
                 >
-                  {date && (
-                    <td>
-                      {/* {format(date, 'LLL dd, y')} */}
-                      {format(date, 'dd.MM.y')}
-                    </td>
-                  )}
+                  <td>
+                    {groupByField === StatisticKey.Datemark
+                      ? format(groupField?.value || '2000-01-01', 'dd.MM.y')
+                      : (
+                          groupByField === StatisticKey.Timemark
+                            ? format(new Date(groupField?.value || '2000-01-01'), 'dd.MM.y HH:mm:ss')
+                            : groupField?.text || groupField?.value
+                        )}
+                  </td>
                   {tableFields.map(({ name, value }) => {
                     const keyValue = stats[value as StatisticCustomAdItemKeys] ?? 0;
                     const toFixed = statisticValueToFix[value];

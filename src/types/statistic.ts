@@ -1,7 +1,10 @@
-import type { Ordering, StatisticAdItem } from '@/generated/graphql';
+import type { Ordering, StatisticAdItem, StatisticItemKey } from '@/generated/graphql';
 
 export type StatisticCustomAdItem = Partial<StatisticAdItem> & {
   date?: string;
+  groupByKey?: string;
+  groupByValue?: string;
+  keys?: StatisticItemKey[];
 };
 
 export type StatisticCustomAdItemKeys = keyof Omit<StatisticCustomAdItem, 'date'>;

@@ -3,13 +3,8 @@ import type { StatisticCustomAdItem, StatisticsCustomAd, TablePagination } from 
 import type {
   StatisticFilterDateType,
 } from '@components/StatisticFilter/StatisticFilterProvider/StatisticFilterProvider.types';
-import {
-  Ordering,
-  StatisticCondition,
-  StatisticKey,
-  StatisticOrderingKey,
-  useStatisticsLazyQuery,
-} from '@/generated/graphql';
+
+import { Ordering, StatisticCondition, StatisticKey, StatisticOrderingKey, useStatisticsLazyQuery } from '@/generated/graphql';
 import useStatisticsFilterStore from '@components/pages/Statistics/useStatisticsFilterStore';
 import usePaginationControl from '@components/Pagination/usePaginationControl';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -68,7 +63,9 @@ function useStatistics() {
     previousData: previousStatisticsData,
   }] = useStatisticsLazyQuery();
   const responseStatisticsData = currentStatisticsData || previousStatisticsData;
-  const loadStatistics = useCallback(() => {
+
+  // Load statistics data based on the current filters and pagination
+  const loadStatistics = useCallback((newGroupBy: StatisticKey[] | undefined = undefined) => {
     const today = new Date().toISOString();
     const startDate = date?.from?.toISOString() ?? today;
     const endDate = date?.to?.toISOString() ?? today;
@@ -93,7 +90,7 @@ function useStatistics() {
           //   },
           // ],
         },
-        group: groupBy,
+        group: newGroupBy || groupBy,
         // group: [StatisticKey.AppId, StatisticKey.Datemark],
         order: [requestOrder],
         // [
@@ -104,14 +101,18 @@ function useStatistics() {
       },
     });
   }, [date?.from, date?.to, getStatistics, groupBy, pagination, requestOrder, statisticFilterData]);
-  const clickApplyButtonHandler = () => loadStatistics();
-  const dataStatistic: StatisticsCustomAd = useMemo(() => responseStatisticsData?.result?.list?.reduce<StatisticsCustomAd>((acc, { keys, ...item }) => {
-    const date = keys?.find(({ key }) => key === StatisticKey.Datemark)?.value;
-    const statisticItem: StatisticCustomAdItem = item;
 
-    if (date) {
-      statisticItem.date = date;
-    }
+  // Handler for the Apply button
+  const clickApplyButtonHandler = (newGroupBy: StatisticKey[] | undefined = undefined) => loadStatistics(newGroupBy);
+
+  const dataStatistic: StatisticsCustomAd = useMemo(() => responseStatisticsData?.result?.list?.reduce<StatisticsCustomAd>((acc, { keys, ...item }) => {
+    const statisticItem: StatisticCustomAdItem = item;
+    const [firstKey = { key: null, value: null }] = keys || [];
+
+    statisticItem.keys = keys || [];
+    statisticItem.groupByKey = firstKey.key || undefined;
+    statisticItem.groupByValue = firstKey.value || undefined;
+    statisticItem.date = keys?.find(({ key }) => key === StatisticKey.Datemark)?.value || undefined;
 
     acc.push(statisticItem);
 
@@ -120,8 +121,8 @@ function useStatistics() {
   const pageInfo = responseStatisticsData?.result?.pageInfo;
 
   useEffect(() => {
-    loadStatistics();
-  }, [date?.from, date?.to, pagination, orderDirection, orderField]);
+    loadStatistics(undefined);
+  }, [date.from, date.to, pagination, orderDirection, orderField, loadStatistics]);
 
   return {
     isStatisticsDataLoading,

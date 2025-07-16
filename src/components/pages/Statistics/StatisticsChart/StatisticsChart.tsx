@@ -1,7 +1,8 @@
 'use client';
 
 import type { StatisticsCustomAd } from '@/types/statistic';
-import { getHasStatisticDataField } from '@components/pages/Statistics/Statistics.utils';
+
+import { StatisticKey } from '@/generated/graphql';
 import { lineChartColors, listChatFields } from '@components/pages/Statistics/StatisticsChart/StatisticsChart.const';
 import useStatisticsFilterStore from '@components/pages/Statistics/useStatisticsFilterStore';
 import Multiselect from '@tailus-ui/Multiselect';
@@ -20,7 +21,8 @@ function StatisticsChart({ data }: StatisticsChartProps) {
   } = useStatisticsFilterStore();
   const changeLineChatFieldsHandler = (value: (string | number)[]) => storeLineFieldsHandler(value);
   const isEmptyData = !data.length;
-  const hasDateField = getHasStatisticDataField('date', data);
+  const [firstDataItem = {}] = data ?? [];
+  const groupByKey = (firstDataItem.groupByKey || undefined) as StatisticKey;
 
   return (
     <div>
@@ -43,18 +45,22 @@ function StatisticsChart({ data }: StatisticsChartProps) {
               bottom: 5,
             }}
           >
-            {hasDateField && (
+            {groupByKey && (
               <XAxis
-                dataKey="date"
-                name="date"
+                dataKey="groupByValue"
+                name="keys"
                 angle={-45}
                 hide={isEmptyData}
                 tick={(event) => {
-                  const { y, payload: { value } } = event;
-                  const date = value ? format(value, 'dd.MM') : '';
+                  const { y, payload: { value }, index } = event;
+                  const item = data[index] || {};
+                  const key = item.keys?.find(({ key }) => key === groupByKey);
+                  const itemValue = groupByKey === StatisticKey.Datemark
+                    ? format(value || '2000-01-01', 'dd.MM.y')
+                    : key?.text || key?.value || value || '';
                   const yIndent = y + 5;
 
-                  return (<Text {...event} y={yIndent} className="text-xs">{date}</Text>);
+                  return (<Text {...event} y={yIndent} className="text-xs">{itemValue}</Text>);
                 }}
               />
             )}
