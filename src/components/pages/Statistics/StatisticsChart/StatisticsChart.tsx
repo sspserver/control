@@ -8,7 +8,8 @@ import useStatisticsFilterStore from '@components/pages/Statistics/useStatistics
 import Multiselect from '@tailus-ui/Multiselect';
 import CustomTooltip from '@tailus-ui/visualizations/CustomTooltip';
 import { format } from 'date-fns';
-import { Customized, Legend, Line, LineChart, ResponsiveContainer, Text, Tooltip, XAxis, YAxis } from 'recharts';
+import { Bar, BarChart, Customized, Legend, Line, LineChart, ResponsiveContainer, Text, Tooltip, XAxis, YAxis } from 'recharts';
+import { CountryWorldMap } from './StatisticsWorldMapChart';
 
 type StatisticsChartProps = {
   data: StatisticsCustomAd;
@@ -24,6 +25,28 @@ function StatisticsChart({ data }: StatisticsChartProps) {
   const [firstDataItem = {}] = data ?? [];
   const groupByKey = (firstDataItem.groupByKey || undefined) as StatisticKey;
 
+  // Determine chart type and grouping
+  const isDateGrouping = groupByKey === StatisticKey.Datemark;
+  const isCountryGrouping = groupByKey === StatisticKey.Country;
+  const ChartComponent = isDateGrouping ? LineChart : BarChart;
+
+  // If country grouping, show world map
+  if (isCountryGrouping) {
+    return (
+      <div>
+        <Multiselect
+          label=""
+          data={listChatFields}
+          values={lineFields}
+          onChange={changeLineChatFieldsHandler}
+        />
+        <div className="mt-4">
+          <CountryWorldMap data={data} lineFields={lineFields.map(String)} colors={lineChartColors} />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <Multiselect
@@ -34,7 +57,7 @@ function StatisticsChart({ data }: StatisticsChartProps) {
       />
       <div className="h-[500px] w-full relative pt-4">
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart
+          <ChartComponent
             width={500}
             height={250}
             data={data}
@@ -90,40 +113,28 @@ function StatisticsChart({ data }: StatisticsChartProps) {
                   : null;
               }}
             />
-            {lineFields.map((field, index) => (
-              <Line
-                key={field}
-                type="monotone"
-                dataKey={field}
-                stroke={lineChartColors[index]}
-                activeDot={{
-                  color: 'var(--dv-warning-700)',
-                  r: 3,
-                  stroke: 'white',
-                }}
-              />
-            ))}
-            {/* <Line */}
-            {/*  type="monotone" */}
-            {/*  dataKey="views" */}
-            {/*  stroke="#2563eb" */}
-            {/*  activeDot={{ */}
-            {/*    color: 'var(--dv-warning-700)', */}
-            {/*    r: 3, */}
-            {/*    stroke: 'white', */}
-            {/*  }} */}
-            {/* /> */}
-            {/* <Line */}
-            {/*  type="monotone" */}
-            {/*  dataKey="impressions" */}
-            {/*  stroke="#65a30d" */}
-            {/*  activeDot={{ */}
-            {/*    color: 'var(--dv-primary)', */}
-            {/*    r: 3, */}
-            {/*    stroke: 'white', */}
-            {/*  }} */}
-            {/* /> */}
-          </LineChart>
+            {isDateGrouping
+              ? lineFields.map((field, index) => (
+                  <Line
+                    key={field}
+                    type="monotone"
+                    dataKey={field}
+                    stroke={lineChartColors[index]}
+                    activeDot={{
+                      color: 'var(--dv-warning-700)',
+                      r: 3,
+                      stroke: 'white',
+                    }}
+                  />
+                ))
+              : lineFields.map((field, index) => (
+                  <Bar
+                    key={field}
+                    dataKey={field}
+                    fill={lineChartColors[index]}
+                  />
+                ))}
+          </ChartComponent>
         </ResponsiveContainer>
       </div>
     </div>
