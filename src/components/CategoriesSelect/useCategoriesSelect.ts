@@ -5,6 +5,7 @@ function useCategoriesSelect() {
   const { data: listCategoriesResponse, loading: isListCategoriesLoading } = useListCategoriesQuery(
     {
       variables: {
+        size: 1000,
         filter: { parentID: [0] },
       },
       fetchPolicy: 'network-only',
