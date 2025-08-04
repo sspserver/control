@@ -3069,6 +3069,7 @@ export enum StatisticKey {
 export enum StatisticOrderingKey {
   AppId = 'APP_ID',
   Bids = 'BIDS',
+  BidPrice = 'BID_PRICE',
   BrowserId = 'BROWSER_ID',
   CarrierId = 'CARRIER_ID',
   Clicks = 'CLICKS',
@@ -3090,6 +3091,7 @@ export enum StatisticOrderingKey {
   Nobids = 'NOBIDS',
   OsId = 'OS_ID',
   PlatformType = 'PLATFORM_TYPE',
+  Requests = 'REQUESTS',
   Revenue = 'REVENUE',
   Skips = 'SKIPS',
   SourceId = 'SOURCE_ID',
