@@ -4,32 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5483ae0-0faa-4d09-a539-795505d72254" name="Changes" comment="* web fonts set from nextjs local">
-      <change afterPath="$PROJECT_DIR$/src/components/Pagination/Pagination.const.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/Statistics/Statistics.utils.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/Statistics/StatisticsDynamic.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/Statistics/useStatisticsFilterStore.const.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersDynamic.tsx" afterDir="false" />
+    <list default="true" id="d5483ae0-0faa-4d09-a539-795505d72254" name="Changes" comment="* fix colum order&#10;* improve statistic table&#10;* store statistic filter settings&#10;* store pagination setting&#10;* improve working with stats chart &#10;* fixing some issues">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/graphql/queries/trafficRouters.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/graphql/queries/trafficRouters.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(root)/statistics/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(root)/statistics/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(root)/traffic-routers/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(root)/traffic-routers/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ColumOrder.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ColumOrder.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Pagination/Pagination.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Pagination/Pagination.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/Statistics/Statistics.const.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Statistics/Statistics.const.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/Statistics/Statistics.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Statistics/Statistics.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/Statistics/StatisticsChart/StatisticsChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Statistics/StatisticsChart/StatisticsChart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/Statistics/StatisticsTable/StatisticsTable.const.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Statistics/StatisticsTable/StatisticsTable.const.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/Statistics/StatisticsTable/StatisticsTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Statistics/StatisticsTable/StatisticsTable.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/Statistics/useStatistics.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Statistics/useStatistics.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRouters.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRouters.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersCreateForm/useTrafficRoutersCreateForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersCreateForm/useTrafficRoutersCreateForm.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/TrafficRouters/useTrafficRouters.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/useTrafficRouters.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/Multiselect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/Multiselect.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/MultiselectPlaceholder.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/Multiselect/MultiselectPlaceholder.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tailus-ui/visualizations/CustomTooltip.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tailus-ui/visualizations/CustomTooltip.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/statistic.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/statistic.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/submodules/api" beforeDir="false" afterPath="$PROJECT_DIR$/submodules/api" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/RtbPage/RtbCreateForm/RtbCreateForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/RtbPage/RtbCreateForm/RtbCreateForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersCreateForm/TrafficRoutersCreateForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/TrafficRouters/TrafficRoutersCreateForm/TrafficRoutersCreateForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/graphql.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/graphql.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +22,7 @@
         <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
-    <option name="RECENT_COMMON_BRANCH" value="issues/22" />
+    <option name="RECENT_COMMON_BRANCH" value="issues/24" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -79,36 +59,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Docker.develop.api: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.develop.database: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;issues/23&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/Oleksandr.Zhukov/Projects/sspserver/control/public/fonts/Geist&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.stylelint&quot;: &quot;/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/stylelint&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.gql-gen.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/prettier&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.develop.api: Compose Deployment.executor": "Run",
+    "Docker.develop.database: Compose Deployment.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/Oleksandr.Zhukov/Projects/sspserver/control",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.stylelint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.stylelint": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/stylelint",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.gql-gen.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/prettier",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/Users/Oleksandr.Zhukov/Projects/sspserver/control/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public/fonts/Geist" />
@@ -173,6 +153,8 @@
         <item itemvalue="npm.gql-gen" />
         <item itemvalue="Docker.develop.database: Compose Deployment" />
         <item itemvalue="Docker.develop.api: Compose Deployment" />
+        <item itemvalue="npm.gql-gen" />
+        <item itemvalue="Docker.develop.database: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -212,6 +194,7 @@
       <workItem from="1748673482568" duration="4137000" />
       <workItem from="1750054004225" duration="12953000" />
       <workItem from="1750180797739" duration="19625000" />
+      <workItem from="1754290334196" duration="3216000" />
     </task>
     <task id="LOCAL-00001" summary="#6 Applications page">
       <option name="closed" value="true" />

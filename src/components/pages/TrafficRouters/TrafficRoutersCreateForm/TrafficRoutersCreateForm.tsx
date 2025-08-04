@@ -2,6 +2,7 @@ import type {
   TrafficRoutersCreateFormProps,
   TrafficRoutersCreateFormState,
 } from './TrafficRoutersCreateForm.types';
+import { AnyIPv4IPv6, AnyOnlyExclude } from '@/generated/graphql';
 import AdFormatsSelect from '@components/AdFormatsSelect';
 import AdUnitSelect from '@components/AdUnitSelect';
 import ApplicationsSelect from '@components/ApplicationsSelect';
@@ -159,7 +160,7 @@ function TrafficRoutersCreateForm({ onCancel, onSubmit }: TrafficRoutersCreateFo
                           label="Secure"
                           onValueChange={value => setFieldValue('secure', value)}
                           items={secureOptions}
-                          value={values.secure}
+                          value={values.secure ?? AnyOnlyExclude.Any}
                           error={errors.secure}
                         />
                       </div>
@@ -168,7 +169,7 @@ function TrafficRoutersCreateForm({ onCancel, onSubmit }: TrafficRoutersCreateFo
                           label="AdBlock"
                           onValueChange={value => setFieldValue('adBlock', value)}
                           items={adBlockOptions}
-                          value={values.adBlock}
+                          value={values.adBlock ?? AnyOnlyExclude.Any}
                           error={errors.adBlock}
                         />
                       </div>
@@ -179,7 +180,7 @@ function TrafficRoutersCreateForm({ onCancel, onSubmit }: TrafficRoutersCreateFo
                           label="Private Browsing"
                           onValueChange={value => setFieldValue('privateBrowsing', value)}
                           items={privateBrowsingOptions}
-                          value={values.privateBrowsing}
+                          value={values.privateBrowsing ?? AnyOnlyExclude.Any}
                           error={errors.privateBrowsing}
                         />
                       </div>
@@ -188,7 +189,7 @@ function TrafficRoutersCreateForm({ onCancel, onSubmit }: TrafficRoutersCreateFo
                           label="IP"
                           onValueChange={value => setFieldValue('IP', value)}
                           items={ipOptions}
-                          value={values.IP}
+                          value={values.IP ?? AnyIPv4IPv6.Any}
                           error={errors.IP}
                         />
                       </div>
