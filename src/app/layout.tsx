@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+
 import authOptions from '@/app/api/auth/[...nextauth]/options';
 
 import AppProviders from '@/components/AppProviders';
@@ -101,15 +102,24 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
-async function RootLayout({
-  children,
-  drawer,
-}: RootLayoutProps) {
+function pickPublicEnv() {
+  const keys = ['NEXT_PUBLIC_API_URL', 'API_URL'] as const;
+  const obj: Record<string, string | undefined> = {};
+  for (const k of keys) {
+    obj[k] = process.env[k];
+  }
+  return obj;
+}
+
+async function RootLayout({ children, drawer }: RootLayoutProps) {
   const session = await getServerSession(authOptions);
+  const runtimeEnv = pickPublicEnv();
 
   return (
     <html lang="en" data-shade="glassy" className={`${geist.variable} ${geistMono.variable}`}>
       <body className={geist.className}>
+        {/* eslint-disable-next-line react-dom/no-dangerously-set-innerhtml */}
+        <script dangerouslySetInnerHTML={{ __html: `window.__ENV__=${JSON.stringify(runtimeEnv)};` }} />
         <LoadingNavigateBar />
         <AppProviders session={session}>
           {children}

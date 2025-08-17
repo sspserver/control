@@ -1,10 +1,13 @@
 import type { NextAuthOptions, Session, SessionOptions, User } from 'next-auth';
+
 import type { JWT } from 'next-auth/jwt';
-import { publicApiUrl } from '@configs/api';
+
+import { getPublicEnv } from '@configs/api';
 import { configPathRoutes } from '@configs/routes';
 import { currentAccount } from '@lib/api/currentAccount';
 import { currentAccountTotal } from '@lib/api/currentAccountTotal';
 import { login } from '@lib/api/login';
+
 import { switchAccount } from '@lib/api/switchAccount';
 import CustomGraphQLError from '@lib/errors/CustomGraphQLError';
 import CredentialsProvider from 'next-auth/providers/credentials';
@@ -55,6 +58,7 @@ const authOptions: NextAuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials): Promise<User> {
+        const publicApiUrl = getPublicEnv().NEXT_PUBLIC_API_URL;
         if (!publicApiUrl) {
           throw new CustomGraphQLError('NEXT_PUBLIC_API_URL env var not provided');
         }
@@ -98,6 +102,7 @@ const authOptions: NextAuthOptions = {
         token: { label: 'Token', type: 'text' },
       },
       async authorize(credentials): Promise<User> {
+        const publicApiUrl = getPublicEnv().NEXT_PUBLIC_API_URL;
         if (!publicApiUrl) {
           throw new CustomGraphQLError('NEXT_PBLIC_API_URL env var not provided');
         }
@@ -137,6 +142,7 @@ const authOptions: NextAuthOptions = {
         token: { label: 'Token', type: 'text' },
       },
       async authorize(credentials): Promise<User> {
+        const publicApiUrl = getPublicEnv().NEXT_PUBLIC_API_URL;
         if (!publicApiUrl) {
           throw new Error('NEXT_PUBLIC_API_URL env var not provided');
         }

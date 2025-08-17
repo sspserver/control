@@ -1,8 +1,9 @@
 import type { Session } from 'next-auth';
+
 import { ApolloLink, HttpLink, Observable } from '@apollo/client';
 import { ApolloClient, InMemoryCache, SSRMultipartLink } from '@apollo/client-integration-nextjs';
 import { onError } from '@apollo/client/link/error';
-import { apiUrl } from '@configs/api';
+import { getPublicEnv } from '@configs/api';
 import { configPathRoutes } from '@configs/routes';
 import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
@@ -66,8 +67,10 @@ function useApolloProvider(session: Session | null) {
       headers['X-Tunnel-Authorization'] = `tunnel ${process.env.NEXT_PUBLIC_TUNNEL_TOKEN}`;
     }
 
+    const env = getPublicEnv();
+
     return new HttpLink({
-      uri: apiUrl,
+      uri: env.API_URL || env.NEXT_PUBLIC_API_URL,
       headers,
     });
   }, [session]);
