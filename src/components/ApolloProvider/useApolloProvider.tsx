@@ -70,7 +70,7 @@ function useApolloProvider(session: Session | null) {
     const env = getPublicEnv();
 
     return new HttpLink({
-      uri: env.API_URL || env.NEXT_PUBLIC_API_URL,
+      uri: env.NEXT_PUBLIC_API_URL || env.API_URL,
       headers,
     });
   }, [session]);
