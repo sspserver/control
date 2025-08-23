@@ -4011,18 +4011,6 @@ export type ListDeviceModelsQueryVariables = Exact<{
 
 export type ListDeviceModelsQuery = { __typename?: 'Query', result?: { __typename?: 'DeviceModelConnection', list: Array<{ __typename?: 'DeviceModel', ID: any, active: ActiveStatus, name: string, description: string, matchExp: string, createdAt: any, updatedAt: any, maker?: { __typename?: 'DeviceMaker', ID: any, name: string, description: string, active: ActiveStatus, matchExp: string, createdAt: any, updatedAt: any } | null, versions?: Array<{ __typename?: 'DeviceModel', name: string, ID: any }> | null, type?: { __typename?: 'DeviceType', ID: any, active: ActiveStatus, name: string, description: string } | null }>, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
 
-export type __StatItemFragment = { __typename?: 'StatisticAdItem', bidPrice: number, requests: any, impressions: any, views: any, directs: any, clicks: any, wins: any, skips: any, nobids: any, errors: any, CTR: number, eCPM: number, eCPC: number, keys?: Array<{ __typename?: 'StatisticItemKey', key: StatisticKey, value: any, text: string }> | null };
-
-export type StatisticsQueryVariables = Exact<{
-  filter?: InputMaybe<StatisticAdListFilter>;
-  group: Array<StatisticKey> | StatisticKey;
-  order?: InputMaybe<Array<StatisticAdKeyOrder> | StatisticAdKeyOrder>;
-  page?: InputMaybe<Page>;
-}>;
-
-
-export type StatisticsQuery = { __typename?: 'Query', result: { __typename?: 'StatisticAdItemConnection', totalCount: number, list?: Array<{ __typename?: 'StatisticAdItem', bidPrice: number, requests: any, impressions: any, views: any, directs: any, clicks: any, wins: any, skips: any, nobids: any, errors: any, CTR: number, eCPM: number, eCPC: number, keys?: Array<{ __typename?: 'StatisticItemKey', key: StatisticKey, value: any, text: string }> | null }> | null, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } };
-
 export type ListHistoryQueryVariables = Exact<{
   page?: Scalars['Int']['input'];
   size?: Scalars['Int']['input'];
@@ -4032,6 +4020,18 @@ export type ListHistoryQueryVariables = Exact<{
 
 
 export type ListHistoryQuery = { __typename?: 'Query', result?: { __typename?: 'HistoryActionConnection', totalCount: number, list?: Array<{ __typename?: 'HistoryAction', ID: any, RequestID: string, name: string, message: string, userID: any, accountID: any, objectType: string, objectIDs: string, data: any, actionAt: any }> | null, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
+
+export type __StatItemFragment = { __typename?: 'StatisticAdItem', bidPrice: number, revenue: number, requests: any, impressions: any, views: any, directs: any, clicks: any, bids: any, wins: any, skips: any, nobids: any, errors: any, CTR: number, eCPM: number, eCPC: number, keys?: Array<{ __typename?: 'StatisticItemKey', key: StatisticKey, value: any, text: string }> | null };
+
+export type StatisticsQueryVariables = Exact<{
+  filter?: InputMaybe<StatisticAdListFilter>;
+  group: Array<StatisticKey> | StatisticKey;
+  order?: InputMaybe<Array<StatisticAdKeyOrder> | StatisticAdKeyOrder>;
+  page?: InputMaybe<Page>;
+}>;
+
+
+export type StatisticsQuery = { __typename?: 'Query', result: { __typename?: 'StatisticAdItemConnection', totalCount: number, list?: Array<{ __typename?: 'StatisticAdItem', bidPrice: number, revenue: number, requests: any, impressions: any, views: any, directs: any, clicks: any, bids: any, wins: any, skips: any, nobids: any, errors: any, CTR: number, eCPM: number, eCPC: number, keys?: Array<{ __typename?: 'StatisticItemKey', key: StatisticKey, value: any, text: string }> | null }> | null, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } };
 
 export type __ZoneDataFragment = { __typename?: 'Zone', ID: any, codename: string, accountID: any, title: string, description: string, status: ApproveStatus, active: ActiveStatus, defaultCode: any, context: any, minECPM: number, fixedPurchasePrice: number, allowedFormats?: Array<string> | null, allowedTypes?: Array<any> | null, allowedSources?: Array<any> | null, disallowedSources?: Array<any> | null, campaigns?: Array<any> | null, createdAt: any, updatedAt: any, deletedAt?: any | null };
 
@@ -4398,16 +4398,13 @@ export const __StatItemFragmentDoc = gql`
     text
   }
   bidPrice
+  revenue
   requests
   impressions
   views
   directs
   clicks
-  keys {
-    key
-    value
-    text
-  }
+  bids
   wins
   skips
   nobids
@@ -6981,61 +6978,6 @@ export type ListDeviceModelsQueryHookResult = ReturnType<typeof useListDeviceMod
 export type ListDeviceModelsLazyQueryHookResult = ReturnType<typeof useListDeviceModelsLazyQuery>;
 export type ListDeviceModelsSuspenseQueryHookResult = ReturnType<typeof useListDeviceModelsSuspenseQuery>;
 export type ListDeviceModelsQueryResult = Apollo.QueryResult<ListDeviceModelsQuery, ListDeviceModelsQueryVariables>;
-export const StatisticsDocument = gql`
-    query Statistics($filter: StatisticAdListFilter = null, $group: [StatisticKey!]!, $order: [StatisticAdKeyOrder!] = null, $page: Page = null) {
-  result: statisticAdList(
-    filter: $filter
-    order: $order
-    group: $group
-    page: $page
-  ) {
-    totalCount
-    list {
-      ...__statItem
-    }
-    pageInfo {
-      ...__pageInfo
-    }
-  }
-}
-    ${__StatItemFragmentDoc}
-${__PageInfoFragmentDoc}`;
-
-/**
- * __useStatisticsQuery__
- *
- * To run a query within a React component, call `useStatisticsQuery` and pass it any options that fit your needs.
- * When your component renders, `useStatisticsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useStatisticsQuery({
- *   variables: {
- *      filter: // value for 'filter'
- *      group: // value for 'group'
- *      order: // value for 'order'
- *      page: // value for 'page'
- *   },
- * });
- */
-export function useStatisticsQuery(baseOptions: Apollo.QueryHookOptions<StatisticsQuery, StatisticsQueryVariables> & ({ variables: StatisticsQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<StatisticsQuery, StatisticsQueryVariables>(StatisticsDocument, options);
-      }
-export function useStatisticsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<StatisticsQuery, StatisticsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<StatisticsQuery, StatisticsQueryVariables>(StatisticsDocument, options);
-        }
-export function useStatisticsSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<StatisticsQuery, StatisticsQueryVariables>) {
-          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<StatisticsQuery, StatisticsQueryVariables>(StatisticsDocument, options);
-        }
-export type StatisticsQueryHookResult = ReturnType<typeof useStatisticsQuery>;
-export type StatisticsLazyQueryHookResult = ReturnType<typeof useStatisticsLazyQuery>;
-export type StatisticsSuspenseQueryHookResult = ReturnType<typeof useStatisticsSuspenseQuery>;
-export type StatisticsQueryResult = Apollo.QueryResult<StatisticsQuery, StatisticsQueryVariables>;
 export const ListHistoryDocument = gql`
     query ListHistory($page: Int! = 0, $size: Int! = 10, $filter: HistoryActionListFilter = null, $order: HistoryActionListOrder = null) {
   result: listHistory(
@@ -7098,6 +7040,61 @@ export type ListHistoryQueryHookResult = ReturnType<typeof useListHistoryQuery>;
 export type ListHistoryLazyQueryHookResult = ReturnType<typeof useListHistoryLazyQuery>;
 export type ListHistorySuspenseQueryHookResult = ReturnType<typeof useListHistorySuspenseQuery>;
 export type ListHistoryQueryResult = Apollo.QueryResult<ListHistoryQuery, ListHistoryQueryVariables>;
+export const StatisticsDocument = gql`
+    query Statistics($filter: StatisticAdListFilter = null, $group: [StatisticKey!]!, $order: [StatisticAdKeyOrder!] = null, $page: Page = null) {
+  result: statisticAdList(
+    filter: $filter
+    order: $order
+    group: $group
+    page: $page
+  ) {
+    totalCount
+    list {
+      ...__statItem
+    }
+    pageInfo {
+      ...__pageInfo
+    }
+  }
+}
+    ${__StatItemFragmentDoc}
+${__PageInfoFragmentDoc}`;
+
+/**
+ * __useStatisticsQuery__
+ *
+ * To run a query within a React component, call `useStatisticsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useStatisticsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useStatisticsQuery({
+ *   variables: {
+ *      filter: // value for 'filter'
+ *      group: // value for 'group'
+ *      order: // value for 'order'
+ *      page: // value for 'page'
+ *   },
+ * });
+ */
+export function useStatisticsQuery(baseOptions: Apollo.QueryHookOptions<StatisticsQuery, StatisticsQueryVariables> & ({ variables: StatisticsQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<StatisticsQuery, StatisticsQueryVariables>(StatisticsDocument, options);
+      }
+export function useStatisticsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<StatisticsQuery, StatisticsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<StatisticsQuery, StatisticsQueryVariables>(StatisticsDocument, options);
+        }
+export function useStatisticsSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<StatisticsQuery, StatisticsQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<StatisticsQuery, StatisticsQueryVariables>(StatisticsDocument, options);
+        }
+export type StatisticsQueryHookResult = ReturnType<typeof useStatisticsQuery>;
+export type StatisticsLazyQueryHookResult = ReturnType<typeof useStatisticsLazyQuery>;
+export type StatisticsSuspenseQueryHookResult = ReturnType<typeof useStatisticsSuspenseQuery>;
+export type StatisticsQueryResult = Apollo.QueryResult<StatisticsQuery, StatisticsQueryVariables>;
 export const GetZoneDocument = gql`
     query GetZone($id: ID64!) {
   result: zone(ID: $id) {

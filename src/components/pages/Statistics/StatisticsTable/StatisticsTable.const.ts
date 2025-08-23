@@ -32,50 +32,62 @@ export const tableGroupFields = [
 export const tableFields = [
   {
     name: 'Revenue',
-    value: 'REVENUE',
+    value: 'revenue',
+    type: 'money',
   },
   {
     name: 'Imp',
     value: 'impressions',
+    type: 'int',
   },
   {
     name: 'Views',
     value: 'views',
+    type: 'int',
   },
   {
     name: 'Directs',
     value: 'directs',
+    type: 'int',
   },
   {
     name: 'Clicks',
     value: 'clicks',
+    type: 'int',
   },
   {
     name: 'Bid',
-    value: 'BIDS',
+    value: 'bids',
+    type: 'int',
   },
   {
     name: 'Skips',
     value: 'skips',
+    type: 'int',
   },
   {
     name: 'Nobids',
     value: 'nobids',
+    type: 'int',
   },
   {
     name: 'Errors',
     value: 'errors',
+    type: 'int',
   },
   {
     name: 'CTR',
     value: 'CTR',
+    type: 'float.2',
   },
   {
     name: 'eCPM',
     value: 'eCPM',
+    type: 'float.2',
   },
   {
     name: 'eCPC',
     value: 'eCPC',
+    type: 'float.2',
   },
 ];

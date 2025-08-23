@@ -108,13 +108,31 @@ function StatisticsTable({
                             : groupField?.text || groupField?.value
                         )}
                   </td>
-                  {tableFields.map(({ name, value }) => {
+                  {tableFields.map(({ name, value, type }) => {
                     const keyValue = stats[value as StatisticCustomAdItemKeys] ?? 0;
                     const toFixed = statisticValueToFix[value];
-                    const fieldValue = Number.isNaN(toFixed) || !keyValue ? keyValue : keyValue.toFixed(toFixed);
+                    let fieldValue = Number.isNaN(toFixed) || !keyValue ? keyValue : keyValue.toFixed(toFixed);
                     const hasSeparator = tableFieldsSeparator.has(value);
                     const separatorClassName = hasSeparator ? 'border-r-2' : '';
                     const classNames = `text-right ${separatorClassName}`;
+
+                    if (['money', 'int', 'float.2'].includes(type)) {
+                      let nm = Number(fieldValue);
+                      if (Number.isNaN(nm)) {
+                        nm = 0.0;
+                      }
+                      switch (type) {
+                        case 'money':
+                          fieldValue = Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(nm);
+                          break;
+                        case 'float.2': // 2 numbers after decimal point
+                          fieldValue = Intl.NumberFormat('en-US', { maximumFractionDigits: 2, minimumFractionDigits: 2 }).format(nm);
+                          break;
+                        case 'int':
+                          fieldValue = Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(nm);
+                          break;
+                      }
+                    }
 
                     return (
                       <td key={name} className={classNames}>
@@ -128,6 +146,14 @@ function StatisticsTable({
           </tbody>
         </table>
       </Card>
+      <br />
+      <Pagination
+        current={pageInfo?.page}
+        total={pageInfo?.count}
+        size={`${pageSize}`}
+        onChangeSize={onPageSizeChange}
+        onChange={onPageChange}
+      />
     </div>
   );
 }

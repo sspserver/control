@@ -554,49 +554,6 @@ query ListDeviceModels(
 }
 
 ###############################################################################
-## Statistics
-###############################################################################
-
-fragment __statItem on StatisticAdItem {
-  keys {
-    key
-    value
-    text
-  }
-  bidPrice
-  requests
-  impressions
-  views
-  directs
-  clicks
-  keys {
-   key
-   value
-   text
-  }
-  wins
-  skips
-  nobids
-  errors
-  CTR
-  eCPM
-  eCPC
-}
-
-query Statistics(
-  $filter: StatisticAdListFilter = null,
-  $group: [StatisticKey!]!,
-  $order: [StatisticAdKeyOrder!] = null,
-  $page: Page = null
-) {
-  result: statisticAdList(filter: $filter, order: $order, group: $group, page: $page) {
-    totalCount
-    list { ...__statItem }
-    pageInfo { ...__pageInfo }
-  }
-}
-
-###############################################################################
 ## History
 ###############################################################################
 
