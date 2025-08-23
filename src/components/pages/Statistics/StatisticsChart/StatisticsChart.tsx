@@ -22,7 +22,7 @@ function StatisticsChart({ data }: StatisticsChartProps) {
   } = useStatisticsFilterStore();
   const changeLineChatFieldsHandler = (value: (string | number)[]) => storeLineFieldsHandler(value);
   const isEmptyData = !data.length;
-  const [firstDataItem = {}] = data ?? [];
+  const [firstDataItem = {}] = (data ?? []).filter(item => !!item && !!item.groupByKey) || [];
   const groupByKey = (firstDataItem.groupByKey || undefined) as StatisticKey;
 
   // Determine chart type and grouping
@@ -72,10 +72,10 @@ function StatisticsChart({ data }: StatisticsChartProps) {
                 tick={(event) => {
                   const { y, payload: { value }, index } = event;
                   const item = data[index] || {};
-                  const key = item.keys?.find(({ key }) => key === item.groupByKey);
+                  const key = item.keys?.find(({ key }) => key === item.groupByKey || (!item.groupByKey && !!key));
                   const itemValue = item.groupByKey === StatisticKey.Datemark
                     ? format(value || '2000-01-01', 'dd.MM.y')
-                    : key?.text || key?.value || value || '';
+                    : key?.text || key?.value || value || '?';
                   const yIndent = y + 5;
 
                   return (<Text {...event} y={yIndent} className="text-xs">{itemValue}</Text>);
@@ -86,7 +86,6 @@ function StatisticsChart({ data }: StatisticsChartProps) {
               hide={isEmptyData}
               tick={(event) => {
                 const { payload: { value } } = event;
-
                 return (<Text {...event} className="text-xs">{value}</Text>);
               }}
             />
