@@ -118,6 +118,8 @@ function useStatistics() {
 
     return acc;
   }, []) ?? [], [responseStatisticsData?.result?.list]);
+
+  // Pagination info
   const pageInfo = responseStatisticsData?.result?.pageInfo;
 
   useEffect(() => {

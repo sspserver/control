@@ -73,6 +73,7 @@ function Statistics() {
         </div>
       </div>
 
+      {/* Advanced Filters */}
       <div className="pt-4">
         <div className="flex justify-between gap-4 pb-4 items-end">
           <Button.Root size="sm" variant="outlined" onClick={clickButtonAdvancedFilterHandler}>
@@ -158,7 +159,11 @@ function Statistics() {
           </Fragment>
         )}
       </div>
+
+      {/* Chart */}
       <StatisticsChart data={dataStatistic} />
+
+      {/* Table */}
       {!!dataStatistic.length && (
         <StatisticsTable
           groupByField={groupBy[0] || StatisticKey.Datemark}
