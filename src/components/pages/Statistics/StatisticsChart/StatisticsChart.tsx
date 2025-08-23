@@ -72,8 +72,8 @@ function StatisticsChart({ data }: StatisticsChartProps) {
                 tick={(event) => {
                   const { y, payload: { value }, index } = event;
                   const item = data[index] || {};
-                  const key = item.keys?.find(({ key }) => key === groupByKey);
-                  const itemValue = groupByKey === StatisticKey.Datemark
+                  const key = item.keys?.find(({ key }) => key === item.groupByKey);
+                  const itemValue = item.groupByKey === StatisticKey.Datemark
                     ? format(value || '2000-01-01', 'dd.MM.y')
                     : key?.text || key?.value || value || '';
                   const yIndent = y + 5;
