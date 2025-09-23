@@ -23,6 +23,7 @@ function Statistics() {
     orderDirection,
     orderField,
     dataStatistic,
+    dataStatisticChart,
     endMonth,
     isAdvancedFilterOpen,
     date,
@@ -42,8 +43,6 @@ function Statistics() {
 
   return (
     <div>
-
-      {/* Group By Tabs */}
       <div className="mt-4">
         <div className="border-b border-gray-200 dark:border-gray-700">
           <div className="flex flex-wrap gap-0 -mb-px">
@@ -72,47 +71,41 @@ function Statistics() {
           </div>
         </div>
       </div>
-
-      {/* Advanced Filters */}
       <div className="pt-4">
-        <div className="flex justify-between gap-4 pb-4 items-end">
-          <Button.Root size="sm" variant="outlined" onClick={clickButtonAdvancedFilterHandler}>
-            <Button.Icon type="only">
-              {isAdvancedFilterOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
-            </Button.Icon>
-          </Button.Root>
-          <div>
-            <div className="pb-2">
-              Date
+        <div className="flex justify-between gap-4 pb-4 items-end max-sm:flex-wrap">
+          <div className="flex  justify-between gap-4 items-end max-sm:w-full">
+            <div>
+              <Button.Root size="sm" variant="outlined" onClick={clickButtonAdvancedFilterHandler}>
+                <Button.Icon type="only">
+                  {isAdvancedFilterOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+                </Button.Icon>
+              </Button.Root>
             </div>
-            <CustomDatePicker
-              fancy
-              selected={date}
-              mode="range"
-              // onChangeRange={() => {}}
-              // rangeOption={calendarRangeOption}
-              // onChangeRange={selectDateCalendarHandler}
-              onSelect={selectDateCalendarHandler}
-              endMonth={endMonth}
-              classNameButton="max-sm:w-full"
-            />
+            <div className="flex-1">
+              <div className="pb-2">
+                Date
+              </div>
+              <CustomDatePicker
+                fancy
+                selected={date}
+                mode="range"
+                // onChangeRange={() => {}}
+                // rangeOption={calendarRangeOption}
+                // onChangeRange={selectDateCalendarHandler}
+                onSelect={selectDateCalendarHandler}
+                endMonth={endMonth}
+                classNameButton="max-sm:w-full"
+              />
+            </div>
           </div>
-          {/* <div className="flex-1 max-w-sm">
-            <Multiselect
-              label="Group by"
-              data={groupByData}
-              values={groupBy}
-              onChange={selectGroupByChangeHandler}
-            />
-          </div> */}
-          <div className="flex-1  max-w-full">
+          <div className="flex-1 w-full">
             <RTBSourceSelect
               values={statisticFilterData?.[StatisticKey.SourceId]}
               label="RTB"
               onChange={changeStatisticFilterData(StatisticKey.SourceId)}
             />
           </div>
-          <div>
+          <div className="order-last">
             <ButtonLoading
               loading={isStatisticsDataLoading}
               className="inline-block"
@@ -160,10 +153,8 @@ function Statistics() {
         )}
       </div>
 
-      {/* Chart */}
-      <StatisticsChart data={dataStatistic} />
+      <StatisticsChart data={dataStatisticChart} />
 
-      {/* Table */}
       {!!dataStatistic.length && (
         <StatisticsTable
           groupByField={groupBy[0] || StatisticKey.Datemark}

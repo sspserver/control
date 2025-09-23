@@ -15,30 +15,33 @@ type StatisticsChartProps = {
   data: StatisticsCustomAd;
 };
 
+const defaultLineFields = ['requests'];
+
 function StatisticsChart({ data }: StatisticsChartProps) {
   const {
     lineFields,
     storeLineFieldsHandler,
   } = useStatisticsFilterStore();
-  const changeLineChatFieldsHandler = (value: (string | number)[]) => storeLineFieldsHandler(value);
+  const changeLineChatFieldsHandler = (value: (string | number)[]) => {
+    const newValue = value.length ? value : defaultLineFields;
+    storeLineFieldsHandler(newValue);
+  };
   const isEmptyData = !data.length;
   const [firstDataItem = {}] = (data ?? []).filter(item => !!item && !!item.keys?.length
     && !!item.groupByKey && item.groupByKey !== StatisticKey.Undefined) || [];
   const groupByKey = (firstDataItem.groupByKey || undefined) as StatisticKey;
-
-  // Determine chart type and grouping
   const isDateGrouping = groupByKey === StatisticKey.Datemark;
   const isCountryGrouping = groupByKey === StatisticKey.Country;
   const ChartComponent = isDateGrouping ? LineChart : BarChart;
+  const lineFieldsWithDefault = lineFields.length ? lineFields : defaultLineFields;
 
-  // If country grouping, show world map
   if (isCountryGrouping) {
     return (
       <div>
         <Multiselect
           label=""
           data={listChatFields}
-          values={lineFields}
+          values={lineFieldsWithDefault}
           onChange={changeLineChatFieldsHandler}
         />
         <div className="mt-4">
@@ -90,7 +93,12 @@ function StatisticsChart({ data }: StatisticsChartProps) {
                 return (<Text {...event} className="text-xs">{value}</Text>);
               }}
             />
-            {!isEmptyData && (<Tooltip content={<CustomTooltip payload={[]} active fancy label="keys" className="px-2 py-2 " />} />)}
+            {!isEmptyData && (
+              <Tooltip
+                cursor={{ fill: 'transparent' }}
+                content={<CustomTooltip isDate={isDateGrouping} payload={[]} active fancy label="keys" className="px-2 py-2" />}
+              />
+            )}
             {!isEmptyData && (<Legend />)}
             <Customized
               component={() => {

@@ -1,4 +1,3 @@
-import type { StatisticsCustomAd } from '@/types/statistic';
 import {
   defaultStoredFields,
   storeNameFromDate,
@@ -23,13 +22,4 @@ export function getStatisticsFilterDataFromLocalStorage() {
     groupBy,
     lineFields,
   };
-}
-
-export function getHasStatisticDataField(
-  field: string,
-  data?: StatisticsCustomAd,
-): boolean {
-  const [firstDataItem = {}] = data ?? [];
-
-  return Object.prototype.hasOwnProperty.call(firstDataItem, field);
 }

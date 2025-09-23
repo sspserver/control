@@ -18,5 +18,8 @@ const defaultGroupBy: StatisticKey[] = [StatisticKey.Datemark];
 export const defaultStoredFields = {
   ...defaultFilterDate,
   groupBy: defaultGroupBy,
-  lineFields: [],
+  lineFields: [
+    'impressions',
+    'revenue',
+  ],
 };

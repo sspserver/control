@@ -42,7 +42,7 @@ function UserDropdown() {
                   <Button.Icon size="xs" type="leading">
                     <Settings />
                   </Button.Icon>
-                  <Button.Label>Manage</Button.Label>
+                  <Button.Label>Settings</Button.Label>
                 </Button.Root>
                 <Button.Root className="bg-gray-50" variant="outlined" size="xs" intent="gray" onClick={clickSignOutButtonHandler}>
                   <Button.Icon size="xs" type="leading">
