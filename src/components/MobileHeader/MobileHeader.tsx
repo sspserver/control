@@ -17,9 +17,8 @@ function MobileHeader() {
     <div className={className}>
       <NextLink href="/">
         <Logo
-          width="32"
-          height="32"
-          className="drum"
+          title="SSP Server"
+          className="drum size-8"
         />
       </NextLink>
 

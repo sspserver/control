@@ -4,6 +4,7 @@ import MobileBottomNavigation from '@components/MobileBottomNavigation/MobileBot
 import MobileHeader from '@components/MobileHeader';
 import UserDropdown from '@components/UserDropdown/UserDropdown';
 import NextLink from 'next/link';
+
 import React, { Fragment } from 'react';
 
 type RootLayoutProps = Readonly<{
@@ -22,11 +23,10 @@ function RootLayout({
         <div className="mx-auto max-w-6xl px-5">
           <div className="flex justify-between items-stretchs max-sm:h-16">
             <div className="flex items-center gap-4 py-3">
-              <NextLink href="/" hidden className="sm:block">
+              <NextLink href="/" hidden className="sm:block accent-primary-50">
                 <Logo
-                  width="44"
-                  height="44"
-                  className="drum"
+                  title="SSP Server"
+                  className="drum size-10"
                 />
               </NextLink>
             </div>

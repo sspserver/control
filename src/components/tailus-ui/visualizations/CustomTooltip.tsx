@@ -3,7 +3,7 @@ import type { VTooltipProps as TooltipVariants } from '@tailus/themer';
 import { statisticValueToFix } from '@components/pages/Statistics/Statistics.const';
 import { vTooltip as tooltip } from '@tailus/themer';
 import { format } from 'date-fns';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 type PayloadEntry = {
   name: string;
@@ -16,6 +16,7 @@ type CustomTooltipProps = {
   active: boolean;
   payload: PayloadEntry[];
   label: string;
+  isDate?: boolean;
 } & React.HTMLAttributes<HTMLDivElement> & TooltipVariants;
 
 const { root, title, separator, content, entry: entryTheme, entryValue, entryNameContainer, entryName, entryIndicator } = tooltip({ fancy: true });
@@ -26,14 +27,21 @@ export const CustomTooltip: React.FC<CustomTooltipProps> = ({
   label,
   mixed,
   fancy,
+  isDate,
   className,
 }) => {
   if (mixed && fancy) {
     throw new Error('Tooltip cannot be both mixed and fancy');
   }
   const [firstPayload] = payload || [];
-  const eventDate = firstPayload?.payload?.date ?? '';
-  const tooltipLabel = eventDate ? format(eventDate, 'LLL dd, y') : label;
+  const eventDate = isDate ? firstPayload?.payload?.date ?? '' : firstPayload?.payload?.keys?.[0]?.text;
+  const tooltipLabel = useMemo(() => {
+    if (isDate) {
+      return eventDate ? format(new Date(eventDate), 'LLL dd, y') : label;
+    }
+
+    return eventDate ?? label;
+  }, [eventDate, isDate, label]);
 
   if (active && payload && payload.length) {
     return (

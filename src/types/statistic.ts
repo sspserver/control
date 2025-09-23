@@ -1,4 +1,4 @@
-import type { Ordering, StatisticAdItem, StatisticItemKey, StatisticKey } from '@/generated/graphql';
+import type { StatisticAdItem, StatisticItemKey, StatisticKey } from '@/generated/graphql';
 
 export type StatisticCustomAdItem = Partial<StatisticAdItem> & {
   date?: string;
@@ -17,5 +17,3 @@ export type TablePagination = {
   startPage: number;
   size: number;
 };
-
-export type TableOrder = Record<string, Ordering>;
