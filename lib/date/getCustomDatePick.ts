@@ -4,7 +4,9 @@ export enum CustomDateOption {
   Yesterday = 'yesterday',
   LastWeek = 'last-week',
   LastMonth = 'last-month',
+  CurrentMonth = 'current-month',
   Last3Months = 'last-3-months',
+  Last7Days = 'last-7-days',
 }
 
 export const customDateSelectOptions = [
@@ -21,6 +23,10 @@ export const customDateSelectOptions = [
     value: CustomDateOption.Yesterday,
   },
   {
+    name: 'Current Month',
+    value: CustomDateOption.CurrentMonth,
+  },
+  {
     name: 'Last Week',
     value: CustomDateOption.LastWeek,
   },
@@ -29,7 +35,11 @@ export const customDateSelectOptions = [
     value: CustomDateOption.LastMonth,
   },
   {
-    name: 'Last 3 Months',
+    name: 'Last 7 days',
+    value: CustomDateOption.Last7Days,
+  },
+  {
+    name: 'Last 30 days',
     value: CustomDateOption.Last3Months,
   },
   // {
@@ -60,15 +70,23 @@ export function getCustomDatePick(value: string) {
       from = to = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1);
       break;
     case CustomDateOption.LastWeek:
-      from = new Date(today.getFullYear(), today.getMonth(), today.getDate() - daysSinceMonday);
-      to = today;
+      from = new Date(today.getFullYear(), today.getMonth(), today.getDate() - daysSinceMonday - 7);
+      to = new Date(today.getFullYear(), today.getMonth(), today.getDate() - daysSinceMonday - 1);
       break;
     case CustomDateOption.LastMonth:
+      from = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+      to = new Date(today.getFullYear(), today.getMonth(), 0);
+      break;
+    case CustomDateOption.CurrentMonth:
       from = new Date(today.getFullYear(), today.getMonth(), 1);
       to = today;
       break;
     case CustomDateOption.Last3Months:
-      from = new Date(today.getFullYear(), today.getMonth() - 3, today.getDate());
+      from = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 90);
+      to = today;
+      break;
+    case CustomDateOption.Last7Days:
+      from = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
       to = today;
       break;
     case 'last-12-months':
