@@ -1,5 +1,5 @@
-import type { ActiveStatus } from '@/generated/graphql';
 import type React from 'react';
+import type { ActiveStatus } from '@/generated/graphql';
 
 export type StatisticFilterDateType = {
   from: Date | undefined;

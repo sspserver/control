@@ -1,5 +1,5 @@
-import type { StatisticCustomAdItem } from '@/types/statistic';
 import type { VTooltipProps as TooltipVariants } from '@tailus/themer';
+import type { StatisticCustomAdItem } from '@/types/statistic';
 import { statisticValueToFix } from '@components/pages/Statistics/Statistics.const';
 import { vTooltip as tooltip } from '@tailus/themer';
 import { format } from 'date-fns';

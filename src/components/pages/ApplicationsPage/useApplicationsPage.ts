@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useMemo } from 'react';
 import {
   Ordering,
   StatisticCondition,
@@ -6,7 +7,6 @@ import {
   useListApplicationsQuery,
   useStatisticsLazyQuery,
 } from '@/generated/graphql';
-import { useCallback, useEffect, useMemo } from 'react';
 import useStatisticFilter from '../../StatisticFilter/StatisticFilterProvider/useStatisticFilter';
 
 function useApplicationsPage() {

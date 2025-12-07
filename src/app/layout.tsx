@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from 'next';
 
-import authOptions from '@/app/api/auth/[...nextauth]/options';
-
-import AppProviders from '@/components/AppProviders';
 import LoadingNavigateBar from '@components/LoadingNavigateBar';
+
 import { getServerSession } from 'next-auth';
 import localFont from 'next/font/local';
 import React from 'react';
+import authOptions from '@/app/api/auth/[...nextauth]/options';
+import AppProviders from '@/components/AppProviders';
 import './globals.css';
 
 // Load Geist font

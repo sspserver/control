@@ -36,17 +36,17 @@ function useTrafficRouteActions(id: string, pause: boolean) {
     onCompleted: updateRtbSourceCacheStrategy,
   });
   const [runTrafficRouter, { loading: isRunTrafficRouterLoading }]
-        = useMutation(gqlTrafficRoutersRunMutation, {
-          fetchPolicy: 'network-only',
-          errorPolicy: 'all',
-          onCompleted: updateRtbSourceCacheStrategy,
-        });
+    = useMutation(gqlTrafficRoutersRunMutation, {
+      fetchPolicy: 'network-only',
+      errorPolicy: 'all',
+      onCompleted: updateRtbSourceCacheStrategy,
+    });
   const [pauseTrafficRouter, { loading: isPauseTrafficRouterLoading }]
-      = useMutation(gqlTrafficRoutersPauseMutation, {
-        fetchPolicy: 'network-only',
-        errorPolicy: 'all',
-        onCompleted: updateRtbSourceCacheStrategy,
-      });
+    = useMutation(gqlTrafficRoutersPauseMutation, {
+      fetchPolicy: 'network-only',
+      errorPolicy: 'all',
+      onCompleted: updateRtbSourceCacheStrategy,
+    });
   const clickPlayPauseButtonHandler = async () => {
     const variables = { variables: { id } };
 

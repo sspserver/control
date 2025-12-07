@@ -6,6 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
+    "eslint-fix-errors": "eslint . --fix --quiet",
     "lint": "next lint",
     "gql-gen": "DOTENV_CONFIG_PATH=./.env.development graphql-codegen --config codegen.yml -r dotenv/config",
     "eslint-fix": "eslint . --fix"

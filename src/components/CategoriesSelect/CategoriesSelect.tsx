@@ -1,8 +1,8 @@
 import type { SelectProps } from '@/components/Select/Select';
-import useCategoriesSelect from '@/components/CategoriesSelect/useCategoriesSelect';
-
 import Multiselect from '@tailus-ui/Multiselect';
+
 import React from 'react';
+import useCategoriesSelect from '@/components/CategoriesSelect/useCategoriesSelect';
 
 type CategoriesSelectProps = {
   values: (number | string)[];

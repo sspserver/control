@@ -1,11 +1,11 @@
 import type { FormikHelpers } from 'formik/dist/types';
 import type { AccountFormState } from './AccountForm.types';
 
-import { useGetAccountQuery, useUpdateAccountMutation } from '@/generated/graphql';
 import { useToastProviderContext } from '@components/Toast';
 import { extractQLErrorFromNetworkError } from '@lib/errors/extractQLErrorFromNetworkError';
 import graphQLErrorToMap from '@lib/errors/graphQLErrorToMap';
 import { useSession } from 'next-auth/react';
+import { useGetAccountQuery, useUpdateAccountMutation } from '@/generated/graphql';
 import { toastSuccessMessage } from './AccountForm.const';
 
 function useAccountForm() {

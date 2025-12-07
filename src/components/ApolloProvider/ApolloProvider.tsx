@@ -1,7 +1,7 @@
 import type { Session } from 'next-auth';
-import useApolloProvider from '@/components/ApolloProvider/useApolloProvider';
 import { ApolloNextAppProvider } from '@apollo/client-integration-nextjs';
 import React from 'react';
+import useApolloProvider from '@/components/ApolloProvider/useApolloProvider';
 
 type ApolloNextAppProviderProps = {
   children: React.ReactNode;

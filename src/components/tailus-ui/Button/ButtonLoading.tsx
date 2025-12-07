@@ -17,7 +17,7 @@ function ButtonLoading({ loading, children, className, ...props }: ButtonIconPro
         <motion.div
           key="spinner"
           transition={{ type: 'spring', bounce: 0.25, duration: 0.4 }}
-          animate={{ type: 'spring', y: loading ? 0 : -30, opacity: 1 }}
+          animate={{ y: loading ? 0 : -30, opacity: 1 }}
           initial={{ y: -30, opacity: 0 }}
           exit={{ y: -30, opacity: 0 }}
           className="absolute inset-0 flex items-center justify-center"

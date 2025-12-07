@@ -1,5 +1,5 @@
-import { useListCategoriesQuery } from '@/generated/graphql';
 import { useMemo } from 'react';
+import { useListCategoriesQuery } from '@/generated/graphql';
 
 function useCategoriesSelect() {
   const { data: listCategoriesResponse, loading: isListCategoriesLoading } = useListCategoriesQuery(

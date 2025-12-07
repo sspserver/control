@@ -1,12 +1,12 @@
-import type { Application, UpdateZoneMutation } from '@/generated/graphql';
 import type { ApolloCache, FetchResult } from '@apollo/client';
 import type { FormikHelpers } from 'formik/dist/types';
 import type { AdUnitCreateFormState } from './AdUnitCreateForm.types';
-import { useCreateZoneMutation, useGetZoneQuery, useUpdateZoneMutation } from '@/generated/graphql';
+import type { Application, UpdateZoneMutation } from '@/generated/graphql';
 import { useToastProviderContext } from '@components/Toast';
 import { extractQLErrorFromNetworkError } from '@lib/errors/extractQLErrorFromNetworkError';
 import graphQLErrorToMap from '@lib/errors/graphQLErrorToMap';
 import { useParams } from 'next/navigation';
+import { useCreateZoneMutation, useGetZoneQuery, useUpdateZoneMutation } from '@/generated/graphql';
 import { toastSuccessMessage } from './AdUnitCreateForm.const';
 
 function useAdUnitCreateForm(onSubmit?: () => void) {

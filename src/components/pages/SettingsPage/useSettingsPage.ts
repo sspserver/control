@@ -1,5 +1,5 @@
-import { useGetAccountQuery } from '@/generated/graphql';
 import { useSession } from 'next-auth/react';
+import { useGetAccountQuery } from '@/generated/graphql';
 
 function useSettingsPage() {
   const { data } = useSession();

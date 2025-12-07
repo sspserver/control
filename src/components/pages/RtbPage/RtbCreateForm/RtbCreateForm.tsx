@@ -3,7 +3,6 @@ import type {
   RTBCreateFormState,
 } from './RtbCreateForm.types';
 
-import { AnyIPv4IPv6, AnyOnlyExclude } from '@/generated/graphql';
 import AdFormatsSelect from '@components/AdFormatsSelect';
 import BrowsersSelect from '@components/BrowsersSelect';
 import CategoriesSelect from '@components/CategoriesSelect';
@@ -36,6 +35,7 @@ import Tabs from '@tailus-ui/Tabs';
 import Textarea from '@tailus-ui/Textarea';
 import { Formik } from 'formik';
 import React, { Fragment } from 'react';
+import { AnyIPv4IPv6, AnyOnlyExclude } from '@/generated/graphql';
 
 const defaultFormTitle = 'RTB';
 

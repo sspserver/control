@@ -1,8 +1,8 @@
-import type { ListBrowsersQuery } from '@/generated/graphql';
 import type { MultiselectProps } from '@tailus-ui/Multiselect/Multiselect.types';
-import { ActiveStatus, ListBrowsersDocument } from '@/generated/graphql';
+import type { ListBrowsersQuery } from '@/generated/graphql';
 import { useQuery } from '@apollo/client';
 import Multiselect from '@tailus-ui/Multiselect';
+import { ActiveStatus, ListBrowsersDocument } from '@/generated/graphql';
 
 type BrowsersSelectProps = {} & Omit<MultiselectProps, 'data'>;
 

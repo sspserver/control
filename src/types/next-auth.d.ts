@@ -1,6 +1,5 @@
-// src/types/next-auth.d.ts
-import type { CommonAPISessionExt, CommonAPIUser, CommonAPIUserAccount } from '@/types';
 import type { DefaultUser } from 'next-auth/src/core/types';
+import type { CommonAPISessionExt, CommonAPIUser, CommonAPIUserAccount } from '@/types';
 
 declare module 'next-auth/jwt' {
   type JWT = {

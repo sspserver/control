@@ -1,14 +1,9 @@
-import type {
-  RtbSource,
-  UpdateRtbSourceMutation,
-} from '@/generated/graphql';
 import type { ApolloCache, FetchResult } from '@apollo/client';
 import type { FormikHelpers } from 'formik/dist/types';
 import type { RTBCreateFormState } from './RtbCreateForm.types';
-import {
-  useGetRtbSourceQuery,
-  useNewRtbSourceMutation,
-  useUpdateRtbSourceMutation,
+import type {
+  RtbSource,
+  UpdateRtbSourceMutation,
 } from '@/generated/graphql';
 import { getErrorFormTab } from '@components/pages/RtbPage/RtbCreateForm/RtbCreateForm.utils';
 import { useToastProviderContext } from '@components/Toast';
@@ -16,6 +11,11 @@ import { extractQLErrorFromNetworkError } from '@lib/errors/extractQLErrorFromNe
 import graphQLErrorToMap from '@lib/errors/graphQLErrorToMap';
 import { useParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import {
+  useGetRtbSourceQuery,
+  useNewRtbSourceMutation,
+  useUpdateRtbSourceMutation,
+} from '@/generated/graphql';
 import { rtbCreateFormTab, toastSuccessMessage } from './RtbCreateForm.const';
 
 function useRtbCreateForm(onSubmit?: () => void) {

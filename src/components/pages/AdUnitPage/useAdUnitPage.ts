@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useMemo } from 'react';
 import {
   Ordering,
   StatisticCondition,
@@ -6,7 +7,6 @@ import {
   useListZonesQuery,
   useStatisticsLazyQuery,
 } from '@/generated/graphql';
-import { useCallback, useEffect, useMemo } from 'react';
 import useStatisticFilter from '../../StatisticFilter/StatisticFilterProvider/useStatisticFilter';
 
 function useAdUnitPage() {
@@ -36,7 +36,7 @@ function useAdUnitPage() {
     [adUnitList],
   );
   const [getStatistics, { data: responseStatistics }]
-      = useStatisticsLazyQuery();
+    = useStatisticsLazyQuery();
   const loadAdUnitStatistics = useCallback((value: number[], from?: Date, to?: Date) => {
     const today = new Date().toISOString();
     const startDate = from ? from.toISOString() : today;

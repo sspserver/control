@@ -1,8 +1,8 @@
 import type { ToastProps } from '@/components/Toast/Toast';
-import Toast from '@/components/Toast/Toast';
-import { ToastProviderContext } from '@/components/Toast/ToastProvider/ToastProviderContext';
 import TailusToast, { ToastProvider as ToastProviderRoot } from '@tailus-ui/Toast/Toast';
 import React from 'react';
+import Toast from '@/components/Toast/Toast';
+import { ToastProviderContext } from '@/components/Toast/ToastProvider/ToastProviderContext';
 
 type ToastProviderProps = {
   children: React.ReactNode;

@@ -1,7 +1,7 @@
 import type { StatisticAdItem } from '@/generated/graphql';
-import { ActiveStatus } from '@/generated/graphql';
 import CardChart from '@components/CardChart/CardChart';
 import React from 'react';
+import { ActiveStatus } from '@/generated/graphql';
 import AdUnitActions from './AdUnitActions';
 import AdUnitCardSubTitleCode from './AdUnitCardSubTitleCode';
 

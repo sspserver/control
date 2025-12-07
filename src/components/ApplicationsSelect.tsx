@@ -1,9 +1,9 @@
 import type { MultiselectProps } from '@tailus-ui/Multiselect/Multiselect.types';
+import Multiselect from '@tailus-ui/Multiselect';
 import {
   Ordering,
   useListApplicationsQuery,
 } from '@/generated/graphql';
-import Multiselect from '@tailus-ui/Multiselect';
 
 type ApplicationsSelectProps = {} & Omit<MultiselectProps, 'data'>;
 

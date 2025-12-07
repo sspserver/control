@@ -1,9 +1,9 @@
-import type { ListOsQuery } from '@/generated/graphql';
 import type { MultiselectProps } from '@tailus-ui/Multiselect/Multiselect.types';
-import { ListOsDocument, Ordering } from '@/generated/graphql';
+import type { ListOsQuery } from '@/generated/graphql';
 import { useQuery } from '@apollo/client';
 import Multiselect from '@tailus-ui/Multiselect';
 import { useMemo } from 'react';
+import { ListOsDocument, Ordering } from '@/generated/graphql';
 
 type OsSelectProps = {} & Omit<MultiselectProps, 'data'>;
 

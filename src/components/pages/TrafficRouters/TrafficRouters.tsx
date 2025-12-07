@@ -1,4 +1,3 @@
-import { ActiveStatus } from '@/generated/graphql';
 import ColumOrder from '@components/ColumOrder';
 import PageLoadSpinner from '@components/PageLoadSpinner';
 import TrafficRouteActions from '@components/pages/TrafficRouters/TrafficRouteActions/TrafficRouteActions';
@@ -9,6 +8,7 @@ import IndicatorBadge from '@tailus-ui/IndicatorBadge';
 import { Caption, Text } from '@tailus-ui/typography';
 import { format } from 'date-fns';
 import React from 'react';
+import { ActiveStatus } from '@/generated/graphql';
 import TrafficRoutersEmptyState from './TrafficRoutersEmptyState';
 import useTrafficRouters from './useTrafficRouters';
 

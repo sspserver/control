@@ -1,8 +1,8 @@
-import type { ActiveStatus } from '@/generated/graphql';
 import type {
   StatisticFilterDateType,
   StatisticFilterStoredFields,
 } from './StatisticFilterProvider.types';
+import type { ActiveStatus } from '@/generated/graphql';
 import { useEffect, useState } from 'react';
 import {
   defaultFilterField,
