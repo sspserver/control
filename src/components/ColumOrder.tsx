@@ -1,10 +1,10 @@
-import { Ordering } from '@/generated/graphql';
 import ChevronDownIcon from '@heroicons/react/16/solid/ChevronDownIcon';
-
 import ChevronUpIcon from '@heroicons/react/16/solid/ChevronUpIcon';
+
 import Button from '@tailus-ui/Button/Button';
 import classNames from 'classnames';
 import React, { useMemo } from 'react';
+import { Ordering } from '@/generated/graphql';
 
 type ColumOrderProps = {
   children: React.ReactNode;

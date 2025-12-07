@@ -1,14 +1,14 @@
 import type { ApolloCache } from '@apollo/client';
-import {
-  useDeleteApplicationMutation,
-  usePauseApplicationMutation,
-  useRunApplicationMutation,
-} from '@/generated/graphql';
 import { useToastProviderContext } from '@components/Toast';
 import { configPathRoutes } from '@configs/routes';
 import { PauseIcon, PlayIcon } from '@heroicons/react/16/solid';
 import { useRouter } from 'next/navigation';
 import { createElement, useMemo, useState } from 'react';
+import {
+  useDeleteApplicationMutation,
+  usePauseApplicationMutation,
+  useRunApplicationMutation,
+} from '@/generated/graphql';
 
 function useApplicationActions(
   id: string,

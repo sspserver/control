@@ -1,14 +1,14 @@
 import type { ApolloCache } from '@apollo/client';
-import {
-  useActivateZoneMutation,
-  useDeactivateZoneMutation,
-  useDeleteZoneMutation,
-} from '@/generated/graphql';
 import { useToastProviderContext } from '@components/Toast';
 import { configPathRoutes } from '@configs/routes';
 import { PauseIcon, PlayIcon } from '@heroicons/react/16/solid';
 import { useRouter } from 'next/navigation';
 import { createElement, useMemo, useState } from 'react';
+import {
+  useActivateZoneMutation,
+  useDeactivateZoneMutation,
+  useDeleteZoneMutation,
+} from '@/generated/graphql';
 
 function useAdUnitActions(
   id: string,

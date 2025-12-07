@@ -1,7 +1,10 @@
+import type { StatisticFilterDateType } from '@components/StatisticFilter/StatisticFilterProvider/StatisticFilterProvider.types';
 import type { StatisticAdKeyCondition } from '@/generated/graphql';
 import type { StatisticCustomAdItem, StatisticsCustomAd, TablePagination } from '@/types/statistic';
-import type { StatisticFilterDateType } from '@components/StatisticFilter/StatisticFilterProvider/StatisticFilterProvider.types';
 
+import useStatisticsFilterStore from '@components/pages/Statistics/useStatisticsFilterStore';
+import usePaginationControl from '@components/Pagination/usePaginationControl';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   Ordering,
   StatisticCondition,
@@ -9,9 +12,6 @@ import {
   StatisticOrderingKey,
   useStatisticsLazyQuery,
 } from '@/generated/graphql';
-import useStatisticsFilterStore from '@components/pages/Statistics/useStatisticsFilterStore';
-import usePaginationControl from '@components/Pagination/usePaginationControl';
-import { useCallback, useEffect, useMemo, useState } from 'react';
 
 const defaultOrderField = StatisticOrderingKey.Datemark;
 const defaultOrderDirection = Ordering.Desc;

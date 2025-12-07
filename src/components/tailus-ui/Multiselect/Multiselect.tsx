@@ -1,9 +1,7 @@
 import type { MultiselectProps } from '@tailus-ui/Multiselect/Multiselect.types';
 
-import Checkbox from '@/components/Checkbox';
-
-import ButtonSpinner from '@/components/Icons/ButtonSpinner';
 import FormElementErrorLabel from '@components/FormElementErrorLabel';
+
 import { FocusScope } from '@radix-ui/react-focus-scope';
 import { Portal } from '@radix-ui/react-portal';
 import Label from '@tailus-ui/Label';
@@ -12,6 +10,8 @@ import useMultiselect from '@tailus-ui/Multiselect/useMultiselect';
 import { select } from '@tailus/themer';
 import { ChevronsUpDown } from 'lucide-react';
 import * as React from 'react';
+import Checkbox from '@/components/Checkbox';
+import ButtonSpinner from '@/components/Icons/ButtonSpinner';
 import Button from '../Button';
 import {
   Command,

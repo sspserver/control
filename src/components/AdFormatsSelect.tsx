@@ -1,8 +1,8 @@
-import type { ListAdFormatsQuery } from '@/generated/graphql';
 import type { MultiselectProps } from '@tailus-ui/Multiselect/Multiselect.types';
-import { ListAdFormatsDocument } from '@/generated/graphql';
+import type { ListAdFormatsQuery } from '@/generated/graphql';
 import { useQuery } from '@apollo/client';
 import Multiselect from '@tailus-ui/Multiselect';
+import { ListAdFormatsDocument } from '@/generated/graphql';
 
 type AdFormatsSelectProps = {} & Omit<MultiselectProps, 'data'>;
 

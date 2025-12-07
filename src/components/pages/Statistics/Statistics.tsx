@@ -1,18 +1,18 @@
-import {
-  StatisticKey,
-} from '@/generated/graphql';
 import AdFormatsSelect from '@components/AdFormatsSelect';
 import AdUnitSelect from '@components/AdUnitSelect';
 import ApplicationsSelect from '@components/ApplicationsSelect';
 import CountriesSelect from '@components/CountriesSelect';
 import { CustomDatePicker } from '@components/DatePicker/DatePicker';
-
 import StatisticsTable from '@components/pages/Statistics/StatisticsTable/StatisticsTable';
+
 import useStatistics from '@components/pages/Statistics/useStatistics';
 import RTBSourceSelect from '@components/RTBSourceSelect';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid';
 import Button from '@tailus-ui/Button';
 import { Fragment } from 'react';
+import {
+  StatisticKey,
+} from '@/generated/graphql';
 import ButtonLoading from '../../tailus-ui/Button/ButtonLoading';
 import { groupByData } from './Statistics.const';
 import StatisticsChart from './StatisticsChart/StatisticsChart';

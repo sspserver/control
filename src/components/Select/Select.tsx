@@ -1,11 +1,11 @@
 import type { SelectProps as RootSelectProps } from '@radix-ui/react-select';
 import type { TriggerProps } from '@tailus/themer';
-import ButtonSpinner from '@/components/Icons/ButtonSpinner';
 import FormElementErrorLabel from '@components/FormElementErrorLabel';
 import Label from '@tailus-ui/Label';
 import SelectUi from '@tailus-ui/Select';
 import classNames from 'classnames';
 import React from 'react';
+import ButtonSpinner from '@/components/Icons/ButtonSpinner';
 import SelectItem from './SelectItem';
 
 type SelectItemType = {

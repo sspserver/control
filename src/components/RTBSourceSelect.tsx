@@ -1,9 +1,9 @@
 import type { MultiselectProps } from '@tailus-ui/Multiselect/Multiselect.types';
+import Multiselect from '@tailus-ui/Multiselect';
 import {
   Ordering,
   useListRtbSourcesQuery,
 } from '@/generated/graphql';
-import Multiselect from '@tailus-ui/Multiselect';
 
 type RTBSourceSelectProps = {} & Omit<MultiselectProps, 'data'>;
 

@@ -1,6 +1,6 @@
-import { AnyIPv4IPv6, AnyOnlyExclude, AuctionType, RtbRequestFormatType } from '@/generated/graphql';
 import CheckIcon from '@heroicons/react/20/solid/CheckIcon';
 import { createElement } from 'react';
+import { AnyIPv4IPv6, AnyOnlyExclude, AuctionType, RtbRequestFormatType } from '@/generated/graphql';
 
 export const rtbCreateFormTab = {
   main: 'main',

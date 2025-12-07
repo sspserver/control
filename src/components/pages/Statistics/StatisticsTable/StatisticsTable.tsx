@@ -1,13 +1,13 @@
 import type { Ordering, StatisticOrderingKey } from '@/generated/graphql';
 import type { StatisticCustomAdItemKeys, StatisticPageInfo, StatisticsCustomAd } from '@/types/statistic';
 
-import { StatisticKey } from '@/generated/graphql';
 import ColumOrder from '@components/ColumOrder';
 import { statisticValueToFix } from '@components/pages/Statistics/Statistics.const';
 import useStatisticsTable from '@components/pages/Statistics/StatisticsTable/useStatisticsTable';
 import Pagination from '@components/Pagination/Pagination';
 import Card from '@tailus-ui/Card';
 import { format } from 'date-fns';
+import { StatisticKey } from '@/generated/graphql';
 import {
   tableFields,
   tableFieldsSeparator,

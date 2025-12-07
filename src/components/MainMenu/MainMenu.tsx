@@ -1,10 +1,10 @@
 'use client';
 
-import Link from '@/components/Link';
-import { mainMenuItems } from '@/components/MainMenu/MainMenu.const';
 import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
+import Link from '@/components/Link';
+import { mainMenuItems } from '@/components/MainMenu/MainMenu.const';
 
 function MainMenu() {
   const { push } = useRouter();

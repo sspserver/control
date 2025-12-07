@@ -1,8 +1,8 @@
-import type { ListCountriesQuery } from '@/generated/graphql';
 import type { MultiselectProps } from '@tailus-ui/Multiselect/Multiselect.types';
-import { ListCountriesDocument } from '@/generated/graphql';
+import type { ListCountriesQuery } from '@/generated/graphql';
 import { useQuery } from '@apollo/client';
 import Multiselect from '@tailus-ui/Multiselect';
+import { ListCountriesDocument } from '@/generated/graphql';
 
 type CountriesSelectProps = {} & Omit<MultiselectProps, 'data'>;
 

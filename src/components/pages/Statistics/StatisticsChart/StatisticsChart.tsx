@@ -2,13 +2,13 @@
 
 import type { StatisticsCustomAd } from '@/types/statistic';
 
-import { StatisticKey } from '@/generated/graphql';
 import { lineChartColors, listChatFields } from '@components/pages/Statistics/StatisticsChart/StatisticsChart.const';
 import useStatisticsFilterStore from '@components/pages/Statistics/useStatisticsFilterStore';
 import Multiselect from '@tailus-ui/Multiselect';
 import CustomTooltip from '@tailus-ui/visualizations/CustomTooltip';
 import { format } from 'date-fns';
 import { Bar, BarChart, Customized, Legend, Line, LineChart, ResponsiveContainer, Text, Tooltip, XAxis, YAxis } from 'recharts';
+import { StatisticKey } from '@/generated/graphql';
 import { CountryWorldMap } from './StatisticsWorldMapChart';
 
 type StatisticsChartProps = {

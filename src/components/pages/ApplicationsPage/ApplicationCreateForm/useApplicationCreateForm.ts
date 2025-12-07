@@ -1,21 +1,21 @@
-import type {
-  Application,
-  UpdateApplicationMutation,
-} from '@/generated/graphql';
 import type { ApolloCache, FetchResult } from '@apollo/client';
 import type { FormikHelpers } from 'formik/dist/types';
 import type {
   ApplicationCreateFormState,
 } from './ApplicationCreateForm.types';
-import {
-  useCreateApplicationMutation,
-  useGetApplicationQuery,
-  useUpdateApplicationMutation,
+import type {
+  Application,
+  UpdateApplicationMutation,
 } from '@/generated/graphql';
 import { useToastProviderContext } from '@components/Toast';
 import { extractQLErrorFromNetworkError } from '@lib/errors/extractQLErrorFromNetworkError';
 import graphQLErrorToMap from '@lib/errors/graphQLErrorToMap';
 import { useParams } from 'next/navigation';
+import {
+  useCreateApplicationMutation,
+  useGetApplicationQuery,
+  useUpdateApplicationMutation,
+} from '@/generated/graphql';
 import { toastSuccessMessage } from './ApplicationCreateForm.const';
 
 function useApplicationCreateForm(onSubmit?: () => void) {

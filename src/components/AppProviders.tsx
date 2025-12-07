@@ -2,10 +2,10 @@
 
 import type { Session } from 'next-auth';
 
-import useServiceWorkerRegister from '@/hooks/useServiceWorkerRegister';
 import { StatisticFilterProvider } from '@components/StatisticFilter';
 import { SessionProvider } from 'next-auth/react';
 import React from 'react';
+import useServiceWorkerRegister from '@/hooks/useServiceWorkerRegister';
 import ApolloProvider from './ApolloProvider';
 import { ToastProvider } from './Toast';
 

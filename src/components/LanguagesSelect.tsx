@@ -1,6 +1,6 @@
-import type { Lang } from '@/generated/graphql';
-
 import type { MultiselectProps } from '@tailus-ui/Multiselect/Multiselect.types';
+
+import type { Lang } from '@/generated/graphql';
 import { useQuery } from '@apollo/client';
 import { gqlLanguagesQuery } from '@lib/graphql/queries/languages';
 import Multiselect from '@tailus-ui/Multiselect';

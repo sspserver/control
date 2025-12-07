@@ -9,8 +9,8 @@ const ToastProvider = ToastPrimitive.Provider;
 const ToastAction = ToastPrimitive.Action;
 const ToastClose = ToastPrimitive.Close;
 
-export type ToastRootProps = React.ComponentProps<typeof ToastPrimitive.Root> &
-  ToastProps & {
+export type ToastRootProps = React.ComponentProps<typeof ToastPrimitive.Root>
+  & ToastProps & {
     ref?: React.RefObject<React.ComponentRef<typeof ToastPrimitive.Root>>;
   };
 

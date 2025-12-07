@@ -1,9 +1,9 @@
 import type { TrafficRouterConnection } from '@/generated/graphql';
-import { Ordering } from '@/generated/graphql';
 import { useLazyQuery } from '@apollo/client';
 import usePaginationControl from '@components/Pagination/usePaginationControl';
 import { gqlTrafficRouters } from '@lib/graphql/queries/trafficRouters';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { Ordering } from '@/generated/graphql';
 
 type TrafficRouterPagination = {
   startPage: number;

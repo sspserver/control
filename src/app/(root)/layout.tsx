@@ -1,11 +1,11 @@
-import Logo from '@/components/Logo';
-import MainMenu from '@/components/MainMenu/MainMenu';
 import MobileBottomNavigation from '@components/MobileBottomNavigation/MobileBottomNavigation';
 import MobileHeader from '@components/MobileHeader';
 import UserDropdown from '@components/UserDropdown/UserDropdown';
 import NextLink from 'next/link';
-
 import React, { Fragment } from 'react';
+import Logo from '@/components/Logo';
+
+import MainMenu from '@/components/MainMenu/MainMenu';
 
 type RootLayoutProps = Readonly<{
   children: React.ReactNode;

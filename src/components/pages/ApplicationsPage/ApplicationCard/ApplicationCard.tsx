@@ -1,8 +1,8 @@
 import type { StatisticAdItem } from '@/generated/graphql';
-import { ActiveStatus } from '@/generated/graphql';
 import CardChart from '@components/CardChart/CardChart';
 import ApplicationActions from '@components/pages/ApplicationsPage/ApplicationCard/ApplicationActions';
 import React from 'react';
+import { ActiveStatus } from '@/generated/graphql';
 
 type ApplicationCardProps = {
   title: string;

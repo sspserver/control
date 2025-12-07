@@ -1,5 +1,5 @@
-import { Ordering, StatisticOrderingKey } from '@/generated/graphql';
 import { useRef } from 'react';
+import { Ordering, StatisticOrderingKey } from '@/generated/graphql';
 
 function useStatisticsTable(
   orderField: string | null,
