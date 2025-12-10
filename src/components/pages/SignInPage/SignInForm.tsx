@@ -3,6 +3,7 @@
 import useSignInForm from '@components/pages/SignInPage/useSignInForm';
 import { ButtonLoading } from '@tailus-ui/Button';
 import Input from '@tailus-ui/Input/Input';
+import { Link } from '@tailus-ui/typography';
 import { Fragment } from 'react';
 
 function SignInForm() {
@@ -80,16 +81,16 @@ function SignInForm() {
             </div>
             <div className="space-y-2.5">
               <Input
-                // label={(
-                //   <div className="flex items-center justify-between">
-                //     <span>
-                //       Password
-                //     </span>
-                //     <Link href="#" size="sm">
-                //       Forgot your Password ?
-                //     </Link>
-                //   </div>
-                // )}
+                label={(
+                  <div className="flex items-center justify-between">
+                    <span>
+                      Password
+                    </span>
+                    <Link href="/auth/forgot-password" size="sm">
+                      Forgot your Password ?
+                    </Link>
+                  </div>
+                )}
                 id="password"
                 name="password"
                 type="password"
