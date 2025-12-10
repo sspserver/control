@@ -7,6 +7,7 @@ export const configPathRoutes = {
   signIn: `${authPath}/signin`,
   newUser: `${authPath}/register`,
   verifyRequest: `${authPath}/verify`,
+  forgotPassword: `${authPath}/forgot-password`,
   rtb: rtbPath,
   rtbCreate: `${rtbPath}/create`,
   rtbStatistics: `${rtbPath}/statistics`,
