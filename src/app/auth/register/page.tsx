@@ -1,11 +1,11 @@
-import SignInForm from '@components/pages/SignInPage/SignInForm';
-import { Caption, Link, Text, Title } from '@tailus-ui/typography';
+import RegisterForm from '@components/pages/RegisterPage/RegisterForm';
+import { Text, Title } from '@tailus-ui/typography';
 import Image from 'next/image';
 import { Fragment } from 'react';
 
-import BgImage from './bg.svg';
+import BgImage from '../signin/bg.svg';
 
-function SignIn() {
+function Register() {
   return (
     <Fragment>
       <Image src={BgImage} alt="Cover" className="fixed inset-y-0 right-0 hidden h-screen w-1/2 object-cover lg:block m-0 nozoom" />
@@ -15,24 +15,17 @@ function SignIn() {
             <div>
               <div>
                 <Title size="xl" className="mb-1 mt-12">
-                  Sign In to your personal
+                  Create your
                   {' '}
                   <span className="font-bold underline">SSP-Server</span>
+                  {' '}
+                  account
                 </Title>
                 <Text className="my-0" size="sm">
-                  Welcome back! Sign in to continue
+                  Get started by creating your account
                 </Text>
               </div>
-              <SignInForm />
-            </div>
-            <div className="mt-12">
-              <Caption className="my-0" size="sm" align="center">
-                Don't have an account ?
-                {' '}
-                <Link intent="neutral" size="sm" variant="underlined" href="/auth/register">
-                  Create account
-                </Link>
-              </Caption>
+              <RegisterForm />
             </div>
           </div>
         </div>
@@ -41,4 +34,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default Register;
