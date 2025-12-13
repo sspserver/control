@@ -8,6 +8,16 @@ import { configPathRoutes } from '@configs/routes';
 import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
 
+// Load Apollo Client error messages in development
+if (process.env.NODE_ENV === 'development') {
+  import('@apollo/client/dev').then(({ loadErrorMessages, loadDevMessages }) => {
+    loadDevMessages();
+    loadErrorMessages();
+  }).catch((err) => {
+    console.error('Failed to load Apollo Client error messages:', err);
+  });
+}
+
 const userUnagreedMessage = 'you must accept the agreements before proceeding';
 
 function useApolloProvider(session: Session | null) {
