@@ -65,6 +65,10 @@ COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
+# Make the .next directory read-only so a compromised process cannot
+# drop executables or overwrite compiled artefacts at runtime.
+RUN chmod -R a-w /app/.next
+
 USER nextjs
 
 EXPOSE 3000

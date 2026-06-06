@@ -57,15 +57,19 @@ export const config = {
   matcher: [
     /*
      * Match all request paths except for the ones starting with:
-     * - api (API routes)
+     * - api/auth (NextAuth authentication routes — must remain public)
      * - _next/static (static files)
      * - _next/image (image optimization files)
-     * - _next/image/icons (icons optimization files)
-     * - favicon.ico (favicon file)
-     * - auth (authentication routes)
-     * - manifest.webmanifest (web manifest file)
+     * - icons
+     * - favicon.ico
+     * - public / images / css (static assets)
+     * - manifest.webmanifest
+     *
+     * NOTE: All other /api/* routes are intentionally included so that
+     * the auth middleware protects them. Public API routes must be
+     * explicitly listed above.
      */
-    '/((?!api|_next/static|_next/image|icons|favicon.ico|public|images|css|manifest.webmanifest).*)',
+    '/((?!api/auth|_next/static|_next/image|icons|favicon.ico|public|images|css|manifest.webmanifest).*)',
   ],
 };
 

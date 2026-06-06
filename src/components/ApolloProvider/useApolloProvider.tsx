@@ -1,8 +1,8 @@
 import type { Session } from 'next-auth';
 
 import { ApolloLink, HttpLink, Observable } from '@apollo/client';
-import { ApolloClient, InMemoryCache, SSRMultipartLink } from '@apollo/client-integration-nextjs';
 import { onError } from '@apollo/client/link/error';
+import { ApolloClient, InMemoryCache, SSRMultipartLink } from '@apollo/experimental-nextjs-app-support';
 import { getPublicEnv } from '@configs/api';
 import { configPathRoutes } from '@configs/routes';
 import { useRouter } from 'next/navigation';
