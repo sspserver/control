@@ -54,15 +54,15 @@ function AccountForm() {
 
               <div className="pb-4">
                 <Input
-                  label="Title"
-                  name="title"
+                  label="Name"
+                  name="name"
                   size="sm"
-                  defaultValue={values.title}
+                  defaultValue={values.name}
                   required
                   onBlur={handleBlur}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  error={errors.title}
+                  error={errors.name}
                 />
               </div>
 
@@ -75,62 +75,6 @@ function AccountForm() {
                   onChange={handleChange}
                   disabled={isSubmitting}
                   error={errors.description}
-                />
-              </div>
-
-              <div className="pb-4">
-                <Input
-                  label="Logo URL"
-                  name="logoURI"
-                  size="sm"
-                  defaultValue={values.logoURI}
-                  required
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  disabled={isSubmitting}
-                  error={errors.logoURI}
-                />
-              </div>
-
-              <div className="pb-4">
-                <Input
-                  label="Policy URI"
-                  name="policyURI"
-                  size="sm"
-                  defaultValue={values.policyURI}
-                  required
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  disabled={isSubmitting}
-                  error={errors.policyURI}
-                />
-              </div>
-
-              <div className="pb-4">
-                <Input
-                  label="Terms of service URI"
-                  name="termsOfServiceURI"
-                  size="sm"
-                  defaultValue={values.termsOfServiceURI}
-                  required
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  disabled={isSubmitting}
-                  error={errors.termsOfServiceURI}
-                />
-              </div>
-
-              <div className="pb-4">
-                <Input
-                  label="Client URI"
-                  name="clientURI"
-                  size="sm"
-                  defaultValue={values.clientURI}
-                  required
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  disabled={isSubmitting}
-                  error={errors.clientURI}
                 />
               </div>
             </Card>

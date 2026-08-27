@@ -48,10 +48,9 @@ export async function POST(request: NextRequest) {
     }
 
     const { status, message, errors, data } = await registerAccount({
-      username,
-      password,
-      accountTitle,
-      accountDescription: accountDescription || '',
+      ownerID: 0,
+      name: accountTitle,
+      description: accountDescription || '',
     });
 
     if (!status) {

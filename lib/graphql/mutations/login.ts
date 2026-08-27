@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 export const gqlLoginMutation = gql`
   mutation Login($username: String!, $password: String!) {
-    login(login: $username, password: $password) {
+    login(email: $username, password: $password) {
       token
       expiresAt
       isAdmin

@@ -28,52 +28,35 @@ export type Scalars = {
   Uint64: { input: any; output: any; }
 };
 
-/** Account is a company account that can be used to login to the system. */
+/**
+ * Account is a company account that can be used to login to the system.
+ * Core fields only — extend in consumer schema via `extend type Account`.
+ */
 export type Account = {
   __typename?: 'Account';
   /** The primary key of the Account */
   ID: Scalars['ID64']['output'];
-  /**
-   * clientURI is an URL string of a web page providing information about the client.
-   * If present, the server SHOULD display this URL to the end-user in
-   * a clickable fashion.
-   */
-  clientURI: Scalars['String']['output'];
-  /**
-   * contacts is a array of strings representing ways to contact people responsible
-   * for this client, typically email addresses.
-   */
-  contacts?: Maybe<Array<Scalars['String']['output']>>;
+  address?: Maybe<Scalars['String']['output']>;
+  city?: Maybe<Scalars['String']['output']>;
+  companyRegNumber?: Maybe<Scalars['String']['output']>;
+  contacts?: Maybe<Array<Contact>>;
+  countryCode?: Maybe<Scalars['String']['output']>;
   createdAt: Scalars['Time']['output'];
   description: Scalars['String']['output'];
-  /** logoURI is an URL string that references a logo for the client. */
-  logoURI: Scalars['String']['output'];
-  /**
-   * policyURI is a URL string that points to a human-readable privacy policy document
-   * that describes how the deployment organization collects, uses,
-   * retains, and discloses personal data.
-   */
-  policyURI: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  phone?: Maybe<Scalars['String']['output']>;
   /** Status of Account active */
   status: ApproveStatus;
   /** Message which defined during user approve/rejection process */
   statusMessage?: Maybe<Scalars['String']['output']>;
-  /**
-   * termsOfServiceURI is a URL string that points to a human-readable terms of service
-   * document for the client that describes a contractual relationship
-   * between the end-user and the client that the end-user accepts when
-   * authorizing the client.
-   */
-  termsOfServiceURI: Scalars['String']['output'];
-  title: Scalars['String']['output'];
   updatedAt: Scalars['Time']['output'];
+  vatNumber?: Maybe<Scalars['String']['output']>;
+  zipCode?: Maybe<Scalars['String']['output']>;
 };
 
 /** AccountConnection implements collection accessor interface with pagination. */
 export type AccountConnection = {
   __typename?: 'AccountConnection';
-  /** The edges for each of the account's lists */
-  edges?: Maybe<Array<AccountEdge>>;
   /** A list of the accounts, as a convenience when edges are not needed. */
   list?: Maybe<Array<Account>>;
   /** Information for paginating this connection */
@@ -83,52 +66,38 @@ export type AccountConnection = {
 };
 
 export type AccountCreateInput = {
-  account: AccountInput;
-  owner?: InputMaybe<UserInput>;
-  ownerID?: InputMaybe<Scalars['ID64']['input']>;
-  password: Scalars['String']['input'];
-};
-
-export type AccountCreatePayload = {
-  __typename?: 'AccountCreatePayload';
-  /** The account object */
-  account: Account;
-  /** A unique identifier for the client performing the mutation. */
-  clientMutationID: Scalars['String']['output'];
-  /** The user object */
-  owner: User;
-};
-
-export type AccountEdge = {
-  __typename?: 'AccountEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']['output'];
-  /** The item at the end of the edge. */
-  node?: Maybe<Account>;
-};
-
-export type AccountInput = {
-  clientURI?: InputMaybe<Scalars['String']['input']>;
-  contacts?: InputMaybe<Array<Scalars['String']['input']>>;
+  address?: InputMaybe<Scalars['String']['input']>;
+  city?: InputMaybe<Scalars['String']['input']>;
+  companyRegNumber?: InputMaybe<Scalars['String']['input']>;
+  contacts?: InputMaybe<Array<ContactInput>>;
+  countryCode?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
-  logoURI?: InputMaybe<Scalars['String']['input']>;
-  policyURI?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  phone?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<ApproveStatus>;
-  termsOfServiceURI?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
+  vatNumber?: InputMaybe<Scalars['String']['input']>;
+  zipCode?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type AccountListFilter = {
   ID?: InputMaybe<Array<Scalars['ID64']['input']>>;
   UserID?: InputMaybe<Array<Scalars['ID64']['input']>>;
+  companyRegNumber?: InputMaybe<Array<Scalars['String']['input']>>;
+  countryCode?: InputMaybe<Array<Scalars['String']['input']>>;
+  name?: InputMaybe<Array<Scalars['String']['input']>>;
   status?: InputMaybe<Array<ApproveStatus>>;
-  title?: InputMaybe<Array<Scalars['String']['input']>>;
+  vatNumber?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type AccountListOrder = {
   ID?: InputMaybe<Ordering>;
+  companyRegNumber?: InputMaybe<Ordering>;
+  countryCode?: InputMaybe<Ordering>;
+  createdAt?: InputMaybe<Ordering>;
+  name?: InputMaybe<Ordering>;
   status?: InputMaybe<Ordering>;
-  title?: InputMaybe<Ordering>;
+  updatedAt?: InputMaybe<Ordering>;
+  vatNumber?: InputMaybe<Ordering>;
 };
 
 /** AccountPayload wrapper to access of Account oprtation results */
@@ -140,6 +109,20 @@ export type AccountPayload = {
   accountID: Scalars['ID64']['output'];
   /** A unique identifier for the client performing the mutation. */
   clientMutationID: Scalars['String']['output'];
+};
+
+export type AccountUpdateInput = {
+  address?: InputMaybe<Scalars['String']['input']>;
+  city?: InputMaybe<Scalars['String']['input']>;
+  companyRegNumber?: InputMaybe<Scalars['String']['input']>;
+  contacts?: InputMaybe<Array<ContactInput>>;
+  countryCode?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  phone?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<ApproveStatus>;
+  vatNumber?: InputMaybe<Scalars['String']['input']>;
+  zipCode?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** The list of statuses that shows is particular object active or paused */
@@ -181,22 +164,12 @@ export type AdFormat = {
 
 export type AdFormatConnection = {
   __typename?: 'AdFormatConnection';
-  /** Edges of AdFormat objects */
-  edges: Array<AdFormatEdge>;
   /** List of AdFormat objects */
   list: Array<AdFormat>;
   /** Information to aid in pagination */
   pageInfo: PageInfo;
   /** Total count of AdFormat objects */
   totalCount: Scalars['Int']['output'];
-};
-
-export type AdFormatEdge = {
-  __typename?: 'AdFormatEdge';
-  /** A cursor for use in pagination */
-  cursor: Scalars['String']['output'];
-  /** The AdFormat at the end of the edge */
-  node: AdFormat;
 };
 
 /** Input for querying ad formats */
@@ -328,8 +301,6 @@ export type Application = {
 /** ApplicationConnection wrapper to access Application objects */
 export type ApplicationConnection = {
   __typename?: 'ApplicationConnection';
-  /** Edges of Application objects */
-  edges: Array<ApplicationEdge>;
   /** List of Application objects */
   list: Array<Application>;
   /** Information to aid in pagination. */
@@ -349,15 +320,6 @@ export type ApplicationCreateInput = {
   revenueShare?: InputMaybe<Scalars['Float']['input']>;
   title: Scalars['String']['input'];
   type?: InputMaybe<ApplicationType>;
-};
-
-/** ApplicationEdge wrapper to access Application objects */
-export type ApplicationEdge = {
-  __typename?: 'ApplicationEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']['output'];
-  /** The Application at the end of ApplicationEdge. */
-  node: Application;
 };
 
 export type ApplicationListFilter = {
@@ -502,8 +464,6 @@ export type AuthClient = {
 /** AuthClientConnection implements collection accessor interface with pagination. */
 export type AuthClientConnection = {
   __typename?: 'AuthClientConnection';
-  /** The edges for each of the AuthClient's lists */
-  edges?: Maybe<Array<AuthClientEdge>>;
   /** A list of the AuthClient's, as a convenience when edges are not needed. */
   list?: Maybe<Array<AuthClient>>;
   /** Information for paginating this connection */
@@ -512,27 +472,33 @@ export type AuthClientConnection = {
   totalCount: Scalars['Int']['output'];
 };
 
-export type AuthClientEdge = {
-  __typename?: 'AuthClientEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']['output'];
-  /** The item at the end of the edge. */
-  node?: Maybe<AuthClient>;
-};
-
-export type AuthClientInput = {
+/** AuthClientCreateInput is used to create a new OAuth 2.0 client */
+export type AuthClientCreateInput = {
+  /** AccountID of the auth client owner */
   accountID?: InputMaybe<Scalars['ID64']['input']>;
+  /** AllowedCORSOrigins for this client */
   allowedCORSOrigins?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Audience whitelist for token requests */
   audience?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** ExpiresAt time for the client */
   expiresAt?: InputMaybe<Scalars['Time']['input']>;
+  /** GrantTypes allowed for this client */
   grantTypes?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Public flag for the client */
   public?: InputMaybe<Scalars['Boolean']['input']>;
+  /** RedirectURIs allowed for this client */
   redirectURIs?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** ResponseTypes allowed for this client */
   responseTypes?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Scope string for the client */
   scope?: InputMaybe<Scalars['String']['input']>;
+  /** Secret for the OAuth 2.0 client */
   secret?: InputMaybe<Scalars['String']['input']>;
+  /** SubjectType for responses to this client */
   subjectType: Scalars['String']['input'];
+  /** Title of the auth client as human readable name */
   title?: InputMaybe<Scalars['String']['input']>;
+  /** UserID of the auth client creator */
   userID?: InputMaybe<Scalars['ID64']['input']>;
 };
 
@@ -561,6 +527,36 @@ export type AuthClientPayload = {
   authClientID: Scalars['ID']['output'];
   /** A unique identifier for the client performing the mutation. */
   clientMutationID: Scalars['String']['output'];
+};
+
+/** AuthClientUpdateInput is used to update an existing OAuth 2.0 client */
+export type AuthClientUpdateInput = {
+  /** AccountID of the auth client owner */
+  accountID?: InputMaybe<Scalars['ID64']['input']>;
+  /** AllowedCORSOrigins for this client */
+  allowedCORSOrigins?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Audience whitelist for token requests */
+  audience?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** ExpiresAt time for the client */
+  expiresAt?: InputMaybe<Scalars['Time']['input']>;
+  /** GrantTypes allowed for this client */
+  grantTypes?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Public flag for the client */
+  public?: InputMaybe<Scalars['Boolean']['input']>;
+  /** RedirectURIs allowed for this client */
+  redirectURIs?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** ResponseTypes allowed for this client */
+  responseTypes?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Scope string for the client */
+  scope?: InputMaybe<Scalars['String']['input']>;
+  /** Secret for the OAuth 2.0 client */
+  secret?: InputMaybe<Scalars['String']['input']>;
+  /** SubjectType for responses to this client */
+  subjectType?: InputMaybe<Scalars['String']['input']>;
+  /** Title of the auth client as human readable name */
+  title?: InputMaybe<Scalars['String']['input']>;
+  /** UserID of the auth client creator */
+  userID?: InputMaybe<Scalars['ID64']['input']>;
 };
 
 /** The list of statuses that shows is particular object is available */
@@ -610,8 +606,6 @@ export type Browser = {
 
 export type BrowserConnection = {
   __typename?: 'BrowserConnection';
-  /** Edges of Browser objects */
-  edges: Array<BrowserEdge>;
   /** List of Browser objects */
   list: Array<Browser>;
   /** Information to aid in pagination */
@@ -640,14 +634,6 @@ export type BrowserCreateInput = {
   yearEndSupport?: InputMaybe<Scalars['Int']['input']>;
   /** Year of release of the browser */
   yearRelease?: InputMaybe<Scalars['Int']['input']>;
-};
-
-export type BrowserEdge = {
-  __typename?: 'BrowserEdge';
-  /** A cursor for use in pagination */
-  cursor: Scalars['String']['output'];
-  /** The Browser at the end of the edge */
-  node: Browser;
 };
 
 export type BrowserListFilter = {
@@ -713,6 +699,8 @@ export type Category = {
   deletedAt?: Maybe<Scalars['Time']['output']>;
   /** Description of the category */
   description: Scalars['String']['output'];
+  /** Keywords used to match this category */
+  keywords?: Maybe<Array<Scalars['String']['output']>>;
   /** Name of the category */
   name: Scalars['String']['output'];
   /** Parent category object */
@@ -727,22 +715,12 @@ export type Category = {
 
 export type CategoryConnection = {
   __typename?: 'CategoryConnection';
-  /** Edges of Category objects */
-  edges: Array<CategoryEdge>;
   /** List of Category objects */
   list: Array<Category>;
   /** Information to aid in pagination */
   pageInfo: PageInfo;
   /** Total count of Category objects */
   totalCount: Scalars['Int']['output'];
-};
-
-export type CategoryEdge = {
-  __typename?: 'CategoryEdge';
-  /** A cursor for use in pagination */
-  cursor: Scalars['String']['output'];
-  /** The Category at the end of the edge */
-  node: Category;
 };
 
 /** Input for querying categories */
@@ -753,6 +731,8 @@ export type CategoryInput = {
   active?: InputMaybe<ActiveStatus>;
   /** Description of the category */
   description?: InputMaybe<Scalars['String']['input']>;
+  /** Keywords used to match this category */
+  keywords?: InputMaybe<Array<Scalars['String']['input']>>;
   /** Name of the category */
   name?: InputMaybe<Scalars['String']['input']>;
   /** Parent category ID */
@@ -788,6 +768,19 @@ export type CategoryPayload = {
   categoryID: Scalars['ID64']['output'];
   /** A unique identifier for the client performing the mutation. */
   clientMutationID: Scalars['String']['output'];
+};
+
+export type Contact = {
+  __typename?: 'Contact';
+  isPrimary?: Maybe<Scalars['Boolean']['output']>;
+  type: Scalars['String']['output'];
+  value: Scalars['String']['output'];
+};
+
+export type ContactInput = {
+  isPrimary?: InputMaybe<Scalars['Boolean']['input']>;
+  type: Scalars['String']['input'];
+  value: Scalars['String']['input'];
 };
 
 export type Continent = {
@@ -868,8 +861,6 @@ export type DeviceMaker = {
 
 export type DeviceMakerConnection = {
   __typename?: 'DeviceMakerConnection';
-  /** Edges of DeviceMaker objects */
-  edges: Array<DeviceMakerEdge>;
   /** List of DeviceMaker objects */
   list: Array<DeviceMaker>;
   /** Information to aid in pagination */
@@ -890,14 +881,6 @@ export type DeviceMakerCreateInput = {
   matchExp?: InputMaybe<Scalars['String']['input']>;
   /** Name of the device maker */
   name: Scalars['String']['input'];
-};
-
-export type DeviceMakerEdge = {
-  __typename?: 'DeviceMakerEdge';
-  /** A cursor for use in pagination */
-  cursor: Scalars['String']['output'];
-  /** The DeviceMaker at the end of the edge */
-  node: DeviceMaker;
 };
 
 export type DeviceMakerListFilter = {
@@ -990,8 +973,6 @@ export type DeviceModelVersionsArgs = {
 
 export type DeviceModelConnection = {
   __typename?: 'DeviceModelConnection';
-  /** Edges of DeviceModel objects */
-  edges: Array<DeviceModelEdge>;
   /** List of DeviceModel objects */
   list: Array<DeviceModel>;
   /** Information to aid in pagination */
@@ -1020,14 +1001,6 @@ export type DeviceModelCreateInput = {
   typeCodename: Scalars['String']['input'];
   /** Version of the device model */
   version: Scalars['String']['input'];
-};
-
-export type DeviceModelEdge = {
-  __typename?: 'DeviceModelEdge';
-  /** A cursor for use in pagination */
-  cursor: Scalars['String']['output'];
-  /** The DeviceModel at the end of the edge */
-  node: DeviceModel;
 };
 
 /** Input model list filter */
@@ -1116,22 +1089,12 @@ export type DirectAccessToken = {
 
 export type DirectAccessTokenConnection = {
   __typename?: 'DirectAccessTokenConnection';
-  /** Edges for the DirectAccessTokenConnection */
-  edges?: Maybe<Array<DirectAccessTokenEdge>>;
   /** List of DirectAccessToken objects */
   list?: Maybe<Array<DirectAccessToken>>;
   /** PageInfo for the DirectAccessTokenConnection */
   pageInfo: PageInfo;
   /** Total count of DirectAccessToken objects */
   totalCount: Scalars['Int']['output'];
-};
-
-export type DirectAccessTokenEdge = {
-  __typename?: 'DirectAccessTokenEdge';
-  /** Cursor for pagination */
-  cursor: Scalars['String']['output'];
-  /** Node for the edge */
-  node?: Maybe<DirectAccessToken>;
 };
 
 export type DirectAccessTokenListFilter = {
@@ -1179,23 +1142,12 @@ export type HistoryAction = {
 /** A connection to a list of items. */
 export type HistoryActionConnection = {
   __typename?: 'HistoryActionConnection';
-  /** Edges for the HistoryActionConnection connection. */
-  edges?: Maybe<Array<HistoryActionEdge>>;
   /** A list of nodes in the connection (without going through the `edges` field). */
   list?: Maybe<Array<HistoryAction>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
   /** The total number of nodes in this connection, ignoring pagination. */
   totalCount: Scalars['Int']['output'];
-};
-
-/** Edge of action history object. */
-export type HistoryActionEdge = {
-  __typename?: 'HistoryActionEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']['output'];
-  /** The item at the end of the edge. */
-  node: HistoryAction;
 };
 
 export type HistoryActionListFilter = {
@@ -1241,12 +1193,12 @@ export type HistoryActionPayload = {
 };
 
 export type InviteMemberInput = {
-  /** The email of the member to invite */
-  email: Scalars['String']['input'];
   /** Is the user an admin of the account */
   isAdmin?: Scalars['Boolean']['input'];
   /** The roles to assign to the member */
   roles: Array<Scalars['String']['input']>;
+  /** The ID of the member to invite */
+  userID: Scalars['ID64']['input'];
 };
 
 /** Lang is a language used in the system. */
@@ -1273,8 +1225,8 @@ export type Member = {
   __typename?: 'Member';
   /** The primary key of the Member */
   ID: Scalars['ID64']['output'];
-  /** Account object accessor */
-  account: Account;
+  /** Account ID of the member */
+  accountID: Scalars['ID64']['output'];
   createdAt: Scalars['Time']['output'];
   deletedAt?: Maybe<Scalars['Time']['output']>;
   /** Is the user an admin of the account */
@@ -1284,28 +1236,18 @@ export type Member = {
   /** Status of Member active */
   status: ApproveStatus;
   updatedAt: Scalars['Time']['output'];
-  /** User object accessor */
-  user: User;
+  /** User ID of the member */
+  userID: Scalars['ID64']['output'];
 };
 
 export type MemberConnection = {
   __typename?: 'MemberConnection';
-  /** The edges for each of the members's lists */
-  edges?: Maybe<Array<MemberEdge>>;
   /** A list of the members, as a convenience when edges are not needed. */
   list?: Maybe<Array<Member>>;
   /** Information for paginating this connection */
   pageInfo: PageInfo;
   /** The total number of campaigns */
   totalCount: Scalars['Int']['output'];
-};
-
-export type MemberEdge = {
-  __typename?: 'MemberEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']['output'];
-  /** The item at the end of the edge. */
-  node?: Maybe<Member>;
 };
 
 export type MemberInput = {
@@ -1343,16 +1285,6 @@ export type MemberPayload = {
   memberID: Scalars['ID64']['output'];
 };
 
-export enum MessangerType {
-  Aim = 'AIM',
-  Icq = 'ICQ',
-  Phone = 'PHONE',
-  Skype = 'SKYPE',
-  Telegram = 'TELEGRAM',
-  Viber = 'VIBER',
-  Whatsapp = 'WHATSAPP'
-}
-
 export type Mutation = {
   __typename?: 'Mutation';
   /** Accept an agreement by its codename */
@@ -1371,6 +1303,10 @@ export type Mutation = {
   approveUser: UserPayload;
   /** Approve the Zone to be active */
   approveZone: ZonePayload;
+  /** Change email address for the current session user. */
+  changeUserEmail: StatusResponse;
+  /** Change password for the current session user (requires current password) */
+  changeUserPassword: StatusResponse;
   /** Create a new Application */
   createApplication: ApplicationPayload;
   /** Create the new auth client */
@@ -1429,7 +1365,10 @@ export type Mutation = {
   generateDirectAccessToken?: Maybe<DirectAccessTokenPayload>;
   /** Invite a new member to the account */
   inviteAccountMember: MemberPayload;
-  /** Login to the system and get the token as JWT session */
+  /**
+   * Login with email and password.
+   * accountID is optional — omit to use the user's default account.
+   */
   login: SessionToken;
   /** Logout from the system */
   logout: Scalars['Boolean']['output'];
@@ -1440,8 +1379,11 @@ export type Mutation = {
   /** Pause traffic router */
   pauseTrafficRouter?: Maybe<TrafficRouterPayload>;
   poke: Scalars['String']['output'];
-  /** Register the new account */
-  registerAccount: AccountCreatePayload;
+  /**
+   * Register the new account.
+   * Account can create only by the user with `account.register` permission.
+   */
+  registerAccount: AccountPayload;
   /** Reject account and leave the comment */
   rejectAccount: AccountPayload;
   /** Reject the member to join the account */
@@ -1554,13 +1496,24 @@ export type MutationApproveZoneArgs = {
 };
 
 
+export type MutationChangeUserEmailArgs = {
+  newEmail: Scalars['String']['input'];
+};
+
+
+export type MutationChangeUserPasswordArgs = {
+  currentPassword: Scalars['String']['input'];
+  newPassword: Scalars['String']['input'];
+};
+
+
 export type MutationCreateApplicationArgs = {
   input: ApplicationCreateInput;
 };
 
 
 export type MutationCreateAuthClientArgs = {
-  input: AuthClientInput;
+  input: AuthClientCreateInput;
 };
 
 
@@ -1610,7 +1563,7 @@ export type MutationCreateTrafficRouterArgs = {
 
 
 export type MutationCreateUserArgs = {
-  input: UserInput;
+  input: UserCreateInput;
 };
 
 
@@ -1716,7 +1669,8 @@ export type MutationInviteAccountMemberArgs = {
 
 
 export type MutationLoginArgs = {
-  login: Scalars['String']['input'];
+  accountID?: InputMaybe<Scalars['ID64']['input']>;
+  email: Scalars['String']['input'];
   password: Scalars['String']['input'];
 };
 
@@ -1740,6 +1694,7 @@ export type MutationPauseTrafficRouterArgs = {
 
 export type MutationRegisterAccountArgs = {
   input: AccountCreateInput;
+  ownerID: Scalars['ID64']['input'];
 };
 
 
@@ -1826,7 +1781,7 @@ export type MutationSwitchAccountArgs = {
 
 export type MutationUpdateAccountArgs = {
   id: Scalars['ID64']['input'];
-  input: AccountInput;
+  input: AccountUpdateInput;
 };
 
 
@@ -1844,7 +1799,7 @@ export type MutationUpdateApplicationArgs = {
 
 export type MutationUpdateAuthClientArgs = {
   id: Scalars['ID']['input'];
-  input: AuthClientInput;
+  input: AuthClientUpdateInput;
 };
 
 
@@ -1904,7 +1859,7 @@ export type MutationUpdateTrafficRouterArgs = {
 
 export type MutationUpdateUserArgs = {
   id: Scalars['ID64']['input'];
-  input: UserInput;
+  input: UserUpdateInput;
 };
 
 
@@ -1957,8 +1912,6 @@ export type Os = {
 
 export type OsConnection = {
   __typename?: 'OSConnection';
-  /** Edges of OS objects */
-  edges?: Maybe<Array<OsEdge>>;
   /** List of OS objects */
   list?: Maybe<Array<Os>>;
   /** Information to aid in pagination */
@@ -1987,14 +1940,6 @@ export type OsCreateInput = {
   yearEndSupport?: InputMaybe<Scalars['Int']['input']>;
   /** Year of release of the OS */
   yearRelease?: InputMaybe<Scalars['Int']['input']>;
-};
-
-export type OsEdge = {
-  __typename?: 'OSEdge';
-  /** A cursor for use in pagination */
-  cursor: Scalars['String']['output'];
-  /** The OS at the end of the edge */
-  node: Os;
 };
 
 export type OsListFilter = {
@@ -2054,21 +1999,12 @@ export type Option = {
 /** The connection type for Option. */
 export type OptionConnection = {
   __typename?: 'OptionConnection';
-  /** A list of edges. */
-  edges: Array<OptionEdge>;
   /** A list of options. */
   list: Array<Option>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
   /** The total number of campaigns */
   totalCount: Scalars['Int']['output'];
-};
-
-/** The edge type for Option. */
-export type OptionEdge = {
-  __typename?: 'OptionEdge';
-  cursor: Scalars['String']['output'];
-  node: Option;
 };
 
 export type OptionListFilter = {
@@ -2167,26 +2103,6 @@ export enum PrivateStatus {
   Private = 'PRIVATE',
   Public = 'PUBLIC'
 }
-
-export type Profile = {
-  __typename?: 'Profile';
-  ID: Scalars['ID64']['output'];
-  about: Scalars['String']['output'];
-  companyName: Scalars['String']['output'];
-  createdAt: Scalars['Time']['output'];
-  email: Scalars['String']['output'];
-  firstName: Scalars['String']['output'];
-  lastName: Scalars['String']['output'];
-  messgangers?: Maybe<Array<ProfileMessanger>>;
-  updatedAt: Scalars['Time']['output'];
-  user: User;
-};
-
-export type ProfileMessanger = {
-  __typename?: 'ProfileMessanger';
-  address: Scalars['String']['output'];
-  mtype: MessangerType;
-};
 
 export type Query = {
   __typename?: 'Query';
@@ -2346,7 +2262,7 @@ export type QueryCheckPermissionArgs = {
 
 export type QueryCurrentSocialAccountsArgs = {
   filter?: InputMaybe<SocialAccountListFilter>;
-  order?: InputMaybe<SocialAccountListOrder>;
+  order?: InputMaybe<Array<SocialAccountListOrder>>;
 };
 
 
@@ -2380,13 +2296,13 @@ export type QueryLanguagesArgs = {
 
 export type QueryListAccountRolesAndPermissionsArgs = {
   accountID: Scalars['ID64']['input'];
-  order?: InputMaybe<RbacRoleListOrder>;
+  order?: InputMaybe<Array<RbacRoleListOrder>>;
 };
 
 
 export type QueryListAccountsArgs = {
   filter?: InputMaybe<AccountListFilter>;
-  order?: InputMaybe<AccountListOrder>;
+  order?: InputMaybe<Array<AccountListOrder>>;
   page?: InputMaybe<Page>;
 };
 
@@ -2405,7 +2321,7 @@ export type QueryListApplicationsArgs = {
 
 export type QueryListAuthClientsArgs = {
   filter?: InputMaybe<AuthClientListFilter>;
-  order?: InputMaybe<AuthClientListOrder>;
+  order?: InputMaybe<Array<InputMaybe<AuthClientListOrder>>>;
   page?: InputMaybe<Page>;
 };
 
@@ -2440,7 +2356,7 @@ export type QueryListDeviceModelsArgs = {
 
 export type QueryListDirectAccessTokensArgs = {
   filter?: InputMaybe<DirectAccessTokenListFilter>;
-  order?: InputMaybe<DirectAccessTokenListOrder>;
+  order?: InputMaybe<Array<DirectAccessTokenListOrder>>;
   page?: InputMaybe<Page>;
 };
 
@@ -2454,14 +2370,14 @@ export type QueryListFormatsArgs = {
 
 export type QueryListHistoryArgs = {
   filter?: InputMaybe<HistoryActionListFilter>;
-  order?: InputMaybe<HistoryActionListOrder>;
+  order?: InputMaybe<Array<HistoryActionListOrder>>;
   page?: InputMaybe<Page>;
 };
 
 
 export type QueryListMembersArgs = {
   filter?: InputMaybe<MemberListFilter>;
-  order?: InputMaybe<MemberListOrder>;
+  order?: InputMaybe<Array<MemberListOrder>>;
   page?: InputMaybe<Page>;
 };
 
@@ -2480,7 +2396,7 @@ export type QueryListOsArgs = {
 
 export type QueryListOptionsArgs = {
   filter?: InputMaybe<OptionListFilter>;
-  order?: InputMaybe<OptionListOrder>;
+  order?: InputMaybe<Array<OptionListOrder>>;
   page?: InputMaybe<Page>;
 };
 
@@ -2499,14 +2415,14 @@ export type QueryListRtbSourcesArgs = {
 
 export type QueryListRolesArgs = {
   filter?: InputMaybe<RbacRoleListFilter>;
-  order?: InputMaybe<RbacRoleListOrder>;
+  order?: InputMaybe<Array<RbacRoleListOrder>>;
   page?: InputMaybe<Page>;
 };
 
 
 export type QueryListSocialAccountsArgs = {
   filter?: InputMaybe<SocialAccountListFilter>;
-  order?: InputMaybe<SocialAccountListOrder>;
+  order?: InputMaybe<Array<SocialAccountListOrder>>;
   page?: InputMaybe<Page>;
 };
 
@@ -2520,7 +2436,7 @@ export type QueryListTrafficRoutersArgs = {
 
 export type QueryListUsersArgs = {
   filter?: InputMaybe<UserListFilter>;
-  order?: InputMaybe<UserListOrder>;
+  order?: InputMaybe<Array<UserListOrder>>;
   page?: InputMaybe<Page>;
 };
 
@@ -2611,23 +2527,12 @@ export type RbacRole = {
 /** RBACRoleConnection implements collection accessor interface with pagination. */
 export type RbacRoleConnection = {
   __typename?: 'RBACRoleConnection';
-  /** The edges for each of the RBACRoles's lists */
-  edges?: Maybe<Array<RbacRoleEdge>>;
   /** A list of the RBACRoles, as a convenience when edges are not needed. */
   list?: Maybe<Array<RbacRole>>;
   /** Information for paginating this connection */
   pageInfo: PageInfo;
   /** The total number of campaigns */
   totalCount: Scalars['Int']['output'];
-};
-
-/** RBACRoleEdge is a connection edge type for RBACRole. */
-export type RbacRoleEdge = {
-  __typename?: 'RBACRoleEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']['output'];
-  /** The item at the end of the edge. */
-  node?: Maybe<RbacRole>;
 };
 
 export type RbacRoleInput = {
@@ -2729,8 +2634,6 @@ export type RtbSource = {
 /** RTBSourceConnection wrapper to access RTBSource objects in a paginated list. */
 export type RtbSourceConnection = {
   __typename?: 'RTBSourceConnection';
-  /** Edges of RTBSource objects, containing nodes and cursors. */
-  edges: Array<RtbSourceEdge>;
   /** List of RTBSource objects. */
   list: Array<RtbSource>;
   /** Information to aid in pagination. */
@@ -2779,15 +2682,6 @@ export type RtbSourceCreateInput = {
   /** Title of the RTB source. */
   title: Scalars['String']['input'];
   zoneIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
-};
-
-/** RTBSourceEdge wrapper to access RTBSource objects in a paginated list. */
-export type RtbSourceEdge = {
-  __typename?: 'RTBSourceEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']['output'];
-  /** The RTBSource at the end of the RTBSourceEdge. */
-  node: RtbSource;
 };
 
 /** Filter options for listing RTBSource objects. */
@@ -2911,22 +2805,12 @@ export type SocialAccount = {
 /** SocialAccountConnection implements collection accessor interface with pagination */
 export type SocialAccountConnection = {
   __typename?: 'SocialAccountConnection';
-  /** The edges for each of the social account's lists */
-  edges?: Maybe<Array<SocialAccountEdge>>;
   /** A list of the social accounts, as a convenience when edges are not needed. */
   list?: Maybe<Array<SocialAccount>>;
   /** Information for paginating this connection */
   pageInfo: PageInfo;
   /** The total number of records */
   totalCount: Scalars['Int']['output'];
-};
-
-export type SocialAccountEdge = {
-  __typename?: 'SocialAccountEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']['output'];
-  /** The item at the end of the edge. */
-  node?: Maybe<SocialAccount>;
 };
 
 export type SocialAccountListFilter = {
@@ -3176,8 +3060,6 @@ export type TrafficRouter = {
 
 export type TrafficRouterConnection = {
   __typename?: 'TrafficRouterConnection';
-  /** Edges of the traffic router */
-  edges?: Maybe<Array<TrafficRouterEdge>>;
   /** List of the traffic routers */
   list?: Maybe<Array<TrafficRouter>>;
   /** Information about the page */
@@ -3214,14 +3096,6 @@ export type TrafficRouterCreateInput = {
   /** Title of the traffic router */
   title: Scalars['String']['input'];
   zoneIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
-};
-
-export type TrafficRouterEdge = {
-  __typename?: 'TrafficRouterEdge';
-  /** Cursor for the traffic router */
-  cursor: Scalars['String']['output'];
-  /** Node of the traffic router */
-  node: TrafficRouter;
 };
 
 export type TrafficRouterListFilter = {
@@ -3294,26 +3168,28 @@ export type TrafficRouterUpdateInput = {
   zoneIDs?: InputMaybe<Array<Scalars['ID64']['input']>>;
 };
 
-/** User represents a user object of the system */
+/**
+ * User represents a user object of the system.
+ * Core fields only — extend in consumer schema via `extend type User`.
+ */
 export type User = {
   __typename?: 'User';
   /** The primary key of the user */
   ID: Scalars['ID64']['output'];
   createdAt: Scalars['Time']['output'];
+  /** Email address (optional trait — present only when user.Email is embedded). */
+  email: Scalars['String']['output'];
+  notes?: Maybe<Scalars['String']['output']>;
   /** Status of user active */
   status: ApproveStatus;
   /** Message which defined during user approve/rejection process */
   statusMessage?: Maybe<Scalars['String']['output']>;
   updatedAt: Scalars['Time']['output'];
-  /** Unical user name */
-  username: Scalars['String']['output'];
 };
 
 /** UserConnection implements collection accessor interface with pagination. */
 export type UserConnection = {
   __typename?: 'UserConnection';
-  /** The edges for each of the users's lists */
-  edges?: Maybe<Array<UserEdge>>;
   /** A list of the users, as a convenience when edges are not needed. */
   list?: Maybe<Array<User>>;
   /** Information for paginating this connection */
@@ -3322,17 +3198,9 @@ export type UserConnection = {
   totalCount: Scalars['Int']['output'];
 };
 
-export type UserEdge = {
-  __typename?: 'UserEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']['output'];
-  /** The item at the end of the edge. */
-  node?: Maybe<User>;
-};
-
-export type UserInput = {
+export type UserCreateInput = {
+  email: Scalars['String']['input'];
   status?: InputMaybe<ApproveStatus>;
-  username?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** UserListFilter implements filter for user list query */
@@ -3353,7 +3221,6 @@ export type UserListOrder = {
   registrationDate?: InputMaybe<Ordering>;
   status?: InputMaybe<Ordering>;
   updatedAt?: InputMaybe<Ordering>;
-  username?: InputMaybe<Ordering>;
 };
 
 /** UserPayload wrapper to access of user oprtation results */
@@ -3365,6 +3232,11 @@ export type UserPayload = {
   user?: Maybe<User>;
   /** User ID operation result */
   userID: Scalars['ID64']['output'];
+};
+
+export type UserUpdateInput = {
+  email?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<ApproveStatus>;
 };
 
 /** Zone object represents a specific advertising zone within an account. */
@@ -3396,8 +3268,6 @@ export type Zone = {
 /** ZoneConnection wrapper to access Zone objects */
 export type ZoneConnection = {
   __typename?: 'ZoneConnection';
-  /** Edges of Zone objects */
-  edges?: Maybe<Array<ZoneEdge>>;
   /** List of Zone objects */
   list?: Maybe<Array<Zone>>;
   /** Information to aid in pagination. */
@@ -3424,15 +3294,6 @@ export type ZoneCreateInput = {
   minECPMByGeo?: InputMaybe<Scalars['JSON']['input']>;
   /** Title of the Zone. */
   title: Scalars['String']['input'];
-};
-
-/** ZoneEdge wrapper to access Zone objects */
-export type ZoneEdge = {
-  __typename?: 'ZoneEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']['output'];
-  /** The Zone at the end of ZoneEdge. */
-  node: Zone;
 };
 
 /** Filter input for listing Zones. */
@@ -3690,39 +3551,40 @@ export type ListCountriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type ListCountriesQuery = { __typename?: 'Query', list?: Array<{ __typename?: 'Country', ID: any, name: string, code2: string, continentCode: string }> | null };
 
-export type __AccountDataFragment = { __typename?: 'Account', ID: any, title: string, description: string, status: ApproveStatus, statusMessage?: string | null, logoURI: string, policyURI: string, termsOfServiceURI: string, clientURI: string, contacts?: Array<string> | null, createdAt: any, updatedAt: any };
+export type __AccountDataFragment = { __typename?: 'Account', ID: any, name: string, description: string, status: ApproveStatus, statusMessage?: string | null, countryCode?: string | null, city?: string | null, zipCode?: string | null, address?: string | null, phone?: string | null, vatNumber?: string | null, companyRegNumber?: string | null, createdAt: any, updatedAt: any, contacts?: Array<{ __typename?: 'Contact', type: string, value: string, isPrimary?: boolean | null }> | null };
 
 export type GetAccountQueryVariables = Exact<{
   id: Scalars['ID64']['input'];
 }>;
 
 
-export type GetAccountQuery = { __typename?: 'Query', result: { __typename?: 'AccountPayload', data?: { __typename?: 'Account', ID: any, title: string, description: string, status: ApproveStatus, statusMessage?: string | null, logoURI: string, policyURI: string, termsOfServiceURI: string, clientURI: string, contacts?: Array<string> | null, createdAt: any, updatedAt: any } | null } };
+export type GetAccountQuery = { __typename?: 'Query', result: { __typename?: 'AccountPayload', data?: { __typename?: 'Account', ID: any, name: string, description: string, status: ApproveStatus, statusMessage?: string | null, countryCode?: string | null, city?: string | null, zipCode?: string | null, address?: string | null, phone?: string | null, vatNumber?: string | null, companyRegNumber?: string | null, createdAt: any, updatedAt: any, contacts?: Array<{ __typename?: 'Contact', type: string, value: string, isPrimary?: boolean | null }> | null } | null } };
 
 export type GetAccountsQueryVariables = Exact<{
   page?: Scalars['Int']['input'];
   size?: Scalars['Int']['input'];
   filter?: InputMaybe<AccountListFilter>;
-  order?: InputMaybe<AccountListOrder>;
+  order?: InputMaybe<Array<AccountListOrder> | AccountListOrder>;
 }>;
 
 
-export type GetAccountsQuery = { __typename?: 'Query', permApprove?: string | null, permReject?: string | null, result?: { __typename?: 'AccountConnection', list?: Array<{ __typename?: 'Account', ID: any, title: string, description: string, status: ApproveStatus, statusMessage?: string | null, logoURI: string, policyURI: string, termsOfServiceURI: string, clientURI: string, contacts?: Array<string> | null, createdAt: any, updatedAt: any }> | null, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
+export type GetAccountsQuery = { __typename?: 'Query', permApprove?: string | null, permReject?: string | null, result?: { __typename?: 'AccountConnection', list?: Array<{ __typename?: 'Account', ID: any, name: string, description: string, status: ApproveStatus, statusMessage?: string | null, countryCode?: string | null, city?: string | null, zipCode?: string | null, address?: string | null, phone?: string | null, vatNumber?: string | null, companyRegNumber?: string | null, createdAt: any, updatedAt: any, contacts?: Array<{ __typename?: 'Contact', type: string, value: string, isPrimary?: boolean | null }> | null }> | null, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
 
 export type UpdateAccountMutationVariables = Exact<{
   id: Scalars['ID64']['input'];
-  data: AccountInput;
+  data: AccountUpdateInput;
 }>;
 
 
-export type UpdateAccountMutation = { __typename?: 'Mutation', updateAccount: { __typename?: 'AccountPayload', clientMutationID: string, accountID: any, account?: { __typename?: 'Account', ID: any, title: string, description: string, status: ApproveStatus, statusMessage?: string | null, logoURI: string, policyURI: string, termsOfServiceURI: string, clientURI: string, contacts?: Array<string> | null, createdAt: any, updatedAt: any } | null } };
+export type UpdateAccountMutation = { __typename?: 'Mutation', updateAccount: { __typename?: 'AccountPayload', clientMutationID: string, accountID: any, account?: { __typename?: 'Account', ID: any, name: string, description: string, status: ApproveStatus, statusMessage?: string | null, countryCode?: string | null, city?: string | null, zipCode?: string | null, address?: string | null, phone?: string | null, vatNumber?: string | null, companyRegNumber?: string | null, createdAt: any, updatedAt: any, contacts?: Array<{ __typename?: 'Contact', type: string, value: string, isPrimary?: boolean | null }> | null } | null } };
 
 export type RegisterAccountMutationVariables = Exact<{
+  ownerID: Scalars['ID64']['input'];
   input: AccountCreateInput;
 }>;
 
 
-export type RegisterAccountMutation = { __typename?: 'Mutation', registerAccount: { __typename?: 'AccountCreatePayload', clientMutationID: string, account: { __typename?: 'Account', ID: any, title: string, description: string, status: ApproveStatus, statusMessage?: string | null, logoURI: string, policyURI: string, termsOfServiceURI: string, clientURI: string, contacts?: Array<string> | null, createdAt: any, updatedAt: any }, owner: { __typename?: 'User', ID: any, username: string, status: ApproveStatus, statusMessage?: string | null, createdAt: any, updatedAt: any } } };
+export type RegisterAccountMutation = { __typename?: 'Mutation', registerAccount: { __typename?: 'AccountPayload', clientMutationID: string, accountID: any, account?: { __typename?: 'Account', ID: any, name: string, description: string, status: ApproveStatus, statusMessage?: string | null, countryCode?: string | null, city?: string | null, zipCode?: string | null, address?: string | null, phone?: string | null, vatNumber?: string | null, companyRegNumber?: string | null, createdAt: any, updatedAt: any, contacts?: Array<{ __typename?: 'Contact', type: string, value: string, isPrimary?: boolean | null }> | null } | null } };
 
 export type ApproveAccountMutationVariables = Exact<{
   id: Scalars['ID64']['input'];
@@ -3740,24 +3602,24 @@ export type RejectAccountMutationVariables = Exact<{
 
 export type RejectAccountMutation = { __typename?: 'Mutation', rejectAccount: { __typename?: 'AccountPayload', clientMutationID: string } };
 
-export type __UserDataFragment = { __typename?: 'User', ID: any, username: string, status: ApproveStatus, statusMessage?: string | null, createdAt: any, updatedAt: any };
+export type __UserDataFragment = { __typename?: 'User', ID: any, email: string, status: ApproveStatus, statusMessage?: string | null, createdAt: any, updatedAt: any };
 
 export type GetUserQueryVariables = Exact<{
   id: Scalars['ID64']['input'];
 }>;
 
 
-export type GetUserQuery = { __typename?: 'Query', result: { __typename?: 'UserPayload', user?: { __typename?: 'User', ID: any, username: string, status: ApproveStatus, statusMessage?: string | null, createdAt: any, updatedAt: any } | null } };
+export type GetUserQuery = { __typename?: 'Query', result: { __typename?: 'UserPayload', user?: { __typename?: 'User', ID: any, email: string, status: ApproveStatus, statusMessage?: string | null, createdAt: any, updatedAt: any } | null } };
 
 export type GetUsersQueryVariables = Exact<{
   page?: Scalars['Int']['input'];
   size?: Scalars['Int']['input'];
   filter?: InputMaybe<UserListFilter>;
-  order?: InputMaybe<UserListOrder>;
+  order?: InputMaybe<Array<UserListOrder> | UserListOrder>;
 }>;
 
 
-export type GetUsersQuery = { __typename?: 'Query', permApprove?: string | null, permReject?: string | null, result?: { __typename?: 'UserConnection', list?: Array<{ __typename?: 'User', ID: any, username: string, status: ApproveStatus, statusMessage?: string | null, createdAt: any, updatedAt: any }> | null, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
+export type GetUsersQuery = { __typename?: 'Query', permApprove?: string | null, permReject?: string | null, result?: { __typename?: 'UserConnection', list?: Array<{ __typename?: 'User', ID: any, email: string, status: ApproveStatus, statusMessage?: string | null, createdAt: any, updatedAt: any }> | null, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null };
 
 export type ApproveUserMutationVariables = Exact<{
   id: Scalars['ID64']['input'];
@@ -3775,17 +3637,17 @@ export type RejectUserMutationVariables = Exact<{
 
 export type RejectUserMutation = { __typename?: 'Mutation', rejectUser: { __typename?: 'UserPayload', clientMutationID: string } };
 
-export type __MemberDataFragment = { __typename?: 'Member', ID: any, status: ApproveStatus, isAdmin: boolean, updatedAt: any, account: { __typename?: 'Account', ID: any, title: string, logoURI: string, status: ApproveStatus, statusMessage?: string | null, updatedAt: any }, user: { __typename?: 'User', ID: any, username: string, status: ApproveStatus, statusMessage?: string | null, updatedAt: any }, roles?: Array<{ __typename?: 'RBACRole', ID: any, name: string, title: string }> | null };
+export type __MemberDataFragment = { __typename?: 'Member', ID: any, status: ApproveStatus, isAdmin: boolean, userID: any, accountID: any, updatedAt: any, roles?: Array<{ __typename?: 'RBACRole', ID: any, name: string, title: string }> | null };
 
 export type GetMembersQueryVariables = Exact<{
   page?: Scalars['Int']['input'];
   size?: Scalars['Int']['input'];
   filter?: InputMaybe<MemberListFilter>;
-  order?: InputMaybe<MemberListOrder>;
+  order?: InputMaybe<Array<MemberListOrder> | MemberListOrder>;
 }>;
 
 
-export type GetMembersQuery = { __typename?: 'Query', permApprove?: string | null, permReject?: string | null, permUpdate?: string | null, result?: { __typename?: 'MemberConnection', totalCount: number, list?: Array<{ __typename?: 'Member', ID: any, status: ApproveStatus, isAdmin: boolean, updatedAt: any, account: { __typename?: 'Account', ID: any, title: string, logoURI: string, status: ApproveStatus, statusMessage?: string | null, updatedAt: any }, user: { __typename?: 'User', ID: any, username: string, status: ApproveStatus, statusMessage?: string | null, updatedAt: any }, roles?: Array<{ __typename?: 'RBACRole', ID: any, name: string, title: string }> | null }> | null, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null, roles?: { __typename?: 'RBACRoleConnection', list?: Array<{ __typename?: 'RBACRole', ID: any, title: string, name: string }> | null } | null };
+export type GetMembersQuery = { __typename?: 'Query', permApprove?: string | null, permReject?: string | null, permUpdate?: string | null, result?: { __typename?: 'MemberConnection', totalCount: number, list?: Array<{ __typename?: 'Member', ID: any, status: ApproveStatus, isAdmin: boolean, userID: any, accountID: any, updatedAt: any, roles?: Array<{ __typename?: 'RBACRole', ID: any, name: string, title: string }> | null }> | null, pageInfo: { __typename?: 'PageInfo', total: number, page: number, count: number } } | null, roles?: { __typename?: 'RBACRoleConnection', list?: Array<{ __typename?: 'RBACRole', ID: any, title: string, name: string }> | null } | null };
 
 export type UpdateMemberMutationVariables = Exact<{
   id: Scalars['ID64']['input'];
@@ -3793,7 +3655,7 @@ export type UpdateMemberMutationVariables = Exact<{
 }>;
 
 
-export type UpdateMemberMutation = { __typename?: 'Mutation', updateAccountMember: { __typename?: 'MemberPayload', clientMutationID: string, memberID: any, member?: { __typename?: 'Member', ID: any, status: ApproveStatus, isAdmin: boolean, updatedAt: any, account: { __typename?: 'Account', ID: any, title: string, logoURI: string, status: ApproveStatus, statusMessage?: string | null, updatedAt: any }, user: { __typename?: 'User', ID: any, username: string, status: ApproveStatus, statusMessage?: string | null, updatedAt: any }, roles?: Array<{ __typename?: 'RBACRole', ID: any, name: string, title: string }> | null } | null } };
+export type UpdateMemberMutation = { __typename?: 'Mutation', updateAccountMember: { __typename?: 'MemberPayload', clientMutationID: string, memberID: any, member?: { __typename?: 'Member', ID: any, status: ApproveStatus, isAdmin: boolean, userID: any, accountID: any, updatedAt: any, roles?: Array<{ __typename?: 'RBACRole', ID: any, name: string, title: string }> | null } | null } };
 
 export type __SocialAccountDataFragment = { __typename?: 'SocialAccount', ID: any, userID: any, email: string, username: string, provider: string, firstName: string, lastName: string, avatar: string, link: string, data: any, sessions?: Array<{ __typename?: 'SocialAccountSession', name: string, scope?: Array<string> | null, tokenType: string, expiresAt?: any | null }> | null };
 
@@ -4015,7 +3877,7 @@ export type ListHistoryQueryVariables = Exact<{
   page?: Scalars['Int']['input'];
   size?: Scalars['Int']['input'];
   filter?: InputMaybe<HistoryActionListFilter>;
-  order?: InputMaybe<HistoryActionListOrder>;
+  order?: InputMaybe<Array<HistoryActionListOrder> | HistoryActionListOrder>;
 }>;
 
 
@@ -4193,15 +4055,22 @@ export const __PageInfoFragmentDoc = gql`
 export const __AccountDataFragmentDoc = gql`
     fragment __accountData on Account {
   ID
-  title
+  name
   description
   status
   statusMessage
-  logoURI
-  policyURI
-  termsOfServiceURI
-  clientURI
-  contacts
+  countryCode
+  city
+  zipCode
+  address
+  phone
+  vatNumber
+  companyRegNumber
+  contacts {
+    type
+    value
+    isPrimary
+  }
   createdAt
   updatedAt
 }
@@ -4209,7 +4078,7 @@ export const __AccountDataFragmentDoc = gql`
 export const __UserDataFragmentDoc = gql`
     fragment __userData on User {
   ID
-  username
+  email
   status
   statusMessage
   createdAt
@@ -4221,22 +4090,9 @@ export const __MemberDataFragmentDoc = gql`
   ID
   status
   isAdmin
+  userID
+  accountID
   updatedAt
-  account {
-    ID
-    title
-    logoURI
-    status
-    statusMessage
-    updatedAt
-  }
-  user {
-    ID
-    username
-    status
-    statusMessage
-    updatedAt
-  }
   roles {
     ID
     name
@@ -5450,7 +5306,7 @@ export type GetAccountLazyQueryHookResult = ReturnType<typeof useGetAccountLazyQ
 export type GetAccountSuspenseQueryHookResult = ReturnType<typeof useGetAccountSuspenseQuery>;
 export type GetAccountQueryResult = Apollo.QueryResult<GetAccountQuery, GetAccountQueryVariables>;
 export const GetAccountsDocument = gql`
-    query GetAccounts($page: Int! = 0, $size: Int! = 10, $filter: AccountListFilter = null, $order: AccountListOrder = null) {
+    query GetAccounts($page: Int! = 0, $size: Int! = 10, $filter: AccountListFilter = null, $order: [AccountListOrder!] = null) {
   result: listAccounts(
     filter: $filter
     order: $order
@@ -5505,7 +5361,7 @@ export type GetAccountsLazyQueryHookResult = ReturnType<typeof useGetAccountsLaz
 export type GetAccountsSuspenseQueryHookResult = ReturnType<typeof useGetAccountsSuspenseQuery>;
 export type GetAccountsQueryResult = Apollo.QueryResult<GetAccountsQuery, GetAccountsQueryVariables>;
 export const UpdateAccountDocument = gql`
-    mutation UpdateAccount($id: ID64!, $data: AccountInput!) {
+    mutation UpdateAccount($id: ID64!, $data: AccountUpdateInput!) {
   updateAccount(id: $id, input: $data) {
     clientMutationID
     accountID
@@ -5543,19 +5399,16 @@ export type UpdateAccountMutationHookResult = ReturnType<typeof useUpdateAccount
 export type UpdateAccountMutationResult = Apollo.MutationResult<UpdateAccountMutation>;
 export type UpdateAccountMutationOptions = Apollo.BaseMutationOptions<UpdateAccountMutation, UpdateAccountMutationVariables>;
 export const RegisterAccountDocument = gql`
-    mutation RegisterAccount($input: AccountCreateInput!) {
-  registerAccount(input: $input) {
+    mutation RegisterAccount($ownerID: ID64!, $input: AccountCreateInput!) {
+  registerAccount(ownerID: $ownerID, input: $input) {
     clientMutationID
+    accountID
     account {
       ...__accountData
     }
-    owner {
-      ...__userData
-    }
   }
 }
-    ${__AccountDataFragmentDoc}
-${__UserDataFragmentDoc}`;
+    ${__AccountDataFragmentDoc}`;
 export type RegisterAccountMutationFn = Apollo.MutationFunction<RegisterAccountMutation, RegisterAccountMutationVariables>;
 
 /**
@@ -5571,6 +5424,7 @@ export type RegisterAccountMutationFn = Apollo.MutationFunction<RegisterAccountM
  * @example
  * const [registerAccountMutation, { data, loading, error }] = useRegisterAccountMutation({
  *   variables: {
+ *      ownerID: // value for 'ownerID'
  *      input: // value for 'input'
  *   },
  * });
@@ -5693,7 +5547,7 @@ export type GetUserLazyQueryHookResult = ReturnType<typeof useGetUserLazyQuery>;
 export type GetUserSuspenseQueryHookResult = ReturnType<typeof useGetUserSuspenseQuery>;
 export type GetUserQueryResult = Apollo.QueryResult<GetUserQuery, GetUserQueryVariables>;
 export const GetUsersDocument = gql`
-    query GetUsers($page: Int! = 0, $size: Int! = 10, $filter: UserListFilter = null, $order: UserListOrder = null) {
+    query GetUsers($page: Int! = 0, $size: Int! = 10, $filter: UserListFilter = null, $order: [UserListOrder!] = null) {
   result: listUsers(
     filter: $filter
     order: $order
@@ -5816,7 +5670,7 @@ export type RejectUserMutationHookResult = ReturnType<typeof useRejectUserMutati
 export type RejectUserMutationResult = Apollo.MutationResult<RejectUserMutation>;
 export type RejectUserMutationOptions = Apollo.BaseMutationOptions<RejectUserMutation, RejectUserMutationVariables>;
 export const GetMembersDocument = gql`
-    query GetMembers($page: Int! = 0, $size: Int! = 10, $filter: MemberListFilter = null, $order: MemberListOrder = null) {
+    query GetMembers($page: Int! = 0, $size: Int! = 10, $filter: MemberListFilter = null, $order: [MemberListOrder!] = null) {
   result: listMembers(
     filter: $filter
     order: $order
@@ -6979,7 +6833,7 @@ export type ListDeviceModelsLazyQueryHookResult = ReturnType<typeof useListDevic
 export type ListDeviceModelsSuspenseQueryHookResult = ReturnType<typeof useListDeviceModelsSuspenseQuery>;
 export type ListDeviceModelsQueryResult = Apollo.QueryResult<ListDeviceModelsQuery, ListDeviceModelsQueryVariables>;
 export const ListHistoryDocument = gql`
-    query ListHistory($page: Int! = 0, $size: Int! = 10, $filter: HistoryActionListFilter = null, $order: HistoryActionListOrder = null) {
+    query ListHistory($page: Int! = 0, $size: Int! = 10, $filter: HistoryActionListFilter = null, $order: [HistoryActionListOrder!] = null) {
   result: listHistory(
     filter: $filter
     order: $order

@@ -27,15 +27,22 @@ query ListCountries {
 
 fragment __accountData on Account {
   ID
-  title
+  name
   description
   status
   statusMessage
-  logoURI
-  policyURI
-  termsOfServiceURI
-  clientURI
-  contacts
+  countryCode
+  city
+  zipCode
+  address
+  phone
+  vatNumber
+  companyRegNumber
+  contacts {
+    type
+    value
+    isPrimary
+  }
   createdAt
   updatedAt
 }
@@ -46,7 +53,7 @@ query GetAccount($id: ID64!) {
   }
 }
 
-query GetAccounts($page: Int! = 0, $size: Int! = 10, $filter: AccountListFilter = null, $order: AccountListOrder = null) {
+query GetAccounts($page: Int! = 0, $size: Int! = 10, $filter: AccountListFilter = null, $order: [AccountListOrder!] = null) {
   result: listAccounts(filter: $filter, order: $order, page: {startPage: $page, size: $size}) {
     list { ...__accountData }
     pageInfo { ...__pageInfo }
@@ -55,7 +62,7 @@ query GetAccounts($page: Int! = 0, $size: Int! = 10, $filter: AccountListFilter 
   permReject: checkPermission(name:"reject.*", key: "account")
 }
 
-mutation UpdateAccount($id: ID64!, $data: AccountInput!){
+mutation UpdateAccount($id: ID64!, $data: AccountUpdateInput!){
   updateAccount(id: $id, input: $data) {
     clientMutationID
     accountID
@@ -63,11 +70,11 @@ mutation UpdateAccount($id: ID64!, $data: AccountInput!){
   }
 }
 
-mutation RegisterAccount($input: AccountCreateInput!) {
-  registerAccount(input: $input) {
+mutation RegisterAccount($ownerID: ID64!, $input: AccountCreateInput!) {
+  registerAccount(ownerID: $ownerID, input: $input) {
     clientMutationID
+    accountID
     account { ...__accountData }
-    owner { ...__userData }
   }
 }
 
@@ -89,7 +96,7 @@ mutation RejectAccount($id: ID64!, $msg: String! = "") {
 
 fragment __userData on User {
   ID
-  username
+  email
   status
   statusMessage
   createdAt
@@ -102,7 +109,7 @@ query GetUser($id: ID64!) {
   }
 }
 
-query GetUsers($page: Int! = 0, $size: Int! = 10, $filter: UserListFilter = null, $order: UserListOrder = null) {
+query GetUsers($page: Int! = 0, $size: Int! = 10, $filter: UserListFilter = null, $order: [UserListOrder!] = null) {
   result: listUsers(filter: $filter, order: $order, page: {startPage: $page, size: $size}) {
     list { ...__userData }
     pageInfo { ...__pageInfo }
@@ -145,22 +152,9 @@ fragment __memberData on Member {
   ID
   status
   isAdmin
+  userID
+  accountID
   updatedAt
-  account {
-    ID
-    title
-    logoURI
-    status
-    statusMessage
-    updatedAt
-  }
-  user {
-    ID
-    username
-    status
-    statusMessage
-    updatedAt
-  }
   roles {
     ID
     name
@@ -168,7 +162,7 @@ fragment __memberData on Member {
   }
 }
 
-query GetMembers($page: Int! = 0, $size: Int! = 10, $filter: MemberListFilter = null, $order: MemberListOrder = null) {
+query GetMembers($page: Int! = 0, $size: Int! = 10, $filter: MemberListFilter = null, $order: [MemberListOrder!] = null) {
   result: listMembers(filter: $filter, order: $order, page: {startPage: $page, size: $size}) {
     totalCount
     list { ...__memberData }
@@ -560,7 +554,7 @@ query ListDeviceModels(
 query ListHistory(
   $page: Int! = 0, $size: Int! = 10,
   $filter: HistoryActionListFilter = null,
-  $order: HistoryActionListOrder = null
+  $order: [HistoryActionListOrder!] = null
 ) {
   result: listHistory(filter: $filter, order: $order, page: {startPage: $page, size: $size}) {
     totalCount

@@ -5,9 +5,7 @@ export const gqlCurrentAccountTotalQuery = gql`
     user: currentUser {
       user {
         ID
-        name: username
-        username
-        email: username
+        email
         status
       }
     }
@@ -15,9 +13,8 @@ export const gqlCurrentAccountTotalQuery = gql`
       account {
         ID
         status
-        title
+        name
         description
-        logoURI
       }
     }
     session: currentSession {

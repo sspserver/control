@@ -7,18 +7,16 @@ function useUserDropdown() {
   const { data } = useSession();
   const user = data?.user;
   const account = data?.account;
-  const username = user?.username;
+  const email = user?.email;
   const accountDescription = account?.description;
-  const accountTitle = account?.title;
-  const accountLogoURI = account?.logoURI;
-  const avatarInitial = username?.charAt(0).toUpperCase();
+  const accountTitle = account?.name;
+  const avatarInitial = email?.charAt(0).toUpperCase();
   const clickSignOutButtonHandler = () => signOut({ callbackUrl: '/', redirect: true });
   const clickUserSettingsButtonHandler = () => push(configPathRoutes.settings);
 
   return {
-    username,
+    username: email,
     accountTitle,
-    accountLogoURI,
     avatarInitial,
     accountDescription,
     clickSignOutButtonHandler,

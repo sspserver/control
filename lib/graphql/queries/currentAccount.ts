@@ -5,7 +5,7 @@ export const gqlCurrentAccountQuery = gql`
     user: currentUser {
       user {
         ID
-        username
+        email
         status
       }
     }
@@ -13,9 +13,8 @@ export const gqlCurrentAccountQuery = gql`
       account {
         ID
         status
-        title
+        name
         description
-        logoURI
       }
     }
     agreement: nextAgreement {

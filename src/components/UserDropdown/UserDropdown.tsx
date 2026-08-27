@@ -11,7 +11,6 @@ function UserDropdown() {
   const {
     username,
     accountTitle,
-    accountLogoURI,
     avatarInitial,
     clickSignOutButtonHandler,
     clickUserSettingsButtonHandler,
@@ -22,7 +21,6 @@ function UserDropdown() {
       <DropdownMenu.Trigger className="rounded-[--avatar-radius] hover:ring ring-[--ui-soft-bg] data-[state=open]:ring">
         <AdminAvatar
           size="xs"
-          src={accountLogoURI}
           initial={avatarInitial}
         />
       </DropdownMenu.Trigger>
@@ -31,7 +29,6 @@ function UserDropdown() {
           <div className="grid gap-3 [grid-template-columns:auto_1fr] p-3">
             <AdminAvatar
               size="xs"
-              src={accountLogoURI}
               initial={avatarInitial}
             />
             <div>

@@ -3,10 +3,9 @@ import { RegisterAccountDocument } from '@/generated/graphql';
 import client from './client';
 
 export type RegisterAccountInput = {
-  username: string;
-  password: string;
-  accountTitle: string;
-  accountDescription: string;
+  ownerID: string | number;
+  name: string;
+  description: string;
 };
 
 export const registerAccount = async (input: RegisterAccountInput) => {
@@ -14,23 +13,17 @@ export const registerAccount = async (input: RegisterAccountInput) => {
     const { data } = await client.mutate({
       mutation: RegisterAccountDocument,
       variables: {
+        ownerID: input.ownerID,
         input: {
-          password: input.password,
-          owner: {
-            username: input.username,
-          },
-          account: {
-            title: input.accountTitle,
-            description: input.accountDescription,
-          },
+          name: input.name,
+          description: input.description,
         },
       },
     });
 
     const account = data?.registerAccount?.account;
-    const owner = data?.registerAccount?.owner;
 
-    if (!account || !owner) {
+    if (!account) {
       return {
         status: false,
         message: 'Failed to create account',
@@ -43,7 +36,6 @@ export const registerAccount = async (input: RegisterAccountInput) => {
       message: 'Account created successfully',
       data: {
         account,
-        owner,
       },
       errors: null,
     };

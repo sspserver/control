@@ -26,7 +26,7 @@ function useAgreementModal() {
   const clickButtonAcceptAgreementHandler = async () => {
     const { codename } = agreement;
     const date = new Date().toISOString().split('T')[0];
-    const signature = data?.user?.username || '';
+    const signature = data?.user?.email || '';
     const response = await acceptAgreement({
       variables: {
         codename,
